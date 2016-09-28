@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
+		6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */; };
+		6F6F0B9F1D9BA39300370330 /* TuneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B701D9BA39300370330 /* TuneViewController.m */; };
+		6F6F0BA01D9BA39300370330 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B721D9BA39300370330 /* InfoViewController.m */; };
+		6F6F0BA11D9BA39300370330 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B751D9BA39300370330 /* TagViewController.m */; };
+		6F6F0BA51D9BA39300370330 /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */; };
+		6F6F0BA61D9BA39300370330 /* SelectReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */; };
+		6F6F0BA71D9BA39300370330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B821D9BA39300370330 /* LaunchScreen.storyboard */; };
+		6F6F0BA81D9BA39300370330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B841D9BA39300370330 /* Main.storyboard */; };
+		6F6F0BA91D9BA39300370330 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B861D9BA39300370330 /* ReaderViewController.m */; };
+		6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B881D9BA39300370330 /* SettingsAlternative.m */; };
+		6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8A1D9BA39300370330 /* Assets.xcassets */; };
+		6F6F0BAC1D9BA39300370330 /* icon-40@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8C1D9BA39300370330 /* icon-40@2.png */; };
+		6F6F0BAD1D9BA39300370330 /* icon-40@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8D1D9BA39300370330 /* icon-40@3.png */; };
+		6F6F0BAE1D9BA39300370330 /* icon-60@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8E1D9BA39300370330 /* icon-60@2.png */; };
+		6F6F0BAF1D9BA39300370330 /* icon-60@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8F1D9BA39300370330 /* icon-60@3.png */; };
+		6F6F0BB01D9BA39300370330 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B901D9BA39300370330 /* icon.png */; };
+		6F6F0BB11D9BA39300370330 /* Logo-200@1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B911D9BA39300370330 /* Logo-200@1.png */; };
+		6F6F0BB21D9BA39300370330 /* Logo-200@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B921D9BA39300370330 /* Logo-200@2.png */; };
+		6F6F0BB31D9BA39300370330 /* Logo-200@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B931D9BA39300370330 /* Logo-200@3.png */; };
+		6F6F0BB41D9BA39300370330 /* Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B941D9BA39300370330 /* Logo.jpg */; };
+		6F6F0BB51D9BA39300370330 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B951D9BA39300370330 /* Logo.png */; };
+		6F6F0BB61D9BA39300370330 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B961D9BA39300370330 /* Tag.m */; };
+		6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */; };
+		6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9A1D9BA39300370330 /* AppDelegate.m */; };
+		6F6F0BB91D9BA39300370330 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9B1D9BA39300370330 /* Info.plist */; };
+		6F6F0BBA1D9BA39300370330 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9C1D9BA39300370330 /* main.m */; };
+		6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6F6F0B0E1D952CCF00370330 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryViewController.h; path = Source/InventoryViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B6C1D9BA39300370330 /* TuneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TuneViewController.h; path = Source/TuneViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B6D1D9BA39300370330 /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderViewController.h; path = Source/ReaderViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B6E1D9BA39300370330 /* SelectReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectReaderViewController.h; path = Source/SelectReaderViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectSettingViewController.m; path = Source/SelectSettingViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B701D9BA39300370330 /* TuneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TuneViewController.m; path = Source/TuneViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B711D9BA39300370330 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Source/Tag.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B721D9BA39300370330 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoViewController.m; path = Source/InfoViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B731D9BA39300370330 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = Source/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B741D9BA39300370330 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagViewController.h; path = Source/TagViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B751D9BA39300370330 /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagViewController.m; path = Source/TagViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B761D9BA39300370330 /* SettingsAlternative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsAlternative.h; path = Source/SettingsAlternative.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryViewController.m; path = Source/InventoryViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectReaderViewController.m; path = Source/SelectReaderViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B831D9BA39300370330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6F6F0B851D9BA39300370330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		6F6F0B861D9BA39300370330 /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderViewController.m; path = Source/ReaderViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B871D9BA39300370330 /* SelectSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectSettingViewController.h; path = Source/SelectSettingViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B881D9BA39300370330 /* SettingsAlternative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsAlternative.m; path = Source/SettingsAlternative.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B891D9BA39300370330 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = Source/InfoViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B8A1D9BA39300370330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Source/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		6F6F0B8C1D9BA39300370330 /* icon-40@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2.png"; sourceTree = "<group>"; };
+		6F6F0B8D1D9BA39300370330 /* icon-40@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@3.png"; sourceTree = "<group>"; };
+		6F6F0B8E1D9BA39300370330 /* icon-60@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2.png"; sourceTree = "<group>"; };
+		6F6F0B8F1D9BA39300370330 /* icon-60@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@3.png"; sourceTree = "<group>"; };
+		6F6F0B901D9BA39300370330 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		6F6F0B911D9BA39300370330 /* Logo-200@1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@1.png"; sourceTree = "<group>"; };
+		6F6F0B921D9BA39300370330 /* Logo-200@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@2.png"; sourceTree = "<group>"; };
+		6F6F0B931D9BA39300370330 /* Logo-200@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@3.png"; sourceTree = "<group>"; };
+		6F6F0B941D9BA39300370330 /* Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Logo.jpg; sourceTree = "<group>"; };
+		6F6F0B951D9BA39300370330 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		6F6F0B961D9BA39300370330 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Source/Tag.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+BackgroundColor.h"; path = "Source/UIButton+BackgroundColor.h"; sourceTree = SOURCE_ROOT; };
+		6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+BackgroundColor.m"; path = "Source/UIButton+BackgroundColor.m"; sourceTree = SOURCE_ROOT; };
+		6F6F0B991D9BA39300370330 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B9A1D9BA39300370330 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B9B1D9BA39300370330 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
+		6F6F0B9C1D9BA39300370330 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
+		6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NurAPIBluetooth.framework; sourceTree = "<group>"; };
+		6FD254531CE2128C00083D83 /* NURAPI Objective-C Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NURAPI Objective-C Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6FD254501CE2128C00083D83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F6F0B8B1D9BA39300370330 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				6F6F0B8C1D9BA39300370330 /* icon-40@2.png */,
+				6F6F0B8D1D9BA39300370330 /* icon-40@3.png */,
+				6F6F0B8E1D9BA39300370330 /* icon-60@2.png */,
+				6F6F0B8F1D9BA39300370330 /* icon-60@3.png */,
+				6F6F0B901D9BA39300370330 /* icon.png */,
+				6F6F0B911D9BA39300370330 /* Logo-200@1.png */,
+				6F6F0B921D9BA39300370330 /* Logo-200@2.png */,
+				6F6F0B931D9BA39300370330 /* Logo-200@3.png */,
+				6F6F0B941D9BA39300370330 /* Logo.jpg */,
+				6F6F0B951D9BA39300370330 /* Logo.png */,
+			);
+			name = Icons;
+			path = Source/Icons;
+			sourceTree = SOURCE_ROOT;
+		};
+		6F9E8F401D81CFD900512C56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6FD2544A1CE2128C00083D83 = {
+			isa = PBXGroup;
+			children = (
+				6F9E8F401D81CFD900512C56 /* Frameworks */,
+				6FD254551CE2128C00083D83 /* Sources */,
+				6FD254541CE2128C00083D83 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6FD254541CE2128C00083D83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6FD254531CE2128C00083D83 /* NURAPI Objective-C Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6FD254551CE2128C00083D83 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				6F6F0B991D9BA39300370330 /* AppDelegate.h */,
+				6F6F0B891D9BA39300370330 /* InfoViewController.h */,
+				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
+				6F6F0B6D1D9BA39300370330 /* ReaderViewController.h */,
+				6F6F0B6E1D9BA39300370330 /* SelectReaderViewController.h */,
+				6F6F0B871D9BA39300370330 /* SelectSettingViewController.h */,
+				6F6F0B761D9BA39300370330 /* SettingsAlternative.h */,
+				6F6F0B731D9BA39300370330 /* SettingsViewController.h */,
+				6F6F0B711D9BA39300370330 /* Tag.h */,
+				6F6F0B741D9BA39300370330 /* TagViewController.h */,
+				6F6F0B6C1D9BA39300370330 /* TuneViewController.h */,
+				6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */,
+				6F6F0B9A1D9BA39300370330 /* AppDelegate.m */,
+				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
+				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
+				6F6F0B861D9BA39300370330 /* ReaderViewController.m */,
+				6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */,
+				6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */,
+				6F6F0B881D9BA39300370330 /* SettingsAlternative.m */,
+				6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */,
+				6F6F0B961D9BA39300370330 /* Tag.m */,
+				6F6F0B751D9BA39300370330 /* TagViewController.m */,
+				6F6F0B701D9BA39300370330 /* TuneViewController.m */,
+				6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */,
+				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
+				6F6F0B8B1D9BA39300370330 /* Icons */,
+				6FD254CC1CE258EA00083D83 /* Storyboards */,
+				6FD254561CE2128C00083D83 /* Supporting Files */,
+			);
+			name = Sources;
+			path = "Source";
+			sourceTree = "<group>";
+		};
+		6FD254561CE2128C00083D83 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6F6F0B9C1D9BA39300370330 /* main.m */,
+				6F6F0B9B1D9BA39300370330 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6FD254CC1CE258EA00083D83 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6F6F0B821D9BA39300370330 /* LaunchScreen.storyboard */,
+				6F6F0B841D9BA39300370330 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6FD254521CE2128C00083D83 /* NURAPI Objective-C Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FD2546A1CE2128C00083D83 /* Build configuration list for PBXNativeTarget "NURAPI Objective-C Demo" */;
+			buildPhases = (
+				6FD2544F1CE2128C00083D83 /* Sources */,
+				6FD254501CE2128C00083D83 /* Frameworks */,
+				6FD254511CE2128C00083D83 /* Resources */,
+				6F6F0B0E1D952CCF00370330 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NURAPI Objective-C Demo";
+			productName = "NURAPI Objective-C Demo";
+			productReference = 6FD254531CE2128C00083D83 /* NURAPI Objective-C Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6FD2544B1CE2128C00083D83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Jan Ekholm";
+				TargetAttributes = {
+					6FD254521CE2128C00083D83 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 4725WV3RB4;
+					};
+				};
+			};
+			buildConfigurationList = 6FD2544E1CE2128C00083D83 /* Build configuration list for PBXProject "NURAPI Objective-C Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6FD2544A1CE2128C00083D83;
+			productRefGroup = 6FD254541CE2128C00083D83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6FD254521CE2128C00083D83 /* NURAPI Objective-C Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6FD254511CE2128C00083D83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F6F0BB31D9BA39300370330 /* Logo-200@3.png in Resources */,
+				6F6F0BB41D9BA39300370330 /* Logo.jpg in Resources */,
+				6F6F0BAE1D9BA39300370330 /* icon-60@2.png in Resources */,
+				6F6F0BB11D9BA39300370330 /* Logo-200@1.png in Resources */,
+				6F6F0BA81D9BA39300370330 /* Main.storyboard in Resources */,
+				6F6F0BA71D9BA39300370330 /* LaunchScreen.storyboard in Resources */,
+				6F6F0BAC1D9BA39300370330 /* icon-40@2.png in Resources */,
+				6F6F0BB01D9BA39300370330 /* icon.png in Resources */,
+				6F6F0BB91D9BA39300370330 /* Info.plist in Resources */,
+				6F6F0BAD1D9BA39300370330 /* icon-40@3.png in Resources */,
+				6F6F0BAF1D9BA39300370330 /* icon-60@3.png in Resources */,
+				6F6F0BB51D9BA39300370330 /* Logo.png in Resources */,
+				6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */,
+				6F6F0BB21D9BA39300370330 /* Logo-200@2.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6FD2544F1CE2128C00083D83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F6F0BA91D9BA39300370330 /* ReaderViewController.m in Sources */,
+				6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */,
+				6F6F0BBA1D9BA39300370330 /* main.m in Sources */,
+				6F6F0BA11D9BA39300370330 /* TagViewController.m in Sources */,
+				6F6F0BB61D9BA39300370330 /* Tag.m in Sources */,
+				6F6F0BA01D9BA39300370330 /* InfoViewController.m in Sources */,
+				6F6F0BA51D9BA39300370330 /* InventoryViewController.m in Sources */,
+				6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */,
+				6F6F0BA61D9BA39300370330 /* SelectReaderViewController.m in Sources */,
+				6F6F0B9F1D9BA39300370330 /* TuneViewController.m in Sources */,
+				6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */,
+				6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */,
+				6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6F6F0B821D9BA39300370330 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F6F0B831D9BA39300370330 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = ../Source/Base.lproj;
+			sourceTree = "<group>";
+		};
+		6F6F0B841D9BA39300370330 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F6F0B851D9BA39300370330 /* Base */,
+			);
+			name = Main.storyboard;
+			path = ../Source/Base.lproj;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6FD254681CE2128C00083D83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					__ios__,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6FD254691CE2128C00083D83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = __ios__;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6FD2546B1CE2128C00083D83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4725WV3RB4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Source/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicid.nurapi.objectivec";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6FD2546C1CE2128C00083D83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4725WV3RB4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Source/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicid.nurapi.objectivec";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6FD2544E1CE2128C00083D83 /* Build configuration list for PBXProject "NURAPI Objective-C Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FD254681CE2128C00083D83 /* Debug */,
+				6FD254691CE2128C00083D83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6FD2546A1CE2128C00083D83 /* Build configuration list for PBXNativeTarget "NURAPI Objective-C Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FD2546B1CE2128C00083D83 /* Debug */,
+				6FD2546C1CE2128C00083D83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6FD2544B1CE2128C00083D83 /* Project object */;
+}
