@@ -1,1 +1,1 @@
-# nur_sample_ios
+# Sample NURAPI applications for iOS
