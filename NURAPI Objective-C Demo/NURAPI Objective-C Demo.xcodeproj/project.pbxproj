@@ -155,36 +155,36 @@
 			isa = PBXGroup;
 			children = (
 				6F6F0B991D9BA39300370330 /* AppDelegate.h */,
-				6F6F0B891D9BA39300370330 /* InfoViewController.h */,
-				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
-				6F6F0B6D1D9BA39300370330 /* ReaderViewController.h */,
-				6F6F0B6E1D9BA39300370330 /* SelectReaderViewController.h */,
-				6F6F0B871D9BA39300370330 /* SelectSettingViewController.h */,
-				6F6F0B761D9BA39300370330 /* SettingsAlternative.h */,
-				6F6F0B731D9BA39300370330 /* SettingsViewController.h */,
-				6F6F0B711D9BA39300370330 /* Tag.h */,
-				6F6F0B741D9BA39300370330 /* TagViewController.h */,
-				6F6F0B6C1D9BA39300370330 /* TuneViewController.h */,
-				6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */,
 				6F6F0B9A1D9BA39300370330 /* AppDelegate.m */,
-				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
-				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
-				6F6F0B861D9BA39300370330 /* ReaderViewController.m */,
-				6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */,
-				6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */,
-				6F6F0B881D9BA39300370330 /* SettingsAlternative.m */,
-				6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */,
-				6F6F0B961D9BA39300370330 /* Tag.m */,
-				6F6F0B751D9BA39300370330 /* TagViewController.m */,
-				6F6F0B701D9BA39300370330 /* TuneViewController.m */,
-				6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */,
 				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
 				6F6F0B8B1D9BA39300370330 /* Icons */,
+				6F6F0B891D9BA39300370330 /* InfoViewController.h */,
+				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
+				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
+				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
+				6F6F0B6D1D9BA39300370330 /* ReaderViewController.h */,
+				6F6F0B861D9BA39300370330 /* ReaderViewController.m */,
+				6F6F0B6E1D9BA39300370330 /* SelectReaderViewController.h */,
+				6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */,
+				6F6F0B871D9BA39300370330 /* SelectSettingViewController.h */,
+				6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */,
+				6F6F0B761D9BA39300370330 /* SettingsAlternative.h */,
+				6F6F0B881D9BA39300370330 /* SettingsAlternative.m */,
+				6F6F0B731D9BA39300370330 /* SettingsViewController.h */,
+				6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */,
 				6FD254CC1CE258EA00083D83 /* Storyboards */,
 				6FD254561CE2128C00083D83 /* Supporting Files */,
+				6F6F0B711D9BA39300370330 /* Tag.h */,
+				6F6F0B961D9BA39300370330 /* Tag.m */,
+				6F6F0B741D9BA39300370330 /* TagViewController.h */,
+				6F6F0B751D9BA39300370330 /* TagViewController.m */,
+				6F6F0B6C1D9BA39300370330 /* TuneViewController.h */,
+				6F6F0B701D9BA39300370330 /* TuneViewController.m */,
+				6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */,
+				6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */,
 			);
 			name = Sources;
-			path = "Source";
+			path = Source;
 			sourceTree = "<group>";
 		};
 		6FD254561CE2128C00083D83 /* Supporting Files */ = {
@@ -426,9 +426,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "Source/Info.plist";
+				INFOPLIST_FILE = Source/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicid.nurapi.objectivec";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -442,9 +442,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "Source/Info.plist";
+				INFOPLIST_FILE = Source/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicid.nurapi.objectivec";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

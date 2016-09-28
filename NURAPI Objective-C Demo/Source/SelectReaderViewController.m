@@ -2,20 +2,10 @@
 #import "SelectReaderViewController.h"
 #import "ReaderViewController.h"
 
-@interface SelectReaderViewController ()
-
-@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
-
-@end
-
-
 @implementation SelectReaderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // set up the queue used to async any NURAPI calls
-    self.dispatchQueue = dispatch_queue_create("com.nordicid.bluetooth-demo.nurapi-queue", DISPATCH_QUEUE_SERIAL);
 }
 
 
@@ -86,6 +76,7 @@
  **/
 - (void) bluetoothTurnedOn {
     dispatch_async( dispatch_get_main_queue(), ^{
+        NSLog( @"Bluetooth turned on" );
         [[Bluetooth sharedInstance] startScanning];
     });
 }

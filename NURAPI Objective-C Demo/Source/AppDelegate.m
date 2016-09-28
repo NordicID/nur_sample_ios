@@ -1,10 +1,3 @@
-//
-//  AppDelegate.m
-//  Bluetooh iOS Demo
-//
-//  Created by Jan Ekholm on 10-05-2016.
-//  Copyright © 2016 Jan Ekholm. All rights reserved.
-//
 
 #import "AppDelegate.h"
 
