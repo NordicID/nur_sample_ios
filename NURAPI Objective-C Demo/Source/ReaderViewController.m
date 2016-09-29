@@ -40,8 +40,13 @@
 - (void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 
+    // disconnect from this reader
+    [[Bluetooth sharedInstance] disconnectFromReader];
+    
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
+
+    NSLog( @"disconnected from reader" );
 }
 
 
