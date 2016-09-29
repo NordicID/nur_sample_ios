@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Bluetooth iOS Swift Demo.xcodeproj">
+      location = "self:/Users/chakie/Work/nordicid/nur_sample_ios/NURAPI Swift Demo/NURAPI Swift Demo.xcodeproj">
    </FileRef>
 </Workspace>
