@@ -76,7 +76,7 @@
  **/
 - (void) bluetoothTurnedOn {
     dispatch_async( dispatch_get_main_queue(), ^{
-        NSLog( @"Bluetooth turned on" );
+        NSLog( @"bluetooth turned on" );
         [[Bluetooth sharedInstance] startScanning];
     });
 }

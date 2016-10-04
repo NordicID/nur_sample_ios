@@ -19,3 +19,13 @@ that makes the framework available to the Swift code.
 Functionality wise the Swift version contains the same storyboard, but only the initial
 view controller that starts the scanning and lists the found readers is implemented.
 
+
+## NURApiBluetooth framework
+The **NURAPIBluetooth** framework contains shared libraries for both device and simulator architectures. This
+allows the same framework to be used for both simulator testing as well as deploying on devices. When an application
+is submitted to the App Store the simulator libraries can not be included and must be stripped away from the
+build.
+
+See:
+
+http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/

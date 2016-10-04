@@ -33,7 +33,6 @@
 		6F6F0BB61D9BA39300370330 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B961D9BA39300370330 /* Tag.m */; };
 		6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */; };
 		6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9A1D9BA39300370330 /* AppDelegate.m */; };
-		6F6F0BB91D9BA39300370330 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9B1D9BA39300370330 /* Info.plist */; };
 		6F6F0BBA1D9BA39300370330 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9C1D9BA39300370330 /* main.m */; };
 		6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; };
 /* End PBXBuildFile section */
@@ -90,7 +89,6 @@
 		6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+BackgroundColor.m"; path = "Source/UIButton+BackgroundColor.m"; sourceTree = SOURCE_ROOT; };
 		6F6F0B991D9BA39300370330 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B9A1D9BA39300370330 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		6F6F0B9B1D9BA39300370330 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
 		6F6F0B9C1D9BA39300370330 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
 		6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6FD254531CE2128C00083D83 /* NURAPI Objective-C Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NURAPI Objective-C Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				6F6F0B9C1D9BA39300370330 /* main.m */,
-				6F6F0B9B1D9BA39300370330 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -214,8 +211,10 @@
 			buildPhases = (
 				6FD2544F1CE2128C00083D83 /* Sources */,
 				6FD254501CE2128C00083D83 /* Frameworks */,
+				6FA8EF0E1DA3B58400804013 /* ShellScript */,
 				6FD254511CE2128C00083D83 /* Resources */,
 				6F6F0B0E1D952CCF00370330 /* Embed Frameworks */,
+				6FA8EF0F1DA3EFDB00804013 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -237,7 +236,8 @@
 				TargetAttributes = {
 					6FD254521CE2128C00083D83 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 4725WV3RB4;
+						DevelopmentTeam = VGSJJLLG7M;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -272,7 +272,6 @@
 				6F6F0BA71D9BA39300370330 /* LaunchScreen.storyboard in Resources */,
 				6F6F0BAC1D9BA39300370330 /* icon-40@2.png in Resources */,
 				6F6F0BB01D9BA39300370330 /* icon.png in Resources */,
-				6F6F0BB91D9BA39300370330 /* Info.plist in Resources */,
 				6F6F0BAD1D9BA39300370330 /* icon-40@3.png in Resources */,
 				6F6F0BAF1D9BA39300370330 /* icon-60@3.png in Resources */,
 				6F6F0BB51D9BA39300370330 /* Logo.png in Resources */,
@@ -282,6 +281,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6FA8EF0E1DA3B58400804013 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./AutoIncrementCFBundleVersion.sh\n";
+		};
+		6FA8EF0F1DA3EFDB00804013 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6FD2544F1CE2128C00083D83 /* Sources */ = {
@@ -421,15 +449,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4725WV3RB4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VGSJJLLG7M;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Source/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivec;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -437,15 +470,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4725WV3RB4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VGSJJLLG7M;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Source/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivec;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
