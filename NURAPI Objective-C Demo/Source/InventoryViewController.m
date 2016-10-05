@@ -33,7 +33,6 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
 }

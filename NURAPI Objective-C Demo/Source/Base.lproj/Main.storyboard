@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="3Y5-kP-Kht" kind="relationship" relationship="rootViewController" id="2sy-HG-QpR"/>
+                        <segue destination="K3A-0d-0w5" kind="relationship" relationship="rootViewController" id="ga5-Ec-rDg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kI6-F9-BJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,54 +24,78 @@
             <point key="canvasLocation" x="-420" y="-283"/>
         </scene>
         <!--NURAPI Objective-C Demo-->
-        <scene sceneID="EAY-WM-RuA">
+        <scene sceneID="NCo-zH-DUB">
             <objects>
-                <tableViewController id="3Y5-kP-Kht" customClass="SelectReaderViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="zaj-KV-mja">
+                <viewController id="K3A-0d-0w5" customClass="SelectReaderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mlC-9U-lhe"/>
+                        <viewControllerLayoutGuide type="bottom" id="jZ3-kS-Zar"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wdX-Rp-p1o">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReaderCell" textLabel="6zh-al-Hhs" detailTextLabel="ev1-2E-k3U" style="IBUITableViewCellStyleSubtitle" id="svS-5f-drA">
-                                <rect key="frame" x="0.0" y="120" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="svS-5f-drA" id="W23-oT-esp">
-                                    <frame key="frameInset" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6zh-al-Hhs">
-                                            <frame key="frameInset" minX="15" minY="5" width="32" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ev1-2E-k3U">
-                                            <frame key="frameInset" minX="15" minY="25" width="41" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="3Y5-kP-Kht" id="nnZ-eb-SS9"/>
-                            <outlet property="delegate" destination="3Y5-kP-Kht" id="912-ra-35b"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="NURAPI Objective-C Demo" id="Hqm-Uo-yZr">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="gCO-Ug-Zjj"/>
-                    </navigationItem>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Idle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbV-1X-Zer">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kf7-0L-LF0">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReaderCell" textLabel="NXB-SG-kZ6" detailTextLabel="OZ8-nR-YbM" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="WC5-xG-Mjy">
+                                        <rect key="frame" x="0.0" y="56" width="343" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WC5-xG-Mjy" id="muy-GO-Cec">
+                                            <frame key="frameInset" width="343" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NXB-SG-kZ6">
+                                                    <frame key="frameInset" minX="15" minY="7" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OZ8-nR-YbM">
+                                                    <frame key="frameInset" minX="15" minY="28" width="44" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="3vF-WU-UHH" kind="show" id="U0z-h7-uda"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="K3A-0d-0w5" id="rsi-bK-zdI"/>
+                                    <outlet property="delegate" destination="K3A-0d-0w5" id="3wb-bh-C3y"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fbV-1X-Zer" firstAttribute="centerX" secondItem="wdX-Rp-p1o" secondAttribute="centerX" id="1Zn-h5-5v6"/>
+                            <constraint firstItem="Kf7-0L-LF0" firstAttribute="top" secondItem="fbV-1X-Zer" secondAttribute="bottom" constant="32" id="5CS-EC-9w7"/>
+                            <constraint firstItem="Kf7-0L-LF0" firstAttribute="leading" secondItem="wdX-Rp-p1o" secondAttribute="leadingMargin" id="GyX-kw-odd"/>
+                            <constraint firstItem="jZ3-kS-Zar" firstAttribute="top" secondItem="Kf7-0L-LF0" secondAttribute="bottom" constant="20" id="epa-gw-1Rc"/>
+                            <constraint firstItem="fbV-1X-Zer" firstAttribute="top" secondItem="mlC-9U-lhe" secondAttribute="bottom" constant="18" id="gCp-jV-kA4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kf7-0L-LF0" secondAttribute="trailing" id="rzn-bv-vwK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="NURAPI Objective-C Demo" id="f6f-8b-Y6V"/>
                     <connections>
-                        <segue destination="3vF-WU-UHH" kind="show" identifier="ShowReaderSegue" id="Pwr-Up-ZXf"/>
+                        <outlet property="statusLabel" destination="fbV-1X-Zer" id="HCq-0l-8ah"/>
+                        <outlet property="tableView" destination="Kf7-0L-LF0" id="csG-V4-Plq"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vqO-9f-YLW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjm-3g-Ro2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="488" y="-283"/>
+            <point key="canvasLocation" x="440.80000000000001" y="-285.60719640179911"/>
         </scene>
         <!--Reader-->
         <scene sceneID="H3k-8g-w0Y">

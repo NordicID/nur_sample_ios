@@ -40,13 +40,8 @@
 - (void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 
-    // disconnect from this reader
-    [[Bluetooth sharedInstance] disconnectFromReader];
-    
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
-
-    NSLog( @"disconnected from reader" );
 }
 
 
@@ -59,7 +54,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog( @"connection ok" );
         self.scanButton.enabled = YES;
-        self.scanButton.enabled = NO;
+        self.settingsButton.enabled = YES;
     });
 }
 

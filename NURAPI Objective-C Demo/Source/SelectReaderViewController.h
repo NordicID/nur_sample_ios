@@ -2,8 +2,10 @@
 #import <UIKit/UIKit.h>
 #import <NurAPIBluetooth/Bluetooth.h>
 
-@interface SelectReaderViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, BluetoothDelegate>
+@interface SelectReaderViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BluetoothDelegate>
 
+@property (strong, nonatomic) IBOutlet UILabel *     statusLabel;
+@property (strong, nonatomic) IBOutlet UITableView * tableView;
 
 @end
 

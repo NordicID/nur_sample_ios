@@ -12,7 +12,12 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    // register for bluetooth events
+    // are we connected to a previous reader?
+    if ( [Bluetooth sharedInstance].currentReader ) {
+        [[Bluetooth sharedInstance] disconnectFromReader];
+    }
+    
+    // register for bluetooth events, this can safely be called several times
     [[Bluetooth sharedInstance] registerDelegate:self];
 }
 
@@ -40,13 +45,20 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [Bluetooth sharedInstance].readers.count;
+    NSInteger count = [Bluetooth sharedInstance].readers.count;
+    return count;
 }
 
 
 /******************************************************************************************
  * Table view delegate
  **/
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Available readers";
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"ReaderCell";
 
@@ -78,6 +90,7 @@
     dispatch_async( dispatch_get_main_queue(), ^{
         NSLog( @"bluetooth turned on" );
         [[Bluetooth sharedInstance] startScanning];
+        self.statusLabel.text = @"Scanning for readers...";
     });
 }
 
