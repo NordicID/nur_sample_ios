@@ -118,6 +118,25 @@
 }
 
 
+- (void) tagFound {
+    // get all tags
+    for ( int index = 0; index < [self getTagCount]; ++index ) {
+        Tag * tag = [self getTag:index];
+        if ( tag && ! [self.foundTagIds containsObject:tag.hex ] ) {
+            [self.foundTags addObject:tag];
+            [self.foundTagIds addObject:tag.hex];
+
+            NSLog( @"tag %lu found: %@\n", (unsigned long)self.foundTags.count, tag );
+
+            self.tagsLabel.text = [NSString stringWithFormat:@"Tags found: %lu", (unsigned long)self.foundTags.count];
+
+            // update the table
+            [self.tableView reloadData];
+        }
+    }
+}
+
+
 - (void) showErrorMessage:(int)error {
     // extract the NURAPI error
     char buffer[256];
@@ -140,6 +159,7 @@
 
     destination.tag = self.foundTags[ indexPath.row ];
 }
+
 
 
 //******************************************************************************************
@@ -175,35 +195,31 @@
 }
 
 
-/*****************************************************************************************************************
- * Bluetooth delegate callbacks
- **/
-- (void) inventoryStreamStopped {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog( @"stream stopped, tags found: %lu\n", (unsigned long)self.foundTags.count );
-        self.inventoryButton.titleLabel.text = @"Start";
-    });
-}
+//*****************************************************************************************************************
+#pragma mark - Bluetooth delegate
 
+- (void) notificationReceived:(DWORD)timestamp type:(int)type data:(LPVOID)data length:(int)length {
+    switch ( type ) {
+        case NUR_NOTIFICATION_INVENTORYSTREAM: {
+            const struct NUR_INVENTORYSTREAM_DATA *inventoryStream = (const struct NUR_INVENTORYSTREAM_DATA *)data;
+            NSLog( @"Tag data from inventory stream, tags added: %d %@", inventoryStream->tagsAdded, inventoryStream->stopped == TRUE ? @"stream stopped" : @"" );
 
-- (void) tagFound {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // get all tags
-        for ( int index = 0; index < [self getTagCount]; ++index ) {
-            Tag * tag = [self getTag:index];
-            if ( tag && ! [self.foundTagIds containsObject:tag.hex ] ) {
-                [self.foundTags addObject:tag];
-                [self.foundTagIds addObject:tag.hex];
+            // run on the main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self tagFound];
 
-                NSLog( @"tag %lu found: %@\n", (unsigned long)self.foundTags.count, tag );
-
-                self.tagsLabel.text = [NSString stringWithFormat:@"Tags found: %lu", (unsigned long)self.foundTags.count];
-
-                // update the table
-                [self.tableView reloadData];
-            }
+                // is the stream done?
+                if ( inventoryStream->stopped == TRUE ) {
+                    NSLog( @"stream stopped, tags found: %lu\n", (unsigned long)self.foundTags.count );
+                    self.inventoryButton.titleLabel.text = @"Start";
+                }
+            });
         }
-    });
+            break;
+
+        default:
+            break;
+    }
 }
 
 

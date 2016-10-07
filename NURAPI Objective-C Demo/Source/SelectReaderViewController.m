@@ -15,8 +15,11 @@
     // are we connected to a previous reader?
     if ( [Bluetooth sharedInstance].currentReader ) {
         [[Bluetooth sharedInstance] disconnectFromReader];
+
+        // start scanning again
+        [[Bluetooth sharedInstance] startScanning];
     }
-    
+
     // register for bluetooth events, this can safely be called several times
     [[Bluetooth sharedInstance] registerDelegate:self];
 }
@@ -27,6 +30,13 @@
 
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
+
+    // clear the selection on the table. This is done automatically by a UITableViewController, but we need to
+    // do it manually as we're a UIViewContoller only
+    NSIndexPath * selected = [self.tableView indexPathForSelectedRow];
+    if ( selected ) {
+        [self.tableView deselectRowAtIndexPath:selected animated:YES];
+    }
 }
 
 
@@ -86,9 +96,15 @@
  * The callbacks do not necessaily come on the main thread, so make sure everything that touches the UI is done on
  * the main thread only.
  **/
-- (void) bluetoothTurnedOn {
+- (void) bluetoothStateChanged:(CBCentralManagerState)state {
+    // only scan if powered on and not already scanning
+    if ( state != CBManagerStatePoweredOn || [Bluetooth sharedInstance].isScanning ) {
+        self.statusLabel.text = @"Idle";
+        return;
+    }
+
     dispatch_async( dispatch_get_main_queue(), ^{
-        NSLog( @"bluetooth turned on" );
+        NSLog( @"bluetooth turned on, starting scan" );
         [[Bluetooth sharedInstance] startScanning];
         self.statusLabel.text = @"Scanning for readers...";
     });

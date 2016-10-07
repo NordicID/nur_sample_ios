@@ -160,6 +160,21 @@
                                     <segue destination="WO9-wU-hmR" kind="show" id="zrj-yH-grZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66l-ei-zf7">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2JB-DN-qdy"/>
+                                    <constraint firstAttribute="height" constant="50" id="58s-O6-Hsz"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="r8P-TL-IZb"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="y8C-7a-P8r"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Scan Barcode">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nnV-W3-CWU" kind="show" id="b32-i6-pl3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -169,8 +184,10 @@
                             <constraint firstItem="Nbf-Nm-DmT" firstAttribute="centerX" secondItem="ZxD-zQ-zhm" secondAttribute="centerX" id="CCu-sx-77p"/>
                             <constraint firstItem="VzU-zu-gg9" firstAttribute="top" secondItem="qAU-i4-aO6" secondAttribute="bottom" constant="27" id="G4k-2V-5vI"/>
                             <constraint firstItem="XhC-kw-phZ" firstAttribute="centerX" secondItem="ZxD-zQ-zhm" secondAttribute="centerX" id="Gp3-Xk-7Io"/>
-                            <constraint firstItem="qAU-i4-aO6" firstAttribute="top" secondItem="POv-go-EOl" secondAttribute="bottom" constant="91" id="OGg-SA-PdZ"/>
+                            <constraint firstItem="qAU-i4-aO6" firstAttribute="top" secondItem="POv-go-EOl" secondAttribute="bottom" constant="60" id="OGg-SA-PdZ"/>
+                            <constraint firstItem="66l-ei-zf7" firstAttribute="top" secondItem="Nbf-Nm-DmT" secondAttribute="bottom" constant="27" id="fiV-Rg-XkJ"/>
                             <constraint firstItem="qAU-i4-aO6" firstAttribute="centerX" secondItem="ZxD-zQ-zhm" secondAttribute="centerX" id="hHT-0n-VpG"/>
+                            <constraint firstItem="66l-ei-zf7" firstAttribute="centerX" secondItem="ZxD-zQ-zhm" secondAttribute="centerX" id="lcR-8T-nuL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reader" id="qPA-1V-Bw5">
@@ -178,6 +195,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="infoButton" destination="Nbf-Nm-DmT" id="sRg-NX-KKz"/>
+                        <outlet property="readBarcodeButton" destination="66l-ei-zf7" id="Jav-Nz-yd0"/>
                         <outlet property="scanButton" destination="qAU-i4-aO6" id="h3N-O9-fwd"/>
                         <outlet property="settingsButton" destination="VzU-zu-gg9" id="lBC-OQ-nJj"/>
                         <outlet property="writeTagButton" destination="XhC-kw-phZ" id="opJ-EZ-Ddh"/>
@@ -185,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lR4-QS-04B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1296" y="-283"/>
+            <point key="canvasLocation" x="1295.2" y="-283.80809595202402"/>
         </scene>
         <!--Inventory-->
         <scene sceneID="Rfr-wY-twN">
@@ -370,6 +388,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rdk-2q-hfi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1296" y="585"/>
+        </scene>
+        <!--Scan Barcode-->
+        <scene sceneID="2PM-Ag-QIr">
+            <objects>
+                <viewController id="nnV-W3-CWU" customClass="ReadBarcodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MkQ-Lz-7Pe"/>
+                        <viewControllerLayoutGuide type="bottom" id="bSq-3i-Iee"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XQG-Hj-4ib">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press trigger to read barcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dys-yD-tMO">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;barcode&gt;" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEr-OO-gPY">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dys-yD-tMO" firstAttribute="centerX" secondItem="XQG-Hj-4ib" secondAttribute="centerX" id="08p-8x-Wai"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dEr-OO-gPY" secondAttribute="trailing" constant="20" id="4mb-T4-Gk7"/>
+                            <constraint firstItem="dEr-OO-gPY" firstAttribute="leading" secondItem="XQG-Hj-4ib" secondAttribute="leadingMargin" constant="20" id="K3P-7c-eZI"/>
+                            <constraint firstItem="dys-yD-tMO" firstAttribute="top" secondItem="MkQ-Lz-7Pe" secondAttribute="bottom" constant="32" id="W3d-xw-1qs"/>
+                            <constraint firstItem="dEr-OO-gPY" firstAttribute="top" secondItem="dys-yD-tMO" secondAttribute="bottom" constant="62" id="aVX-eG-6lj"/>
+                            <constraint firstItem="dEr-OO-gPY" firstAttribute="centerX" secondItem="XQG-Hj-4ib" secondAttribute="centerX" id="k4s-hM-aHf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scan Barcode" id="H0Y-tq-NTN"/>
+                    <connections>
+                        <outlet property="barcode" destination="dEr-OO-gPY" id="PeE-Jr-Z44"/>
+                        <outlet property="status" destination="dys-yD-tMO" id="9Zd-qD-x5E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jiq-gL-gbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2142" y="585"/>
         </scene>
         <!--Tag Info-->
         <scene sceneID="Drf-ML-fa6">

@@ -16,6 +16,7 @@
     [self.settingsButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
     [self.writeTagButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
     [self.infoButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.readBarcodeButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
     [super viewWillAppear:animated];
 }
 
@@ -64,6 +65,9 @@
         NSLog( @"connection failed" );
         self.scanButton.enabled = NO;
         self.settingsButton.enabled = NO;
+        self.writeTagButton.enabled = NO;
+        self.infoButton.enabled = NO;
+        self.readBarcodeButton.enabled = NO;
     });
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F00748C1DA6940A00072C73 /* ReadBarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F00748B1DA6940A00072C73 /* ReadBarcodeViewController.m */; };
 		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
 		6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */; };
@@ -52,6 +53,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6F00748A1DA6940A00072C73 /* ReadBarcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadBarcodeViewController.h; sourceTree = "<group>"; };
+		6F00748B1DA6940A00072C73 /* ReadBarcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadBarcodeViewController.m; sourceTree = "<group>"; };
 		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryViewController.h; path = Source/InventoryViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B6C1D9BA39300370330 /* TuneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TuneViewController.h; path = Source/TuneViewController.h; sourceTree = SOURCE_ROOT; };
@@ -160,6 +163,8 @@
 				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
 				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
+				6F00748A1DA6940A00072C73 /* ReadBarcodeViewController.h */,
+				6F00748B1DA6940A00072C73 /* ReadBarcodeViewController.m */,
 				6F6F0B6D1D9BA39300370330 /* ReaderViewController.h */,
 				6F6F0B861D9BA39300370330 /* ReaderViewController.m */,
 				6F6F0B6E1D9BA39300370330 /* SelectReaderViewController.h */,
@@ -329,6 +334,7 @@
 				6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */,
 				6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */,
 				6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */,
+				6F00748C1DA6940A00072C73 /* ReadBarcodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
