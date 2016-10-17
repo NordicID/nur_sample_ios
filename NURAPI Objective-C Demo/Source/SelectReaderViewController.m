@@ -12,6 +12,9 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
+    // register for bluetooth events, this can safely be called several times
+    [[Bluetooth sharedInstance] registerDelegate:self];
+
     // are we connected to a previous reader?
     if ( [Bluetooth sharedInstance].currentReader ) {
         [[Bluetooth sharedInstance] disconnectFromReader];
@@ -19,9 +22,6 @@
         // start scanning again
         [[Bluetooth sharedInstance] startScanning];
     }
-
-    // register for bluetooth events, this can safely be called several times
-    [[Bluetooth sharedInstance] registerDelegate:self];
 }
 
 
