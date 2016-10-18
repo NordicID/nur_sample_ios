@@ -23,25 +23,25 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "icon-40@2.png",
+      "filename" : "Nordic_ID_icon_40@2.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "icon-40@3.png",
+      "filename" : "Nordic_ID_icon_40@3.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "icon-60@2.png",
+      "filename" : "Nordic_ID_icon_60@2.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "icon-60@3.png",
+      "filename" : "Nordic_ID_icon_60@3.png",
       "scale" : "3x"
     }
   ],

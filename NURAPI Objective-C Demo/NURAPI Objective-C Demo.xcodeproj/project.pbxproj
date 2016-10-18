@@ -21,11 +21,6 @@
 		6F6F0BA91D9BA39300370330 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B861D9BA39300370330 /* ReaderViewController.m */; };
 		6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B881D9BA39300370330 /* SettingsAlternative.m */; };
 		6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8A1D9BA39300370330 /* Assets.xcassets */; };
-		6F6F0BAC1D9BA39300370330 /* icon-40@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8C1D9BA39300370330 /* icon-40@2.png */; };
-		6F6F0BAD1D9BA39300370330 /* icon-40@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8D1D9BA39300370330 /* icon-40@3.png */; };
-		6F6F0BAE1D9BA39300370330 /* icon-60@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8E1D9BA39300370330 /* icon-60@2.png */; };
-		6F6F0BAF1D9BA39300370330 /* icon-60@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8F1D9BA39300370330 /* icon-60@3.png */; };
-		6F6F0BB01D9BA39300370330 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B901D9BA39300370330 /* icon.png */; };
 		6F6F0BB11D9BA39300370330 /* Logo-200@1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B911D9BA39300370330 /* Logo-200@1.png */; };
 		6F6F0BB21D9BA39300370330 /* Logo-200@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B921D9BA39300370330 /* Logo-200@2.png */; };
 		6F6F0BB31D9BA39300370330 /* Logo-200@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B931D9BA39300370330 /* Logo-200@3.png */; };
@@ -77,11 +72,6 @@
 		6F6F0B881D9BA39300370330 /* SettingsAlternative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsAlternative.m; path = Source/SettingsAlternative.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B891D9BA39300370330 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = Source/InfoViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B8A1D9BA39300370330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Source/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		6F6F0B8C1D9BA39300370330 /* icon-40@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2.png"; sourceTree = "<group>"; };
-		6F6F0B8D1D9BA39300370330 /* icon-40@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@3.png"; sourceTree = "<group>"; };
-		6F6F0B8E1D9BA39300370330 /* icon-60@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2.png"; sourceTree = "<group>"; };
-		6F6F0B8F1D9BA39300370330 /* icon-60@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@3.png"; sourceTree = "<group>"; };
-		6F6F0B901D9BA39300370330 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		6F6F0B911D9BA39300370330 /* Logo-200@1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@1.png"; sourceTree = "<group>"; };
 		6F6F0B921D9BA39300370330 /* Logo-200@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@2.png"; sourceTree = "<group>"; };
 		6F6F0B931D9BA39300370330 /* Logo-200@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@3.png"; sourceTree = "<group>"; };
@@ -112,11 +102,6 @@
 		6F6F0B8B1D9BA39300370330 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				6F6F0B8C1D9BA39300370330 /* icon-40@2.png */,
-				6F6F0B8D1D9BA39300370330 /* icon-40@3.png */,
-				6F6F0B8E1D9BA39300370330 /* icon-60@2.png */,
-				6F6F0B8F1D9BA39300370330 /* icon-60@3.png */,
-				6F6F0B901D9BA39300370330 /* icon.png */,
 				6F6F0B911D9BA39300370330 /* Logo-200@1.png */,
 				6F6F0B921D9BA39300370330 /* Logo-200@2.png */,
 				6F6F0B931D9BA39300370330 /* Logo-200@3.png */,
@@ -271,14 +256,9 @@
 			files = (
 				6F6F0BB31D9BA39300370330 /* Logo-200@3.png in Resources */,
 				6F6F0BB41D9BA39300370330 /* Logo.jpg in Resources */,
-				6F6F0BAE1D9BA39300370330 /* icon-60@2.png in Resources */,
 				6F6F0BB11D9BA39300370330 /* Logo-200@1.png in Resources */,
 				6F6F0BA81D9BA39300370330 /* Main.storyboard in Resources */,
 				6F6F0BA71D9BA39300370330 /* LaunchScreen.storyboard in Resources */,
-				6F6F0BAC1D9BA39300370330 /* icon-40@2.png in Resources */,
-				6F6F0BB01D9BA39300370330 /* icon.png in Resources */,
-				6F6F0BAD1D9BA39300370330 /* icon-40@3.png in Resources */,
-				6F6F0BAF1D9BA39300370330 /* icon-60@3.png in Resources */,
 				6F6F0BB51D9BA39300370330 /* Logo.png in Resources */,
 				6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */,
 				6F6F0BB21D9BA39300370330 /* Logo-200@2.png in Resources */,
