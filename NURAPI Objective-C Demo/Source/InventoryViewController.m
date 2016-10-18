@@ -217,6 +217,19 @@
         }
             break;
 
+            // trigger pressed or released?
+        case NUR_NOTIFICATION_IOCHANGE: {
+            struct NUR_IOCHANGE_DATA *iocData = (struct NUR_IOCHANGE_DATA *)data;
+            if (iocData->source == NUR_ACC_TRIGGER_SOURCE) {
+                NSLog( @"trigger changed, dir: %d", iocData->dir );
+                if (iocData->dir == 0) {
+                }
+                else {
+                    
+                }
+            }
+        }
+
         default:
             break;
     }

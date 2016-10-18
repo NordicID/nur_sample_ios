@@ -12,5 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *readBarcodeButton;
 @property (weak, nonatomic) IBOutlet UIButton *locateButton;
 @property (weak, nonatomic) IBOutlet UIButton *authButton;
+@property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *batteryLabel;
 
 @end

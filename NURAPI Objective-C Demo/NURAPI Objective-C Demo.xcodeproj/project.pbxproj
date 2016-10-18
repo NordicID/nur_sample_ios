@@ -21,11 +21,6 @@
 		6F6F0BA91D9BA39300370330 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B861D9BA39300370330 /* ReaderViewController.m */; };
 		6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B881D9BA39300370330 /* SettingsAlternative.m */; };
 		6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8A1D9BA39300370330 /* Assets.xcassets */; };
-		6F6F0BB11D9BA39300370330 /* Logo-200@1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B911D9BA39300370330 /* Logo-200@1.png */; };
-		6F6F0BB21D9BA39300370330 /* Logo-200@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B921D9BA39300370330 /* Logo-200@2.png */; };
-		6F6F0BB31D9BA39300370330 /* Logo-200@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B931D9BA39300370330 /* Logo-200@3.png */; };
-		6F6F0BB41D9BA39300370330 /* Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B941D9BA39300370330 /* Logo.jpg */; };
-		6F6F0BB51D9BA39300370330 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B951D9BA39300370330 /* Logo.png */; };
 		6F6F0BB61D9BA39300370330 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B961D9BA39300370330 /* Tag.m */; };
 		6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */; };
 		6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9A1D9BA39300370330 /* AppDelegate.m */; };
@@ -72,11 +67,6 @@
 		6F6F0B881D9BA39300370330 /* SettingsAlternative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsAlternative.m; path = Source/SettingsAlternative.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B891D9BA39300370330 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = Source/InfoViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B8A1D9BA39300370330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Source/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		6F6F0B911D9BA39300370330 /* Logo-200@1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@1.png"; sourceTree = "<group>"; };
-		6F6F0B921D9BA39300370330 /* Logo-200@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@2.png"; sourceTree = "<group>"; };
-		6F6F0B931D9BA39300370330 /* Logo-200@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-200@3.png"; sourceTree = "<group>"; };
-		6F6F0B941D9BA39300370330 /* Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Logo.jpg; sourceTree = "<group>"; };
-		6F6F0B951D9BA39300370330 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		6F6F0B961D9BA39300370330 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Source/Tag.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+BackgroundColor.h"; path = "Source/UIButton+BackgroundColor.h"; sourceTree = SOURCE_ROOT; };
 		6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+BackgroundColor.m"; path = "Source/UIButton+BackgroundColor.m"; sourceTree = SOURCE_ROOT; };
@@ -99,19 +89,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6F6F0B8B1D9BA39300370330 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				6F6F0B911D9BA39300370330 /* Logo-200@1.png */,
-				6F6F0B921D9BA39300370330 /* Logo-200@2.png */,
-				6F6F0B931D9BA39300370330 /* Logo-200@3.png */,
-				6F6F0B941D9BA39300370330 /* Logo.jpg */,
-				6F6F0B951D9BA39300370330 /* Logo.png */,
-			);
-			name = Icons;
-			path = Source/Icons;
-			sourceTree = SOURCE_ROOT;
-		};
 		6F9E8F401D81CFD900512C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +120,6 @@
 				6F6F0B991D9BA39300370330 /* AppDelegate.h */,
 				6F6F0B9A1D9BA39300370330 /* AppDelegate.m */,
 				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
-				6F6F0B8B1D9BA39300370330 /* Icons */,
 				6F6F0B891D9BA39300370330 /* InfoViewController.h */,
 				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
@@ -254,14 +230,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F6F0BB31D9BA39300370330 /* Logo-200@3.png in Resources */,
-				6F6F0BB41D9BA39300370330 /* Logo.jpg in Resources */,
-				6F6F0BB11D9BA39300370330 /* Logo-200@1.png in Resources */,
 				6F6F0BA81D9BA39300370330 /* Main.storyboard in Resources */,
 				6F6F0BA71D9BA39300370330 /* LaunchScreen.storyboard in Resources */,
-				6F6F0BB51D9BA39300370330 /* Logo.png in Resources */,
 				6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */,
-				6F6F0BB21D9BA39300370330 /* Logo-200@2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +420,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -470,6 +442,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

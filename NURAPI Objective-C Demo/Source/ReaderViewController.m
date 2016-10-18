@@ -1,7 +1,6 @@
 
 #import "ReaderViewController.h"
 #import "Tag.h"
-#import "UIButton+BackgroundColor.h"
 
 @interface ReaderViewController ()
 
@@ -11,22 +10,14 @@
 
 @implementation ReaderViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self.scanButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.settingsButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.writeTagButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.infoButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.readBarcodeButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [super viewWillAppear:animated];
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.foundTags = [NSMutableDictionary dictionary];
 
     NSLog( @"reader: %@", self.reader );
+
+    self.connectedLabel.text = self.reader.identifier.UUIDString;
 }
 
 
