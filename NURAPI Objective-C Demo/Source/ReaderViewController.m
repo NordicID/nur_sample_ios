@@ -4,7 +4,8 @@
 
 @interface ReaderViewController ()
 
-@property (nonatomic, strong) NSMutableDictionary * foundTags;
+@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+@property (nonatomic, strong) NSTimer * timer;
 
 @end
 
@@ -13,9 +14,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.foundTags = [NSMutableDictionary dictionary];
-
     NSLog( @"reader: %@", self.reader );
+
+    // set up the queue used to async any NURAPI calls
+    self.dispatchQueue = dispatch_queue_create("com.nordicid.bluetooth-demo.nurapi-queue", DISPATCH_QUEUE_SERIAL);
 
     self.connectedLabel.text = self.reader.identifier.UUIDString;
 }
@@ -26,6 +28,11 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
+
+    [self updateBatteryLevel];
+
+    // start a timer that updates the battery level periodically
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
 }
 
 
@@ -34,8 +41,34 @@
 
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
+
+    // disable the timer
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
+
+- (void) updateBatteryLevel {
+    NSLog( @"checking battery status" );
+
+    dispatch_async(self.dispatchQueue, ^{
+        NUR_ACC_BATT_INFO batteryInfo;
+
+        // get current settings
+        int error = NurAccGetBattInfo( [Bluetooth sharedInstance].nurapiHandle, &batteryInfo, sizeof(NUR_ACC_BATT_INFO));
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            if (error != NUR_NO_ERROR) {
+                // failed to get battery info
+                self.batteryLabel.text = @"?";
+            }
+            else {
+                self.batteryLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
+            }
+        });
+    });
+}
 
 /*****************************************************************************************************************
  * Bluetooth delegate callbacks

@@ -8,6 +8,8 @@
 @property (nonatomic, strong) NSMutableSet *   foundTagIds;
 @property (nonatomic, strong) NSMutableArray * foundTags;
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+@property (nonatomic, strong) NSTimer *        timer;
+@property (nonatomic, strong) NSDate *         startTime;
 @end
 
 
@@ -26,6 +28,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.inventoryButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.clearButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
     [super viewWillAppear:animated];
 }
 
@@ -46,12 +49,19 @@
 }
 
 
-- (IBAction)toggleInventory:(UIButton *)sender {
+- (IBAction)toggleInventory {
     dispatch_async(self.dispatchQueue, ^{
         if ( NurApiIsInventoryStreamRunning( [Bluetooth sharedInstance].nurapiHandle ) ) {
             // update the button label on the main queue
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.inventoryButton.titleLabel.text = @"Start";
+
+                if ( self.timer ) {
+                    [self.timer invalidate];
+                }
+
+                self.timer = nil;
+                self.startTime = nil;
             } );
 
             int error = NurApiStopInventoryStream( [Bluetooth sharedInstance].nurapiHandle );
@@ -67,6 +77,9 @@
             // update the button label on the main queue
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.inventoryButton.titleLabel.text = @"Stop";
+                // start a timer that updates the elapsed time
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimeLabel) userInfo:nil repeats:YES];
+                self.startTime = [NSDate date];
             } );
 
             // default scanning parameters
@@ -82,6 +95,20 @@
             }
         }
     } );
+}
+
+
+- (IBAction)clearInventory {
+    // simply clear all the tags we have
+    [self.foundTags removeAllObjects];
+    [self.tableView reloadData];
+    self.tagsLabel.text = @"0";
+}
+
+
+- (void) updateTimeLabel {
+    NSTimeInterval seconds = -[self.startTime timeIntervalSinceNow];
+    self.elapsedTimeLabel.text = [NSString stringWithFormat:@"unique tags in %.1f seconds", seconds];
 }
 
 
@@ -128,7 +155,7 @@
 
             NSLog( @"tag %lu found: %@\n", (unsigned long)self.foundTags.count, tag );
 
-            self.tagsLabel.text = [NSString stringWithFormat:@"Tags found: %lu", (unsigned long)self.foundTags.count];
+            self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.foundTags.count];
 
             // update the table
             [self.tableView reloadData];
@@ -212,6 +239,12 @@
                 if ( inventoryStream->stopped == TRUE ) {
                     NSLog( @"stream stopped, tags found: %lu\n", (unsigned long)self.foundTags.count );
                     self.inventoryButton.titleLabel.text = @"Start";
+                    if ( self.timer ) {
+                        [self.timer invalidate];
+                    }
+
+                    self.timer = nil;
+                    self.startTime = nil;
                 }
             });
         }
@@ -223,9 +256,7 @@
             if (iocData->source == NUR_ACC_TRIGGER_SOURCE) {
                 NSLog( @"trigger changed, dir: %d", iocData->dir );
                 if (iocData->dir == 0) {
-                }
-                else {
-                    
+                    [self toggleInventory];
                 }
             }
         }
