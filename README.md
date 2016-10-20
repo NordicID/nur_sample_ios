@@ -66,6 +66,40 @@ if ( error != NUR_NO_ERROR ) {
 Please refer to that header for more detailed instructions on how to access the available functionality. 
 
 
+## Thread model
+
+All callbacks to the ``BluetoothDelegate`` are on different threads than the main application thread. 
+This means that care needs to be taken when accessing application data and the UI. All low level NurAPI calls
+should also be performed on a secondary thread as some of the calls can block for a long time and deadlocks
+can occur if delegate methods are called. An example that fetches the NurAPI version string:
+
+ ```objectivec
+ // a queue used to dispatch all NurAPI calls
+@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+...
+
+// use the global queue with default priority
+self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
+...
+ 
+dispatch_async(self.dispatchQueue, ^{
+    char buffer[256];
+    if ( NurApiGetFileVersion( buffer, 256 ) ) {
+        NSString * versionString = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+
+        // set the UILabel on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.nurApiVersionLabel.text = [NSString stringWithFormat:@"NurAPI version: %@", versionString];
+        } );
+    }
+    else {
+        // failed to get version
+        ...
+    }
+} );
+```
+
+
 ## Using the framework from Swift
 
 Drag the framework into an application. 
