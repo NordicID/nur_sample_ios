@@ -1,13 +1,18 @@
-//
-//  AudioPlayer.h
-//  NURAPI Objective-C Demo
-//
-//  Created by Jan Ekholm on 20/10/2016.
-//  Copyright © 2016 Jan Ekholm. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 
+// the sounds that can be played
+typedef enum {
+    kBlep40ms,
+    kBlep100ms,
+    kBlep300ms,
+    kBlipBlipBlip
+} SoundType;
+
 @interface AudioPlayer : NSObject
+
++ (AudioPlayer *) sharedInstance;
+
+- (void) playSound:(SoundType)sound;
 
 @end

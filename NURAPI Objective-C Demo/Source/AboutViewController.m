@@ -1,12 +1,15 @@
-//
-//  AboutViewController.m
-//  NURAPI Objective-C Demo
-//
-//  Created by Jan Ekholm on 20/10/2016.
-//  Copyright © 2016 Jan Ekholm. All rights reserved.
-//
+
+#import <NurAPIBluetooth/Bluetooth.h>
 
 #import "AboutViewController.h"
+
+
+@interface AboutViewController ()
+
+@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+
+@end
+
 
 @interface AboutViewController ()
 
@@ -14,24 +17,33 @@
 
 @implementation AboutViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+    // set up the queue used to async any NURAPI calls
+    self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 
-/*
-#pragma mark - Navigation
+    // get the version of NurAPI
+    dispatch_async(self.dispatchQueue, ^{
+        char buffer[256];
+        if ( NurApiGetFileVersion( buffer, 256 ) ) {
+            NSString * versionString = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.nurApiVersionLabel.text = [NSString stringWithFormat:@"NurAPI version: %@", versionString];
+            } );
+        }
+        else {
+            // failed to get version...
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.nurApiVersionLabel.text = @"NurAPI version: unknown";
+            } );
+        }
+    } );
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    // set up the version and build
+    self.appVersionLabel.text =[NSString stringWithFormat:@"App version: %@.%@",
+                                [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+                                [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
 }
-*/
 
 @end

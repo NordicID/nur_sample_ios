@@ -15,13 +15,17 @@
     [super viewDidAppear:animated];
 
     // register for bluetooth events, this can safely be called several times
+    NSLog( @"registering as a bluetooth delegate" );
     [[Bluetooth sharedInstance] registerDelegate:self];
 
     // are we connected to a previous reader?
     if ( [Bluetooth sharedInstance].currentReader ) {
         [[Bluetooth sharedInstance] disconnectFromReader];
+    }
 
-        // start scanning again
+    // can we start scanning?
+    if ( [Bluetooth sharedInstance].state == CBManagerStatePoweredOn ) {
+        // bluetooth is on, start scanning
         [[Bluetooth sharedInstance] startScanning];
     }
 }
@@ -99,13 +103,15 @@
  * the main thread only.
  **/
 - (void) bluetoothStateChanged:(CBCentralManagerState)state {
-    // only scan if powered on and not already scanning
-    if ( state != CBManagerStatePoweredOn || [Bluetooth sharedInstance].isScanning ) {
-        self.statusLabel.text = @"Idle";
-        return;
-    }
-
     dispatch_async( dispatch_get_main_queue(), ^{
+        NSLog( @"bluetooth state: %ld", (long)state );
+
+        // only scan if powered on and not already scanning
+        if ( state != CBManagerStatePoweredOn || [Bluetooth sharedInstance].isScanning ) {
+            self.statusLabel.text = @"Idle";
+            return;
+        }
+
         NSLog( @"bluetooth turned on, starting scan" );
         [[Bluetooth sharedInstance] startScanning];
         self.statusLabel.text = @"Scanning for readers...";

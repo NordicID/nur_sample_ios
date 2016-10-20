@@ -1,5 +1,7 @@
 
+
 #import "InventoryViewController.h"
+#import "AudioPlayer.h"
 #import "Tag.h"
 #import "TagViewController.h"
 #import "UIButton+BackgroundColor.h"
@@ -52,6 +54,16 @@
 - (IBAction)toggleInventory {
     dispatch_async(self.dispatchQueue, ^{
         if ( NurApiIsInventoryStreamRunning( [Bluetooth sharedInstance].nurapiHandle ) ) {
+            // stop stream
+            NSLog( @"stopping inventory stream" );
+            
+            int error = NurApiStopInventoryStream( [Bluetooth sharedInstance].nurapiHandle );
+            if ( error != NUR_NO_ERROR ) {
+                NSLog( @"failed to stop inventory stream" );
+                [self showErrorMessage:error];
+                return;
+            }
+
             // update the button label on the main queue
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.inventoryButton.titleLabel.text = @"Start";
@@ -63,24 +75,9 @@
                 self.timer = nil;
                 self.startTime = nil;
             } );
-
-            int error = NurApiStopInventoryStream( [Bluetooth sharedInstance].nurapiHandle );
-            if ( error != NUR_NO_ERROR ) {
-                NSLog( @"failed to stop inventory stream" );
-                [self showErrorMessage:error];
-                return;
-            }
         }
         else {
             NSLog( @"starting inventory stream" );
-
-            // update the button label on the main queue
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.inventoryButton.titleLabel.text = @"Stop";
-                // start a timer that updates the elapsed time
-                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimeLabel) userInfo:nil repeats:YES];
-                self.startTime = [NSDate date];
-            } );
 
             // default scanning parameters
             int rounds = 0;
@@ -93,6 +90,14 @@
                 [self showErrorMessage:error];
                 return;
             }
+
+            // update the button label on the main queue
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.inventoryButton.titleLabel.text = @"Stop";
+                // start a timer that updates the elapsed time
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
+                self.startTime = [NSDate date];
+            } );
         }
     } );
 }
@@ -102,13 +107,38 @@
     // simply clear all the tags we have
     [self.foundTags removeAllObjects];
     [self.tableView reloadData];
+
+    // clear all labels
     self.tagsLabel.text = @"0";
+    self.elapsedTimeLabel.text = @"unique tags in 0 seconds";
+    self.averageTagsPerSecondLabel.text = @"0";
+    self.tagsPerSecondLabel.text = @"0";
+    self.maxTagsPerSecondLabel.text = @"0";
 }
 
 
-- (void) updateTimeLabel {
-    NSTimeInterval seconds = -[self.startTime timeIntervalSinceNow];
+- (void) updateLabels {
+    NSTimeInterval seconds;
+
+    if ( self.startTime ) {
+        seconds = -[self.startTime timeIntervalSinceNow];
+    }
+    else {
+        seconds = 0;
+    }
+
+    // found tags
+    self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.foundTags.count];
+
+    // elapsed time
     self.elapsedTimeLabel.text = [NSString stringWithFormat:@"unique tags in %.1f seconds", seconds];
+
+    // average tags/s
+    if ( seconds > 0 ) {
+        double tagsPerSecond = (double)self.foundTags.count / seconds;
+        self.averageTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", tagsPerSecond];
+    }
+
 }
 
 
@@ -155,8 +185,9 @@
 
             NSLog( @"tag %lu found: %@\n", (unsigned long)self.foundTags.count, tag );
 
-            self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.foundTags.count];
-
+            // play a short blip
+            [[AudioPlayer sharedInstance] playSound:kBlep40ms];
+            
             // update the table
             [self.tableView reloadData];
         }
@@ -245,6 +276,7 @@
 
                     self.timer = nil;
                     self.startTime = nil;
+                    [self updateLabels];
                 }
             });
         }

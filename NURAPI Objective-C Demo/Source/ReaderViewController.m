@@ -9,15 +9,16 @@
 
 @end
 
+
 @implementation ReaderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSLog( @"reader: %@", self.reader );
+    NSLog( @"using reader: %@", self.reader );
 
     // set up the queue used to async any NURAPI calls
-    self.dispatchQueue = dispatch_queue_create("com.nordicid.bluetooth-demo.nurapi-queue", DISPATCH_QUEUE_SERIAL);
+    self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 
     self.connectedLabel.text = self.reader.identifier.UUIDString;
 }
@@ -28,11 +29,6 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
-
-    [self updateBatteryLevel];
-
-    // start a timer that updates the battery level periodically
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
 }
 
 
@@ -43,8 +39,10 @@
     [[Bluetooth sharedInstance] deregisterDelegate:self];
 
     // disable the timer
-    [self.timer invalidate];
-    self.timer = nil;
+    if ( self.timer ) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 
@@ -58,9 +56,16 @@
         int error = NurAccGetBattInfo( [Bluetooth sharedInstance].nurapiHandle, &batteryInfo, sizeof(NUR_ACC_BATT_INFO));
 
         dispatch_async(dispatch_get_main_queue(), ^{
-
-            if (error != NUR_NO_ERROR) {
+            // the percentage is -1 if unknown
+            if (error != NUR_NO_ERROR ) {
                 // failed to get battery info
+                char buffer[256];
+                NurApiGetErrorMessage( error, buffer, 256 );
+                NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+                NSLog( @"failed to get battery info: %@", message );
+                self.batteryLabel.text = @"E";
+            }
+            else if ( batteryInfo.percentage == -1 ) {
                 self.batteryLabel.text = @"?";
             }
             else {
@@ -77,10 +82,15 @@
  **/
 - (void) readerConnectionOk {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog( @"connection ok" );
+        NSLog( @"connection ok, handle: %p", [Bluetooth sharedInstance].nurapiHandle );
         self.scanButton.enabled = YES;
         self.settingsButton.enabled = YES;
+
+        // start a timer that updates the battery level periodically
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
     });
+
+    [self updateBatteryLevel];
 }
 
 

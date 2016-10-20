@@ -11,6 +11,12 @@
 		6F0074BC1DB7C13D00072C73 /* QuickGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0074BB1DB7C13D00072C73 /* QuickGuideViewController.m */; };
 		6F0074C01DB7C45500072C73 /* QuickGuide.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F0074BE1DB7C45500072C73 /* QuickGuide.html */; };
 		6F0074C11DB7C45500072C73 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 6F0074BF1DB7C45500072C73 /* stylesheet.css */; };
+		6F0074C71DB8A19900072C73 /* blep_100ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F0074C31DB8A19900072C73 /* blep_100ms.wav */; };
+		6F0074C81DB8A19900072C73 /* blep_300ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F0074C41DB8A19900072C73 /* blep_300ms.wav */; };
+		6F0074C91DB8A19900072C73 /* blep_40ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F0074C51DB8A19900072C73 /* blep_40ms.wav */; };
+		6F0074CA1DB8A19900072C73 /* blipblipblip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F0074C61DB8A19900072C73 /* blipblipblip.wav */; };
+		6F0074CD1DB8A1C800072C73 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */; };
+		6F0074D01DB8F0BE00072C73 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */; };
 		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
 		6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */; };
@@ -52,6 +58,14 @@
 		6F0074BB1DB7C13D00072C73 /* QuickGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGuideViewController.m; sourceTree = "<group>"; };
 		6F0074BE1DB7C45500072C73 /* QuickGuide.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = QuickGuide.html; sourceTree = "<group>"; };
 		6F0074BF1DB7C45500072C73 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
+		6F0074C31DB8A19900072C73 /* blep_100ms.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blep_100ms.wav; sourceTree = "<group>"; };
+		6F0074C41DB8A19900072C73 /* blep_300ms.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blep_300ms.wav; sourceTree = "<group>"; };
+		6F0074C51DB8A19900072C73 /* blep_40ms.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blep_40ms.wav; sourceTree = "<group>"; };
+		6F0074C61DB8A19900072C73 /* blipblipblip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blipblipblip.wav; sourceTree = "<group>"; };
+		6F0074CB1DB8A1C800072C73 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		6F0074CE1DB8F0BE00072C73 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryViewController.h; path = Source/InventoryViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B6C1D9BA39300370330 /* TuneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TuneViewController.h; path = Source/TuneViewController.h; sourceTree = SOURCE_ROOT; };
@@ -105,6 +119,17 @@
 			path = "Quick Guide";
 			sourceTree = "<group>";
 		};
+		6F0074C21DB8A19900072C73 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				6F0074C31DB8A19900072C73 /* blep_100ms.wav */,
+				6F0074C41DB8A19900072C73 /* blep_300ms.wav */,
+				6F0074C51DB8A19900072C73 /* blep_40ms.wav */,
+				6F0074C61DB8A19900072C73 /* blipblipblip.wav */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		6F9E8F401D81CFD900512C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +141,7 @@
 		6FD2544A1CE2128C00083D83 = {
 			isa = PBXGroup;
 			children = (
+				6F0074C21DB8A19900072C73 /* Audio */,
 				6F0074BD1DB7C45500072C73 /* Quick Guide */,
 				6F9E8F401D81CFD900512C56 /* Frameworks */,
 				6FD254551CE2128C00083D83 /* Sources */,
@@ -134,9 +160,13 @@
 		6FD254551CE2128C00083D83 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				6F0074CE1DB8F0BE00072C73 /* AboutViewController.h */,
+				6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */,
 				6F6F0B991D9BA39300370330 /* AppDelegate.h */,
 				6F6F0B9A1D9BA39300370330 /* AppDelegate.m */,
 				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
+				6F0074CB1DB8A1C800072C73 /* AudioPlayer.h */,
+				6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */,
 				6F6F0B891D9BA39300370330 /* InfoViewController.h */,
 				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
@@ -250,10 +280,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6F0BA81D9BA39300370330 /* Main.storyboard in Resources */,
+				6F0074C81DB8A19900072C73 /* blep_300ms.wav in Resources */,
 				6F0074C11DB7C45500072C73 /* stylesheet.css in Resources */,
+				6F0074CA1DB8A19900072C73 /* blipblipblip.wav in Resources */,
 				6F0074C01DB7C45500072C73 /* QuickGuide.html in Resources */,
 				6F6F0BA71D9BA39300370330 /* LaunchScreen.storyboard in Resources */,
 				6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */,
+				6F0074C71DB8A19900072C73 /* blep_100ms.wav in Resources */,
+				6F0074C91DB8A19900072C73 /* blep_40ms.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +334,9 @@
 				6F6F0BB61D9BA39300370330 /* Tag.m in Sources */,
 				6F6F0BA01D9BA39300370330 /* InfoViewController.m in Sources */,
 				6F0074BC1DB7C13D00072C73 /* QuickGuideViewController.m in Sources */,
+				6F0074CD1DB8A1C800072C73 /* AudioPlayer.m in Sources */,
 				6F6F0BA51D9BA39300370330 /* InventoryViewController.m in Sources */,
+				6F0074D01DB8F0BE00072C73 /* AboutViewController.m in Sources */,
 				6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */,
 				6F6F0BA61D9BA39300370330 /* SelectReaderViewController.m in Sources */,
 				6F6F0B9F1D9BA39300370330 /* TuneViewController.m in Sources */,
