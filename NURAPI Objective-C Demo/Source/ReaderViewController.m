@@ -6,6 +6,7 @@
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 @property (nonatomic, strong) NSTimer * timer;
+//@property (nonatomic, assign) BOOL readerOk;
 
 @end
 
@@ -15,12 +16,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSLog( @"using reader: %@", self.reader );
+    // assume not ok initially
+    //self.readerOk = NO;
+
+    //NSLog( @"using reader: %@", self.reader );
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
-
-    self.connectedLabel.text = self.reader.identifier.UUIDString;
 }
 
 
@@ -29,6 +31,14 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
+
+    // connection already ok?
+    if ( !self.timer ) {
+        // start a timer that updates the battery level periodically
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateStatusInfo) userInfo:nil repeats:YES];
+    }
+
+    [self updateStatusInfo];
 }
 
 
@@ -46,8 +56,32 @@
 }
 
 
+- (void) updateStatusInfo {
+    [self updateConnectedLabel];
+    [self updateBatteryLevel];
+}
+
+
+- (void) updateConnectedLabel {
+    CBPeripheral * reader = [Bluetooth sharedInstance].currentReader;
+
+    if ( reader ) {
+        self.connectedLabel.text = reader.identifier.UUIDString;
+    }
+    else {
+        self.connectedLabel.text = @"no";
+    }
+}
+
+
 - (void) updateBatteryLevel {
     NSLog( @"checking battery status" );
+
+    // any current reader?
+    if ( ! [Bluetooth sharedInstance].currentReader ) {
+        self.batteryLabel.text = @"?";
+        return;
+    }
 
     dispatch_async(self.dispatchQueue, ^{
         NUR_ACC_BATT_INFO batteryInfo;
@@ -83,6 +117,7 @@
 - (void) readerConnectionOk {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog( @"connection ok, handle: %p", [Bluetooth sharedInstance].nurapiHandle );
+        //self.readerOk = YES;
         self.scanButton.enabled = YES;
         self.settingsButton.enabled = YES;
 
@@ -90,7 +125,7 @@
         self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
     });
 
-    [self updateBatteryLevel];
+    [self updateStatusInfo];
 }
 
 

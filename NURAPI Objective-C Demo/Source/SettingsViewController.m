@@ -33,6 +33,8 @@
 @implementation SettingsViewController
 
 - (void) viewDidLoad {
+    [super viewDidLoad];
+    
     dataReady = NO;
 }
 
@@ -40,8 +42,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
+    // in that case
+    if ( ! [Bluetooth sharedInstance].currentReader ) {
+        return;
+    }
+
     // set up the queue used to async any NURAPI calls
-    self.dispatchQueue = dispatch_queue_create("com.nordicid.bluetooth-demo.nurapi-queue", DISPATCH_QUEUE_SERIAL);
+    self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 
     dispatch_async(self.dispatchQueue, ^{
         // get current settings
@@ -92,10 +100,20 @@
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * errorView = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:message
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    [self presentViewController:errorView animated:YES completion:nil];
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                    message:message
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   // nothing special to do right now
+                               }];
+
+
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

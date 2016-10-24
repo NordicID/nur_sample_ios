@@ -124,10 +124,20 @@
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * errorView = [UIAlertController alertControllerWithTitle:@"Error saving setup"
-                                                                        message:message
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    [self presentViewController:errorView animated:YES completion:nil];
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                    message:message
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   // nothing special to do right now
+                               }];
+
+
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

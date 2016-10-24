@@ -6,8 +6,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    //self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 
@@ -15,13 +13,7 @@
     [super viewDidAppear:animated];
 
     // register for bluetooth events, this can safely be called several times
-    NSLog( @"registering as a bluetooth delegate" );
     [[Bluetooth sharedInstance] registerDelegate:self];
-
-    // are we connected to a previous reader?
-    if ( [Bluetooth sharedInstance].currentReader ) {
-        [[Bluetooth sharedInstance] disconnectFromReader];
-    }
 
     // can we start scanning?
     if ( [Bluetooth sharedInstance].state == CBManagerStatePoweredOn ) {
@@ -46,12 +38,6 @@
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ReaderViewController * destination = [segue destinationViewController];
-    destination.reader = [Bluetooth sharedInstance].readers[ self.tableView.indexPathForSelectedRow.row ];
-}
-
-
 /******************************************************************************************
  * Table view datasource
  **/
@@ -69,12 +55,6 @@
 /******************************************************************************************
  * Table view delegate
  **/
-
-- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Available readers";
-}
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"ReaderCell";
 
@@ -90,8 +70,24 @@
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Bluetooth * bt = [Bluetooth sharedInstance];
+
     // get the associated reader
-    CBPeripheral * reader = [Bluetooth sharedInstance].readers[ indexPath.row ];
+    CBPeripheral * reader = bt.readers[ indexPath.row ];
+
+    // connecting to the same reader we're already connected to?
+    if ( reader == bt.currentReader ) {
+        NSLog( @"selected the same reader, we're done" );
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+
+    // are we connected to a previous reader?
+    if ( bt.currentReader ) {
+        NSLog( @"disconnecting from previous reader: %@", bt.currentReader );
+        [bt disconnectFromReader];
+    }
+
     NSLog( @"connecting to reader: %@", reader );
     [[Bluetooth sharedInstance] connectToReader:reader];
 }
@@ -108,13 +104,11 @@
 
         // only scan if powered on and not already scanning
         if ( state != CBManagerStatePoweredOn || [Bluetooth sharedInstance].isScanning ) {
-            self.statusLabel.text = @"Idle";
             return;
         }
 
         NSLog( @"bluetooth turned on, starting scan" );
         [[Bluetooth sharedInstance] startScanning];
-        self.statusLabel.text = @"Scanning for readers...";
     });
 }
 
@@ -128,17 +122,33 @@
 
 
 - (void) readerConnectionOk {
+    // now we have a proper connection to the reader
     dispatch_async( dispatch_get_main_queue(), ^{
         NSLog( @"connection ok" );
-        // now we can show the reader view controller
-        [self performSegueWithIdentifier:@"ShowReaderSegue" sender:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     });
 }
 
 
 - (void) readerConnectionFailed {
     dispatch_async( dispatch_get_main_queue(), ^{
-        NSLog( @"connection failed" );
+        NSLog( @"failed to connect to reader" );
+
+        // show in an alert view
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                        message:@"Failed to connect to reader"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction* okButton = [UIAlertAction
+                                   actionWithTitle:@"Ok"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       // nothing special to do right now
+                                   }];
+
+
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:YES completion:nil];
     });
 }
 

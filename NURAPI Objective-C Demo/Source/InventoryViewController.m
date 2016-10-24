@@ -2,13 +2,12 @@
 
 #import "InventoryViewController.h"
 #import "AudioPlayer.h"
-#import "Tag.h"
+#import "Tagmanager.h"
 #import "TagViewController.h"
 #import "UIButton+BackgroundColor.h"
 
 @interface InventoryViewController ()
-@property (nonatomic, strong) NSMutableSet *   foundTagIds;
-@property (nonatomic, strong) NSMutableArray * foundTags;
+
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 @property (nonatomic, strong) NSTimer *        timer;
 @property (nonatomic, strong) NSDate *         startTime;
@@ -21,10 +20,7 @@
     [super viewDidLoad];
 
     // set up the queue used to async any NURAPI calls
-    self.dispatchQueue = dispatch_queue_create("com.nordicid.bluetooth-demo.nurapi-queue", DISPATCH_QUEUE_SERIAL);
-
-    self.foundTagIds = [NSMutableSet set];
-    self.foundTags = [NSMutableArray array];
+    self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 }
 
 
@@ -52,6 +48,13 @@
 
 
 - (IBAction)toggleInventory {
+    // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
+    // in that case
+    if ( ! [Bluetooth sharedInstance].currentReader ) {
+        NSLog( @"no current reader connected, aborting inventory" );
+        return;
+    }
+
     dispatch_async(self.dispatchQueue, ^{
         if ( NurApiIsInventoryStreamRunning( [Bluetooth sharedInstance].nurapiHandle ) ) {
             // stop stream
@@ -104,8 +107,8 @@
 
 
 - (IBAction)clearInventory {
-    // simply clear all the tags we have
-    [self.foundTags removeAllObjects];
+    // simply clear all the tags
+    [[TagManager sharedInstance] clear];
     [self.tableView reloadData];
 
     // clear all labels
@@ -128,14 +131,14 @@
     }
 
     // found tags
-    self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.foundTags.count];
+    self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
 
     // elapsed time
     self.elapsedTimeLabel.text = [NSString stringWithFormat:@"unique tags in %.1f seconds", seconds];
 
     // average tags/s
     if ( seconds > 0 ) {
-        double tagsPerSecond = (double)self.foundTags.count / seconds;
+        double tagsPerSecond = (double)[TagManager sharedInstance].tags.count / seconds;
         self.averageTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", tagsPerSecond];
     }
 
@@ -176,14 +179,20 @@
 
 
 - (void) tagFound {
+    TagManager * tm = [TagManager sharedInstance];
+
     // get all tags
     for ( int index = 0; index < [self getTagCount]; ++index ) {
         Tag * tag = [self getTag:index];
-        if ( tag && ! [self.foundTagIds containsObject:tag.hex ] ) {
-            [self.foundTags addObject:tag];
-            [self.foundTagIds addObject:tag.hex];
+        if ( tag ) {
+            [tm addTag:tag];
 
-            NSLog( @"tag %lu found: %@\n", (unsigned long)self.foundTags.count, tag );
+//        }
+//        && ! [self.foundTagIds containsObject:tag.hex ] ) {
+//            [self.foundTags addObject:tag];
+//            [self.foundTagIds addObject:tag.hex];
+
+            NSLog( @"tag %lu found: %@\n", (unsigned long)tm.tags.count, tag );
 
             // play a short blip
             [[AudioPlayer sharedInstance] playSound:kBlep40ms];
@@ -204,10 +213,20 @@
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * errorView = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:message
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    [self presentViewController:errorView animated:YES completion:nil];
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                    message:message
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   // nothing special to do right now
+                               }];
+
+
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -215,7 +234,7 @@
     TagViewController * destination = [segue destinationViewController];
     NSIndexPath *indexPath = [sender isKindOfClass:[NSIndexPath class]] ? (NSIndexPath*)sender : [self.tableView indexPathForSelectedRow];
 
-    destination.tag = self.foundTags[ indexPath.row ];
+    destination.tag = [TagManager sharedInstance].tags[ indexPath.row ];
 }
 
 
@@ -229,7 +248,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.foundTags.count;
+    return [TagManager sharedInstance].tags.count;
 }
 
 
@@ -237,7 +256,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell" forIndexPath:indexPath];
 
     // get the associated tag
-    Tag * tag = self.foundTags[ indexPath.row ];
+    Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
 
     cell.textLabel.text = tag.hex;
 
@@ -268,7 +287,7 @@
 
                 // is the stream done?
                 if ( inventoryStream->stopped == TRUE ) {
-                    NSLog( @"stream stopped, tags found: %lu\n", (unsigned long)self.foundTags.count );
+                    NSLog( @"stream stopped, tags found: %lu\n", (unsigned long)[TagManager sharedInstance].tags.count );
                     self.inventoryButton.titleLabel.text = @"Start";
                     if ( self.timer ) {
                         [self.timer invalidate];

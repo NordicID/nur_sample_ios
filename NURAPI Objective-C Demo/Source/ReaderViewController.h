@@ -4,7 +4,6 @@
 
 @interface ReaderViewController : UIViewController <BluetoothDelegate>
 
-@property (nonatomic, weak) CBPeripheral *     reader;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *writeTagButton;

@@ -14,17 +14,24 @@
     [super viewDidLoad];
 
     // set up the queue used to async any NURAPI calls
-    self.dispatchQueue = dispatch_queue_create("com.nordicid.bluetooth-demo.nurapi-queue", DISPATCH_QUEUE_SERIAL);
+    self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     [self.tuneButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
 }
 
 
 - (IBAction)tune:(UIButton *)sender {
-    NSLog( @"tune" );
+    // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
+    // in that case
+    if ( ! [Bluetooth sharedInstance].currentReader ) {
+        NSLog( @"no current reader connected, aborting tuning" );
+        return;
+    }
 
     dispatch_async(self.dispatchQueue, ^{
         int error = NUR_NO_ERROR;
@@ -66,10 +73,20 @@
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * errorView = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:message
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    [self presentViewController:errorView animated:YES completion:nil];
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                    message:message
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   // nothing special to do right now
+                               }];
+
+
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
