@@ -101,7 +101,7 @@
 		6F7CFE641DBA2AC700B3C122 /* LocateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateViewController.h; sourceTree = "<group>"; };
 		6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateViewController.m; sourceTree = "<group>"; };
 		6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NurAPIBluetooth.framework; sourceTree = "<group>"; };
-		6FD254531CE2128C00083D83 /* NURAPI Objective-C Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NURAPI Objective-C Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +158,7 @@
 		6FD254541CE2128C00083D83 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6FD254531CE2128C00083D83 /* NURAPI Objective-C Demo.app */,
+				6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,9 +230,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6FD254521CE2128C00083D83 /* NURAPI Objective-C Demo */ = {
+		6FD254521CE2128C00083D83 /* Nordic ID RFID Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6FD2546A1CE2128C00083D83 /* Build configuration list for PBXNativeTarget "NURAPI Objective-C Demo" */;
+			buildConfigurationList = 6FD2546A1CE2128C00083D83 /* Build configuration list for PBXNativeTarget "Nordic ID RFID Demo" */;
 			buildPhases = (
 				6FD2544F1CE2128C00083D83 /* Sources */,
 				6FD254501CE2128C00083D83 /* Frameworks */,
@@ -245,9 +245,9 @@
 			);
 			dependencies = (
 			);
-			name = "NURAPI Objective-C Demo";
+			name = "Nordic ID RFID Demo";
 			productName = "NURAPI Objective-C Demo";
-			productReference = 6FD254531CE2128C00083D83 /* NURAPI Objective-C Demo.app */;
+			productReference = 6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -266,7 +266,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6FD2544E1CE2128C00083D83 /* Build configuration list for PBXProject "NURAPI Objective-C Demo" */;
+			buildConfigurationList = 6FD2544E1CE2128C00083D83 /* Build configuration list for PBXProject "Nordic ID RFID Demo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -279,7 +279,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6FD254521CE2128C00083D83 /* NURAPI Objective-C Demo */,
+				6FD254521CE2128C00083D83 /* Nordic ID RFID Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -519,7 +519,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6FD2544E1CE2128C00083D83 /* Build configuration list for PBXProject "NURAPI Objective-C Demo" */ = {
+		6FD2544E1CE2128C00083D83 /* Build configuration list for PBXProject "Nordic ID RFID Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6FD254681CE2128C00083D83 /* Debug */,
@@ -528,7 +528,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6FD2546A1CE2128C00083D83 /* Build configuration list for PBXNativeTarget "NURAPI Objective-C Demo" */ = {
+		6FD2546A1CE2128C00083D83 /* Build configuration list for PBXNativeTarget "Nordic ID RFID Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6FD2546B1CE2128C00083D83 /* Debug */,
