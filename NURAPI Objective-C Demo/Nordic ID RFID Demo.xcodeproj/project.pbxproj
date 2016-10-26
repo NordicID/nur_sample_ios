@@ -17,6 +17,7 @@
 		6F0074CA1DB8A19900072C73 /* blipblipblip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F0074C61DB8A19900072C73 /* blipblipblip.wav */; };
 		6F0074CD1DB8A1C800072C73 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */; };
 		6F0074D01DB8F0BE00072C73 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */; };
+		6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */; };
 		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
 		6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */; };
@@ -37,6 +38,7 @@
 		6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE621DBA25B600B3C122 /* TagManager.m */; };
 		6F7CFE661DBA2AC700B3C122 /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */; };
 		6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; };
+		6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +70,8 @@
 		6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
 		6F0074CE1DB8F0BE00072C73 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagViewController.h; sourceTree = "<group>"; };
+		6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagViewController.m; sourceTree = "<group>"; };
 		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryViewController.h; path = Source/InventoryViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B6C1D9BA39300370330 /* TuneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TuneViewController.h; path = Source/TuneViewController.h; sourceTree = SOURCE_ROOT; };
@@ -101,6 +105,8 @@
 		6F7CFE641DBA2AC700B3C122 /* LocateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateViewController.h; sourceTree = "<group>"; };
 		6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateViewController.m; sourceTree = "<group>"; };
 		6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NurAPIBluetooth.framework; sourceTree = "<group>"; };
+		6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagPopoverViewController.h; sourceTree = "<group>"; };
+		6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagPopoverViewController.m; sourceTree = "<group>"; };
 		6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -205,6 +211,10 @@
 				6F6F0B701D9BA39300370330 /* TuneViewController.m */,
 				6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */,
 				6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */,
+				6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */,
+				6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */,
+				6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */,
+				6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */,
 			);
 			name = Sources;
 			path = Source;
@@ -338,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6F0BA91D9BA39300370330 /* ReaderViewController.m in Sources */,
+				6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */,
 				6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */,
 				6F6F0BBA1D9BA39300370330 /* main.m in Sources */,
 				6F6F0BA11D9BA39300370330 /* TagViewController.m in Sources */,
@@ -347,6 +358,7 @@
 				6F0074BC1DB7C13D00072C73 /* QuickGuideViewController.m in Sources */,
 				6F0074CD1DB8A1C800072C73 /* AudioPlayer.m in Sources */,
 				6F6F0BA51D9BA39300370330 /* InventoryViewController.m in Sources */,
+				6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */,
 				6F0074D01DB8F0BE00072C73 /* AboutViewController.m in Sources */,
 				6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */,
 				6F6F0BA61D9BA39300370330 /* SelectReaderViewController.m in Sources */,

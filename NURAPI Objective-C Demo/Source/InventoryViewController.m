@@ -61,14 +61,15 @@
             NSLog( @"stopping inventory stream" );
             
             int error = NurApiStopInventoryStream( [Bluetooth sharedInstance].nurapiHandle );
-            if ( error != NUR_NO_ERROR ) {
-                NSLog( @"failed to stop inventory stream" );
-                [self showErrorMessage:error];
-                return;
-            }
 
-            // update the button label on the main queue
+            // show the error or update the button label on the main queue
             dispatch_async(dispatch_get_main_queue(), ^{
+                if ( error != NUR_NO_ERROR ) {
+                    NSLog( @"failed to stop inventory stream" );
+                    [self showErrorMessage:error];
+                    return;
+                }
+
                 self.inventoryButton.titleLabel.text = @"Start";
 
                 if ( self.timer ) {

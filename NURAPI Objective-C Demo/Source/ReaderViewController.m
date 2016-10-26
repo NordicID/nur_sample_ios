@@ -6,7 +6,6 @@
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 @property (nonatomic, strong) NSTimer * timer;
-//@property (nonatomic, assign) BOOL readerOk;
 
 @end
 
@@ -15,9 +14,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // assume not ok initially
-    //self.readerOk = NO;
 
     //NSLog( @"using reader: %@", self.reader );
 

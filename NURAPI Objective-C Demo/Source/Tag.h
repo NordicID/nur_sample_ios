@@ -7,7 +7,7 @@
  **/
 @interface Tag : NSObject
 
-@property (nonatomic, strong, readonly) NSData *    epc;
+@property (nonatomic, strong)           NSData *    epc;
 @property (nonatomic, strong, readonly) NSString *  hex;
 @property (nonatomic, assign, readonly) DWORD       frequency;
 @property (nonatomic, assign, readonly) signed char rssi;
