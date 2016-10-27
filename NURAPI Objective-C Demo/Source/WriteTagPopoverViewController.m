@@ -41,14 +41,17 @@
         // create a data container from the 12 bytes
         NSData * newEpcData = [NSData dataWithBytes:newEpc length:12];
 
-        // perform the real tag writing
         unsigned char * oldEpc = (unsigned char *)self.writeTag.epc.bytes;
+
+        // mostly hardocded data, but named for ease of reading
         DWORD password = 0;
         BOOL secured = 0;
         DWORD epcBufferLen = 12;
         int newEpcBufferLen = 12;
         BYTE wrBank = 1;
         DWORD wrAddress = 2;
+
+        // perform the real tag writing
         int error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, epcBufferLen, wrBank, wrAddress, newEpcBufferLen, newEpc );
 
         NSLog( @"started tag write: error: %d", error );

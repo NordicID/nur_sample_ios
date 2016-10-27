@@ -3,8 +3,11 @@
 
 #import "Tag.h"
 
-@interface TagViewController : UITableViewController
+@interface TagViewController : UIViewController
 
 @property (nonatomic, strong) Tag * tag;
+
+@property (weak, nonatomic) IBOutlet UITableView * tableView;
+@property (weak, nonatomic) IBOutlet UIButton *    locateTagButton;
 
 @end

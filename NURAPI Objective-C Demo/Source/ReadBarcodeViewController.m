@@ -1,5 +1,6 @@
 
 #import "ReadBarcodeViewController.h"
+#import "AudioPlayer.h"
 
 @interface ReadBarcodeViewController () {
     BOOL readingBarcode;
@@ -54,6 +55,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.barcode.text = status;
         self.barcode.hidden = NO;
+
+        // play a short blip
+        [[AudioPlayer sharedInstance] playSound:kBlep100ms];
     } );
 }
 
@@ -82,6 +86,9 @@
                 else if (status == NUR_ERROR_NOT_READY) {
                     NSLog( @"barcode reading cancelled" );
                     ignoreTrigger = YES;
+                }
+                else if ( status == NUR_ERROR_NO_TAG ) {
+                    [self showBarcode:@"No barcode found"];
                 }
                 else {
                     [self showErrorMessage:status];
