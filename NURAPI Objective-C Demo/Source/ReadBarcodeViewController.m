@@ -11,6 +11,16 @@
 
 @implementation ReadBarcodeViewController
 
+- (void) viewDidLoad {
+    [super viewDidLoad];
+
+    // if we have no reader show a different message
+    if ( ! [Bluetooth sharedInstance].currentReader ) {
+        [self showStatus:@"Please connect an RFID reader"];
+    }
+}
+
+
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 

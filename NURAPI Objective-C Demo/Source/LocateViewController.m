@@ -1,5 +1,6 @@
 
 #import "LocateViewController.h"
+#import "LocateTagViewController.h"
 #import "TagManager.h"
 
 
@@ -7,7 +8,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    LocateTagViewController * destination = [segue destinationViewController];
+    NSIndexPath *indexPath = [sender isKindOfClass:[NSIndexPath class]] ? (NSIndexPath*)sender : [self.tableView indexPathForSelectedRow];
+    destination.tag = [TagManager sharedInstance].tags[ indexPath.row ];
 }
 
 

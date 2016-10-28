@@ -1,7 +1,20 @@
 
 #import "TagViewController.h"
+#import "LocateTagViewController.h"
+#import "UIButton+BackgroundColor.h"
 
 @implementation TagViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.locateTagButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [super viewWillAppear:animated];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    LocateTagViewController * destination = [segue destinationViewController];
+    destination.tag = self.tag;
+}
+
 
 //******************************************************************************************
 #pragma mark - Table view data source

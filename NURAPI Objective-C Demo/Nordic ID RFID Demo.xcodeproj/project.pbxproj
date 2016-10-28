@@ -39,6 +39,7 @@
 		6F7CFE661DBA2AC700B3C122 /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */; };
 		6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; };
 		6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */; };
+		6FD95F281DC28AE900C7BFAD /* LocateTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -108,6 +109,8 @@
 		6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagPopoverViewController.h; sourceTree = "<group>"; };
 		6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagPopoverViewController.m; sourceTree = "<group>"; };
 		6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FD95F261DC28AE900C7BFAD /* LocateTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateTagViewController.h; sourceTree = "<group>"; };
+		6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateTagViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +186,8 @@
 				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
 				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
+				6FD95F261DC28AE900C7BFAD /* LocateTagViewController.h */,
+				6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */,
 				6F7CFE641DBA2AC700B3C122 /* LocateViewController.h */,
 				6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */,
 				6F0074BA1DB7C13D00072C73 /* QuickGuideViewController.h */,
@@ -211,10 +216,10 @@
 				6F6F0B701D9BA39300370330 /* TuneViewController.m */,
 				6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */,
 				6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */,
-				6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */,
-				6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */,
 				6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */,
 				6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */,
+				6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */,
+				6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */,
 			);
 			name = Sources;
 			path = Source;
@@ -362,6 +367,7 @@
 				6F0074D01DB8F0BE00072C73 /* AboutViewController.m in Sources */,
 				6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */,
 				6F6F0BA61D9BA39300370330 /* SelectReaderViewController.m in Sources */,
+				6FD95F281DC28AE900C7BFAD /* LocateTagViewController.m in Sources */,
 				6F6F0B9F1D9BA39300370330 /* TuneViewController.m in Sources */,
 				6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */,
 				6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */,

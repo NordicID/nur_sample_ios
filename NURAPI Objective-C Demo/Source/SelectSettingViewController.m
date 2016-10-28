@@ -94,6 +94,14 @@
         }
     }
 
+
+    // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Saving"
+                                                                    message:@"Saving setting to non volatile memory."
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alert animated:YES completion:nil];
+
+
     // perform saving to volatile memory using the NURAPI dispatch queue
     dispatch_async(self.dispatchQueue, ^{
         int error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, self.setting, &setup, sizeof(struct NUR_MODULESETUP) );
@@ -104,6 +112,8 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            // first always get rid of the status popup
+            [alert dismissViewControllerAnimated:YES completion:nil];
             if (error != NUR_NO_ERROR) {
                 [self showErrorMessage:error];
             }
