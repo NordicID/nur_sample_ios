@@ -304,26 +304,26 @@
             destination.settingName = @"TX Level";
 
             // this assumes the 500mW version, different values for 1000mW reader. TODO: how to recognize?
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"27 dBm, 500mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 0]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"26 dBm, 398mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 1]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"25 dBm, 316mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 2]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"24 dBm, 251mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 3]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"23 dBm, 200mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 4]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"22 dBm, 158mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 5]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"21 dBm, 126mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 6]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"20 dBm, 100mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 7]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"19 dBm, 79mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 8]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"18 dBm, 63mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 9]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"17 dBm, 50mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 10]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"16 dBm, 40mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 11]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"15 dBm, 32mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 12]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"14 dBm, 25mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 13]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"13 dBm, 20mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 14]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"12 dBm, 16mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 15]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"11 dBm, 13mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 16]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"10 dBm, 10mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 17]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"9 dBm, 8mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 18]];
-            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"8 dBm, 6mW" value:NUR_SETUP_TXLEVEL selected:setup.txLevel == 19]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"27 dBm, 500mW" value:0 selected:setup.txLevel == 0]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"26 dBm, 398mW" value:1 selected:setup.txLevel == 1]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"25 dBm, 316mW" value:2 selected:setup.txLevel == 2]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"24 dBm, 251mW" value:3 selected:setup.txLevel == 3]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"23 dBm, 200mW" value:4 selected:setup.txLevel == 4]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"22 dBm, 158mW" value:5 selected:setup.txLevel == 5]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"21 dBm, 126mW" value:6 selected:setup.txLevel == 6]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"20 dBm, 100mW" value:7 selected:setup.txLevel == 7]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"19 dBm, 79mW" value:8 selected:setup.txLevel == 8]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"18 dBm, 63mW" value:9 selected:setup.txLevel == 9]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"17 dBm, 50mW" value:10 selected:setup.txLevel == 10]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"16 dBm, 40mW" value:11 selected:setup.txLevel == 11]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"15 dBm, 32mW" value:12 selected:setup.txLevel == 12]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"14 dBm, 25mW" value:13 selected:setup.txLevel == 13]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"13 dBm, 20mW" value:14 selected:setup.txLevel == 14]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"12 dBm, 16mW" value:15 selected:setup.txLevel == 15]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"11 dBm, 13mW" value:16 selected:setup.txLevel == 16]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"10 dBm, 10mW" value:17 selected:setup.txLevel == 17]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"9 dBm, 8mW" value:18 selected:setup.txLevel == 18]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"8 dBm, 6mW" value:19 selected:setup.txLevel == 19]];
             break;
 
         case NUR_SETUP_ANTMASKEX:
