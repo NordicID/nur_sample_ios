@@ -14,6 +14,7 @@
     [super viewDidLoad];
 
     // set up the queue used to async any NURAPI calls
+    //self.dispatchQueue = dispatch_queue_create("com.nordicid.rfiddemo.tune", 0);
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 }
 
@@ -34,22 +35,29 @@
     }
 
     dispatch_async(self.dispatchQueue, ^{
-        int error = NUR_NO_ERROR;
-
         for ( unsigned int index = 0; index < 32; ++index ) {
+            NSLog( @"checking for antenna %d", index );
             if ( self.antennaMask & (1<<index) ) {
                 NSLog( @"tuning antenna %d", index );
 
-                // tune this antenna
+                int error = NUR_NO_ERROR;
                 int dbmResults[6];
+
+                // tune this antenna
                 if ( ( error = NurApiTuneAntenna( [Bluetooth sharedInstance].nurapiHandle, index, 1, 1, dbmResults)) != NUR_NO_ERROR ) {
-                    NSLog( @"error tuning antenna %d", index );
-                    break;
+                    NSLog( @"error %d tuning antenna %d", error, index );
+
+                    // show error on UI thread
+                    dispatch_async( dispatch_get_main_queue(), ^{
+                        [self showErrorMessage:error];
+                    });
+
+                    return;
                 }
             }
         }
-
-        dispatch_async(dispatch_get_main_queue(), ^{
+        
+        /*dispatch_async( dispatch_get_main_queue(), ^{
             if (error != NUR_NO_ERROR) {
                 // failed to fetch tag
                 [self showErrorMessage:error];
@@ -59,7 +67,7 @@
                 // tuned ok
                 NSLog( @"tune ok" );
             }
-        });
+        });*/
     });
 }
 
@@ -89,5 +97,16 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+
+//*****************************************************************************************************************
+#pragma mark - Bluetooth delegate
+
+- (void) notificationReceived:(DWORD)timestamp type:(int)type data:(LPVOID)data length:(int)length {
+    switch ( type ) {
+        case NUR_NOTIFICATION_TUNEEVENT: {
+            NSLog( @"tuning..." );
+        }
+    }
+}
 
 @end

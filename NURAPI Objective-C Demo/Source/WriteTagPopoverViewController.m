@@ -1,5 +1,6 @@
 
 #import "WriteTagPopoverViewController.h"
+#import "UIButton+BackgroundColor.h"
 
 @interface WriteTagPopoverViewController ()
 
@@ -17,6 +18,13 @@
 
     self.oldEpcLabel.text = self.writeTag.hex;
     self.epcEdit.text = self.writeTag.hex;
+}
+
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    [self.writeButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
 }
 
 
@@ -54,6 +62,12 @@
         // perform the real tag writing
         int error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, epcBufferLen, wrBank, wrAddress, newEpcBufferLen, newEpc );
 
+        //BYTE buffer[256];
+        //int error = NurApiReadTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, epcBufferLen, 2, 0, 8, buffer);
+
+        //struct NUR_TRIGGERREAD_DATA singleData;
+        //int error = NurApiScanSingle( [Bluetooth sharedInstance].nurapiHandle, 1000, &singleData );
+
         NSLog( @"started tag write: error: %d", error );
 
         // show the error or update the button label on the main queue
@@ -66,6 +80,7 @@
 
             // write the data back to the tag
             self.writeTag.epc = newEpcData;
+            self.oldEpcLabel.text = self.writeTag.hex;
         } );
     } );
 

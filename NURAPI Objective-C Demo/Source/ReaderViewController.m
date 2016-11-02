@@ -71,7 +71,9 @@
 
 
 - (void) updateBatteryLevel {
-    NSLog( @"checking battery status" );
+    NSLog( @"checking battery status ***** DISABLED!" );
+
+    return;
 
     // any current reader?
     if ( ! [Bluetooth sharedInstance].currentReader ) {
