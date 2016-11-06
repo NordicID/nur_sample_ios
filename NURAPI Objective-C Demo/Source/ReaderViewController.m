@@ -129,7 +129,6 @@
 - (void) readerConnectionOk {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog( @"connection ok, handle: %p", [Bluetooth sharedInstance].nurapiHandle );
-        //self.readerOk = YES;
         self.scanButton.enabled = YES;
         self.settingsButton.enabled = YES;
         self.writeTagButton.enabled = YES;
