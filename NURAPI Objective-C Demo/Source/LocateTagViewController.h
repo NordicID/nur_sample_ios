@@ -1,9 +1,10 @@
 
 #import <UIKit/UIKit.h>
+#import <NurAPIBluetooth/Bluetooth.h>
 
 #import "Tag.h"
 
-@interface LocateTagViewController : UIViewController
+@interface LocateTagViewController : UIViewController <BluetoothDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *  tagLabel;
 @property (weak, nonatomic) IBOutlet UILabel *  strengthLabel;

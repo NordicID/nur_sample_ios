@@ -1,6 +1,7 @@
 
 #import "WriteTagPopoverViewController.h"
 #import "UIButton+BackgroundColor.h"
+#import "AudioPlayer.h"
 
 @interface WriteTagPopoverViewController ()
 
@@ -29,25 +30,57 @@
 
 
 - (IBAction) performTagWriting {
+
+    // data for the new tag
     const char *chars = [self.epcEdit.text UTF8String];
+    unsigned int textLength = (unsigned int)self.epcEdit.text.length;
 
     NSLog( @"writing new tag: %@", self.epcEdit.text );
 
+    // play a short blip
+    [[AudioPlayer sharedInstance] playSound:kBlep100ms];
+
     dispatch_async(self.dispatchQueue, ^{
+        // get the previous TX level so that we can restore it later. It should be at maximum when writing tags
+        struct NUR_MODULESETUP setup;
+        int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
+        if ( error != NUR_NO_ERROR ) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog( @"failed to get current tx level" );
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.delegate writeCompletedWithError:error];
+            } );
+
+            return;
+        }
+
+        int oldTxLevel = setup.txLevel;
+        NSLog( @"current tx level: %d", oldTxLevel );
+
+        // set the TX level to 0 (maximum)
+        setup.txLevel = 0;
+        error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
+        if ( error != NUR_NO_ERROR ) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog( @"failed to set new tx level" );
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.delegate writeCompletedWithError:error];
+            } );
+
+            return;
+        }
+
+
         // convert the hex string like "112233..." to 12 bytes
         unsigned char newEpc[12];
         char byteChars[3] = {'\0','\0','\0'};
-
         int charIndex = 0, resultIndex = 0;
-        while( charIndex < self.epcEdit.text.length ) {
+        while( charIndex < textLength ) {
             byteChars[0] = chars[charIndex++];
             byteChars[1] = chars[charIndex++];
             unsigned long wholeByte = strtoul(byteChars, NULL, 16);
             newEpc[resultIndex++] = wholeByte & 0xff;
         }
-
-        // create a data container from the 12 bytes
-        NSData * newEpcData = [NSData dataWithBytes:newEpc length:12];
 
         unsigned char * oldEpc = (unsigned char *)self.writeTag.epc.bytes;
 
@@ -59,71 +92,45 @@
         BYTE wrBank = 1;
         DWORD wrAddress = 2;
 
+        NSLog( @"writing new tag" );
+
         // perform the real tag writing
-        int error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, epcBufferLen, wrBank, wrAddress, newEpcBufferLen, newEpc );
-
-        //BYTE buffer[256];
-        //int error = NurApiReadTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, epcBufferLen, 2, 0, 8, buffer);
-
-        //struct NUR_TRIGGERREAD_DATA singleData;
-        //int error = NurApiScanSingle( [Bluetooth sharedInstance].nurapiHandle, 1000, &singleData );
-
-        NSLog( @"started tag write: error: %d", error );
-
-        // show the error or update the button label on the main queue
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if ( error != NUR_NO_ERROR ) {
+        error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, epcBufferLen, wrBank, wrAddress, newEpcBufferLen, newEpc );
+        if ( error != NUR_NO_ERROR ) {
+            dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog( @"failed to write tag" );
-                [self showErrorMessage:error];
-                return;
-            }
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.delegate writeCompletedWithError:error];
+            } );
 
-            // write the data back to the tag
-            self.writeTag.epc = newEpcData;
-            self.oldEpcLabel.text = self.writeTag.hex;
+            return;
+        }
+
+        // update the internal tag too
+        self.writeTag.epc = [NSData dataWithBytes:newEpc length:12];
+
+        // restore the TX level
+        setup.txLevel = oldTxLevel;
+        NSLog( @"restoring previous tx level: %d", oldTxLevel );
+
+        error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
+        if ( error != NUR_NO_ERROR ) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog( @"failed to restore old tx level" );
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.delegate writeCompletedWithError:error];
+            } );
+
+            return;
+        }
+
+        // we're done, written ok
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog( @"write and restore completed ok" );
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.delegate writeCompletedWithError:NUR_NO_ERROR];
         } );
     } );
-
-    /*
-    int NURAPICONV NurApiWriteTagByEPC(HANDLE hApi, DWORD passwd, BOOL secured, BYTE *epcBuffer, DWORD epcBufferLen, BYTE wrBank, DWORD wrAddress, int wrByteCount, BYTE *wrBuffer);
-
-    missä
-
-    hApi = API handle
-    passwd, secured = 0 (ei käytetä salasanaa)
-    epcBuffer = tämänhetkinen EPC
-    epcBufferLen = 12
-    wrBank = 1 (bank EPC)
-    wrAddress = 2 (word i.e. 16-bit address; EPC alkaa bittiosoitteesta 32 eli word osoite 2, 32 / 16 = 2)
-    wrByteCount = 12 (kirjoitettavan buffering eli uuden EPC:n mitta)
-    wrBuffer = osoitin kirjoitettavaan data eli tässä uusi EPC
-*/
-}
-
-
-- (void) showErrorMessage:(int)error {
-    // extract the NURAPI error
-    char buffer[256];
-    NurApiGetErrorMessage( error, buffer, 256 );
-    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-    NSLog( @"NURAPI error: %@", message );
-
-    // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Failed to write tag"
-                                                                    message:message
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:@"Ok"
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action) {
-                                   // nothing special to do right now
-                               }];
-
-
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

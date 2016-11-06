@@ -35,11 +35,14 @@
 }
 
 
-- (void) addTag:(Tag *)tag {
+- (BOOL) addTag:(Tag *)tag {
     if ( tag && ! [self.tagIds containsObject:tag.hex ] ) {
         [self.tags addObject:tag];
         [self.tagIds addObject:tag.hex];
+        return YES;
     }
+
+    return NO;
 }
 
 

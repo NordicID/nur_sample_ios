@@ -10,7 +10,8 @@
 
 + (TagManager *) sharedInstance;
 
-- (void) addTag:(Tag *)tag;
+// Adds a tag. Returns YES if the tag was new and NO if it was already found.
+- (BOOL) addTag:(Tag *)tag;
 
 - (void) clear;
 

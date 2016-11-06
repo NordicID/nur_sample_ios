@@ -29,7 +29,7 @@
     [[Bluetooth sharedInstance] registerDelegate:self];
 
     // connection already ok?
-    if ( !self.timer ) {
+    if ( [Bluetooth sharedInstance].currentReader != nil && self.timer == nil) {
         // start a timer that updates the battery level periodically
         self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateStatusInfo) userInfo:nil repeats:YES];
     }
@@ -71,15 +71,15 @@
 
 
 - (void) updateBatteryLevel {
-    NSLog( @"checking battery status ***** DISABLED!" );
-
-    return;
-
     // any current reader?
     if ( ! [Bluetooth sharedInstance].currentReader ) {
-        self.batteryLabel.text = @"?";
+        self.batteryLevelLabel.text = @"?";
+        self.batteryLevelLabel.hidden = YES;
+        self.batteryIconLabel.hidden = YES;
         return;
     }
+
+    NSLog( @"checking battery status" );
 
     dispatch_async(self.dispatchQueue, ^{
         NUR_ACC_BATT_INFO batteryInfo;
@@ -95,13 +95,27 @@
                 NurApiGetErrorMessage( error, buffer, 256 );
                 NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
                 NSLog( @"failed to get battery info: %@", message );
-                self.batteryLabel.text = @"E";
+                self.batteryLevelLabel.hidden = YES;
+                self.batteryIconLabel.hidden = YES;
             }
             else if ( batteryInfo.percentage == -1 ) {
-                self.batteryLabel.text = @"?";
+                self.batteryLevelLabel.hidden = YES;
+                self.batteryIconLabel.hidden = YES;
             }
             else {
-                self.batteryLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
+                self.batteryLevelLabel.hidden = NO;
+                self.batteryIconLabel.hidden = NO;
+                self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
+
+                if ( batteryInfo.percentage <= 33 ) {
+                    self.batteryIconLabel.image = [UIImage imageNamed:@"battery-33"];
+                }
+                else if ( batteryInfo.percentage <= 66 ) {
+                    self.batteryIconLabel.image = [UIImage imageNamed:@"battery-66"];
+                }
+                else {
+                    self.batteryIconLabel.image = [UIImage imageNamed:@"battery-100"];
+                }
             }
         });
     });
@@ -118,6 +132,9 @@
         //self.readerOk = YES;
         self.scanButton.enabled = YES;
         self.settingsButton.enabled = YES;
+        self.writeTagButton.enabled = YES;
+        self.infoButton.enabled = YES;
+        self.readBarcodeButton.enabled = YES;
 
         // start a timer that updates the battery level periodically
         self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
@@ -126,6 +143,20 @@
     [self updateStatusInfo];
 }
 
+
+- (void) readerDisconnected {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog( @"reader disconnected" );
+
+        // stop any old timeout timer that we may have
+        if ( self.timer ) {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+
+        [self updateStatusInfo];
+    });
+}
 
 - (void) readerConnectionFailed {
     dispatch_async(dispatch_get_main_queue(), ^{

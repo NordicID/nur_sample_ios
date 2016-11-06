@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *authButton;
 @property (weak, nonatomic) IBOutlet UIButton *guideButton;
 @property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *batteryLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *batteryIconLabel;
+@property (weak, nonatomic) IBOutlet UILabel *batteryLevelLabel;
 
 @end

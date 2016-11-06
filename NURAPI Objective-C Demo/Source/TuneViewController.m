@@ -2,6 +2,7 @@
 #import <NurAPIBluetooth/Bluetooth.h>
 
 #import "TuneViewController.h"
+#import "AudioPlayer.h"
 #import "UIButton+BackgroundColor.h"
 
 @interface TuneViewController ()
@@ -34,14 +35,45 @@
         return;
     }
 
+    // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Tuning"
+                                                                    message:@"Tuning all enabled antennas."
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alert animated:YES completion:nil];
+
     dispatch_async(self.dispatchQueue, ^{
+        struct NUR_ANTENNA_MAPPING antennaMap[NUR_MAX_ANTENNAS_EX];
+        int antennaMappingCount;
+
+        // get antenna mask
+        int antennaError = NurApiGetAntennaMap( [Bluetooth sharedInstance].nurapiHandle, antennaMap, &antennaMappingCount, NUR_MAX_ANTENNAS_EX, sizeof(struct NUR_ANTENNA_MAPPING) );
+
+        NSLog( @"retrieved %d antenna mappings", antennaMappingCount );
+
         for ( unsigned int index = 0; index < 32; ++index ) {
             NSLog( @"checking for antenna %d", index );
             if ( self.antennaMask & (1<<index) ) {
                 NSLog( @"tuning antenna %d", index );
 
+                // play a short beep
+                [[AudioPlayer sharedInstance] playSound:kBlep100ms];
+
                 int error = NUR_NO_ERROR;
                 int dbmResults[6];
+
+                // set up a message with the antenna name to show in the alert
+                NSString * antennaName;
+                if ( antennaError == NUR_NO_ERROR ) {
+                    antennaName = [NSString stringWithFormat:@"Tuning antenna %@...",[NSString stringWithCString:antennaMap[ index ].name encoding:NSASCIIStringEncoding]];
+                }
+                else {
+                    antennaName = [NSString stringWithFormat:@"Tuning antenna %d...", index];
+                }
+
+                // update the title
+                dispatch_async( dispatch_get_main_queue(), ^{
+                    alert.message = antennaName;
+                });
 
                 // tune this antenna
                 if ( ( error = NurApiTuneAntenna( [Bluetooth sharedInstance].nurapiHandle, index, 1, 1, dbmResults)) != NUR_NO_ERROR ) {
@@ -49,6 +81,7 @@
 
                     // show error on UI thread
                     dispatch_async( dispatch_get_main_queue(), ^{
+                        [alert dismissViewControllerAnimated:YES completion:nil];
                         [self showErrorMessage:error];
                     });
 
@@ -56,18 +89,10 @@
                 }
             }
         }
-        
-        /*dispatch_async( dispatch_get_main_queue(), ^{
-            if (error != NUR_NO_ERROR) {
-                // failed to fetch tag
-                [self showErrorMessage:error];
-                return;
-            }
-            else {
-                // tuned ok
-                NSLog( @"tune ok" );
-            }
-        });*/
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        } );
     });
 }
 

@@ -17,6 +17,9 @@
 		6F0074CA1DB8A19900072C73 /* blipblipblip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F0074C61DB8A19900072C73 /* blipblipblip.wav */; };
 		6F0074CD1DB8A1C800072C73 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */; };
 		6F0074D01DB8F0BE00072C73 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */; };
+		6F3B30D21DCF658D00A46A93 /* AverageBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30D11DCF658D00A46A93 /* AverageBuffer.m */; };
+		6F3B30D51DCFAB0600A46A93 /* LocateTagAntennaSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30D41DCFAB0600A46A93 /* LocateTagAntennaSelector.m */; };
+		6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30D71DCFC79900A46A93 /* SmoothingBuffer.m */; };
 		6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */; };
 		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
@@ -71,6 +74,12 @@
 		6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
 		6F0074CE1DB8F0BE00072C73 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		6F3B30D01DCF658D00A46A93 /* AverageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AverageBuffer.h; sourceTree = "<group>"; };
+		6F3B30D11DCF658D00A46A93 /* AverageBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AverageBuffer.m; sourceTree = "<group>"; };
+		6F3B30D31DCFAB0600A46A93 /* LocateTagAntennaSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateTagAntennaSelector.h; sourceTree = "<group>"; };
+		6F3B30D41DCFAB0600A46A93 /* LocateTagAntennaSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateTagAntennaSelector.m; sourceTree = "<group>"; };
+		6F3B30D61DCFC79900A46A93 /* SmoothingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothingBuffer.h; sourceTree = "<group>"; };
+		6F3B30D71DCFC79900A46A93 /* SmoothingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothingBuffer.m; sourceTree = "<group>"; };
 		6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagViewController.h; sourceTree = "<group>"; };
 		6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagViewController.m; sourceTree = "<group>"; };
 		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
@@ -182,10 +191,14 @@
 				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
 				6F0074CB1DB8A1C800072C73 /* AudioPlayer.h */,
 				6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */,
+				6F3B30D01DCF658D00A46A93 /* AverageBuffer.h */,
+				6F3B30D11DCF658D00A46A93 /* AverageBuffer.m */,
 				6F6F0B891D9BA39300370330 /* InfoViewController.h */,
 				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
 				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
+				6F3B30D31DCFAB0600A46A93 /* LocateTagAntennaSelector.h */,
+				6F3B30D41DCFAB0600A46A93 /* LocateTagAntennaSelector.m */,
 				6FD95F261DC28AE900C7BFAD /* LocateTagViewController.h */,
 				6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */,
 				6F7CFE641DBA2AC700B3C122 /* LocateViewController.h */,
@@ -220,6 +233,8 @@
 				6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */,
 				6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */,
 				6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */,
+				6F3B30D61DCFC79900A46A93 /* SmoothingBuffer.h */,
+				6F3B30D71DCFC79900A46A93 /* SmoothingBuffer.m */,
 			);
 			name = Sources;
 			path = Source;
@@ -359,10 +374,12 @@
 				6F6F0BA11D9BA39300370330 /* TagViewController.m in Sources */,
 				6F6F0BB61D9BA39300370330 /* Tag.m in Sources */,
 				6F6F0BA01D9BA39300370330 /* InfoViewController.m in Sources */,
+				6F3B30D51DCFAB0600A46A93 /* LocateTagAntennaSelector.m in Sources */,
 				6F7CFE661DBA2AC700B3C122 /* LocateViewController.m in Sources */,
 				6F0074BC1DB7C13D00072C73 /* QuickGuideViewController.m in Sources */,
 				6F0074CD1DB8A1C800072C73 /* AudioPlayer.m in Sources */,
 				6F6F0BA51D9BA39300370330 /* InventoryViewController.m in Sources */,
+				6F3B30D21DCF658D00A46A93 /* AverageBuffer.m in Sources */,
 				6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */,
 				6F0074D01DB8F0BE00072C73 /* AboutViewController.m in Sources */,
 				6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */,
@@ -372,6 +389,7 @@
 				6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */,
 				6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */,
 				6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */,
+				6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */,
 				6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */,
 				6F00748C1DA6940A00072C73 /* ReadBarcodeViewController.m in Sources */,
 			);

@@ -1,17 +1,16 @@
 
 #import "LocateTagViewController.h"
+#import "LocateTagAntennaSelector.h"
+#import "SmoothingBuffer.h"
 #import "UIButton+BackgroundColor.h"
-
-// interval in seconds between the trace passes
-#define TRACE_INTERVAL 0.1
 
 @interface LocateTagViewController () {
     unsigned char epc[12];
 }
 
-//@property (nonatomic, assign) BOOL      locating;
-//@property (nonatomic, strong) NSTimer * timer;
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+@property (nonatomic, strong) LocateTagAntennaSelector * antennaSelector;
+@property (nonatomic, strong) SmoothingBuffer * smoothingBuffer;
 
 @end
 
@@ -20,13 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // not locating yet
-    //self.locating = NO;
-    //self.timer = nil;
-    
     // set up the queue used to async any NURAPI calls
-    //self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
-    self.dispatchQueue = dispatch_queue_create("com.nordicid.rfiddemo.locate", 0);
+    self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
+
+    // antenna selector
+    self.antennaSelector = [LocateTagAntennaSelector new];
+
+    // smoothing buffer to make the shown values a bit more calm
+    self.smoothingBuffer = [[SmoothingBuffer alloc] initWithSize:5];
 }
 
 
@@ -41,8 +41,19 @@
 }
 
 
-- (void) viewWillDisappear:(BOOL)animated {
-    
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    // register for bluetooth events
+    [[Bluetooth sharedInstance] registerDelegate:self];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    // we no longer need bluetooth events
+    [[Bluetooth sharedInstance] deregisterDelegate:self];
 }
 
 
@@ -72,7 +83,7 @@
 }
 
 
-- (IBAction)toggleLocating {
+- (IBAction) toggleLocating {
     dispatch_async(self.dispatchQueue, ^{
         if ( NurApiIsTraceRunning( [Bluetooth sharedInstance].nurapiHandle ) ) {
             [self stopLocating];
@@ -85,22 +96,27 @@
 
 
 - (void) startLocating {
-    //self.locating = YES;
-
-    // stop any old timer
-    /*if ( self.timer ) {
-        [self.timer invalidate];
-        self.timer = nil;
-    }*/
-
     NSLog( @"starting trace stream" );
 
     dispatch_async( self.dispatchQueue, ^{
+        // setup antennas for tracing
+        int error = [self.antennaSelector begin];
+        if ( error != NUR_NO_ERROR ) {
+            NSLog( @"failed to setup antennas for tracing" );
+
+            // show the error or update the button label on the main queue
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showErrorMessage:error];
+            } );
+
+            return;
+        }
+
         struct NUR_TRACETAG_DATA response;
 
         // request continuous tracing
         BYTE flags = NUR_TRACETAG_NO_EPC | NUR_TRACETAG_START_CONTINUOUS;
-        int error = NurApiTraceTagByEPC( [Bluetooth sharedInstance].nurapiHandle, epc, 12, flags, &response );
+        error = NurApiTraceTagByEPC( [Bluetooth sharedInstance].nurapiHandle, epc, 12, flags, &response );
 
         NSLog( @"stream result: %d", error );
 
@@ -114,16 +130,11 @@
                 return;
             }
         } );
-
-        // call our trace method periodically
-    //self.timer = [NSTimer scheduledTimerWithTimeInterval:TRACE_INTERVAL target:self selector:@selector(doTracePass) userInfo:nil repeats:YES];
     } );
 }
 
 
 - (void) stopLocating {
-    //self.locating = NO;
-
     NSLog( @"stopping trace stream" );
 
     dispatch_async(self.dispatchQueue, ^{
@@ -139,6 +150,9 @@
                 return;
             }
         } );
+
+        // reset the antenna selector to what it was before tracing started
+        [self.antennaSelector stop];
     } );
 }
 
@@ -148,21 +162,39 @@
 #pragma mark - Bluetooth delegate
 
 - (void) notificationReceived:(DWORD)timestamp type:(int)type data:(LPVOID)data length:(int)length {
+
     switch ( type ) {
         case NUR_NOTIFICATION_TRACETAG: {
-            NSLog( @"trace" );
+            const struct NUR_TRACETAG_DATA *traceData = (const struct NUR_TRACETAG_DATA *)data;
+
+            self.tag.scaledRssi = (char)[self.antennaSelector adjust:traceData->scaledRssi];
+            NSLog( @"trace event, rssi: %d, scaled rssi: %d, adjusted rssi: %d, antenna id: %d", traceData->rssi, traceData->scaledRssi, self.tag.scaledRssi, traceData->antennaId );
+
+            // smooth the shown value a bit
+            int smoothedValue = [self.smoothingBuffer add:self.tag.scaledRssi];
+
+            // update the % label
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.strengthLabel.text = [NSString stringWithFormat:@"%d%%", smoothedValue];
+            } );
         }
+            break;
+
+            // trigger pressed or released?
+        case NUR_NOTIFICATION_IOCHANGE: {
+            struct NUR_IOCHANGE_DATA *iocData = (struct NUR_IOCHANGE_DATA *)data;
+            if (iocData->source == NUR_ACC_TRIGGER_SOURCE) {
+                NSLog( @"trigger changed, dir: %d", iocData->dir );
+                if (iocData->dir == 0) {
+                    [self toggleLocating];
+                }
+            }
+        }
+            break;
+
+        default:
+            break;        
     }
 }
-
-/*- (void) doTracePass {
-    if ( ! self.locating ) {
-        // nothing more to do, we've stopped
-        NSLog( @"locate stopped, not doing trace pass");
-        return;
-    }
-
-    NSLog( @"doing trace pass" );
-}*/
 
 @end

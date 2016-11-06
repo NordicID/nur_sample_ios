@@ -6,7 +6,6 @@
 @property (nonatomic, strong, readwrite) NSString *  hex;
 @property (nonatomic, assign, readwrite) DWORD       frequency;
 @property (nonatomic, assign, readwrite) signed char rssi;
-@property (nonatomic, assign, readwrite) char        scaledRssi;
 @property (nonatomic, assign, readwrite) DWORD       timestamp;
 @property (nonatomic, assign, readwrite) BYTE        channel;
 @property (nonatomic, assign, readwrite) BYTE        antennaId;

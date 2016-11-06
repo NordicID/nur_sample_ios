@@ -11,10 +11,12 @@
 @property (nonatomic, strong, readonly) NSString *  hex;
 @property (nonatomic, assign, readonly) DWORD       frequency;
 @property (nonatomic, assign, readonly) signed char rssi;
-@property (nonatomic, assign, readonly) char        scaledRssi;
 @property (nonatomic, assign, readonly) DWORD       timestamp;
 @property (nonatomic, assign, readonly) BYTE        channel;
 @property (nonatomic, assign, readonly) BYTE        antennaId;
+
+// this property is written to when locating
+@property (nonatomic, assign, readwrite) char       scaledRssi;
 
 - (instancetype) initWithEpc:(NSData *)epc frequency:(DWORD)frequency rssi:(signed char)rssi scaledRssi:(char)scaledRssi timestamp:(DWORD)timestamp channel:(BYTE)channel antennaId:(BYTE)antennaId;
 

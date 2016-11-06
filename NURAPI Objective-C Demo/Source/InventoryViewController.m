@@ -4,6 +4,7 @@
 #import "AudioPlayer.h"
 #import "Tagmanager.h"
 #import "TagViewController.h"
+#import "AverageBuffer.h"
 #import "UIButton+BackgroundColor.h"
 
 @interface InventoryViewController ()
@@ -11,8 +12,17 @@
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 @property (nonatomic, strong) NSTimer *        timer;
 @property (nonatomic, strong) NSDate *         startTime;
+@property (nonatomic, strong) AverageBuffer *  averageBuffer;
+@property (nonatomic, assign) unsigned int     totalTagsRead;
+@property (nonatomic, assign) double           tagsPerSecond;
+@property (nonatomic, assign) double           averageTagsPerSecond;
+@property (nonatomic, assign) double           maxTagsPerSecond;
+@property (nonatomic, assign) unsigned int     inventoryRoundsDone;
+
 @end
 
+
+#define TAGS_PER_SEC_OVERTIME 2.0
 
 @implementation InventoryViewController
 
@@ -36,6 +46,8 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
+
+    [self clearData];
 }
 
 
@@ -47,6 +59,16 @@
 }
 
 
+- (void) clearData {
+    self.averageBuffer = [[AverageBuffer alloc] initWithMaxSize:1000 maxAge:TAGS_PER_SEC_OVERTIME];
+    self.totalTagsRead = 0;
+    self.tagsPerSecond = 0;
+    self.averageTagsPerSecond = 0;
+    self.maxTagsPerSecond = 0;
+    self.inventoryRoundsDone = 0;
+}
+
+
 - (IBAction)toggleInventory {
     // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
     // in that case
@@ -55,54 +77,72 @@
         return;
     }
 
+    // kill any old timer
+    if ( self.timer ) {
+        [self.timer invalidate];
+    }
+
     dispatch_async(self.dispatchQueue, ^{
         if ( NurApiIsInventoryStreamRunning( [Bluetooth sharedInstance].nurapiHandle ) ) {
-            // stop stream
-            NSLog( @"stopping inventory stream" );
-            
-            int error = NurApiStopInventoryStream( [Bluetooth sharedInstance].nurapiHandle );
-
-            // show the error or update the button label on the main queue
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if ( error != NUR_NO_ERROR ) {
-                    NSLog( @"failed to stop inventory stream" );
-                    [self showErrorMessage:error];
-                    return;
-                }
-
-                self.inventoryButton.titleLabel.text = @"Start";
-
-                if ( self.timer ) {
-                    [self.timer invalidate];
-                }
-
-                self.timer = nil;
-                self.startTime = nil;
-            } );
+            [self stopStream];
         }
         else {
-            NSLog( @"starting inventory stream" );
-
-            // default scanning parameters
-            int rounds = 0;
-            int q = 0;
-            int session = 0;
-
-            int error = NurApiStartInventoryStream( [Bluetooth sharedInstance].nurapiHandle, rounds, q, session );
-            if ( error != NUR_NO_ERROR ) {
-                NSLog( @"failed to start inventory stream" );
-                [self showErrorMessage:error];
-                return;
-            }
-
-            // update the button label on the main queue
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.inventoryButton.titleLabel.text = @"Stop";
-                // start a timer that updates the elapsed time
-                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
-                self.startTime = [NSDate date];
-            } );
+            [self startStream];
         }
+    } );
+}
+
+
+- (void) stopStream {
+    // stop stream
+    NSLog( @"stopping inventory stream" );
+
+    int error = NurApiStopInventoryStream( [Bluetooth sharedInstance].nurapiHandle );
+
+    // show the error or update the button label on the main queue
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ( error != NUR_NO_ERROR ) {
+            NSLog( @"failed to stop inventory stream" );
+            [self showErrorMessage:error];
+            return;
+        }
+
+        self.inventoryButton.titleLabel.text = @"Start";
+
+
+        self.timer = nil;
+        self.startTime = nil;
+    } );
+
+}
+
+
+- (void) startStream {
+    NSLog( @"starting inventory stream" );
+
+    // clear old statistics
+    [self clearData];
+
+    // default scanning parameters
+    int rounds = 0;
+    int q = 0;
+    int session = 0;
+
+    int error = NurApiStartInventoryStream( [Bluetooth sharedInstance].nurapiHandle, rounds, q, session );
+
+    // show the error or update the button label on the main queue
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ( error != NUR_NO_ERROR ) {
+            NSLog( @"failed to start inventory stream" );
+            [self showErrorMessage:error];
+            return;
+        }
+
+        self.inventoryButton.titleLabel.text = @"Stop";
+
+        // start a timer that updates the elapsed time
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
+        self.startTime = [NSDate date];
     } );
 }
 
@@ -111,6 +151,9 @@
     // simply clear all the tags
     [[TagManager sharedInstance] clear];
     [self.tableView reloadData];
+
+    // and all statistics
+    [self clearData];
 
     // clear all labels
     self.tagsLabel.text = @"0";
@@ -133,16 +176,12 @@
 
     // found tags
     self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
+    self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
 
-    // elapsed time
     self.elapsedTimeLabel.text = [NSString stringWithFormat:@"unique tags in %.1f seconds", seconds];
-
-    // average tags/s
-    if ( seconds > 0 ) {
-        double tagsPerSecond = (double)[TagManager sharedInstance].tags.count / seconds;
-        self.averageTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", tagsPerSecond];
-    }
-
+    self.tagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.tagsPerSecond];
+    self.averageTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.averageTagsPerSecond];
+    self.maxTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.maxTagsPerSecond];
 }
 
 
@@ -179,28 +218,43 @@
 }
 
 
-- (void) tagFound {
+- (void) tagsFound:(int)tagsAdded {
     TagManager * tm = [TagManager sharedInstance];
 
     // get all tags
     for ( int index = 0; index < [self getTagCount]; ++index ) {
         Tag * tag = [self getTag:index];
         if ( tag ) {
-            [tm addTag:tag];
+            BOOL isTagNew = [tm addTag:tag];
 
-//        }
-//        && ! [self.foundTagIds containsObject:tag.hex ] ) {
-//            [self.foundTags addObject:tag];
-//            [self.foundTagIds addObject:tag.hex];
+            // play a short blip and reload the table if the tag was new
+            if ( isTagNew ) {
+                [[AudioPlayer sharedInstance] playSound:kBlep40ms];
+                NSLog( @"new tag found: %@\n", tag );
 
-            NSLog( @"tag %lu found: %@\n", (unsigned long)tm.tags.count, tag );
-
-            // play a short blip
-            [[AudioPlayer sharedInstance] playSound:kBlep40ms];
-            
-            // update the table
-            [self.tableView reloadData];
+                // update the table
+                [self.tableView reloadData];
+            }
         }
+    }
+
+    [self.averageBuffer add:tagsAdded];
+
+    self.totalTagsRead += tagsAdded;
+
+    self.tagsPerSecond = self.averageBuffer.sumValue / TAGS_PER_SEC_OVERTIME;
+
+    NSTimeInterval elapsedSeconds = -[self.startTime timeIntervalSinceNow];
+
+    if ( elapsedSeconds > 1 ) {
+        self.averageTagsPerSecond = self.totalTagsRead / elapsedSeconds;
+    }
+    else {
+        self.averageTagsPerSecond = self.tagsPerSecond;
+    }
+
+    if ( self.tagsPerSecond > self.maxTagsPerSecond ) {
+        self.maxTagsPerSecond = self.tagsPerSecond;
     }
 }
 
@@ -280,11 +334,13 @@
     switch ( type ) {
         case NUR_NOTIFICATION_INVENTORYSTREAM: {
             const struct NUR_INVENTORYSTREAM_DATA *inventoryStream = (const struct NUR_INVENTORYSTREAM_DATA *)data;
-            NSLog( @"Tag data from inventory stream, tags added: %d %@", inventoryStream->tagsAdded, inventoryStream->stopped == TRUE ? @"stream stopped" : @"" );
+            NSLog( @"tag data from inventory stream, tags added: %d", inventoryStream->tagsAdded);
+
+            self.inventoryRoundsDone += inventoryStream->roundsDone;
 
             // run on the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self tagFound];
+                [self tagsFound:inventoryStream->tagsAdded];
 
                 // is the stream done?
                 if ( inventoryStream->stopped == TRUE ) {
@@ -312,6 +368,7 @@
                 }
             }
         }
+            break;
 
         default:
             break;

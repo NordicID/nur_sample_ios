@@ -8,19 +8,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // TEST DATA
-//    for ( unsigned char index = 0; index < 5; ++index ) {
-//        unsigned char data[] = { index, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb };
-//        NSData * epc = [NSData dataWithBytes:data length:12];
-//        [[TagManager sharedInstance] addTag:[[Tag alloc] initWithEpc:epc frequency:0 rssi:0 scaledRssi:0 timestamp:0 channel:0 antennaId:0]];
-//    }
 }
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"TagPopover"]) {
         WriteTagPopoverViewController *vc = [segue destinationViewController];
+        vc.delegate = self;
         vc.modalPresentationStyle = UIModalPresentationPopover;
         vc.popoverPresentationController.delegate = self;
 
@@ -32,14 +26,61 @@
     }
 }
 
+
 -(UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
     return UIModalPresentationNone;
 }
 
+//******************************************************************************************
+#pragma mark - Write Tag Popover View Controller Delegate
+- (void) writeCompletedWithError:(int)error {
+    NSLog( @"tag writing completed with error: %d", error );
 
-/******************************************************************************************
- * Table view datasource
- **/
+    NSString * title;
+    NSString * message;
+
+    // written ok?
+    if ( error == NUR_NO_ERROR ) {
+        // all ok
+        title = @"Status";
+        message = @"Tag written ok";
+
+        // we have a changed tag, make sure it's shown
+        [self.tableView reloadData];
+    }
+    else {
+        // failed to write
+        title = @"Failed to write tag";
+
+        // extract the NURAPI error
+        char buffer[256];
+        NurApiGetErrorMessage( error, buffer, 256 );
+        message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+
+        NSLog( @"NURAPI error: %@", message );
+    }
+
+    // show in an alert view
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:title
+                                                                    message:message
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   // nothing special to do right now
+                               }];
+
+
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+//******************************************************************************************
+#pragma mark - Table view data source
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
