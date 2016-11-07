@@ -232,8 +232,8 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" text="1:2:3:4:5:6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-qI-oPQ">
-                                        <rect key="frame" x="88" y="8" width="227" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="1:2:3:4:5:6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-qI-oPQ">
+                                        <rect key="frame" x="88" y="8" width="224" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -932,17 +932,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="https://github.com/NordicID/nur_sample_ios" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yor-kK-uMa">
-                                <rect key="frame" x="16" y="257" width="343" height="32"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yor-kK-uMa" firstAttribute="top" secondItem="nUF-j2-IVb" secondAttribute="bottom" constant="28.5" id="2lG-d4-vjc"/>
                             <constraint firstItem="CCt-Fy-r66" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="9JT-IA-4Zs"/>
                             <constraint firstItem="ZTB-in-8gD" firstAttribute="top" secondItem="tH6-1P-3CP" secondAttribute="bottom" constant="40" id="Kcz-WO-mX6"/>
                             <constraint firstItem="2Rd-Xy-3YF" firstAttribute="top" secondItem="CCt-Fy-r66" secondAttribute="bottom" constant="20" id="NUh-jE-gSk"/>
@@ -951,7 +943,6 @@
                             <constraint firstItem="nUF-j2-IVb" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="cZJ-4u-cW5"/>
                             <constraint firstItem="2Rd-Xy-3YF" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="gxi-Tk-8jb"/>
                             <constraint firstItem="nUF-j2-IVb" firstAttribute="top" secondItem="Ud2-iV-pOn" secondAttribute="bottom" constant="20" id="nCl-KY-Jjg"/>
-                            <constraint firstItem="yor-kK-uMa" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="piI-f7-0PR"/>
                             <constraint firstItem="CCt-Fy-r66" firstAttribute="top" secondItem="ZTB-in-8gD" secondAttribute="bottom" constant="26" id="r7j-Ky-8EO"/>
                             <constraint firstItem="Ud2-iV-pOn" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="yZS-sR-kY4"/>
                         </constraints>
@@ -1145,7 +1136,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SE9-Yu-992">
                                             <rect key="frame" x="15" y="0.0" width="321" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1386,5 +1377,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="3xs-jg-3KA"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>
