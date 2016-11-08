@@ -26,7 +26,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 9;
 }
 
 
@@ -67,6 +67,17 @@
         case 6:
             cell.textLabel.text = @"Antenna Id";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.antennaId];
+            break;
+
+        case 7:
+            cell.textLabel.text = @"Found count";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.foundCount];
+            break;
+
+        case 8:
+            NSLog( @"%d %d", self.tag.foundCount, self.rounds );
+            cell.textLabel.text = @"Found %";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f", ((double)self.tag.foundCount / (double)self.rounds) * 100];
             break;
     }
 

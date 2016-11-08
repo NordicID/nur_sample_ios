@@ -18,6 +18,7 @@
 @property (nonatomic, assign) double           averageTagsPerSecond;
 @property (nonatomic, assign) double           maxTagsPerSecond;
 @property (nonatomic, assign) unsigned int     inventoryRoundsDone;
+@property (nonatomic, assign) NSTimeInterval   elapsedSeconds;
 
 @end
 
@@ -28,6 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    // clear all statistics
+    [self clearData];
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
@@ -46,8 +50,6 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
-
-    [self clearData];
 }
 
 
@@ -66,6 +68,7 @@
     self.averageTagsPerSecond = 0;
     self.maxTagsPerSecond = 0;
     self.inventoryRoundsDone = 0;
+    self.elapsedSeconds = 0;
 }
 
 
@@ -108,20 +111,18 @@
         }
 
         self.inventoryButton.titleLabel.text = @"Start";
-
-
-        self.timer = nil;
         self.startTime = nil;
-    } );
 
+        if ( self.timer ) {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+    } );
 }
 
 
 - (void) startStream {
     NSLog( @"starting inventory stream" );
-
-    // clear old statistics
-    [self clearData];
 
     // default scanning parameters
     int rounds = 0;
@@ -147,6 +148,27 @@
 }
 
 
+- (void) continueStream {
+    NSLog( @"continuing stream" );
+
+    // default scanning parameters
+    int rounds = 0;
+    int q = 0;
+    int session = 0;
+
+    int error = NurApiStartInventoryStream( [Bluetooth sharedInstance].nurapiHandle, rounds, q, session );
+
+    // show the error or update the button label on the main queue
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ( error != NUR_NO_ERROR ) {
+            NSLog( @"failed to start inventory stream" );
+            [self showErrorMessage:error];
+            return;
+        }
+    } );
+}
+
+
 - (IBAction)clearInventory {
     // simply clear all the tags
     [[TagManager sharedInstance] clear];
@@ -165,37 +187,19 @@
 
 
 - (void) updateLabels {
-    NSTimeInterval seconds;
-
+    // if we have a timer running then update the elapsed seconds. if not we use the last value
     if ( self.startTime ) {
-        seconds = -[self.startTime timeIntervalSinceNow];
-    }
-    else {
-        seconds = 0;
+        self.elapsedSeconds = -[self.startTime timeIntervalSinceNow];
     }
 
     // found tags
     self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
     self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
 
-    self.elapsedTimeLabel.text = [NSString stringWithFormat:@"unique tags in %.1f seconds", seconds];
+    self.elapsedTimeLabel.text = [NSString stringWithFormat:@"unique tags in %.1f seconds", self.elapsedSeconds];
     self.tagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.tagsPerSecond];
     self.averageTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.averageTagsPerSecond];
     self.maxTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.maxTagsPerSecond];
-}
-
-
-- (int) getTagCount {
-    int tagCount;
-    int error = NurApiGetTagCount( [Bluetooth sharedInstance].nurapiHandle, &tagCount );
-    if (error != NUR_NO_ERROR) {
-        // failed to fetch tag count
-        NSLog( @"failed to fetch tag count" );
-        [self showErrorMessage:error];
-        return -1;
-    }
-
-    return tagCount;
 }
 
 
@@ -218,24 +222,10 @@
 }
 
 
-- (void) tagsFound:(int)tagsAdded {
-    TagManager * tm = [TagManager sharedInstance];
-
-    // get all tags
-    for ( int index = 0; index < [self getTagCount]; ++index ) {
-        Tag * tag = [self getTag:index];
-        if ( tag ) {
-            BOOL isTagNew = [tm addTag:tag];
-
-            // play a short blip and reload the table if the tag was new
-            if ( isTagNew ) {
-                [[AudioPlayer sharedInstance] playSound:kBlep40ms];
-                NSLog( @"new tag found: %@\n", tag );
-
-                // update the table
-                [self.tableView reloadData];
-            }
-        }
+- (void) tagsFound:(NSArray *)tags added:(int)tagsAdded {
+    // do we need to update the table?
+    if ( tags.count > 0 ) {
+        [self.tableView reloadData];
     }
 
     [self.averageBuffer add:tagsAdded];
@@ -286,10 +276,15 @@
 
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // stop the stream first, no reasont to run the stream behind the scenes
+    [self stopStream];
+
     TagViewController * destination = [segue destinationViewController];
     NSIndexPath *indexPath = [sender isKindOfClass:[NSIndexPath class]] ? (NSIndexPath*)sender : [self.tableView indexPathForSelectedRow];
 
     destination.tag = [TagManager sharedInstance].tags[ indexPath.row ];
+    destination.rounds = self.inventoryRoundsDone;
+    NSLog( @"rounds: %d", self.inventoryRoundsDone );
 }
 
 
@@ -338,12 +333,47 @@
 
             self.inventoryRoundsDone += inventoryStream->roundsDone;
 
+            int tagCount;
+            int error = NurApiGetTagCount( [Bluetooth sharedInstance].nurapiHandle, &tagCount );
+            if (error != NUR_NO_ERROR) {
+                // failed to fetch tag count
+                NSLog( @"failed to fetch tag count" );
+                tagCount = 0;
+            }
+
+            NSMutableArray * newTags = [NSMutableArray new];
+            TagManager * tm = [TagManager sharedInstance];
+
+            // fetch all new tags
+            for ( int index = 0; index < tagCount; ++index ) {
+                Tag * tag = [self getTag:index];
+                if ( tag ) {
+                    BOOL isTagNew = [tm addTag:tag];
+
+                    // play a short blip and reload the table if the tag was new
+                    if ( isTagNew ) {
+                        [[AudioPlayer sharedInstance] playSound:kBlep40ms];
+                    }
+                    else {
+                        [newTags addObject:tag];
+                    }
+                }
+            }
+
+            // clear the tags
+            NurApiClearTags( [Bluetooth sharedInstance].nurapiHandle );
+
+            // did the stream stop by itself? it will stop after 25 seconds or so, but keep it running
+            if ( inventoryStream->stopped ) {
+                [self continueStream];
+            }
+
             // run on the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self tagsFound:inventoryStream->tagsAdded];
+                [self tagsFound:newTags added:inventoryStream->tagsAdded];
 
                 // is the stream done?
-                if ( inventoryStream->stopped == TRUE ) {
+/*                if ( inventoryStream->stopped == TRUE ) {
                     NSLog( @"stream stopped, tags found: %lu\n", (unsigned long)[TagManager sharedInstance].tags.count );
                     self.inventoryButton.titleLabel.text = @"Start";
                     if ( self.timer ) {
@@ -353,7 +383,7 @@
                     self.timer = nil;
                     self.startTime = nil;
                     [self updateLabels];
-                }
+                }*/
             });
         }
             break;

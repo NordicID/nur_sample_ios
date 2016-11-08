@@ -62,7 +62,7 @@
     CBPeripheral * reader = [Bluetooth sharedInstance].currentReader;
 
     if ( reader ) {
-        self.connectedLabel.text = reader.identifier.UUIDString;
+        self.connectedLabel.text = reader.name;
     }
     else {
         self.connectedLabel.text = @"no";
@@ -108,13 +108,13 @@
                 self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
 
                 if ( batteryInfo.percentage <= 33 ) {
-                    self.batteryIconLabel.image = [UIImage imageNamed:@"battery-33"];
+                    self.batteryIconLabel.image = [UIImage imageNamed:@"Battery-33"];
                 }
                 else if ( batteryInfo.percentage <= 66 ) {
-                    self.batteryIconLabel.image = [UIImage imageNamed:@"battery-66"];
+                    self.batteryIconLabel.image = [UIImage imageNamed:@"Battery-66"];
                 }
                 else {
-                    self.batteryIconLabel.image = [UIImage imageNamed:@"battery-100"];
+                    self.batteryIconLabel.image = [UIImage imageNamed:@"Battery-100"];
                 }
             }
         });

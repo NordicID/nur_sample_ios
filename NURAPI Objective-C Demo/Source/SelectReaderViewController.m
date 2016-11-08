@@ -2,10 +2,19 @@
 #import "SelectReaderViewController.h"
 #import "ReaderViewController.h"
 
+@interface SelectReaderViewController ()
+
+@property (nonatomic, strong) NSMutableDictionary * rssiMap;
+@end
+
+
 @implementation SelectReaderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    // map for UUID -> RRSI
+    self.rssiMap = [NSMutableDictionary dictionary];
 }
 
 
@@ -64,7 +73,14 @@
     CBPeripheral * reader = [Bluetooth sharedInstance].readers[ indexPath.row ];
 
     cell.textLabel.text = reader.name;
-    cell.detailTextLabel.text = reader.identifier.UUIDString;
+
+    // the detail is the RSSI
+    NSNumber * rssi = self.rssiMap[ reader.identifier.UUIDString ];
+    if ( rssi == nil ) {
+        rssi = @0;
+    }
+
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"RSSI: %@", rssi];
     return cell;
 }
 
@@ -113,12 +129,25 @@
 }
 
 
-- (void) readerFound:(CBPeripheral *)reader {
+- (void) readerFound:(CBPeripheral *)reader rssi:(NSNumber *)rssi{
     dispatch_async( dispatch_get_main_queue(), ^{
         NSLog( @"reader found: %@", reader );
+
+        // save our RSSI
+        self.rssiMap[ reader.identifier.UUIDString] = rssi;
+
         [self.tableView reloadData];
     });
 }
+
+
+/*- (void) reader:(CBPeripheral *)reader rssiUpdated:(NSNumber *)rssi {
+    NSLog( @"reader: %@, rssi: %@", reader, rssi );
+
+    // save the RSSI
+    self.rssiMap[ reader.identifier.UUIDString] = rssi;
+    [self.tableView reloadData];
+}*/
 
 
 - (void) readerConnectionOk {

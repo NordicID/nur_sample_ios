@@ -25,6 +25,9 @@
         self.timestamp = timestamp;
         self.channel = channel;
         self.antennaId = antennaId;
+
+        // we're found once now
+        self.foundCount = 1;
     }
 
     return self;

@@ -37,9 +37,19 @@
 
 - (BOOL) addTag:(Tag *)tag {
     if ( tag && ! [self.tagIds containsObject:tag.hex ] ) {
+        // a new tag
         [self.tags addObject:tag];
         [self.tagIds addObject:tag.hex];
         return YES;
+    }
+
+    // find our tag
+    for ( Tag * old in self.tags ) {
+        if ( [tag.hex isEqualToString:old.hex] ) {
+            // found the old one
+            old.foundCount++;
+            break;
+        }
     }
 
     return NO;
