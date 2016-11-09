@@ -175,7 +175,7 @@
 
             // update the % label
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.strengthLabel.text = [NSString stringWithFormat:@"%d%%", smoothedValue];
+                self.strengthLabel.text = [NSString stringWithFormat:@"%d %%", smoothedValue];
             } );
         }
             break;

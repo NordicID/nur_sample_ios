@@ -217,28 +217,28 @@
                                     <constraint firstItem="Zff-aS-7vM" firstAttribute="leading" secondItem="hU6-DO-Kps" secondAttribute="leading" id="OMx-9c-gBf"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdp-O2-sx3">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wdp-O2-sx3">
                                 <rect key="frame" x="0.0" y="571" width="375" height="32"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Connected:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ira-0N-Pn6">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" ambiguous="YES" text="Connected:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ira-0N-Pn6">
                                         <rect key="frame" x="8" y="8" width="75" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZr-na-7by">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" ambiguous="YES" text="?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZr-na-7by">
                                         <rect key="frame" x="359.5" y="8" width="7.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="1:2:3:4:5:6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-qI-oPQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" ambiguous="YES" text="1:2:3:4:5:6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-qI-oPQ">
                                         <rect key="frame" x="88" y="8" width="236.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Battery-100" translatesAutoresizingMaskIntoConstraints="NO" id="srU-zZ-Gxa">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Battery-100" translatesAutoresizingMaskIntoConstraints="NO" id="srU-zZ-Gxa">
                                         <rect key="frame" x="334.5" y="6" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="5qQ-cC-zVD"/>
@@ -265,10 +265,9 @@
                         <constraints>
                             <constraint firstItem="LZE-Jj-lcx" firstAttribute="top" secondItem="Wdp-O2-sx3" secondAttribute="bottom" id="41e-PN-h85"/>
                             <constraint firstItem="hU6-DO-Kps" firstAttribute="width" secondItem="n3E-Zf-kTb" secondAttribute="width" id="8X0-Hg-d5z"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Wdp-O2-sx3" secondAttribute="trailing" constant="-16" id="O2v-n0-43v"/>
-                            <constraint firstItem="Wdp-O2-sx3" firstAttribute="leading" secondItem="n3E-Zf-kTb" secondAttribute="leadingMargin" constant="-16" id="RWY-hw-teT"/>
                             <constraint firstItem="Zff-aS-7vM" firstAttribute="width" secondItem="n3E-Zf-kTb" secondAttribute="width" id="cCx-mT-NDK"/>
                             <constraint firstItem="hU6-DO-Kps" firstAttribute="height" secondItem="n3E-Zf-kTb" secondAttribute="height" constant="-32" id="jQP-BI-3j8"/>
+                            <constraint firstItem="Wdp-O2-sx3" firstAttribute="width" secondItem="n3E-Zf-kTb" secondAttribute="width" id="nOV-eO-13J"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7kd-db-aRs">
@@ -848,7 +847,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InfoCell" textLabel="PEx-fR-uwk" detailTextLabel="PD9-dR-xQr" style="IBUITableViewCellStyleValue1" id="bZK-Bt-EVH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="InfoCell" textLabel="PEx-fR-uwk" detailTextLabel="PD9-dR-xQr" style="IBUITableViewCellStyleValue1" id="bZK-Bt-EVH">
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZK-Bt-EVH" id="YgK-Kr-Sbx">
@@ -1368,7 +1367,7 @@
         <image name="MainMenuAuthentication" width="100" height="100"/>
         <image name="MainMenuBarcode" width="100" height="100"/>
         <image name="MainMenuGuide" width="100" height="100"/>
-        <image name="MainMenuInfo" width="100" height="100"/>
+        <image name="MainMenuInfo" width="70" height="70"/>
         <image name="MainMenuInventory" width="100" height="100"/>
         <image name="MainMenuLocate" width="100" height="100"/>
         <image name="MainMenuSettings" width="100" height="100"/>

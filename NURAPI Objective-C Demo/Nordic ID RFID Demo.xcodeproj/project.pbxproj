@@ -19,6 +19,7 @@
 		6F3B30D21DCF658D00A46A93 /* AverageBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30D11DCF658D00A46A93 /* AverageBuffer.m */; };
 		6F3B30D51DCFAB0600A46A93 /* LocateTagAntennaSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30D41DCFAB0600A46A93 /* LocateTagAntennaSelector.m */; };
 		6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30D71DCFC79900A46A93 /* SmoothingBuffer.m */; };
+		6F3B30E11DD306A300A46A93 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30E01DD306A300A46A93 /* ProgressView.m */; };
 		6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */; };
 		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
@@ -78,6 +79,8 @@
 		6F3B30D41DCFAB0600A46A93 /* LocateTagAntennaSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateTagAntennaSelector.m; sourceTree = "<group>"; };
 		6F3B30D61DCFC79900A46A93 /* SmoothingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothingBuffer.h; sourceTree = "<group>"; };
 		6F3B30D71DCFC79900A46A93 /* SmoothingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothingBuffer.m; sourceTree = "<group>"; };
+		6F3B30DF1DD306A300A46A93 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
+		6F3B30E01DD306A300A46A93 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
 		6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagViewController.h; sourceTree = "<group>"; };
 		6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagViewController.m; sourceTree = "<group>"; };
 		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
@@ -200,6 +203,8 @@
 				6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */,
 				6F7CFE641DBA2AC700B3C122 /* LocateViewController.h */,
 				6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */,
+				6F3B30DF1DD306A300A46A93 /* ProgressView.h */,
+				6F3B30E01DD306A300A46A93 /* ProgressView.m */,
 				6F0074BA1DB7C13D00072C73 /* QuickGuideViewController.h */,
 				6F0074BB1DB7C13D00072C73 /* QuickGuideViewController.m */,
 				6F00748A1DA6940A00072C73 /* ReadBarcodeViewController.h */,
@@ -388,6 +393,7 @@
 				6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */,
 				6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */,
 				6F00748C1DA6940A00072C73 /* ReadBarcodeViewController.m in Sources */,
+				6F3B30E11DD306A300A46A93 /* ProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

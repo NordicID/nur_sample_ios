@@ -113,13 +113,15 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             // first always get rid of the status popup
-            [alert dismissViewControllerAnimated:YES completion:nil];
-            if (error != NUR_NO_ERROR) {
-                [self showErrorMessage:error];
-            }
-            else {
-                NSLog( @"setting saved ok" );
-            }
+            [alert dismissViewControllerAnimated:YES completion:^{
+                if (error != NUR_NO_ERROR) {
+                    [self showErrorMessage:error];
+                }
+                else {
+                    NSLog( @"setting saved ok" );
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
         });
     });
 }

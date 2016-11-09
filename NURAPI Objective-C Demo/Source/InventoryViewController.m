@@ -58,6 +58,13 @@
 
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
+
+    // make sure no stream is running when we leave the view
+    if ( ! [Bluetooth sharedInstance].currentReader ) {
+        dispatch_async(self.dispatchQueue, ^{
+            [self stopStream];
+        } );
+    }
 }
 
 
@@ -97,6 +104,11 @@
 
 
 - (void) stopStream {
+    // precautions
+    if ( ! NurApiIsInventoryStreamRunning( [Bluetooth sharedInstance].nurapiHandle ) ) {
+        return;
+    }
+
     // stop stream
     NSLog( @"stopping inventory stream" );
 
