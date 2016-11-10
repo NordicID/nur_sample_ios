@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 -256 1850 1850"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="100%"
+   height="100%"
+   sodipodi:docname="about.svg">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1662"
+     inkscape:window-height="1206"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="0.44"
+     inkscape:cx="333.881"
+     inkscape:cy="896"
+     inkscape:window-x="121"
+     inkscape:window-y="47"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <path
+     style="fill:#b0adad;fill-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path6"
+     d="M 1822.37,426.31 V 1220.31 Q 1822.37,1286.31 1775.37,1333.31 Q 1728.37,1380.31 1662.37,1380.31 H 190.373 Q 124.373,1380.31 77.3729,1333.31 Q 30.3729,1286.31 30.3729,1220.31 V 426.31 Q 74.3729,475.31 131.373,513.31 Q 493.373,759.31 628.373,858.31 Q 685.373,900.31 720.873,923.81 Q 756.373,947.31 815.373,971.81 Q 874.373,996.31 925.373,996.31 H 926.373 H 927.373 Q 978.373,996.31 1037.37,971.81 Q 1096.37,947.31 1131.87,923.81 Q 1167.37,900.31 1224.37,858.31 Q 1394.37,735.31 1722.37,513.31 Q 1779.37,474.31 1822.37,426.31 z M 1822.37,132.31 Q 1822.37,211.31 1773.37,283.31 Q 1724.37,355.31 1651.37,406.31 Q 1275.37,667.31 1183.37,731.31 Q 1173.37,738.31 1140.87,761.81 Q 1108.37,785.31 1086.87,799.81 Q 1065.37,814.31 1034.87,832.31 Q 1004.37,850.31 977.373,859.31 Q 950.373,868.31 927.373,868.31 H 926.373 H 925.373 Q 902.373,868.31 875.373,859.31 Q 848.373,850.31 817.873,832.31 Q 787.373,814.31 765.873,799.81 Q 744.373,785.31 711.873,761.81 Q 679.373,738.31 669.373,731.31 Q 578.373,667.31 407.373,548.81 Q 236.373,430.31 202.373,406.31 Q 140.373,364.31 85.3729,290.81 Q 30.3729,217.31 30.3729,154.31 Q 30.3729,76.31 71.8729,24.31 Q 113.373,-27.69 190.373,-27.69 H 1662.37 Q 1727.37,-27.69 1774.87,19.31 Q 1822.37,66.31 1822.37,132.31 z"
+     inkscape:export-filename="/Users/chakie/Work/nordicid/nur_sample_ios/NURAPI Objective-C Demo/Icons/tmp/contact.png"
+     inkscape:export-xdpi="1.51"
+     inkscape:export-ydpi="1.51" />
+</svg>
