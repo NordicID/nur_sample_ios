@@ -20,6 +20,8 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    self.parentViewController.navigationItem.title = @"About";
+
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 

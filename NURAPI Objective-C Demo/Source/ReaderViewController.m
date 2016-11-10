@@ -1,11 +1,19 @@
 
 #import "ReaderViewController.h"
+#import "MainMenuCell.h"
 #import "Tag.h"
 
 @interface ReaderViewController ()
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 @property (nonatomic, strong) NSTimer * timer;
+
+// main menu data
+@property (nonatomic, assign) UIEdgeInsets insets;
+@property (nonatomic, assign) CGSize cellSize;
+@property (nonatomic, strong) NSArray * iconNames;
+@property (nonatomic, strong) NSArray * titles;
+@property (nonatomic, strong) NSArray * segues;
 
 @end
 
@@ -15,7 +23,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //NSLog( @"using reader: %@", self.reader );
+    CGFloat top = 0;
+    CGFloat left = 20;
+    CGFloat bottom = 10;
+    CGFloat right = 20;
+    self.insets = UIEdgeInsetsMake( top, left, bottom, right );
+
+    CGFloat cellWidth = 120;
+    CGFloat cellHeight = 140;
+    self.cellSize = CGSizeMake( cellWidth, cellHeight );
+
+    self.iconNames = @[ @"MainMenuInventory", @"MainMenuLocate", @"MainMenuWrite", @"MainMenuBarcode", @"MainMenuSettings", @"MainMenuInfo", @"MainMenuGuide" ];
+    self.titles    = @[ @"Inventory", @"Locate", @"Write Tag", @"Barcode", @"Settings", @"Info", @"Quick Guide" ];
+    self.segues    = @[ @"InventorySegue", @"LocateSegue", @"WriteTagSegue", @"BarcodeSegue", @"SettingsSegue", @"InfoSegue", @"QuickGuideSegue" ];
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
@@ -49,6 +69,10 @@
         [self.timer invalidate];
         self.timer = nil;
     }
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
 
@@ -121,11 +145,73 @@
     });
 }
 
+
+//****************************************************************************************************************
+#pragma mark - Collection view delegate
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 7;
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    MainMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MainMenuCell" forIndexPath:indexPath];
+
+    // populate the cell
+    cell.title.text = self.titles[ indexPath.row ];
+    cell.icon.image = [UIImage imageNamed:self.iconNames[ indexPath.row ]];
+
+    // DEBUG
+    //cell.backgroundColor = [UIColor redColor];
+    return cell;
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:self.segues[ indexPath.row] sender:nil];
+}
+
+
+//****************************************************************************************************************
+#pragma mark - Collection view delegate flow layout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    int itemsPerRow;
+    if ( UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ) {
+        itemsPerRow = 2;
+    }
+    else {
+        itemsPerRow = 3;
+    }
+
+    CGFloat paddingSpace = self.insets.left * (itemsPerRow + 1);
+    CGFloat width = self.collectionView.frame.size.width;
+    CGFloat availableWidth = width - paddingSpace;
+    CGFloat widthPerItem = availableWidth / itemsPerRow;
+    return CGSizeMake( widthPerItem, self.cellSize.height );
+}
+
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return self.insets;
+}
+
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+
 /*****************************************************************************************************************
  * Bluetooth delegate callbacks
  * The callbacks do not necessarily come on the main thread, so make sure everything that touches the UI is done on
  * the main thread only.
  **/
+#pragma mark - Bluetooth delegate
+
 - (void) readerConnectionOk {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog( @"connection ok, handle: %p", [Bluetooth sharedInstance].nurapiHandle );

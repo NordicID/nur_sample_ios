@@ -20,6 +20,9 @@
 		6F3B30D51DCFAB0600A46A93 /* LocateTagAntennaSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30D41DCFAB0600A46A93 /* LocateTagAntennaSelector.m */; };
 		6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30D71DCFC79900A46A93 /* SmoothingBuffer.m */; };
 		6F3B30E11DD306A300A46A93 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30E01DD306A300A46A93 /* ProgressView.m */; };
+		6F3B30E41DD452AF00A46A93 /* MainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30E31DD452AF00A46A93 /* MainMenuCell.m */; };
+		6F3B30E71DD4644D00A46A93 /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30E61DD4644D00A46A93 /* ApplicationSettingsViewController.m */; };
+		6F3B30EA1DD4757300A46A93 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30E91DD4757300A46A93 /* ContactViewController.m */; };
 		6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */; };
 		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
@@ -81,6 +84,12 @@
 		6F3B30D71DCFC79900A46A93 /* SmoothingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothingBuffer.m; sourceTree = "<group>"; };
 		6F3B30DF1DD306A300A46A93 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		6F3B30E01DD306A300A46A93 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
+		6F3B30E21DD452AF00A46A93 /* MainMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuCell.h; sourceTree = "<group>"; };
+		6F3B30E31DD452AF00A46A93 /* MainMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuCell.m; sourceTree = "<group>"; };
+		6F3B30E51DD4644D00A46A93 /* ApplicationSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationSettingsViewController.h; sourceTree = "<group>"; };
+		6F3B30E61DD4644D00A46A93 /* ApplicationSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationSettingsViewController.m; sourceTree = "<group>"; };
+		6F3B30E81DD4757300A46A93 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		6F3B30E91DD4757300A46A93 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagViewController.h; sourceTree = "<group>"; };
 		6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagViewController.m; sourceTree = "<group>"; };
 		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
@@ -154,6 +163,36 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		6F3B30EC1DD475E100A46A93 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				6F0074CE1DB8F0BE00072C73 /* AboutViewController.h */,
+				6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */,
+				6F3B30E81DD4757300A46A93 /* ContactViewController.h */,
+				6F3B30E91DD4757300A46A93 /* ContactViewController.m */,
+				6F6F0B891D9BA39300370330 /* InfoViewController.h */,
+				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		6F3B30ED1DD475FD00A46A93 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6F3B30E51DD4644D00A46A93 /* ApplicationSettingsViewController.h */,
+				6F3B30E61DD4644D00A46A93 /* ApplicationSettingsViewController.m */,
+				6F6F0B871D9BA39300370330 /* SelectSettingViewController.h */,
+				6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */,
+				6F6F0B761D9BA39300370330 /* SettingsAlternative.h */,
+				6F6F0B881D9BA39300370330 /* SettingsAlternative.m */,
+				6F6F0B731D9BA39300370330 /* SettingsViewController.h */,
+				6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */,
+				6F6F0B6C1D9BA39300370330 /* TuneViewController.h */,
+				6F6F0B701D9BA39300370330 /* TuneViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		6F9E8F401D81CFD900512C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,10 +204,10 @@
 		6FD2544A1CE2128C00083D83 = {
 			isa = PBXGroup;
 			children = (
+				6FD254551CE2128C00083D83 /* Sources */,
 				6F0074C21DB8A19900072C73 /* Audio */,
 				6F0074BD1DB7C45500072C73 /* Quick Guide */,
 				6F9E8F401D81CFD900512C56 /* Frameworks */,
-				6FD254551CE2128C00083D83 /* Sources */,
 				6FD254541CE2128C00083D83 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -184,8 +223,6 @@
 		6FD254551CE2128C00083D83 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6F0074CE1DB8F0BE00072C73 /* AboutViewController.h */,
-				6F0074CF1DB8F0BE00072C73 /* AboutViewController.m */,
 				6F6F0B991D9BA39300370330 /* AppDelegate.h */,
 				6F6F0B9A1D9BA39300370330 /* AppDelegate.m */,
 				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
@@ -193,8 +230,7 @@
 				6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */,
 				6F3B30D01DCF658D00A46A93 /* AverageBuffer.h */,
 				6F3B30D11DCF658D00A46A93 /* AverageBuffer.m */,
-				6F6F0B891D9BA39300370330 /* InfoViewController.h */,
-				6F6F0B721D9BA39300370330 /* InfoViewController.m */,
+				6F3B30EC1DD475E100A46A93 /* Info */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
 				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
 				6F3B30D31DCFAB0600A46A93 /* LocateTagAntennaSelector.h */,
@@ -203,6 +239,8 @@
 				6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */,
 				6F7CFE641DBA2AC700B3C122 /* LocateViewController.h */,
 				6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */,
+				6F3B30E21DD452AF00A46A93 /* MainMenuCell.h */,
+				6F3B30E31DD452AF00A46A93 /* MainMenuCell.m */,
 				6F3B30DF1DD306A300A46A93 /* ProgressView.h */,
 				6F3B30E01DD306A300A46A93 /* ProgressView.m */,
 				6F0074BA1DB7C13D00072C73 /* QuickGuideViewController.h */,
@@ -213,24 +251,14 @@
 				6F6F0B861D9BA39300370330 /* ReaderViewController.m */,
 				6F6F0B6E1D9BA39300370330 /* SelectReaderViewController.h */,
 				6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */,
-				6F6F0B871D9BA39300370330 /* SelectSettingViewController.h */,
-				6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */,
-				6F6F0B761D9BA39300370330 /* SettingsAlternative.h */,
-				6F6F0B881D9BA39300370330 /* SettingsAlternative.m */,
-				6F6F0B731D9BA39300370330 /* SettingsViewController.h */,
-				6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */,
+				6F3B30ED1DD475FD00A46A93 /* Settings */,
 				6F3B30D61DCFC79900A46A93 /* SmoothingBuffer.h */,
 				6F3B30D71DCFC79900A46A93 /* SmoothingBuffer.m */,
 				6FD254CC1CE258EA00083D83 /* Storyboards */,
 				6FD254561CE2128C00083D83 /* Supporting Files */,
-				6F6F0B711D9BA39300370330 /* Tag.h */,
-				6F6F0B961D9BA39300370330 /* Tag.m */,
-				6F7CFE611DBA25B600B3C122 /* TagManager.h */,
-				6F7CFE621DBA25B600B3C122 /* TagManager.m */,
+				6FE9FC281DD4B4A10050264D /* Tag */,
 				6F6F0B741D9BA39300370330 /* TagViewController.h */,
 				6F6F0B751D9BA39300370330 /* TagViewController.m */,
-				6F6F0B6C1D9BA39300370330 /* TuneViewController.h */,
-				6F6F0B701D9BA39300370330 /* TuneViewController.m */,
 				6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */,
 				6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */,
 				6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */,
@@ -257,6 +285,17 @@
 				6F6F0B841D9BA39300370330 /* Main.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		6FE9FC281DD4B4A10050264D /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				6F6F0B711D9BA39300370330 /* Tag.h */,
+				6F6F0B961D9BA39300370330 /* Tag.m */,
+				6F7CFE611DBA25B600B3C122 /* TagManager.h */,
+				6F7CFE621DBA25B600B3C122 /* TagManager.m */,
+			);
+			name = Tag;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,7 +408,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6F0BA91D9BA39300370330 /* ReaderViewController.m in Sources */,
+				6F3B30EA1DD4757300A46A93 /* ContactViewController.m in Sources */,
 				6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */,
+				6F3B30E71DD4644D00A46A93 /* ApplicationSettingsViewController.m in Sources */,
 				6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */,
 				6F6F0BBA1D9BA39300370330 /* main.m in Sources */,
 				6F6F0BA11D9BA39300370330 /* TagViewController.m in Sources */,
@@ -392,6 +433,7 @@
 				6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */,
 				6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */,
 				6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */,
+				6F3B30E41DD452AF00A46A93 /* MainMenuCell.m in Sources */,
 				6F00748C1DA6940A00072C73 /* ReadBarcodeViewController.m in Sources */,
 				6F3B30E11DD306A300A46A93 /* ProgressView.m in Sources */,
 			);

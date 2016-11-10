@@ -60,7 +60,7 @@
     [[Bluetooth sharedInstance] deregisterDelegate:self];
 
     // make sure no stream is running when we leave the view
-    if ( ! [Bluetooth sharedInstance].currentReader ) {
+    if ( [Bluetooth sharedInstance].currentReader ) {
         dispatch_async(self.dispatchQueue, ^{
             [self stopStream];
         } );

@@ -5,6 +5,8 @@
 @interface SelectReaderViewController ()
 
 @property (nonatomic, strong) NSMutableDictionary * rssiMap;
+@property (nonatomic, strong) UIAlertController *   alert;
+
 @end
 
 
@@ -18,8 +20,8 @@
 }
 
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
     // register for bluetooth events, this can safely be called several times
     [[Bluetooth sharedInstance] registerDelegate:self];
@@ -29,11 +31,14 @@
         // bluetooth is on, start scanning
         [[Bluetooth sharedInstance] startScanning];
     }
+
+    // make sure we don't have any stale data in case this view is reshown without being recreated
+    [self.tableView reloadData];
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
@@ -98,6 +103,20 @@
         return;
     }
 
+    // if we have an alert we're already connecting somewhere, don't do it twice
+    if ( self.alert ) {
+        return;
+    }
+
+    // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
+    self.alert = [UIAlertController alertControllerWithTitle:@"Connecting"
+                                                     message:[NSString stringWithFormat:@"Connecting to reader %@", reader.name]
+                                              preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:self.alert animated:YES completion:nil];
+
+    // stop scanning
+    [bt stopScanning];
+
     // are we connected to a previous reader?
     if ( bt.currentReader ) {
         NSLog( @"disconnecting from previous reader: %@", bt.currentReader );
@@ -154,7 +173,11 @@
     // now we have a proper connection to the reader
     dispatch_async( dispatch_get_main_queue(), ^{
         NSLog( @"connection ok" );
-        [self.navigationController popViewControllerAnimated:YES];
+        // first always get rid of the status popup and wait for the alert to be dismissed before we pop ourselves away
+        [self.alert dismissViewControllerAnimated:YES completion:^{
+            self.alert = nil;
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     });
 }
 
@@ -163,23 +186,27 @@
     dispatch_async( dispatch_get_main_queue(), ^{
         NSLog( @"failed to connect to reader" );
 
-        // show in an alert view
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:@"Failed to connect to reader"
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        // first always get rid of the status popup and wait for the alert to be dismissed before we pop ourselves away
+        [self.alert dismissViewControllerAnimated:YES completion:^{
+            self.alert = nil;
+            // show in an alert view
+            UIAlertController * errorAlert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                 message:@"Failed to connect to reader"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
 
-        UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:@"Ok"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {
-                                       // nothing special to do right now
-                                   }];
+            UIAlertAction* okButton = [UIAlertAction
+                                       actionWithTitle:@"Ok"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action) {
+                                           // nothing special to do right now
+                                       }];
 
 
-        [alert addAction:okButton];
-        [self presentViewController:alert animated:YES completion:nil];
-    });
+            [errorAlert addAction:okButton];
+            [self presentViewController:errorAlert animated:YES completion:nil];
+            
+        }];
+    } );
 }
-
 
 @end

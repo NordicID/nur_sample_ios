@@ -11,6 +11,8 @@ typedef enum {
 
 @interface AudioPlayer : NSObject
 
+@property (nonatomic, assign) BOOL soundsEnabled;
+
 + (AudioPlayer *) sharedInstance;
 
 - (void) playSound:(SoundType)sound;

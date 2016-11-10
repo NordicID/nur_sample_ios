@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   width="512px"
+   height="512px"
+   viewBox="0 0 512 512"
+   enable-background="new 0 0 512 512"
+   xml:space="preserve"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="tune.svg"><metadata
+     id="metadata9"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs7" /><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1099"
+     inkscape:window-height="901"
+     id="namedview5"
+     showgrid="false"
+     inkscape:zoom="1.28558"
+     inkscape:cx="116.764"
+     inkscape:cy="256"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_1" /><path
+     d="M48.375,181.063c0,55.563,21.656,107.813,61,147.125l-33.938,33.938C27.031,313.75,0.375,249.438,0.375,181.063  s26.625-132.688,75-181L109.313,34C70,73.25,48.375,125.5,48.375,181.063z M182.813,107.5l-33.938-33.938  c-28.688,28.75-44.5,66.938-44.5,107.5c0,40.625,15.813,78.813,44.563,107.5l33.938-33.938c-19.688-19.625-30.5-45.75-30.5-73.563  C152.375,153.313,163.188,127.188,182.813,107.5z M437.313,0l-33.938,33.938c39.344,39.313,61,91.563,61,147.125  s-21.625,107.813-60.906,147.125l33.938,33.938c48.344-48.375,74.969-112.688,74.969-181.063  C512.375,112.625,485.719,48.313,437.313,0z M256.375,133.063c-26.5,0-48,21.5-48,48c0,17.75,9.719,33.063,24,41.344V512h48V222.438  c14.281-8.313,24-23.625,24-41.375C304.375,154.563,282.906,133.063,256.375,133.063z M363.813,73.563L329.875,107.5  c19.656,19.688,30.5,45.813,30.5,73.563c0,27.813-10.813,53.938-30.438,73.563l33.938,33.938c28.688-28.688,44.5-66.875,44.5-107.5  S392.563,102.313,363.813,73.563z"
+     id="path3"
+     style="fill:#b0adad;fill-opacity:1"
+     inkscape:export-filename="/Users/chakie/Work/nordicid/nur_sample_ios/NURAPI Objective-C Demo/Icons/settings/tune.png"
+     inkscape:export-xdpi="5.27"
+     inkscape:export-ydpi="5.27" /></svg>

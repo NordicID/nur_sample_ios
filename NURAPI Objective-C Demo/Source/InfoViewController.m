@@ -39,11 +39,6 @@ enum {
     kFccId,
     kHwVersion,
     kSwVersion,
-    kGpioCount,
-    kSensorCount,
-    kRegionCount,
-    kEnabledAntennasCount,
-    kMaxAntennaCount,
 
     kBatteryFlags,
     kBatteryPercentage,
@@ -53,8 +48,6 @@ enum {
 
     kAccessoryName,
     kAccessoryFwVersion,
-    kAccessoryRfidTimeout,
-    kAccessoryBarcodeTimeout,
 } CellType;
 
 
@@ -70,6 +63,8 @@ enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.parentViewController.navigationItem.title = @"Info";
 
     // create the info data
     [self createCellData];
@@ -112,11 +107,6 @@ enum {
                 ((CellData *)self.cellData[ @(kFccId) ]).value = [NSString stringWithCString:info.fccId encoding:NSASCIIStringEncoding];
                 ((CellData *)self.cellData[ @(kHwVersion) ]).value = [NSString stringWithCString:info.hwVersion encoding:NSASCIIStringEncoding];
                 ((CellData *)self.cellData[ @(kSwVersion) ]).value = [NSString stringWithFormat:@"%d.%d.%d", info.swVerMajor, info.swVerMinor, info.devBuild];
-                ((CellData *)self.cellData[ @(kGpioCount) ]).value = [NSString stringWithFormat:@"%d", info.numGpio];
-                ((CellData *)self.cellData[ @(kSensorCount) ]).value = [NSString stringWithFormat:@"%d", info.numSensors];
-                ((CellData *)self.cellData[ @(kRegionCount) ]).value = [NSString stringWithFormat:@"%d", info.numRegions];
-                ((CellData *)self.cellData[ @(kEnabledAntennasCount) ]).value = [NSString stringWithFormat:@"%d", info.numAntennas];
-                ((CellData *)self.cellData[ @(kMaxAntennaCount) ]).value = [NSString stringWithFormat:@"%d", info.maxAntennas];
             }
 
             if (error2 != NUR_NO_ERROR) {
@@ -139,8 +129,6 @@ enum {
             else {
                 // populate the cell data structures
                 ((CellData *)self.cellData[ @(kAccessoryName) ]).value = [NSString stringWithCString:accessoryInfo.device_name encoding:NSASCIIStringEncoding];
-                ((CellData *)self.cellData[ @(kAccessoryRfidTimeout) ]).value = [NSString stringWithFormat:@"%d", accessoryInfo.hid_rfid_timeout];
-                ((CellData *)self.cellData[ @(kAccessoryBarcodeTimeout) ]).value = [NSString stringWithFormat:@"%d",accessoryInfo.hid_barcode_timeout];
             }
 
             if (error4 != NUR_NO_ERROR) {
@@ -191,11 +179,6 @@ enum {
                        @(kFccId): [CellData cellDataWithTitle:@"FCC id" value:@"?"],
                        @(kHwVersion): [CellData cellDataWithTitle:@"Hardware version" value:@"?"],
                        @(kSwVersion): [CellData cellDataWithTitle:@"Software version" value:@"?"],
-                       @(kGpioCount): [CellData cellDataWithTitle:@"Number of GPIO:s" value:@"?"],
-                       @(kSensorCount): [CellData cellDataWithTitle:@"Number of sensors" value:@"?"],
-                       @(kRegionCount): [CellData cellDataWithTitle:@"Number of regions" value:@"?"],
-                       @(kEnabledAntennasCount): [CellData cellDataWithTitle:@"Number of enabled antennas" value:@"?"],
-                       @(kMaxAntennaCount): [CellData cellDataWithTitle:@"Max number of antennas" value:@"?"],
                        @(kBatteryFlags): [CellData cellDataWithTitle:@"Flags" value:@"?"],
                        @(kBatteryPercentage): [CellData cellDataWithTitle:@"Percentage" value:@"?"],
                        @(kBatteryVoltage): [CellData cellDataWithTitle:@"Voltage (mV)" value:@"?"],
@@ -203,8 +186,6 @@ enum {
                        @(kBatteryCapacity): [CellData cellDataWithTitle:@"Capacity (mA)" value:@"?"],
                        @(kAccessoryName): [CellData cellDataWithTitle:@"Name" value:@"?"],
                        @(kAccessoryFwVersion): [CellData cellDataWithTitle:@"Firmware version" value:@"?"],
-                       @(kAccessoryRfidTimeout): [CellData cellDataWithTitle:@"RFID timeout (ms)" value:@"?"],
-                       @(kAccessoryBarcodeTimeout): [CellData cellDataWithTitle:@"Barcode timeout (ms)" value:@"?"],
                        };
 }
 
@@ -234,11 +215,11 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch ( section ) {
         case 0:
-            return 11;
+            return 6;
         case 1:
             return 5;
         case 2:
-            return 4;
+            return 2;
     }
     
     // never called

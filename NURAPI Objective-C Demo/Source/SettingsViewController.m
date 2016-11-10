@@ -37,7 +37,9 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
+
+    self.parentViewController.navigationItem.title = @"Device Settings";
+
     dataReady = NO;
 }
 
@@ -50,6 +52,13 @@
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         return;
     }
+
+
+    // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Reading settings"
+                                                                    message:@"Reading all settings from the device..."
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alert animated:YES completion:nil];
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
@@ -86,14 +95,17 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error != NUR_NO_ERROR) {
-                // failed to fetch tag
-                [self showErrorMessage:error];
-            }
-            else {
-                dataReady = YES;
-                [self.tableView reloadData];
-            }
+            // now dismsis the "reading" popup and show and error or show the table
+            [alert dismissViewControllerAnimated:YES completion:^{
+                if (error != NUR_NO_ERROR) {
+                    // failed to fetch tag
+                    [self showErrorMessage:error];
+                }
+                else {
+                    dataReady = YES;
+                    [self.tableView reloadData];
+                }
+            }];
         });
     });
 }
