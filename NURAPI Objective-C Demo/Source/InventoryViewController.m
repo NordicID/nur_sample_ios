@@ -200,9 +200,9 @@
 
 - (void) updateLabels {
     // if we have a timer running then update the elapsed seconds. if not we use the last value
-    if ( self.startTime ) {
+/*    if ( self.startTime ) {
         self.elapsedSeconds = -[self.startTime timeIntervalSinceNow];
-    }
+    }*/
 
     // found tags
     self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
@@ -215,23 +215,23 @@
 }
 
 
-- (Tag *) getTag:(int)tagIndex {
-    struct NUR_TAG_DATA tagData;
-    int error = NurApiGetTagData( [Bluetooth sharedInstance].nurapiHandle, tagIndex, &tagData );
-    if (error != NUR_NO_ERROR) {
-        // failed to fetch tag
-        [self showErrorMessage:error];
-        return nil;
-    }
-
-    return [[Tag alloc] initWithEpc:[NSData dataWithBytes:tagData.epc length:tagData.epcLen]
-                          frequency:tagData.freq
-                               rssi:tagData.rssi
-                         scaledRssi:tagData.scaledRssi
-                          timestamp:tagData.timestamp
-                            channel:tagData.channel
-                          antennaId:tagData.antennaId];
-}
+//- (Tag *) getTag:(int)tagIndex {
+//    struct NUR_TAG_DATA tagData;
+//    int error = NurApiGetTagData( [Bluetooth sharedInstance].nurapiHandle, tagIndex, &tagData );
+//    if (error != NUR_NO_ERROR) {
+//        // failed to fetch tag
+//        [self showErrorMessage:error];
+//        return nil;
+//    }
+//
+//    return [[Tag alloc] initWithEpc:[NSData dataWithBytes:tagData.epc length:tagData.epcLen]
+//                          frequency:tagData.freq
+//                               rssi:tagData.rssi
+//                         scaledRssi:tagData.scaledRssi
+//                          timestamp:tagData.timestamp
+//                            channel:tagData.channel
+//                          antennaId:tagData.antennaId];
+//}
 
 
 - (void) tagsFound:(NSArray *)tags added:(int)tagsAdded {
@@ -246,6 +246,12 @@
 
     self.tagsPerSecond = self.averageBuffer.sumValue / TAGS_PER_SEC_OVERTIME;
 
+    // the shown elapsed time is only incremented when tags are found
+    if ( tags.count > 0 ) {
+        self.elapsedSeconds = -[self.startTime timeIntervalSinceNow];
+    }
+
+    // TODO: is this the above "stopping elapsed seconds" or a real time since the start (as below)?
     NSTimeInterval elapsedSeconds = -[self.startTime timeIntervalSinceNow];
 
     if ( elapsedSeconds > 1 ) {
@@ -358,15 +364,13 @@
 
             // fetch all new tags
             for ( int index = 0; index < tagCount; ++index ) {
-                Tag * tag = [self getTag:index];
+                Tag * tag = [tm getTag:index];
                 if ( tag ) {
                     BOOL isTagNew = [tm addTag:tag];
 
-                    // play a short blip and reload the table if the tag was new
+                    // play a short blip if the tag was new
                     if ( isTagNew ) {
                         [[AudioPlayer sharedInstance] playSound:kBlep40ms];
-                    }
-                    else {
                         [newTags addObject:tag];
                     }
                 }
@@ -383,19 +387,6 @@
             // run on the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self tagsFound:newTags added:inventoryStream->tagsAdded];
-
-                // is the stream done?
-/*                if ( inventoryStream->stopped == TRUE ) {
-                    NSLog( @"stream stopped, tags found: %lu\n", (unsigned long)[TagManager sharedInstance].tags.count );
-                    self.inventoryButton.titleLabel.text = @"Start";
-                    if ( self.timer ) {
-                        [self.timer invalidate];
-                    }
-
-                    self.timer = nil;
-                    self.startTime = nil;
-                    [self updateLabels];
-                }*/
             });
         }
             break;

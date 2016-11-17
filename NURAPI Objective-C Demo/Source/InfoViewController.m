@@ -106,7 +106,7 @@ enum {
                 ((CellData *)self.cellData[ @(kName) ]).value = [NSString stringWithCString:info.name encoding:NSASCIIStringEncoding];
                 ((CellData *)self.cellData[ @(kFccId) ]).value = [NSString stringWithCString:info.fccId encoding:NSASCIIStringEncoding];
                 ((CellData *)self.cellData[ @(kHwVersion) ]).value = [NSString stringWithCString:info.hwVersion encoding:NSASCIIStringEncoding];
-                ((CellData *)self.cellData[ @(kSwVersion) ]).value = [NSString stringWithFormat:@"%d.%d.%d", info.swVerMajor, info.swVerMinor, info.devBuild];
+                ((CellData *)self.cellData[ @(kSwVersion) ]).value = [NSString stringWithFormat:@"%d.%d-%c", info.swVerMajor, info.swVerMinor, info.devBuild];
             }
 
             if (error2 != NUR_NO_ERROR) {
@@ -174,8 +174,8 @@ enum {
 
 - (void) createCellData {
     self.cellData = @{ @(kSerialNumber): [CellData cellDataWithTitle:@"Serial number" value:@"?"],
-                       @(kAltSerialNumber):  [CellData cellDataWithTitle:@"Alt serial number" value:@"?"],
-                       @(kName): [CellData cellDataWithTitle:@"Name" value:@"?"],
+                       @(kAltSerialNumber):  [CellData cellDataWithTitle:@"Device number" value:@"?"],
+                       @(kName): [CellData cellDataWithTitle:@"Model" value:@"?"],
                        @(kFccId): [CellData cellDataWithTitle:@"FCC id" value:@"?"],
                        @(kHwVersion): [CellData cellDataWithTitle:@"Hardware version" value:@"?"],
                        @(kSwVersion): [CellData cellDataWithTitle:@"Software version" value:@"?"],

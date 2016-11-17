@@ -1,5 +1,7 @@
 
 #import <NurAPIBluetooth/Bluetooth.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 #import "AppDelegate.h"
 
@@ -11,7 +13,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // initialize Crashlytics
+    [Fabric with:@[[Crashlytics class]]];
     return YES;
 }
 

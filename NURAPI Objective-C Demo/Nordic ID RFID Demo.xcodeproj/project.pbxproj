@@ -46,6 +46,8 @@
 		6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; };
 		6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */; };
 		6FD95F281DC28AE900C7BFAD /* LocateTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */; };
+		6FE9FC2C1DD5C1F50050264D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE9FC2A1DD5C1F50050264D /* Fabric.framework */; };
+		6FE9FC2D1DD5C1F50050264D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE9FC2B1DD5C1F50050264D /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -130,6 +132,8 @@
 		6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD95F261DC28AE900C7BFAD /* LocateTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateTagViewController.h; sourceTree = "<group>"; };
 		6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateTagViewController.m; sourceTree = "<group>"; };
+		6FE9FC2A1DD5C1F50050264D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		6FE9FC2B1DD5C1F50050264D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */,
+				6FE9FC2D1DD5C1F50050264D /* Crashlytics.framework in Frameworks */,
+				6FE9FC2C1DD5C1F50050264D /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +202,8 @@
 		6F9E8F401D81CFD900512C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FE9FC2A1DD5C1F50050264D /* Fabric.framework */,
+				6FE9FC2B1DD5C1F50050264D /* Crashlytics.framework */,
 				6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */,
 			);
 			name = Frameworks;
@@ -223,8 +231,6 @@
 		6FD254551CE2128C00083D83 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6F6F0B991D9BA39300370330 /* AppDelegate.h */,
-				6F6F0B9A1D9BA39300370330 /* AppDelegate.m */,
 				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
 				6F0074CB1DB8A1C800072C73 /* AudioPlayer.h */,
 				6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */,
@@ -273,6 +279,8 @@
 		6FD254561CE2128C00083D83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6F6F0B991D9BA39300370330 /* AppDelegate.h */,
+				6F6F0B9A1D9BA39300370330 /* AppDelegate.m */,
 				6F6F0B9C1D9BA39300370330 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -311,6 +319,7 @@
 				6FD254511CE2128C00083D83 /* Resources */,
 				6F6F0B0E1D952CCF00370330 /* Embed Frameworks */,
 				6FA8EF0F1DA3EFDB00804013 /* ShellScript */,
+				6FE9FC291DD5C1A50050264D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -400,6 +409,19 @@
 			shellPath = /bin/sh;
 			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
 		};
+		6FE9FC291DD5C1A50050264D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 83bb56fdd2080fec948c59ae9c2a895425e421cd 4285413da27ce90ce8705280b912b36d4b07607d7f9a7a46451c0d78d87fd4c9\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -485,7 +507,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

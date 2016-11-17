@@ -8,5 +8,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *     promptLabel;
 @property (weak, nonatomic) IBOutlet UITableView * tableView;
+@property (weak, nonatomic) IBOutlet UIButton *    refreshButton;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b9r-Tn-Crn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b9r-Tn-Crn">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -772,10 +772,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="InfoCell" textLabel="PEx-fR-uwk" detailTextLabel="PD9-dR-xQr" style="IBUITableViewCellStyleValue1" id="bZK-Bt-EVH">
-                                <rect key="frame" x="0.0" y="56" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZK-Bt-EVH" id="YgK-Kr-Sbx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PEx-fR-uwk">
@@ -1235,7 +1235,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SDZ-Mc-FXL">
-                                <rect key="frame" x="20" y="70.666666666666686" width="374" height="581.33333333333326"/>
+                                <rect key="frame" x="20" y="71" width="374" height="505"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WriteTagCell" textLabel="ngj-9t-bum" style="IBUITableViewCellStyleDefault" id="eLv-0i-m2B">
@@ -1266,26 +1266,44 @@
                                     <outlet property="delegate" destination="2AD-jn-mc2" id="ARr-1f-6s8"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOG-xu-uph">
+                                <rect key="frame" x="145" y="602" width="125" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="0yY-bf-qlv"/>
+                                    <constraint firstAttribute="width" constant="125" id="QbG-pS-ia0"/>
+                                    <constraint firstAttribute="height" constant="50" id="bxZ-1C-pNF"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="iXV-hz-nV1"/>
+                                </constraints>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshInventory" destination="2AD-jn-mc2" eventType="primaryActionTriggered" id="GpO-OP-nCX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4Vr-cf-3Kv" firstAttribute="top" secondItem="vOG-xu-uph" secondAttribute="bottom" constant="20" id="EvM-lk-qur"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SDZ-Mc-FXL" secondAttribute="trailing" id="Hia-4N-Ydj"/>
                             <constraint firstItem="0iv-4x-B7v" firstAttribute="top" secondItem="cyg-z3-bjf" secondAttribute="bottom" constant="18" id="Oab-Lk-MFA"/>
                             <constraint firstItem="SDZ-Mc-FXL" firstAttribute="top" secondItem="0iv-4x-B7v" secondAttribute="bottom" constant="32" id="P3g-PJ-goW"/>
+                            <constraint firstItem="vOG-xu-uph" firstAttribute="centerX" secondItem="Xaz-o7-Kmr" secondAttribute="centerX" id="PYS-PQ-Juf"/>
                             <constraint firstItem="0iv-4x-B7v" firstAttribute="centerX" secondItem="Xaz-o7-Kmr" secondAttribute="centerX" id="bCY-hq-w5E"/>
                             <constraint firstItem="SDZ-Mc-FXL" firstAttribute="leading" secondItem="Xaz-o7-Kmr" secondAttribute="leadingMargin" id="cKM-Zt-864"/>
-                            <constraint firstItem="4Vr-cf-3Kv" firstAttribute="top" secondItem="SDZ-Mc-FXL" secondAttribute="bottom" constant="20" id="mh8-5H-YTZ"/>
+                            <constraint firstItem="vOG-xu-uph" firstAttribute="top" secondItem="SDZ-Mc-FXL" secondAttribute="bottom" constant="26" id="dZA-d2-zgf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Write Tag" id="Ht2-DJ-Vnf"/>
                     <connections>
                         <outlet property="promptLabel" destination="0iv-4x-B7v" id="lms-1d-daD"/>
+                        <outlet property="refreshButton" destination="vOG-xu-uph" id="Qui-8x-bAc"/>
                         <outlet property="tableView" destination="SDZ-Mc-FXL" id="hQQ-f6-fss"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujo-bG-0QN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518" y="-1066"/>
+            <point key="canvasLocation" x="517.39130434782612" y="-1066.304347826087"/>
         </scene>
     </scenes>
     <resources>

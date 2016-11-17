@@ -1,4 +1,6 @@
 
+#import <NurAPIBluetooth/Bluetooth.h>
+
 #import "TagManager.h"
 #import "Tag.h"
 
@@ -32,6 +34,24 @@
     }
 
     return self;
+}
+
+
+- (Tag *) getTag:(int)tagIndex {
+    struct NUR_TAG_DATA tagData;
+    int error = NurApiGetTagData( [Bluetooth sharedInstance].nurapiHandle, tagIndex, &tagData );
+    if (error != NUR_NO_ERROR) {
+        // failed to fetch tag
+        return nil;
+    }
+
+    return [[Tag alloc] initWithEpc:[NSData dataWithBytes:tagData.epc length:tagData.epcLen]
+                          frequency:tagData.freq
+                               rssi:tagData.rssi
+                         scaledRssi:tagData.scaledRssi
+                          timestamp:tagData.timestamp
+                            channel:tagData.channel
+                          antennaId:tagData.antennaId];
 }
 
 
