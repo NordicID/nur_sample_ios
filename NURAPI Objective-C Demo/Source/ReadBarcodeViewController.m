@@ -91,7 +91,6 @@
                     NSString * barcode = [NSString stringWithCString:(char*)&dataPtr[1] encoding:NSUTF8StringEncoding];
                     NSLog( @"barcode: %@", barcode );
                     [self showBarcode:barcode];
-                    NurAccBeepAsync( [Bluetooth sharedInstance].nurapiHandle, 100 );
                 }
                 else if (status == NUR_ERROR_NOT_READY) {
                     NSLog( @"barcode reading cancelled" );
@@ -102,7 +101,6 @@
                 }
                 else {
                     [self showErrorMessage:status];
-                    NurAccBeepAsync( [Bluetooth sharedInstance].nurapiHandle, 500 );
                 }
 
                 [self showStatus:@"Press trigger to read barcode"];
@@ -123,7 +121,6 @@
                             [self showBarcode:@""];
                         }
                         else {
-                            NurAccBeepAsync( [Bluetooth sharedInstance].nurapiHandle, 1000);
                             NurAccSetLedOpMode( [Bluetooth sharedInstance].nurapiHandle, NUR_ACC_LED_UNSET);
                         }
                     }

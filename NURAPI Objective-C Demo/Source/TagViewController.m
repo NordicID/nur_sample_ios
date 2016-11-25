@@ -11,6 +11,27 @@
 }
 
 
+- (IBAction) locateTag {
+    // is the tag too short to locate?
+    if ( self.tag.epc.length == 0 ) {
+        // too short tag
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                        message:@"The tag EPC length is 0, can not locate!"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:@"Ok"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction * action) {
+                              // nothing special to do right now
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        [self performSegueWithIdentifier:@"LocateTagSegue2" sender:nil];
+    }
+}
+
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     LocateTagViewController * destination = [segue destinationViewController];
     destination.tag = self.tag;
@@ -34,11 +55,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell" forIndexPath:indexPath];
 
     switch ( indexPath.row ) {
-        case 0:
+        case 0: {
             cell.textLabel.text = @"Tag";
-            cell.detailTextLabel.text = self.tag.hex;
+            NSString * hex = self.tag.hex;
+            cell.detailTextLabel.text = hex.length == 0 ? @"<empty tag>" : hex;
+        }
             break;
-
+            
         case 1:
             cell.textLabel.text = @"Channel";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.channel];

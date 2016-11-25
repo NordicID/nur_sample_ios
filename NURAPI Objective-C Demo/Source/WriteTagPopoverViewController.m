@@ -30,10 +30,9 @@
 
 
 - (IBAction) performTagWriting {
-
     // data for the new tag
     const char *chars = [self.epcEdit.text UTF8String];
-    unsigned int textLength = (unsigned int)self.epcEdit.text.length;
+    unsigned int newEpcLength = (unsigned int)self.epcEdit.text.length;
 
     NSLog( @"writing new tag: %@", self.epcEdit.text );
 
@@ -72,10 +71,10 @@
 
 
         // convert the hex string like "112233..." to 12 bytes
-        unsigned char newEpc[12];
+        unsigned char newEpc[NUR_MAX_EPC_LENGTH];
         char byteChars[3] = {'\0','\0','\0'};
         int charIndex = 0, resultIndex = 0;
-        while( charIndex < textLength ) {
+        while( charIndex < newEpcLength ) {
             byteChars[0] = chars[charIndex++];
             byteChars[1] = chars[charIndex++];
             unsigned long wholeByte = strtoul(byteChars, NULL, 16);
@@ -83,19 +82,18 @@
         }
 
         unsigned char * oldEpc = (unsigned char *)self.writeTag.epc.bytes;
+        int oldEpcLength = (int)self.writeTag.epc.length;
 
         // mostly hardocded data, but named for ease of reading
         DWORD password = 0;
         BOOL secured = 0;
-        DWORD epcBufferLen = 12;
-        int newEpcBufferLen = 12;
         BYTE wrBank = 1;
         DWORD wrAddress = 2;
 
         NSLog( @"writing new tag" );
 
         // perform the real tag writing
-        error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, epcBufferLen, wrBank, wrAddress, newEpcBufferLen, newEpc );
+        error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, oldEpcLength, wrBank, wrAddress, newEpcLength, newEpc );
         if ( error != NUR_NO_ERROR ) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog( @"failed to write tag" );
@@ -107,7 +105,7 @@
         }
 
         // update the internal tag too
-        self.writeTag.epc = [NSData dataWithBytes:newEpc length:12];
+        self.writeTag.epc = [NSData dataWithBytes:newEpc length:newEpcLength];
 
         // restore the TX level
         setup.txLevel = oldTxLevel;
@@ -140,8 +138,8 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newString = [self.epcEdit.text stringByReplacingCharactersInRange:range withString:string];
 
-    // the length must be 24
-    if ( newString.length != 24 ) {
+    // the length must be ]0..MAX_EPC]
+    if ( newString.length == 0 || newString.length > NUR_MAX_EPC_LENGTH * 2 || newString.length % 2 == 1 ) {
         self.epcEdit.textColor = [UIColor redColor];
         self.writeButton.enabled = NO;
         return YES;
@@ -162,6 +160,12 @@
     // length is ok and all are hex
     self.epcEdit.textColor = [UIColor blackColor];
     self.writeButton.enabled = YES;
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
     return YES;
 }
 

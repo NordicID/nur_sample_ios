@@ -1,11 +1,12 @@
 
 #import "SelectReaderViewController.h"
-#import "ReaderViewController.h"
+#import "MainMenuViewController.h"
 
 @interface SelectReaderViewController ()
 
 @property (nonatomic, strong) NSMutableDictionary * rssiMap;
 @property (nonatomic, strong) UIAlertController *   alert;
+@property (nonatomic, strong) CBPeripheral *        shouldConnectTo;
 
 @end
 
@@ -17,6 +18,9 @@
 
     // map for UUID -> RRSI
     self.rssiMap = [NSMutableDictionary dictionary];
+
+    // not connecting to any reader yet
+    self.shouldConnectTo = nil;
 }
 
 
@@ -119,12 +123,18 @@
 
     // are we connected to a previous reader?
     if ( bt.currentReader ) {
+        // we should connect to this new reader only after the old was properly disconnected
+        self.shouldConnectTo = reader;
+
         NSLog( @"disconnecting from previous reader: %@", bt.currentReader );
         [bt disconnectFromReader];
     }
-
-    NSLog( @"connecting to reader: %@", reader );
-    [[Bluetooth sharedInstance] connectToReader:reader];
+    else {
+        // no current reader, so connect directly
+        NSLog( @"connecting to reader: %@", reader );
+        self.shouldConnectTo = nil;
+        [[Bluetooth sharedInstance] connectToReader:reader];
+    }
 }
 
 
@@ -159,6 +169,17 @@
     });
 }
 
+
+- (void) readerDisconnected {
+    NSLog( @"disconnected from reader" );
+
+    // do we have a reader that we should connect to? this means that we have disconnected from a previous reader
+    // and can now proceed to connect to the new reader
+    if ( self.shouldConnectTo ) {
+        [[Bluetooth sharedInstance] connectToReader:self.shouldConnectTo];
+        self.shouldConnectTo = nil;
+    }
+}
 
 /*- (void) reader:(CBPeripheral *)reader rssiUpdated:(NSNumber *)rssi {
     NSLog( @"reader: %@, rssi: %@", reader, rssi );

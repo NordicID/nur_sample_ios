@@ -1,9 +1,9 @@
 
-#import "ReaderViewController.h"
+#import "MainMenuViewController.h"
 #import "MainMenuCell.h"
 #import "Tag.h"
 
-@interface ReaderViewController ()
+@interface MainMenuViewController ()
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 @property (nonatomic, strong) NSTimer * timer;
@@ -18,7 +18,7 @@
 @end
 
 
-@implementation ReaderViewController
+@implementation MainMenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

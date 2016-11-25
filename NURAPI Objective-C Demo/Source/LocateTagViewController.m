@@ -5,7 +5,8 @@
 #import "UIButton+BackgroundColor.h"
 
 @interface LocateTagViewController () {
-    unsigned char epc[12];
+    unsigned char epc[NUR_MAX_EPC_LENGTH];
+    unsigned int epcLength;
 }
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
@@ -35,7 +36,8 @@
     [self.actionButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
 
     // copy the tag to more permanent storage
-    memcpy( epc, self.tag.epc.bytes, 12 );
+    epcLength = (unsigned int)self.tag.epc.length;
+    memcpy( epc, self.tag.epc.bytes, epcLength );
 
     [super viewWillAppear:animated];
 }
@@ -46,6 +48,11 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
+
+    // do we have a tag? if so start locating automatically
+    if (self.tag ) {
+        [self toggleLocating];
+    }
 }
 
 
@@ -84,6 +91,12 @@
 
 
 - (IBAction) toggleLocating {
+    // the reader can have disconnected while we were locating
+    if ( ! [Bluetooth sharedInstance].currentReader ) {
+        self.strengthLabel.text = @"0 %%";
+        return;
+    }
+
     dispatch_async(self.dispatchQueue, ^{
         if ( NurApiIsTraceRunning( [Bluetooth sharedInstance].nurapiHandle ) ) {
             [self stopLocating];
@@ -116,7 +129,7 @@
 
         // request continuous tracing
         BYTE flags = NUR_TRACETAG_NO_EPC | NUR_TRACETAG_START_CONTINUOUS;
-        error = NurApiTraceTagByEPC( [Bluetooth sharedInstance].nurapiHandle, epc, 12, flags, &response );
+        error = NurApiTraceTagByEPC( [Bluetooth sharedInstance].nurapiHandle, epc, epcLength, flags, &response );
 
         NSLog( @"stream result: %d", error );
 

@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <NurAPIBluetooth/Bluetooth.h>
 
-@interface ReaderViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BluetoothDelegate>
+@interface MainMenuViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BluetoothDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView * collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;

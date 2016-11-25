@@ -73,6 +73,17 @@ enum {
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         [self.tableView reloadData];
+        // prompt the user to connect a reader
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                        message:@"No RFID reader connected!"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:@"Ok"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction * action) {
+                              // nothing special to do right now
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
 

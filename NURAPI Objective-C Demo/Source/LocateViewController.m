@@ -37,7 +37,8 @@
     // get the associated tag
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
 
-    cell.textLabel.text = tag.hex;
+    NSString * hex = tag.hex;
+    cell.textLabel.text = hex.length == 0 ? @"<empty tag>" : hex;
 
     return cell;
 }
@@ -50,6 +51,24 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
     NSLog( @"selected tag: %@", tag );
+
+    // is the tag too short to locate?
+    if ( tag.epc.length == 0 ) {
+        // too short tag
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                        message:@"The tag EPC length is 0, can not locate!"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:@"Ok"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction * action) {
+                              // nothing special to do right now
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        [self performSegueWithIdentifier:@"LocateTagSegue" sender:nil];
+    }
 }
 
 @end

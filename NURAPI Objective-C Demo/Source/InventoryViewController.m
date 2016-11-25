@@ -83,7 +83,17 @@
     // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
-        NSLog( @"no current reader connected, aborting inventory" );
+        // prompt the user to connect a reader
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                        message:@"No RFID reader connected!"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:@"Ok"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction * action) {
+                              // nothing special to do right now
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
 
@@ -326,7 +336,8 @@
     // get the associated tag
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
 
-    cell.textLabel.text = tag.hex;
+    NSString * hex = tag.hex;
+    cell.textLabel.text = hex.length == 0 ? @"<empty tag>" : hex;
 
     return cell;
 }

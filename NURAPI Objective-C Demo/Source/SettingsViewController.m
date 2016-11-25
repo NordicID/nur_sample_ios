@@ -50,6 +50,17 @@
     // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
+        // prompt the user to connect a reader
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                        message:@"No RFID reader connected!"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:@"Ok"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction * action) {
+                              // nothing special to do right now
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
 

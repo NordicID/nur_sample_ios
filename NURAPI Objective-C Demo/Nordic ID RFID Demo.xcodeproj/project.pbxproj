@@ -34,7 +34,7 @@
 		6F6F0BA61D9BA39300370330 /* SelectReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */; };
 		6F6F0BA71D9BA39300370330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B821D9BA39300370330 /* LaunchScreen.storyboard */; };
 		6F6F0BA81D9BA39300370330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B841D9BA39300370330 /* Main.storyboard */; };
-		6F6F0BA91D9BA39300370330 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B861D9BA39300370330 /* ReaderViewController.m */; };
+		6F6F0BA91D9BA39300370330 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B861D9BA39300370330 /* MainMenuViewController.m */; };
 		6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B881D9BA39300370330 /* SettingsAlternative.m */; };
 		6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8A1D9BA39300370330 /* Assets.xcassets */; };
 		6F6F0BB61D9BA39300370330 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B961D9BA39300370330 /* Tag.m */; };
@@ -97,7 +97,7 @@
 		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryViewController.h; path = Source/InventoryViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B6C1D9BA39300370330 /* TuneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TuneViewController.h; path = Source/TuneViewController.h; sourceTree = SOURCE_ROOT; };
-		6F6F0B6D1D9BA39300370330 /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderViewController.h; path = Source/ReaderViewController.h; sourceTree = SOURCE_ROOT; };
+		6F6F0B6D1D9BA39300370330 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenuViewController.h; path = Source/MainMenuViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B6E1D9BA39300370330 /* SelectReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectReaderViewController.h; path = Source/SelectReaderViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectSettingViewController.m; path = Source/SelectSettingViewController.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B701D9BA39300370330 /* TuneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TuneViewController.m; path = Source/TuneViewController.m; sourceTree = SOURCE_ROOT; };
@@ -111,7 +111,7 @@
 		6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectReaderViewController.m; path = Source/SelectReaderViewController.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B831D9BA39300370330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F6F0B851D9BA39300370330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		6F6F0B861D9BA39300370330 /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderViewController.m; path = Source/ReaderViewController.m; sourceTree = SOURCE_ROOT; };
+		6F6F0B861D9BA39300370330 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainMenuViewController.m; path = Source/MainMenuViewController.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B871D9BA39300370330 /* SelectSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectSettingViewController.h; path = Source/SelectSettingViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B881D9BA39300370330 /* SettingsAlternative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsAlternative.m; path = Source/SettingsAlternative.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B891D9BA39300370330 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = Source/InfoViewController.h; sourceTree = SOURCE_ROOT; };
@@ -247,14 +247,14 @@
 				6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */,
 				6F3B30E21DD452AF00A46A93 /* MainMenuCell.h */,
 				6F3B30E31DD452AF00A46A93 /* MainMenuCell.m */,
+				6F6F0B6D1D9BA39300370330 /* MainMenuViewController.h */,
+				6F6F0B861D9BA39300370330 /* MainMenuViewController.m */,
 				6F3B30DF1DD306A300A46A93 /* ProgressView.h */,
 				6F3B30E01DD306A300A46A93 /* ProgressView.m */,
 				6F0074BA1DB7C13D00072C73 /* QuickGuideViewController.h */,
 				6F0074BB1DB7C13D00072C73 /* QuickGuideViewController.m */,
 				6F00748A1DA6940A00072C73 /* ReadBarcodeViewController.h */,
 				6F00748B1DA6940A00072C73 /* ReadBarcodeViewController.m */,
-				6F6F0B6D1D9BA39300370330 /* ReaderViewController.h */,
-				6F6F0B861D9BA39300370330 /* ReaderViewController.m */,
 				6F6F0B6E1D9BA39300370330 /* SelectReaderViewController.h */,
 				6F6F0B801D9BA39300370330 /* SelectReaderViewController.m */,
 				6F3B30ED1DD475FD00A46A93 /* Settings */,
@@ -429,7 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F6F0BA91D9BA39300370330 /* ReaderViewController.m in Sources */,
+				6F6F0BA91D9BA39300370330 /* MainMenuViewController.m in Sources */,
 				6F3B30EA1DD4757300A46A93 /* ContactViewController.m in Sources */,
 				6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */,
 				6F3B30E71DD4644D00A46A93 /* ApplicationSettingsViewController.m in Sources */,
