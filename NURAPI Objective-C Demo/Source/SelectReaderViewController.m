@@ -194,7 +194,8 @@
     // now we have a proper connection to the reader
     dispatch_async( dispatch_get_main_queue(), ^{
         NSLog( @"connection ok" );
-        // first always get rid of the status popup and wait for the alert to be dismissed before we pop ourselves away
+
+        // get rid of the status popup and wait for the alert to be dismissed before we pop ourselves away
         [self.alert dismissViewControllerAnimated:YES completion:^{
             self.alert = nil;
             [self.navigationController popViewControllerAnimated:YES];

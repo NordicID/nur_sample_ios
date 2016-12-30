@@ -32,7 +32,8 @@
 - (IBAction) performTagWriting {
     // data for the new tag
     const char *chars = [self.epcEdit.text UTF8String];
-    unsigned int newEpcLength = (unsigned int)self.epcEdit.text.length;
+    unsigned int charCount = (unsigned int)self.epcEdit.text.length;
+    unsigned int newEpcLength = charCount / 2;
 
     NSLog( @"writing new tag: %@", self.epcEdit.text );
 
@@ -74,7 +75,7 @@
         unsigned char newEpc[NUR_MAX_EPC_LENGTH];
         char byteChars[3] = {'\0','\0','\0'};
         int charIndex = 0, resultIndex = 0;
-        while( charIndex < newEpcLength ) {
+        while( charIndex < charCount ) {
             byteChars[0] = chars[charIndex++];
             byteChars[1] = chars[charIndex++];
             unsigned long wholeByte = strtoul(byteChars, NULL, 16);
@@ -90,7 +91,7 @@
         BYTE wrBank = 1;
         DWORD wrAddress = 2;
 
-        NSLog( @"writing new tag" );
+        NSLog( @"writing new tag, bytes: %d, old bytes: %d", newEpcLength, oldEpcLength );
 
         // perform the real tag writing
         error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, oldEpcLength, wrBank, wrAddress, newEpcLength, newEpc );
@@ -138,8 +139,8 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newString = [self.epcEdit.text stringByReplacingCharactersInRange:range withString:string];
 
-    // the length must be ]0..MAX_EPC]
-    if ( newString.length == 0 || newString.length > NUR_MAX_EPC_LENGTH * 2 || newString.length % 2 == 1 ) {
+    // the length must be ]0..MAX_EPC] and divisible by 4 (s0 that the final bytes are divisible by 2)
+    if ( newString.length == 0 || newString.length > NUR_MAX_EPC_LENGTH * 2 || newString.length % 4 != 0 ) {
         self.epcEdit.textColor = [UIColor redColor];
         self.writeButton.enabled = NO;
         return YES;
