@@ -38,16 +38,13 @@ enum {
     kName,
     kFccId,
     kHwVersion,
-    kSwVersion,
+    kFirmwareVersion,
+    kAccessoryFwVersion,
 
-    kBatteryFlags,
     kBatteryPercentage,
-    kBatteryVoltage,
-    kBatteryCurrent,
     kBatteryCapacity,
 
     kAccessoryName,
-    kAccessoryFwVersion,
 } CellType;
 
 
@@ -117,7 +114,7 @@ enum {
                 ((CellData *)self.cellData[ @(kName) ]).value = [NSString stringWithCString:info.name encoding:NSASCIIStringEncoding];
                 ((CellData *)self.cellData[ @(kFccId) ]).value = [NSString stringWithCString:info.fccId encoding:NSASCIIStringEncoding];
                 ((CellData *)self.cellData[ @(kHwVersion) ]).value = [NSString stringWithCString:info.hwVersion encoding:NSASCIIStringEncoding];
-                ((CellData *)self.cellData[ @(kSwVersion) ]).value = [NSString stringWithFormat:@"%d.%d-%c", info.swVerMajor, info.swVerMinor, info.devBuild];
+                ((CellData *)self.cellData[ @(kFirmwareVersion) ]).value = [NSString stringWithFormat:@"%d.%d-%c", info.swVerMajor, info.swVerMinor, info.devBuild];
             }
 
             if (error2 != NUR_NO_ERROR) {
@@ -126,10 +123,7 @@ enum {
             }
             else {
                 // populate the cell data structures
-                ((CellData *)self.cellData[ @(kBatteryFlags) ]).value = [NSString stringWithFormat:@"%x", batteryInfo.flags];
-                ((CellData *)self.cellData[ @(kBatteryPercentage) ]).value = [NSString stringWithFormat:@"%d", batteryInfo.percentage];
-                ((CellData *)self.cellData[ @(kBatteryVoltage) ]).value = [NSString stringWithFormat:@"%d", batteryInfo.volt_mV];
-                ((CellData *)self.cellData[ @(kBatteryCurrent) ]).value = [NSString stringWithFormat:@"%d", batteryInfo.curr_mA];
+                ((CellData *)self.cellData[ @(kBatteryPercentage) ]).value = [NSString stringWithFormat:@"%d %%", batteryInfo.percentage];
                 ((CellData *)self.cellData[ @(kBatteryCapacity) ]).value = [NSString stringWithFormat:@"%d", batteryInfo.cap_mA];
             }
 
@@ -189,14 +183,13 @@ enum {
                        @(kName): [CellData cellDataWithTitle:@"Model" value:@"?"],
                        @(kFccId): [CellData cellDataWithTitle:@"FCC id" value:@"?"],
                        @(kHwVersion): [CellData cellDataWithTitle:@"Hardware version" value:@"?"],
-                       @(kSwVersion): [CellData cellDataWithTitle:@"Software version" value:@"?"],
-                       @(kBatteryFlags): [CellData cellDataWithTitle:@"Flags" value:@"?"],
-                       @(kBatteryPercentage): [CellData cellDataWithTitle:@"Percentage" value:@"?"],
-                       @(kBatteryVoltage): [CellData cellDataWithTitle:@"Voltage (mV)" value:@"?"],
-                       @(kBatteryCurrent): [CellData cellDataWithTitle:@"Current draw (mA)" value:@"?"],
-                       @(kBatteryCapacity): [CellData cellDataWithTitle:@"Capacity (mA)" value:@"?"],
-                       @(kAccessoryName): [CellData cellDataWithTitle:@"Name" value:@"?"],
+                       @(kFirmwareVersion): [CellData cellDataWithTitle:@"Firmware version" value:@"?"],
                        @(kAccessoryFwVersion): [CellData cellDataWithTitle:@"Firmware version" value:@"?"],
+
+                       @(kBatteryPercentage): [CellData cellDataWithTitle:@"Percentage" value:@"?"],
+                       @(kBatteryCapacity): [CellData cellDataWithTitle:@"Capacity (mA)" value:@"?"],
+
+                       @(kAccessoryName): [CellData cellDataWithTitle:@"Name" value:@"?"],
                        };
 }
 
@@ -226,11 +219,11 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch ( section ) {
         case 0:
-            return 6;
+            return 7;
         case 1:
-            return 5;
-        case 2:
             return 2;
+        case 2:
+            return 1;
     }
     
     // never called
@@ -244,7 +237,7 @@ enum {
 
     switch ( indexPath.section ) {
         case 1:
-            key += kBatteryFlags;
+            key += kBatteryPercentage;
             break;
         case 2:
             key += kAccessoryName;

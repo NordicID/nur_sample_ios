@@ -24,6 +24,7 @@
 		6F3B30E71DD4644D00A46A93 /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30E61DD4644D00A46A93 /* ApplicationSettingsViewController.m */; };
 		6F3B30EA1DD4757300A46A93 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30E91DD4757300A46A93 /* ContactViewController.m */; };
 		6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */; };
+		6F50D5441E1BB12F0033ABE6 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F50D5431E1BB12F0033ABE6 /* ConnectionManager.m */; };
 		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
 		6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */; };
@@ -94,6 +95,8 @@
 		6F3B30E91DD4757300A46A93 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagViewController.h; sourceTree = "<group>"; };
 		6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagViewController.m; sourceTree = "<group>"; };
+		6F50D5421E1BB12F0033ABE6 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		6F50D5431E1BB12F0033ABE6 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryViewController.h; path = Source/InventoryViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B6C1D9BA39300370330 /* TuneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TuneViewController.h; path = Source/TuneViewController.h; sourceTree = SOURCE_ROOT; };
@@ -236,6 +239,8 @@
 				6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */,
 				6F3B30D01DCF658D00A46A93 /* AverageBuffer.h */,
 				6F3B30D11DCF658D00A46A93 /* AverageBuffer.m */,
+				6F50D5421E1BB12F0033ABE6 /* ConnectionManager.h */,
+				6F50D5431E1BB12F0033ABE6 /* ConnectionManager.m */,
 				6F3B30EC1DD475E100A46A93 /* Info */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
 				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
@@ -456,6 +461,7 @@
 				6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */,
 				6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */,
 				6F3B30E41DD452AF00A46A93 /* MainMenuCell.m in Sources */,
+				6F50D5441E1BB12F0033ABE6 /* ConnectionManager.m in Sources */,
 				6F00748C1DA6940A00072C73 /* ReadBarcodeViewController.m in Sources */,
 				6F3B30E11DD306A300A46A93 /* ProgressView.m in Sources */,
 			);
