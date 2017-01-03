@@ -1,6 +1,7 @@
 
 #import "SelectReaderViewController.h"
 #import "MainMenuViewController.h"
+#import "UIButton+BackgroundColor.h"
 
 @interface SelectReaderViewController ()
 
@@ -25,6 +26,7 @@
 
 
 - (void) viewWillAppear:(BOOL)animated {
+    [self.disconnectButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
     [super viewWillAppear:animated];
 
     // register for bluetooth events, this can safely be called several times
@@ -38,6 +40,15 @@
 
     // make sure we don't have any stale data in case this view is reshown without being recreated
     [self.tableView reloadData];
+
+    // if we have a current reader allow it to be disconnected
+    if ( [Bluetooth sharedInstance].currentReader ) {
+        // we can disconnect
+        self.disconnectButton.hidden = NO;
+    }
+    else {
+        self.disconnectButton.hidden = YES;
+    }
 }
 
 
@@ -53,6 +64,13 @@
     if ( selected ) {
         [self.tableView deselectRowAtIndexPath:selected animated:YES];
     }
+
+    [[Bluetooth sharedInstance] stopScanning];
+}
+
+
+- (IBAction) disconnectFromReader {
+    [[Bluetooth sharedInstance] disconnectFromReader];
 }
 
 
@@ -101,6 +119,9 @@
     CBPeripheral * reader = bt.readers[ indexPath.row ];
 
     // connecting to the same reader we're already connected to?
+
+    // BUG: if we don't allow to connect to the same reader we can be stuck with a non working reader. This can happen if the
+    // user is too slow to respond to the pairing request
     if ( reader == bt.currentReader ) {
         NSLog( @"selected the same reader, we're done" );
         [self.navigationController popViewControllerAnimated:YES];
@@ -171,11 +192,16 @@
 
 
 - (void) readerDisconnected {
-    NSLog( @"disconnected from reader" );
+    NSLog( @"disconnect from reader completed" );
+
+    dispatch_async( dispatch_get_main_queue(), ^{
+        self.disconnectButton.hidden = YES;
+    });
 
     // do we have a reader that we should connect to? this means that we have disconnected from a previous reader
     // and can now proceed to connect to the new reader
     if ( self.shouldConnectTo ) {
+        NSLog( @"proceeding with connection to reader: %@", self.shouldConnectTo );
         [[Bluetooth sharedInstance] connectToReader:self.shouldConnectTo];
         self.shouldConnectTo = nil;
     }

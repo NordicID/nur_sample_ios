@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b9r-Tn-Crn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b9r-Tn-Crn">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -181,13 +181,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select  a device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbV-1X-Zer">
-                                <rect key="frame" x="146.66666666666669" y="18" width="121.00000000000006" height="20.666666666666664"/>
+                                <rect key="frame" x="147" y="18" width="121" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kf7-0L-LF0">
-                                <rect key="frame" x="20" y="70.666666666666686" width="374" height="581.33333333333326"/>
+                                <rect key="frame" x="20" y="71" width="374" height="509"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReaderCell" textLabel="NXB-SG-kZ6" detailTextLabel="OZ8-nR-YbM" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="WC5-xG-Mjy">
@@ -220,27 +220,45 @@
                                     <outlet property="delegate" destination="K3A-0d-0w5" id="3wb-bh-C3y"/>
                                 </connections>
                             </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfZ-V3-IKe">
+                                <rect key="frame" x="145" y="602" width="125" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Jay-SR-YmL"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="RQy-be-4ok"/>
+                                    <constraint firstAttribute="width" constant="125" id="czV-gj-20t"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="mUO-zM-hmT"/>
+                                </constraints>
+                                <state key="normal" title="Disconnect">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="disconnectFromReader" destination="K3A-0d-0w5" eventType="primaryActionTriggered" id="V9G-Si-ila"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fbV-1X-Zer" firstAttribute="centerX" secondItem="wdX-Rp-p1o" secondAttribute="centerX" id="1Zn-h5-5v6"/>
                             <constraint firstItem="Kf7-0L-LF0" firstAttribute="top" secondItem="fbV-1X-Zer" secondAttribute="bottom" constant="32" id="5CS-EC-9w7"/>
                             <constraint firstItem="Kf7-0L-LF0" firstAttribute="leading" secondItem="wdX-Rp-p1o" secondAttribute="leadingMargin" id="GyX-kw-odd"/>
-                            <constraint firstItem="jZ3-kS-Zar" firstAttribute="top" secondItem="Kf7-0L-LF0" secondAttribute="bottom" constant="20" id="epa-gw-1Rc"/>
+                            <constraint firstItem="wfZ-V3-IKe" firstAttribute="top" secondItem="Kf7-0L-LF0" secondAttribute="bottom" constant="22" id="XbK-1S-fei"/>
                             <constraint firstItem="fbV-1X-Zer" firstAttribute="top" secondItem="mlC-9U-lhe" secondAttribute="bottom" constant="18" id="gCp-jV-kA4"/>
+                            <constraint firstItem="jZ3-kS-Zar" firstAttribute="top" secondItem="wfZ-V3-IKe" secondAttribute="bottom" constant="20" id="hVr-7k-W47"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Kf7-0L-LF0" secondAttribute="trailing" id="rzn-bv-vwK"/>
+                            <constraint firstItem="wfZ-V3-IKe" firstAttribute="centerX" secondItem="wdX-Rp-p1o" secondAttribute="centerX" id="xT9-Ho-PDI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Nordic ID RFID" id="f6f-8b-Y6V">
                         <barButtonItem key="backBarButtonItem" title="Back" id="PkS-1S-UiJ"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="disconnectButton" destination="wfZ-V3-IKe" id="e8V-PG-YuL"/>
                         <outlet property="tableView" destination="Kf7-0L-LF0" id="csG-V4-Plq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjm-3g-Ro2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-585" y="618"/>
+            <point key="canvasLocation" x="-585.50724637681162" y="617.93478260869574"/>
         </scene>
         <!--Locate Tag-->
         <scene sceneID="AfB-6o-jHz">
@@ -821,17 +839,17 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nordic ID RFID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTB-in-8gD">
                                 <rect key="frame" x="147.66666666666669" y="40" width="119.00000000000006" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.99215686270000003" green="0.59215686270000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Released under MIT License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCt-Fy-r66">
-                                <rect key="frame" x="99" y="87" width="216" height="21"/>
+                                <rect key="frame" x="99" y="90" width="216" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rd-Xy-3YF">
-                                <rect key="frame" x="39.666666666666657" y="128" width="335" height="21"/>
+                                <rect key="frame" x="39.666666666666657" y="131" width="335" height="21"/>
                                 <attributedString key="attributedText">
                                     <fragment content="https://github.com/NordicID/nur_sample_ios">
                                         <attributes>
@@ -843,13 +861,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App version: X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud2-iV-pOn">
-                                <rect key="frame" x="151.66666666666669" y="169" width="111.00000000000006" height="21"/>
+                                <rect key="frame" x="151.66666666666669" y="172" width="111.00000000000006" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NurAPI version: X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUF-j2-IVb">
-                                <rect key="frame" x="140.66666666666669" y="210" width="133.00000000000006" height="21"/>
+                                <rect key="frame" x="140.66666666666669" y="213" width="133.00000000000006" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -865,7 +883,7 @@
                             <constraint firstItem="nUF-j2-IVb" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="cZJ-4u-cW5"/>
                             <constraint firstItem="2Rd-Xy-3YF" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="gxi-Tk-8jb"/>
                             <constraint firstItem="nUF-j2-IVb" firstAttribute="top" secondItem="Ud2-iV-pOn" secondAttribute="bottom" constant="20" id="nCl-KY-Jjg"/>
-                            <constraint firstItem="CCt-Fy-r66" firstAttribute="top" secondItem="ZTB-in-8gD" secondAttribute="bottom" constant="26" id="r7j-Ky-8EO"/>
+                            <constraint firstItem="CCt-Fy-r66" firstAttribute="top" secondItem="ZTB-in-8gD" secondAttribute="bottom" constant="29" id="r7j-Ky-8EO"/>
                             <constraint firstItem="Ud2-iV-pOn" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="yZS-sR-kY4"/>
                         </constraints>
                     </view>

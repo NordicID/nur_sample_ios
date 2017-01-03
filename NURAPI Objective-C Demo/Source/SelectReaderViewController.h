@@ -5,6 +5,7 @@
 @interface SelectReaderViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BluetoothDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView * tableView;
+@property (weak, nonatomic) IBOutlet UIButton *      disconnectButton;
 
 @end
 
