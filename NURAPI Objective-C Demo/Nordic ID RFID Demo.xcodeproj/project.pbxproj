@@ -25,7 +25,6 @@
 		6F3B30EA1DD4757300A46A93 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3B30E91DD4757300A46A93 /* ContactViewController.m */; };
 		6F43D0F61DC093B5009F2A86 /* WriteTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D0F51DC093B5009F2A86 /* WriteTagViewController.m */; };
 		6F50D5441E1BB12F0033ABE6 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F50D5431E1BB12F0033ABE6 /* ConnectionManager.m */; };
-		6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6A1D9BA39300370330 /* SettingsViewController.m */; };
 		6F6F0B9E1D9BA39300370330 /* SelectSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B6F1D9BA39300370330 /* SelectSettingViewController.m */; };
 		6F6F0B9F1D9BA39300370330 /* TuneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B701D9BA39300370330 /* TuneViewController.m */; };
@@ -44,8 +43,8 @@
 		6F6F0BBA1D9BA39300370330 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9C1D9BA39300370330 /* main.m */; };
 		6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE621DBA25B600B3C122 /* TagManager.m */; };
 		6F7CFE661DBA2AC700B3C122 /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */; };
-		6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */; };
 		6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */; };
+		6FD810801E2171E10021E6A6 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD8107D1E21716D0021E6A6 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6FD95F281DC28AE900C7BFAD /* LocateTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */; };
 		6FE9FC2C1DD5C1F50050264D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE9FC2A1DD5C1F50050264D /* Fabric.framework */; };
 		6FE9FC2D1DD5C1F50050264D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE9FC2B1DD5C1F50050264D /* Crashlytics.framework */; };
@@ -58,7 +57,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F6F0B0D1D952CCF00370330 /* NurAPIBluetooth.framework in Embed Frameworks */,
+				6FD810801E2171E10021E6A6 /* NurAPIBluetooth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,10 +128,10 @@
 		6F7CFE621DBA25B600B3C122 /* TagManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagManager.m; sourceTree = "<group>"; };
 		6F7CFE641DBA2AC700B3C122 /* LocateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateViewController.h; sourceTree = "<group>"; };
 		6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateViewController.m; sourceTree = "<group>"; };
-		6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagPopoverViewController.h; sourceTree = "<group>"; };
 		6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagPopoverViewController.m; sourceTree = "<group>"; };
 		6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FD8107D1E21716D0021E6A6 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6FD95F261DC28AE900C7BFAD /* LocateTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateTagViewController.h; sourceTree = "<group>"; };
 		6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateTagViewController.m; sourceTree = "<group>"; };
 		6FE9FC2A1DD5C1F50050264D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -144,7 +143,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F9E8F3F1D81CE9500512C56 /* NurAPIBluetooth.framework in Frameworks */,
 				6FE9FC2D1DD5C1F50050264D /* Crashlytics.framework in Frameworks */,
 				6FE9FC2C1DD5C1F50050264D /* Fabric.framework in Frameworks */,
 			);
@@ -205,9 +203,9 @@
 		6F9E8F401D81CFD900512C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FD8107D1E21716D0021E6A6 /* NurAPIBluetooth.framework */,
 				6FE9FC2A1DD5C1F50050264D /* Fabric.framework */,
 				6FE9FC2B1DD5C1F50050264D /* Crashlytics.framework */,
-				6F9E8F3E1D81CE9500512C56 /* NurAPIBluetooth.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -516,6 +514,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = ..;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -560,6 +559,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = ..;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
