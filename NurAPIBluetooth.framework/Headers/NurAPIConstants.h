@@ -35,9 +35,6 @@
 /** Maximum number of GPIOs. */
 #define NUR_MAX_GPIO			(7)
 
-/** Maximum number of regions. */
-#define NUR_MAX_CONFIG_REGIONS  17
-
 /** Maximum number of invetoryex filters. */
 #define NUR_MAX_FILTERS			(8)
 
@@ -440,9 +437,14 @@ enum NUR_REGIONID
 	NUR_REGIONID_PHILIPPINES,	/**< Philippines (NUR Fw 3.0-A or later) */
 	NUR_REGIONID_MOROCCO,		/**< Morocco (NUR Fw 5.0-A or later) */
 	NUR_REGIONID_PERU,			/**< Peru (NUR Fw 5.0-A or later) */
-	NUR_REGIONID_CUSTOM = 0xFE,	/**< Custom hop table */
-	NUR_REGIONID_LAST
+	NUR_REGIONID_ISRAEL,		/**< Israel (NUR Fw 5.6-A or later) */
+	NUR_REGIONID_HONGKONG,		/**< Hong Kong (NUR Fw 5.7-A or later) */
+	NUR_REGIONID_LAST = NUR_REGIONID_HONGKONG,	/**< Defines the last available region ID before the custom. */
+	NUR_REGIONID_CUSTOM = 0xFE,	/**< Custom hop table */	
 };
+
+/** Maximum number of regions. */
+#define NUR_MAX_CONFIG_REGIONS  (NUR_REGIONID_LAST + 1)
 
 /**
  * RX coding indices

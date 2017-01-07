@@ -2,6 +2,7 @@
 #import "MainMenuViewController.h"
 #import "MainMenuCell.h"
 #import "Tag.h"
+#import "ConnectionManager.h"
 
 @interface MainMenuViewController ()
 
@@ -49,7 +50,7 @@
     [[Bluetooth sharedInstance] registerDelegate:self];
 
     // connection already ok?
-    if ( [Bluetooth sharedInstance].currentReader != nil && self.timer == nil) {
+    if ( [ConnectionManager sharedInstance].currentReader != nil && self.timer == nil) {
         // start a timer that updates the battery level periodically
         self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateStatusInfo) userInfo:nil repeats:YES];
     }
@@ -83,7 +84,7 @@
 
 
 - (void) updateConnectedLabel {
-    CBPeripheral * reader = [Bluetooth sharedInstance].currentReader;
+    CBPeripheral * reader = [ConnectionManager sharedInstance].currentReader;
 
     if ( reader ) {
         self.connectedLabel.text = reader.name;
@@ -96,7 +97,7 @@
 
 - (void) updateBatteryLevel {
     // any current reader?
-    if ( ! [Bluetooth sharedInstance].currentReader ) {
+    if ( ! [ConnectionManager sharedInstance].currentReader ) {
         self.batteryLevelLabel.text = @"?";
         self.batteryLevelLabel.hidden = YES;
         self.batteryIconLabel.hidden = YES;

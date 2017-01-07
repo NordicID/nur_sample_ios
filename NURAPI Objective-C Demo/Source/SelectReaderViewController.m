@@ -2,6 +2,7 @@
 #import "SelectReaderViewController.h"
 #import "MainMenuViewController.h"
 #import "UIButton+BackgroundColor.h"
+#import "ConnectionManager.h"
 
 @interface SelectReaderViewController ()
 
@@ -42,7 +43,7 @@
     [self.tableView reloadData];
 
     // if we have a current reader allow it to be disconnected
-    if ( [Bluetooth sharedInstance].currentReader ) {
+    if ( [ConnectionManager sharedInstance].currentReader ) {
         // we can disconnect
         self.disconnectButton.hidden = NO;
     }
@@ -114,6 +115,7 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Bluetooth * bt = [Bluetooth sharedInstance];
+    ConnectionManager * cm = [ConnectionManager sharedInstance];
 
     // get the associated reader
     CBPeripheral * reader = bt.readers[ indexPath.row ];
@@ -122,7 +124,7 @@
 
     // BUG: if we don't allow to connect to the same reader we can be stuck with a non working reader. This can happen if the
     // user is too slow to respond to the pairing request
-    if ( reader == bt.currentReader ) {
+    if ( reader == cm.currentReader ) {
         NSLog( @"selected the same reader, we're done" );
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -143,18 +145,18 @@
     [bt stopScanning];
 
     // are we connected to a previous reader?
-    if ( bt.currentReader ) {
+    if ( cm.currentReader ) {
         // we should connect to this new reader only after the old was properly disconnected
         self.shouldConnectTo = reader;
 
-        NSLog( @"disconnecting from previous reader: %@", bt.currentReader );
+        NSLog( @"disconnecting from previous reader: %@", cm.currentReader );
         [bt disconnectFromReader];
     }
     else {
         // no current reader, so connect directly
         NSLog( @"connecting to reader: %@", reader );
         self.shouldConnectTo = nil;
-        [[Bluetooth sharedInstance] connectToReader:reader];
+        [bt connectToReader:reader];
     }
 }
 

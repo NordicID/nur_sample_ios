@@ -7,6 +7,8 @@
 
 @property (nonatomic, strong) NSString * previousUuid;
 
+@property (nonatomic, assign) BOOL connectionOk;
+
 @end
 
 
@@ -30,9 +32,25 @@
     if (self) {
         self.reconnectMode = kAlwaysReconnect;
         self.previousUuid = nil;
+        self.connectionOk = NO;
     }
 
     return self;
+}
+
+
+- (CBPeripheral *) currentReader {
+    if ( self.connectionOk ) {
+        return [Bluetooth sharedInstance].currentReader;
+    }
+
+    // connection to the reader not yet ok
+    return nil;
+}
+
+
+- (void) setup {
+    [[Bluetooth sharedInstance] registerDelegate:self];
 }
 
 
@@ -42,6 +60,11 @@
 
 
 - (void) applicationActivated {
+    // if we have a reader we're happy, do nothing
+    if ( [Bluetooth sharedInstance].currentReader ) {
+        return;
+    }
+
     // always reconnect
     if ( self.reconnectMode == kAlwaysReconnect ) {
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -90,5 +113,20 @@
         [[Bluetooth sharedInstance] disconnectFromReader];
     }
 }
+
+/*****************************************************************************************************************
+ * Bluetooth delegate callbacks
+ **/
+- (void) readerConnectionOk {
+    NSLog( @"connection ok" );
+    self.connectionOk = YES;
+}
+
+
+- (void) readerDisconnected {
+    NSLog( @"connection no longer ok" );
+    self.connectionOk = NO;
+}
+
 
 @end

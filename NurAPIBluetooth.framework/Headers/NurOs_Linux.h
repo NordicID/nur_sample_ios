@@ -50,7 +50,7 @@ extern "C" {
 typedef unsigned long long ULONGLONG;
 typedef long LONG;
 
-#ifndef __ios__
+#if !defined(__ios__) && !defined(__APPLE__) 
     typedef unsigned long ULONG;
     typedef unsigned int BOOL;
 #endif

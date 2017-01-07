@@ -182,4 +182,6 @@
  **/
 - (void) disconnectFromReader;
 
+- (void) restoreConnection:(NSString *)uuid;
+
 @end

@@ -1,6 +1,0 @@
-framework module NurAPIBluetooth {
-  umbrella header "NurAPIBluetooth.h"
-
-  export *
-  module * { export * }
-}

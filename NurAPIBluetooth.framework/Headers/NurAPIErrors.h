@@ -121,7 +121,21 @@ enum NUR_ERRORCODES
 	/** TCP/IP Server error */
 	NUR_ERROR_SERVER,
 	/** Device query is busy. */
-	NUR_ERROR_QUERY_BUSY
+	NUR_ERROR_QUERY_BUSY,
+	/** Tag backscattered error code 0x00: "catch all" error. */
+	NUR_ERROR_G2_TAG_OTHER_ERROR,		
+	/** Tag backscattered error code 0x01: not supported parameters or feature. */
+	NUR_ERROR_G2_TAG_NOT_SUPPORTED,
+	/** Tag backscattered error code 0x04: insufficient priviledge. */
+	NUR_ERROR_G2_TAG_INSUF_PRIVILEDGE,
+	/** Tag backscattered error code 0x05: cryptographic suite error. */
+	NUR_ERROR_G2_TAG_CRYPTO_SUITE,
+	/** Tag backscattered error code 0x06: command was not encapsulated in AuthComm or SecureComm. */
+	NUR_ERROR_G2_TAG_NOT_ENCAPSULATED,
+	/** Tag backscattered error code 0x07: ResponseBuffer overflowed. */
+	NUR_ERROR_G2_TAG_RESPBUFFER_OVF,
+	/** Tag backscattered error code 0x10: failure because of security timeout. */
+	NUR_ERROR_G2_TAG_SEC_TIMEOUT
 };
 
 /** Get human readable error message for error code

@@ -9,9 +9,9 @@
     unsigned int epcLength;
 }
 
-@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+@property (nonatomic, strong) dispatch_queue_t           dispatchQueue;
 @property (nonatomic, strong) LocateTagAntennaSelector * antennaSelector;
-@property (nonatomic, strong) SmoothingBuffer * smoothingBuffer;
+@property (nonatomic, strong) SmoothingBuffer *          smoothingBuffer;
 
 @end
 
@@ -40,11 +40,6 @@
     memcpy( epc, self.tag.epc.bytes, epcLength );
 
     [super viewWillAppear:animated];
-}
-
-
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
@@ -56,11 +51,16 @@
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
+
+    // stop locating
+    if ( [Bluetooth sharedInstance].currentReader ) {
+        [self stopLocating];
+    }
 }
 
 
@@ -93,7 +93,7 @@
 - (IBAction) toggleLocating {
     // the reader can have disconnected while we were locating
     if ( ! [Bluetooth sharedInstance].currentReader ) {
-        self.strengthLabel.text = @"0 %%";
+        self.progressView.percent = 0;
         return;
     }
 
@@ -188,7 +188,7 @@
 
             // update the % label
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.strengthLabel.text = [NSString stringWithFormat:@"%d %%", smoothedValue];
+                self.progressView.percent = smoothedValue;
             } );
         }
             break;
