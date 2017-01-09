@@ -24,14 +24,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    CGFloat top = 0;
-    CGFloat left = 20;
-    CGFloat bottom = 10;
-    CGFloat right = 20;
-    self.insets = UIEdgeInsetsMake( top, left, bottom, right );
+    CGFloat top, left, bottom, right;
+    CGFloat cellWidth, cellHeight;
 
-    CGFloat cellWidth = 120;
-    CGFloat cellHeight = 140;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
+        top = 20;
+        left = 20;
+        bottom = 10;
+        right = 20;
+        cellWidth = 240;
+        cellHeight = 220;
+    }
+    else {
+        top = 0;
+        left = 20;
+        bottom = 10;
+        right = 20;
+        cellWidth = 120;
+        cellHeight = 140;
+    }
+
+    self.insets = UIEdgeInsetsMake( top, left, bottom, right );
     self.cellSize = CGSizeMake( cellWidth, cellHeight );
 
     self.iconNames = @[ @"MainMenuInventory", @"MainMenuLocate", @"MainMenuWrite", @"MainMenuBarcode", @"MainMenuSettings", @"MainMenuInfo", @"MainMenuGuide" ];
