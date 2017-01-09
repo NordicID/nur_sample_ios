@@ -14,6 +14,16 @@
       "idiom" : "universal",
       "filename" : "ic_write_100@3.png",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "ic_write_160.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "ic_write_160@2.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

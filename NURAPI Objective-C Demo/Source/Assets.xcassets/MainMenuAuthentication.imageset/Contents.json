@@ -14,6 +14,16 @@
       "idiom" : "universal",
       "filename" : "ic_tagauth_100@3.png",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "ic_tagauth_160.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "ic_tagauth_160@2.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
