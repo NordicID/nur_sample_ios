@@ -7,6 +7,8 @@
 
 @interface TuneViewController ()
 
+@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+
 @end
 
 @implementation TuneViewController
@@ -59,18 +61,24 @@
         // get antenna mask
         int antennaError = NurApiGetAntennaMap( [Bluetooth sharedInstance].nurapiHandle, antennaMap, &antennaMappingCount, NUR_MAX_ANTENNAS_EX, sizeof(struct NUR_ANTENNA_MAPPING) );
 
+        struct NUR_MODULESETUP setup;
+        int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_ANTMASKEX, &setup, sizeof(struct NUR_MODULESETUP) );
+        if ( error != NUR_NO_ERROR ) {
+            NSLog( @"failed to get module setup, error: %d", error );
+        }
+
         NSLog( @"retrieved %d antenna mappings", antennaMappingCount );
 
         for ( unsigned int index = 0; index < 32; ++index ) {
             NSLog( @"checking for antenna %d", index );
-            if ( self.antennaMask & (1<<index) ) {
+            if ( setup.antennaMaskEx & (1<<index) ) {
                 NSLog( @"tuning antenna %d", index );
 
                 // play a short beep
                 [[AudioPlayer sharedInstance] playSound:kBlep100ms];
 
                 int error = NUR_NO_ERROR;
-                int dbmResults[6];
+                int dbmResults[6] = { 0, 0, 0, 0, 0, 0 };
 
                 // set up a message with the antenna name to show in the alert
                 NSString * antennaName;
@@ -97,6 +105,10 @@
                     });
 
                     return;
+                }
+
+                for ( int index = 0; index < 6; ++index ) {
+                    NSLog( @"tuning result %d = %d", index, dbmResults[index] );
                 }
             }
         }

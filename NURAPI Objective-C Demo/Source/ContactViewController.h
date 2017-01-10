@@ -1,6 +1,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContactViewController : UIViewController
+#import "TTTAttributedLabel.h"
+
+@interface ContactViewController : UIViewController <TTTAttributedLabelDelegate>
+
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel * emailLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel * websiteLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel * gitHubLabel;
 
 @end

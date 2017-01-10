@@ -1,9 +1,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutViewController : UIViewController
+#import "TTTAttributedLabel.h"
+
+@interface AboutViewController : UIViewController <TTTAttributedLabelDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel * appVersionLabel;
 @property (weak, nonatomic) IBOutlet UILabel * nurApiVersionLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel * gitHubLabel;
 
 @end

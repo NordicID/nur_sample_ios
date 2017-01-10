@@ -171,11 +171,14 @@
 /**
  * Attempts to connect to the given @p reader. If successful the readerConnectionOk delegate callback will be called.
  * If the connection fails then readerConnectionFailed is called. The @p reader will be stored in the property currentReader.
- * Any previous connected reader is first disconnected, i.e. there can be only one connected reader at any given time.
+ * There can be only one connected reader at any given time and this method will fail and return NO in case there is a
+ * current reader. Disconnect the old reader first.
  *
  * @param reader the reader to connect to.
+ *
+ * @return NO if there already is a connection and YES if the connection proceeds. A YES value does not mean that the connection is established, just that it proceeds.
  **/
-- (void) connectToReader:(CBPeripheral *)reader;
+- (BOOL) connectToReader:(CBPeripheral *)reader;
 
 /**
  * Disconnects from the current reader.
@@ -183,5 +186,7 @@
 - (void) disconnectFromReader;
 
 - (void) restoreConnection:(NSString *)uuid;
+
+- (void) cancelRestoreConnection;
 
 @end

@@ -65,9 +65,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.barcode.text = status;
         self.barcode.hidden = NO;
-
-        // play a short blip
-        [[AudioPlayer sharedInstance] playSound:kBlep100ms];
     } );
 }
 
@@ -91,6 +88,9 @@
                     NSString * barcode = [NSString stringWithCString:(char*)&dataPtr[1] encoding:NSUTF8StringEncoding];
                     NSLog( @"barcode: %@", barcode );
                     [self showBarcode:barcode];
+
+                    // play a short blip
+                    [[AudioPlayer sharedInstance] playSound:kBlep100ms];
                 }
                 else if (status == NUR_ERROR_NOT_READY) {
                     NSLog( @"barcode reading cancelled" );

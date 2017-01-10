@@ -45,6 +45,7 @@
 		6F7CFE661DBA2AC700B3C122 /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */; };
 		6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */; };
 		6FD810801E2171E10021E6A6 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD8107D1E21716D0021E6A6 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6FD810841E2410D90021E6A6 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD810831E2410D90021E6A6 /* TTTAttributedLabel.m */; };
 		6FD95F281DC28AE900C7BFAD /* LocateTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */; };
 		6FE9FC2C1DD5C1F50050264D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE9FC2A1DD5C1F50050264D /* Fabric.framework */; };
 		6FE9FC2D1DD5C1F50050264D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE9FC2B1DD5C1F50050264D /* Crashlytics.framework */; };
@@ -132,6 +133,8 @@
 		6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagPopoverViewController.m; sourceTree = "<group>"; };
 		6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD8107D1E21716D0021E6A6 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
+		6FD810821E2410D90021E6A6 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		6FD810831E2410D90021E6A6 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		6FD95F261DC28AE900C7BFAD /* LocateTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateTagViewController.h; sourceTree = "<group>"; };
 		6FD95F271DC28AE900C7BFAD /* LocateTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateTagViewController.m; sourceTree = "<group>"; };
 		6FE9FC2A1DD5C1F50050264D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 		6FD254551CE2128C00083D83 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				6FD810811E2410D90021E6A6 /* TTTAttributedLabel */,
 				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
 				6F0074CB1DB8A1C800072C73 /* AudioPlayer.h */,
 				6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */,
@@ -296,6 +300,15 @@
 				6F6F0B841D9BA39300370330 /* Main.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		6FD810811E2410D90021E6A6 /* TTTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				6FD810821E2410D90021E6A6 /* TTTAttributedLabel.h */,
+				6FD810831E2410D90021E6A6 /* TTTAttributedLabel.m */,
+			);
+			path = TTTAttributedLabel;
 			sourceTree = "<group>";
 		};
 		6FE9FC281DD4B4A10050264D /* Tag */ = {
@@ -446,6 +459,7 @@
 				6F0074BC1DB7C13D00072C73 /* QuickGuideViewController.m in Sources */,
 				6F0074CD1DB8A1C800072C73 /* AudioPlayer.m in Sources */,
 				6F6F0BA51D9BA39300370330 /* InventoryViewController.m in Sources */,
+				6FD810841E2410D90021E6A6 /* TTTAttributedLabel.m in Sources */,
 				6F3B30D21DCF658D00A46A93 /* AverageBuffer.m in Sources */,
 				6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */,
 				6F0074D01DB8F0BE00072C73 /* AboutViewController.m in Sources */,

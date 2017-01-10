@@ -1,9 +1,11 @@
 
 #import "ApplicationSettingsViewController.h"
 #import "AudioPlayer.h"
+#import "ConnectionManager.h"
 
 enum {
     kSoundEnabled = 0,
+    kAutomaticReconnectEnabled = 1,
 } ApplicationSettingType;
 
 
@@ -30,7 +32,7 @@ enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 
@@ -38,9 +40,16 @@ enum {
     // populate the cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationSettingCell" forIndexPath:indexPath];
 
-    if ( indexPath.row == kSoundEnabled ) {
-        cell.textLabel.text = @"Application sounds";
-        cell.accessoryType = [AudioPlayer sharedInstance].soundsEnabled ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    switch ( indexPath.row ) {
+        case kSoundEnabled:
+            cell.textLabel.text = @"Application sounds";
+            cell.accessoryType = [AudioPlayer sharedInstance].soundsEnabled ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            break;
+
+        case kAutomaticReconnectEnabled:
+            cell.textLabel.text = @"Automatically reconnect";
+            cell.accessoryType = [ConnectionManager sharedInstance].reconnectMode == kAlwaysReconnect ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            break;
     }
     
     return cell;
@@ -52,9 +61,16 @@ enum {
         // toggle the sounds
         AudioPlayer * ap = [AudioPlayer sharedInstance];
         ap.soundsEnabled = ap.soundsEnabled ? NO : YES;
-
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
+    else if ( indexPath.row == kAutomaticReconnectEnabled ) {
+        [ConnectionManager sharedInstance].reconnectMode = [ConnectionManager sharedInstance].reconnectMode == kAlwaysReconnect ? kNeverReconnect : kAlwaysReconnect;
+    }
+    else {
+        return;
+    }
+
+    // refresh
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 

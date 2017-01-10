@@ -154,7 +154,7 @@
     }
     else {
         // no current reader, so connect directly
-        NSLog( @"connecting to reader: %@", reader );
+        NSLog( @"connecting to selected reader: %@", reader );
         self.shouldConnectTo = nil;
         [bt connectToReader:reader];
     }
@@ -203,7 +203,7 @@
     // do we have a reader that we should connect to? this means that we have disconnected from a previous reader
     // and can now proceed to connect to the new reader
     if ( self.shouldConnectTo ) {
-        NSLog( @"proceeding with connection to reader: %@", self.shouldConnectTo );
+        NSLog( @"proceeding with connection to new reader: %@", self.shouldConnectTo );
         [[Bluetooth sharedInstance] connectToReader:self.shouldConnectTo];
         self.shouldConnectTo = nil;
     }

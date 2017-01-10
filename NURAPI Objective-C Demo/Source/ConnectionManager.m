@@ -5,7 +5,7 @@
 
 @interface ConnectionManager ()
 
-@property (nonatomic, strong) NSString * previousUuid;
+//@property (nonatomic, strong) NSString * previousUuid;
 
 @property (nonatomic, assign) BOOL connectionOk;
 
@@ -30,9 +30,22 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.reconnectMode = kAlwaysReconnect;
-        self.previousUuid = nil;
+        //self.previousUuid = nil;
         self.connectionOk = NO;
+
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        if ( [defaults objectForKey:@"reconnectMode"] ) {
+            // set the value without goinf through a setter to avoid triggering saving the value
+            _reconnectMode = (ReconnectMode)[defaults integerForKey:@"reconnectMode"];
+        }
+        else {
+            // default to always automatic reconnects
+            self.reconnectMode = kAlwaysReconnect;
+
+            // save for future sessions
+            [defaults setObject:[NSNumber numberWithInt:(int)self.reconnectMode] forKey:@"reconnectMode"];
+            [defaults synchronize];
+        }
     }
 
     return self;
@@ -46,6 +59,21 @@
 
     // connection to the reader not yet ok
     return nil;
+}
+
+
+- (void) setReconnectMode:(ReconnectMode)reconnectMode {
+    _reconnectMode = reconnectMode;
+
+    // save for the future too
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithInt:(int)reconnectMode] forKey:@"reconnectMode"];
+    [defaults synchronize];
+
+    // if no automatic reconnection then cancel any reconnection that may have been set already
+    if ( reconnectMode == kNeverReconnect ) {
+        [[Bluetooth sharedInstance] cancelRestoreConnection];
+    }
 }
 
 
@@ -77,18 +105,18 @@
         }
     }
 
-    else {
-        if ( self.previousUuid ) {
-            // we have a device that we were last connected to, restore that connection
-            NSLog( @"found previously connected to device, uuid: %@, attempting to reconnect", self.previousUuid );
-
-            // attempt to restore the connection
-            [[Bluetooth sharedInstance] restoreConnection:self.previousUuid];
-
-            // make sure we don't do this more than once, so clear the UUID
-            self.previousUuid = nil;
-        }
-    }
+//    else {
+//        if ( self.previousUuid ) {
+//            // we have a device that we were last connected to, restore that connection
+//            NSLog( @"found previously connected to device, uuid: %@, attempting to reconnect", self.previousUuid );
+//
+//            // attempt to restore the connection
+//            [[Bluetooth sharedInstance] restoreConnection:self.previousUuid];
+//
+//            // make sure we don't do this more than once, so clear the UUID
+//            self.previousUuid = nil;
+//        }
+//    }
 }
 
 
@@ -104,10 +132,10 @@
             NSLog( @"permanently storing currently connected device uuid: %@", uuid );
         }
 
-        else {
-            self.previousUuid = currentReader.identifier.UUIDString;
-            NSLog( @"saving currently connected device uuid: %@", self.previousUuid );
-        }
+//        else {
+//            self.previousUuid = currentReader.identifier.UUIDString;
+//            NSLog( @"saving currently connected device uuid: %@", self.previousUuid );
+//        }
 
         // disconnect and release the reader
         [[Bluetooth sharedInstance] disconnectFromReader];
@@ -118,13 +146,13 @@
  * Bluetooth delegate callbacks
  **/
 - (void) readerConnectionOk {
-    NSLog( @"connection ok" );
+    NSLog( @"reader connected, connection ok" );
     self.connectionOk = YES;
 }
 
 
 - (void) readerDisconnected {
-    NSLog( @"connection no longer ok" );
+    NSLog( @"reader disconnection, connection no longer ok" );
     self.connectionOk = NO;
 }
 

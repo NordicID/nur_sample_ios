@@ -22,6 +22,12 @@
 
     self.parentViewController.navigationItem.title = @"About";
 
+    // set up links
+    self.gitHubLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+    self.gitHubLabel.delegate = self;
+    self.gitHubLabel.userInteractionEnabled = YES;
+    self.gitHubLabel.text = @"github.com/NordicID/nur_sample_ios";
+
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 
@@ -47,5 +53,14 @@
                                 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                                 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
 }
+
+
+//****************************************************************************************************************
+#pragma mark - TTTAttributedLabel delegate
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 
 @end

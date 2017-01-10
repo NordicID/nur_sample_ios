@@ -158,11 +158,11 @@
         [self setupAlternativesForRow:indexPath.row into:destination];
     }
 
-    else if ( [segue.identifier isEqualToString:@"TuneSegue"] ) {
-        TuneViewController * destination = [segue destinationViewController];
-        destination.dispatchQueue = self.dispatchQueue;
-        destination.antennaMask = setup.antennaMask;
-    }
+//    else if ( [segue.identifier isEqualToString:@"TuneSegue"] ) {
+//        TuneViewController * destination = [segue destinationViewController];
+//        destination.dispatchQueue = self.dispatchQueue;
+//        destination.antennaMask = setup.antennaMask;
+//    }
 }
 
 

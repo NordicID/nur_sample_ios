@@ -28,6 +28,10 @@
 
     // smoothing buffer to make the shown values a bit more calm
     self.smoothingBuffer = [[SmoothingBuffer alloc] initWithSize:5];
+
+    self.progressView.startAngle = M_PI / 2;
+    self.progressView.endAngle = self.progressView.startAngle + M_PI * 2;
+    self.progressView.percent = 0;
 }
 
 
