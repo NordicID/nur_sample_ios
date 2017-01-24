@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F6F0BBF1D9CF6D000370330 /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6F0BBD1D9CF49000370330 /* NurAPIBluetooth.framework */; };
-		6F6F0BC01D9CF6D000370330 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6F0BBD1D9CF49000370330 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6F3EDBE91E279E3C00417B01 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3EDBDF1E278DE900417B01 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F9E8D791D7F2D8F00512C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E8D781D7F2D8F00512C56 /* AppDelegate.swift */; };
 		6F9E8D7B1D7F2D8F00512C56 /* SelectReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E8D7A1D7F2D8F00512C56 /* SelectReaderViewController.swift */; };
 		6F9E8D7E1D7F2D8F00512C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E8D7C1D7F2D8F00512C56 /* Main.storyboard */; };
@@ -23,7 +22,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F6F0BC01D9CF6D000370330 /* NurAPIBluetooth.framework in Embed Frameworks */,
+				6F3EDBE91E279E3C00417B01 /* NurAPIBluetooth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -31,7 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6F6F0BBD1D9CF49000370330 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NurAPIBluetooth.framework; sourceTree = "<group>"; };
+		6F3EDBDF1E278DE900417B01 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6F9E8D751D7F2D8F00512C56 /* NURAPI Swift Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NURAPI Swift Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9E8D781D7F2D8F00512C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F9E8D7A1D7F2D8F00512C56 /* SelectReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectReaderViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +46,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F6F0BBF1D9CF6D000370330 /* NurAPIBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +94,7 @@
 		6F9E8D921D7F2DF400512C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F6F0BBD1D9CF49000370330 /* NurAPIBluetooth.framework */,
+				6F3EDBDF1E278DE900417B01 /* NurAPIBluetooth.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -229,6 +227,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = ..;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -279,6 +278,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = ..;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = __ios__;

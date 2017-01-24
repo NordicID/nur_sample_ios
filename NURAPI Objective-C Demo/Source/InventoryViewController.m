@@ -10,6 +10,7 @@
 @interface InventoryViewController ()
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+@property (nonatomic, strong) dispatch_queue_t audioDispatchQueue;
 @property (nonatomic, strong) NSTimer *        timer;
 @property (nonatomic, strong) NSDate *         startTime;
 @property (nonatomic, strong) AverageBuffer *  averageBuffer;
@@ -18,6 +19,7 @@
 @property (nonatomic, assign) double           averageTagsPerSecond;
 @property (nonatomic, assign) double           maxTagsPerSecond;
 @property (nonatomic, assign) unsigned int     inventoryRoundsDone;
+@property (nonatomic, assign) NSUInteger       lastRoundUniqueTags;
 @property (nonatomic, assign) NSTimeInterval   elapsedSeconds;
 
 @end
@@ -35,6 +37,7 @@
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
+    self.audioDispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0 );
 }
 
 
@@ -76,6 +79,7 @@
     self.maxTagsPerSecond = 0;
     self.inventoryRoundsDone = 0;
     self.elapsedSeconds = 0;
+    self.lastRoundUniqueTags = 0;
 }
 
 
@@ -100,6 +104,7 @@
     // kill any old timer
     if ( self.timer ) {
         [self.timer invalidate];
+        self.timer = nil;
     }
 
     dispatch_async(self.dispatchQueue, ^{
@@ -108,6 +113,62 @@
         }
         else {
             [self startStream];
+        }
+    } );
+}
+
+
+- (void) startStream {
+    NSLog( @"starting inventory stream" );
+
+    // default scanning parameters
+    int rounds = 0;
+    int q = 0;
+    int session = 0;
+
+    int error = NurApiStartInventoryStream( [Bluetooth sharedInstance].nurapiHandle, rounds, q, session );
+
+    // show the error or update the button label on the main queue
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ( error != NUR_NO_ERROR ) {
+            NSLog( @"failed to start inventory stream" );
+            [self showErrorMessage:error];
+            return;
+        }
+
+        self.inventoryButton.titleLabel.text = @"Stop";
+
+        // start a timer that updates the elapsed time
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
+        self.startTime = [NSDate date];
+
+        /**
+         * Set up a background task for playing "beep" sounds as long as we're running an inventory stream.
+         * Unique tags will trigger a beep and more tags give more urgent beeps.
+         **/
+        if ( [AudioPlayer sharedInstance].soundsEnabled ) {
+            dispatch_async( self.audioDispatchQueue, ^(void) {
+                while ( self.timer ) {
+                    NSTimeInterval sleepTime = 0.01;
+
+                    // if we have unique tags then play a sound and sleep as long as the sound plays
+                    if ( self.lastRoundUniqueTags > 0 ) {
+                        sleepTime = 100 - self.lastRoundUniqueTags;
+
+                        // sleep at least 40 ms
+                        if (sleepTime < 40) {
+                            sleepTime = 40;
+                        }
+
+                        sleepTime /= 1000.0;
+
+                        // play the real sound
+                        [[AudioPlayer sharedInstance] playSound:kBlep40ms];
+                    }
+                    
+                    [NSThread sleepForTimeInterval:sleepTime];
+                }
+            } );
         }
     } );
 }
@@ -139,33 +200,6 @@
             [self.timer invalidate];
             self.timer = nil;
         }
-    } );
-}
-
-
-- (void) startStream {
-    NSLog( @"starting inventory stream" );
-
-    // default scanning parameters
-    int rounds = 0;
-    int q = 0;
-    int session = 0;
-
-    int error = NurApiStartInventoryStream( [Bluetooth sharedInstance].nurapiHandle, rounds, q, session );
-
-    // show the error or update the button label on the main queue
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ( error != NUR_NO_ERROR ) {
-            NSLog( @"failed to start inventory stream" );
-            [self showErrorMessage:error];
-            return;
-        }
-
-        self.inventoryButton.titleLabel.text = @"Stop";
-
-        // start a timer that updates the elapsed time
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
-        self.startTime = [NSDate date];
     } );
 }
 
@@ -225,25 +259,6 @@
 }
 
 
-//- (Tag *) getTag:(int)tagIndex {
-//    struct NUR_TAG_DATA tagData;
-//    int error = NurApiGetTagData( [Bluetooth sharedInstance].nurapiHandle, tagIndex, &tagData );
-//    if (error != NUR_NO_ERROR) {
-//        // failed to fetch tag
-//        [self showErrorMessage:error];
-//        return nil;
-//    }
-//
-//    return [[Tag alloc] initWithEpc:[NSData dataWithBytes:tagData.epc length:tagData.epcLen]
-//                          frequency:tagData.freq
-//                               rssi:tagData.rssi
-//                         scaledRssi:tagData.scaledRssi
-//                          timestamp:tagData.timestamp
-//                            channel:tagData.channel
-//                          antennaId:tagData.antennaId];
-//}
-
-
 - (void) tagsFound:(NSArray *)tags added:(int)tagsAdded {
     // do we need to update the table?
     if ( tags.count > 0 ) {
@@ -274,6 +289,8 @@
     if ( self.tagsPerSecond > self.maxTagsPerSecond ) {
         self.maxTagsPerSecond = self.tagsPerSecond;
     }
+
+    NSLog( @"added tags: %lu, total: %lu", (unsigned long)tags.count, (unsigned long)[TagManager sharedInstance].tags.count );
 }
 
 
@@ -381,7 +398,6 @@
 
                     // play a short blip if the tag was new
                     if ( isTagNew ) {
-                        [[AudioPlayer sharedInstance] playSound:kBlep40ms];
                         [newTags addObject:tag];
                     }
                 }
@@ -394,6 +410,9 @@
             if ( inventoryStream->stopped ) {
                 [self continueStream];
             }
+
+            // save the number of unique tags for the audio thread
+            self.lastRoundUniqueTags = newTags.count;
 
             // run on the main thread
             dispatch_async(dispatch_get_main_queue(), ^{

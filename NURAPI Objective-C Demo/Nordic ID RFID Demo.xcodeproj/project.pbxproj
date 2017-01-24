@@ -52,6 +52,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		6F3EDBAB1E262F6F00417B01 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F6F0B0E1D952CCF00370330 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,6 +346,7 @@
 				6F6F0B0E1D952CCF00370330 /* Embed Frameworks */,
 				6FA8EF0F1DA3EFDB00804013 /* ShellScript */,
 				6FE9FC291DD5C1A50050264D /* ShellScript */,
+				6F3EDBAB1E262F6F00417B01 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);

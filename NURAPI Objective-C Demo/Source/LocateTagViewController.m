@@ -3,6 +3,7 @@
 #import "LocateTagAntennaSelector.h"
 #import "SmoothingBuffer.h"
 #import "UIButton+BackgroundColor.h"
+#import "AudioPlayer.h"
 
 @interface LocateTagViewController () {
     unsigned char epc[NUR_MAX_EPC_LENGTH];
@@ -10,8 +11,10 @@
 }
 
 @property (nonatomic, strong) dispatch_queue_t           dispatchQueue;
+@property (nonatomic, strong) dispatch_queue_t           audioDispatchQueue;
 @property (nonatomic, strong) LocateTagAntennaSelector * antennaSelector;
 @property (nonatomic, strong) SmoothingBuffer *          smoothingBuffer;
+@property (nonatomic, assign) BOOL                       locateInProgress;
 
 @end
 
@@ -20,8 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // set up the queue used to async any NURAPI calls
+    // set up the queue used to async any NURAPI calls and to play audio
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
+    self.audioDispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0 );
 
     // antenna selector
     self.antennaSelector = [LocateTagAntennaSelector new];
@@ -147,12 +151,50 @@
                 return;
             }
         } );
+
+        // locate is now in progress
+        self.locateInProgress = YES;
+
+        /**
+         * Set up a background task for playing "beep" sounds as long as we're locating
+         * Unique tags will trigger a beep and more tags give more urgent beeps.
+         **/
+        if ( [AudioPlayer sharedInstance].soundsEnabled ) {
+            dispatch_async( self.audioDispatchQueue, ^(void) {
+                while ( self.locateInProgress ) {
+                    int avgStrength = self.antennaSelector.signalStrength;
+                    NSTimeInterval sleepTime = 1000;
+
+                    SoundType sound = kBlep300ms;
+
+                    if (avgStrength > 70) {
+                        sleepTime = 150 - avgStrength;
+                        sound = kBlep40ms;
+                    }
+                    else if (avgStrength > 0) {
+                        sleepTime = 200 - avgStrength;
+                        sound = kBlep100ms;
+                    }
+
+                    // play the real sound
+                    [[AudioPlayer sharedInstance] playSound:sound];
+
+                    sleepTime /= 1000.0;
+
+                    [NSThread sleepForTimeInterval:sleepTime];
+                }
+            } );
+        }
+
     } );
 }
 
 
 - (void) stopLocating {
     NSLog( @"stopping trace stream" );
+
+    // no more locating
+    self.locateInProgress = NO;
 
     dispatch_async(self.dispatchQueue, ^{
         int error = NurApiStopContinuous( [Bluetooth sharedInstance].nurapiHandle );
