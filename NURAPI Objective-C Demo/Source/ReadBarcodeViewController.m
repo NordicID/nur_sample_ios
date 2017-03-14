@@ -73,7 +73,7 @@
 #pragma mark - Bluetooth delegate
 
 - (void) notificationReceived:(DWORD)timestamp type:(int)type data:(LPVOID)data length:(int)length {
-    //NSLog( @"received notification: %d, data: %d bytes", type, length );
+    NSLog( @"received notification: %d, data: %d bytes", type, length );
 
     switch(type) {
         case NUR_NOTIFICATION_ACCESSORY: {
@@ -110,7 +110,8 @@
 
         case NUR_NOTIFICATION_IOCHANGE: {
             struct NUR_IOCHANGE_DATA *iocData = (struct NUR_IOCHANGE_DATA *)data;
-            if (iocData->source == NUR_ACC_TRIGGER_SOURCE) {
+            switch (iocData->source ) {
+                case NUR_ACC_TRIGGER_SOURCE:
                 NSLog( @"trigger changed, dir: %d", iocData->dir );
                 if (iocData->dir == 0) {
                     if (!readingBarcode && !ignoreTrigger) {
@@ -127,6 +128,18 @@
 
                     ignoreTrigger = NO;
                 }
+                    break;
+                case 101:
+                    NSLog( @"I/O change for source: %d (power or pairing button)", iocData->source );
+                    break;
+
+                case 102:
+                    NSLog( @"I/O change for source: %d (power or pairing button)", iocData->source );
+                    break;
+
+                default:
+                    NSLog( @"I/O change for unknown source: %d", iocData->source );
+                    break;
             }
         }
             break;
