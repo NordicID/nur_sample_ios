@@ -1,98 +1,133 @@
-//
-//  FirmwareSelectionViewController.m
-//  Nordic ID RFID Demo
-//
-//  Created by Jan Ekholm on 19/03/2017.
-//  Copyright © 2017 Jan Ekholm. All rights reserved.
-//
 
 #import "FirmwareSelectionViewController.h"
+#import "FirmwareCell.h"
+#import "Firmware.h"
+#import "PerformUpdateViewController.h"
 
 @interface FirmwareSelectionViewController ()
 
+@property (nonatomic, strong) NSArray * firmwares;
+@property (nonatomic, strong) NSDateFormatter * dateFormatter;
 @end
+
+#define FIRMWARE_URL @"https://raw.githubusercontent.com/NordicID/nur_firmware/master/firmwares.json"
 
 @implementation FirmwareSelectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    // a date formatter for nice dates in the cells
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+
+    // start downloading the index file
+    [self downloadIndexFile];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void) downloadIndexFile {
+    NSString *dataUrl = FIRMWARE_URL;
+    NSURL *url = [NSURL URLWithString:dataUrl];
+
+    // create a download task for downloading the index file
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                              if ( error != nil ) {
+                                                  NSLog( @"failed to download firmware index file");
+                                                  [self showErrorMessage:@"Failed to download firmware update data!"];
+                                                  return;
+                                              }
+
+                                              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                                              if ( httpResponse == nil || httpResponse.statusCode != 200 ) {
+                                                  if ( httpResponse ) {
+                                                      NSLog( @"failed to download firmware index file, expected status 200, got: %ld", (long)httpResponse.statusCode );
+                                                      [self showErrorMessage:[NSString stringWithFormat:@"Failed to download firmware update data, status code: %ld", (long)httpResponse.statusCode]];
+                                                  }
+                                                  else {
+                                                      NSLog( @"failed to download firmware index file, no response" );
+                                                      [self showErrorMessage:@"Failed to download firmware update data, no response received!"];
+                                                  }
+
+                                                  return;
+                                              }
+
+                                              // convert to a string an parse it
+                                              NSString * json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                              [self parseFirmwareIndexFile:json];
+                                          }];
+    
+    // start the download
+    [downloadTask resume];
 }
+
+
+- (void) parseFirmwareIndexFile:(NSString *)json {
+    NSLog( @"parsing firmware index file: '%@'", json);
+
+}
+
+
+- (void) showErrorMessage:(NSString *)message {
+    // show in an alert view
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                    message:message
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                                   // nothing special to do right now
+                               }];
+
+
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    if ( ! self.firmwares ) {
+        // nothing yet downloaded
+        return 0;
+    }
+
+    return self.firmwares.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    FirmwareCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FirmwareCell" forIndexPath:indexPath];
+
+    Firmware * firmware = self.firmwares[ indexPath.row ];
+
+    cell.nameLabel.text = firmware.name;
+    cell.versionLabel.text = firmware.version;
+    cell.buildTimeLabel.text = [self.dateFormatter stringFromDate:firmware.buildTime];
+
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ( [segue.identifier isEqualToString:@"PerformUpdateSegue"] ) {
+        PerformUpdateViewController * destination = [segue destinationViewController];
+
+        NSIndexPath *indexPath = [sender isKindOfClass:[NSIndexPath class]] ? (NSIndexPath*)sender : [self.tableView indexPathForSelectedRow];
+
+        // let the VC know of the firmware it should be flashing
+        destination.firmware = self.firmwares[ indexPath.row ];
+    }
 }
-*/
 
 @end

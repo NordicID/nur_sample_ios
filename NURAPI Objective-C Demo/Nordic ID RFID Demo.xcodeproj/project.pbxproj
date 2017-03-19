@@ -43,6 +43,11 @@
 		6F6F0BBA1D9BA39300370330 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9C1D9BA39300370330 /* main.m */; };
 		6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE621DBA25B600B3C122 /* TagManager.m */; };
 		6F7CFE661DBA2AC700B3C122 /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */; };
+		6F7FA0D21E7EEC01002A7597 /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FA0D11E7EEC01002A7597 /* FirmwareSelectionViewController.m */; };
+		6F7FA0D51E7EECEB002A7597 /* FirmwareTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FA0D41E7EECEB002A7597 /* FirmwareTypeViewController.m */; };
+		6F7FA0D91E7EEE6A002A7597 /* Firmware.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FA0D81E7EEE6A002A7597 /* Firmware.m */; };
+		6F7FA0DC1E7EEF64002A7597 /* FirmwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FA0DB1E7EEF64002A7597 /* FirmwareCell.m */; };
+		6F7FA0DF1E7EFA15002A7597 /* PerformUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FA0DE1E7EFA15002A7597 /* PerformUpdateViewController.m */; };
 		6FC5B17C1DC0A5E900A55742 /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */; };
 		6FD810801E2171E10021E6A6 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD8107D1E21716D0021E6A6 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6FD810841E2410D90021E6A6 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD810831E2410D90021E6A6 /* TTTAttributedLabel.m */; };
@@ -139,6 +144,16 @@
 		6F7CFE621DBA25B600B3C122 /* TagManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagManager.m; sourceTree = "<group>"; };
 		6F7CFE641DBA2AC700B3C122 /* LocateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateViewController.h; sourceTree = "<group>"; };
 		6F7CFE651DBA2AC700B3C122 /* LocateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateViewController.m; sourceTree = "<group>"; };
+		6F7FA0D01E7EEC01002A7597 /* FirmwareSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareSelectionViewController.h; sourceTree = "<group>"; };
+		6F7FA0D11E7EEC01002A7597 /* FirmwareSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareSelectionViewController.m; sourceTree = "<group>"; };
+		6F7FA0D31E7EECEB002A7597 /* FirmwareTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareTypeViewController.h; sourceTree = "<group>"; };
+		6F7FA0D41E7EECEB002A7597 /* FirmwareTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareTypeViewController.m; sourceTree = "<group>"; };
+		6F7FA0D71E7EEE6A002A7597 /* Firmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firmware.h; sourceTree = "<group>"; };
+		6F7FA0D81E7EEE6A002A7597 /* Firmware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Firmware.m; sourceTree = "<group>"; };
+		6F7FA0DA1E7EEF64002A7597 /* FirmwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareCell.h; sourceTree = "<group>"; };
+		6F7FA0DB1E7EEF64002A7597 /* FirmwareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareCell.m; sourceTree = "<group>"; };
+		6F7FA0DD1E7EFA15002A7597 /* PerformUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformUpdateViewController.h; sourceTree = "<group>"; };
+		6F7FA0DE1E7EFA15002A7597 /* PerformUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformUpdateViewController.m; sourceTree = "<group>"; };
 		6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagPopoverViewController.h; sourceTree = "<group>"; };
 		6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTagPopoverViewController.m; sourceTree = "<group>"; };
 		6FD254531CE2128C00083D83 /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +228,23 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		6F7FA0D61E7EECF0002A7597 /* Firmware */ = {
+			isa = PBXGroup;
+			children = (
+				6F7FA0D01E7EEC01002A7597 /* FirmwareSelectionViewController.h */,
+				6F7FA0D11E7EEC01002A7597 /* FirmwareSelectionViewController.m */,
+				6F7FA0D31E7EECEB002A7597 /* FirmwareTypeViewController.h */,
+				6F7FA0D41E7EECEB002A7597 /* FirmwareTypeViewController.m */,
+				6F7FA0D71E7EEE6A002A7597 /* Firmware.h */,
+				6F7FA0D81E7EEE6A002A7597 /* Firmware.m */,
+				6F7FA0DA1E7EEF64002A7597 /* FirmwareCell.h */,
+				6F7FA0DB1E7EEF64002A7597 /* FirmwareCell.m */,
+				6F7FA0DD1E7EFA15002A7597 /* PerformUpdateViewController.h */,
+				6F7FA0DE1E7EFA15002A7597 /* PerformUpdateViewController.m */,
+			);
+			name = Firmware;
+			sourceTree = "<group>";
+		};
 		6F9E8F401D81CFD900512C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,7 +277,6 @@
 		6FD254551CE2128C00083D83 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6FD810811E2410D90021E6A6 /* TTTAttributedLabel */,
 				6F6F0B8A1D9BA39300370330 /* Assets.xcassets */,
 				6F0074CB1DB8A1C800072C73 /* AudioPlayer.h */,
 				6F0074CC1DB8A1C800072C73 /* AudioPlayer.m */,
@@ -253,6 +284,7 @@
 				6F3B30D11DCF658D00A46A93 /* AverageBuffer.m */,
 				6F50D5421E1BB12F0033ABE6 /* ConnectionManager.h */,
 				6F50D5431E1BB12F0033ABE6 /* ConnectionManager.m */,
+				6F7FA0D61E7EECF0002A7597 /* Firmware */,
 				6F3B30EC1DD475E100A46A93 /* Info */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
 				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
@@ -282,6 +314,7 @@
 				6FE9FC281DD4B4A10050264D /* Tag */,
 				6F6F0B741D9BA39300370330 /* TagViewController.h */,
 				6F6F0B751D9BA39300370330 /* TagViewController.m */,
+				6FD810811E2410D90021E6A6 /* TTTAttributedLabel */,
 				6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */,
 				6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */,
 				6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */,
@@ -464,10 +497,12 @@
 				6F6F0BBA1D9BA39300370330 /* main.m in Sources */,
 				6F6F0BA11D9BA39300370330 /* TagViewController.m in Sources */,
 				6F6F0BB61D9BA39300370330 /* Tag.m in Sources */,
+				6F7FA0D91E7EEE6A002A7597 /* Firmware.m in Sources */,
 				6F6F0BA01D9BA39300370330 /* InfoViewController.m in Sources */,
 				6F3B30D51DCFAB0600A46A93 /* LocateTagAntennaSelector.m in Sources */,
 				6F7CFE661DBA2AC700B3C122 /* LocateViewController.m in Sources */,
 				6F0074BC1DB7C13D00072C73 /* QuickGuideViewController.m in Sources */,
+				6F7FA0DF1E7EFA15002A7597 /* PerformUpdateViewController.m in Sources */,
 				6F0074CD1DB8A1C800072C73 /* AudioPlayer.m in Sources */,
 				6F6F0BA51D9BA39300370330 /* InventoryViewController.m in Sources */,
 				6FD810841E2410D90021E6A6 /* TTTAttributedLabel.m in Sources */,
@@ -479,10 +514,13 @@
 				6FD95F281DC28AE900C7BFAD /* LocateTagViewController.m in Sources */,
 				6F6F0B9F1D9BA39300370330 /* TuneViewController.m in Sources */,
 				6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */,
+				6F7FA0DC1E7EEF64002A7597 /* FirmwareCell.m in Sources */,
 				6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */,
 				6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */,
 				6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */,
+				6F7FA0D21E7EEC01002A7597 /* FirmwareSelectionViewController.m in Sources */,
 				6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */,
+				6F7FA0D51E7EECEB002A7597 /* FirmwareTypeViewController.m in Sources */,
 				6F3B30E41DD452AF00A46A93 /* MainMenuCell.m in Sources */,
 				6F50D5441E1BB12F0033ABE6 /* ConnectionManager.m in Sources */,
 				6F00748C1DA6940A00072C73 /* ReadBarcodeViewController.m in Sources */,

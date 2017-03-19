@@ -47,9 +47,9 @@
     self.insets = UIEdgeInsetsMake( top, left, bottom, right );
     self.cellSize = CGSizeMake( cellWidth, cellHeight );
 
-    self.iconNames = @[ @"MainMenuInventory", @"MainMenuLocate", @"MainMenuWrite", @"MainMenuBarcode", @"MainMenuSettings", @"MainMenuInfo", @"MainMenuGuide" ];
-    self.titles    = @[ @"Inventory", @"Locate", @"Write Tag", @"Barcode", @"Settings", @"Info", @"Quick Guide" ];
-    self.segues    = @[ @"InventorySegue", @"LocateSegue", @"WriteTagSegue", @"BarcodeSegue", @"SettingsSegue", @"InfoSegue", @"QuickGuideSegue" ];
+    self.iconNames = @[ @"MainMenuInventory", @"MainMenuLocate", @"MainMenuWrite", @"MainMenuBarcode", @"MainMenuSettings", @"MainMenuInfo", @"MainMenuGuide", @"MainMenuBarcode" ];
+    self.titles    = @[ @"Inventory", @"Locate", @"Write Tag", @"Barcode", @"Settings", @"Info", @"Quick Guide", @"Firmware update" ];
+    self.segues    = @[ @"InventorySegue", @"LocateSegue", @"WriteTagSegue", @"BarcodeSegue", @"SettingsSegue", @"InfoSegue", @"QuickGuideSegue", @"FirmwareUpdateSegue" ];
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
