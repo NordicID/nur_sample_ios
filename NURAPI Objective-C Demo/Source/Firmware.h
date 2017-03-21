@@ -30,4 +30,6 @@ typedef enum {
 @property (nonatomic, strong) NSArray *    hw;
 @property (nonatomic, assign) FirmwareType firmwareType;
 
+- (instancetype) initWithName:(NSString *)name version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 hw:(NSArray *)hw;
+
 @end

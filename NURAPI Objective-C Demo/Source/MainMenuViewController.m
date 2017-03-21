@@ -169,7 +169,7 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 7;
+    return self.titles.count;
 }
 
 
