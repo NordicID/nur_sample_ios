@@ -38,7 +38,6 @@
 		6F6F0BAA1D9BA39300370330 /* SettingsAlternative.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B881D9BA39300370330 /* SettingsAlternative.m */; };
 		6F6F0BAB1D9BA39300370330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6F0B8A1D9BA39300370330 /* Assets.xcassets */; };
 		6F6F0BB61D9BA39300370330 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B961D9BA39300370330 /* Tag.m */; };
-		6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */; };
 		6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9A1D9BA39300370330 /* AppDelegate.m */; };
 		6F6F0BBA1D9BA39300370330 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F0B9C1D9BA39300370330 /* main.m */; };
 		6F7CFE631DBA25B600B3C122 /* TagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CFE621DBA25B600B3C122 /* TagManager.m */; };
@@ -135,8 +134,6 @@
 		6F6F0B891D9BA39300370330 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = Source/InfoViewController.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B8A1D9BA39300370330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Source/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		6F6F0B961D9BA39300370330 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Source/Tag.m; sourceTree = SOURCE_ROOT; };
-		6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+BackgroundColor.h"; path = "Source/UIButton+BackgroundColor.h"; sourceTree = SOURCE_ROOT; };
-		6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+BackgroundColor.m"; path = "Source/UIButton+BackgroundColor.m"; sourceTree = SOURCE_ROOT; };
 		6F6F0B991D9BA39300370330 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		6F6F0B9A1D9BA39300370330 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		6F6F0B9C1D9BA39300370330 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
@@ -214,6 +211,7 @@
 		6F3B30ED1DD475FD00A46A93 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6F7FA0D61E7EECF0002A7597 /* Firmware */,
 				6F3B30E51DD4644D00A46A93 /* ApplicationSettingsViewController.h */,
 				6F3B30E61DD4644D00A46A93 /* ApplicationSettingsViewController.m */,
 				6F6F0B871D9BA39300370330 /* SelectSettingViewController.h */,
@@ -284,7 +282,6 @@
 				6F3B30D11DCF658D00A46A93 /* AverageBuffer.m */,
 				6F50D5421E1BB12F0033ABE6 /* ConnectionManager.h */,
 				6F50D5431E1BB12F0033ABE6 /* ConnectionManager.m */,
-				6F7FA0D61E7EECF0002A7597 /* Firmware */,
 				6F3B30EC1DD475E100A46A93 /* Info */,
 				6F6F0B6B1D9BA39300370330 /* InventoryViewController.h */,
 				6F6F0B7F1D9BA39300370330 /* InventoryViewController.m */,
@@ -315,8 +312,6 @@
 				6F6F0B741D9BA39300370330 /* TagViewController.h */,
 				6F6F0B751D9BA39300370330 /* TagViewController.m */,
 				6FD810811E2410D90021E6A6 /* TTTAttributedLabel */,
-				6F6F0B971D9BA39300370330 /* UIButton+BackgroundColor.h */,
-				6F6F0B981D9BA39300370330 /* UIButton+BackgroundColor.m */,
 				6FC5B17A1DC0A5E900A55742 /* WriteTagPopoverViewController.h */,
 				6FC5B17B1DC0A5E900A55742 /* WriteTagPopoverViewController.m */,
 				6F43D0F41DC093B5009F2A86 /* WriteTagViewController.h */,
@@ -515,7 +510,6 @@
 				6F6F0B9F1D9BA39300370330 /* TuneViewController.m in Sources */,
 				6F6F0BB81D9BA39300370330 /* AppDelegate.m in Sources */,
 				6F7FA0DC1E7EEF64002A7597 /* FirmwareCell.m in Sources */,
-				6F6F0BB71D9BA39300370330 /* UIButton+BackgroundColor.m in Sources */,
 				6F6F0B9D1D9BA39300370330 /* SettingsViewController.m in Sources */,
 				6F3B30D81DCFC79900A46A93 /* SmoothingBuffer.m in Sources */,
 				6F7FA0D21E7EEC01002A7597 /* FirmwareSelectionViewController.m in Sources */,
