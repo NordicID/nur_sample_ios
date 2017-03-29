@@ -1,7 +1,6 @@
 
 #import "SelectReaderViewController.h"
 #import "MainMenuViewController.h"
-#import "UIButton+BackgroundColor.h"
 #import "ConnectionManager.h"
 
 @interface SelectReaderViewController ()
@@ -27,7 +26,6 @@
 
 
 - (void) viewWillAppear:(BOOL)animated {
-    [self.disconnectButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
     [super viewWillAppear:animated];
 
     // register for bluetooth events, this can safely be called several times
@@ -108,7 +106,7 @@
         rssi = @0;
     }
 
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"RSSI: %@", rssi];
+    cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"RSSI: %@", nil), rssi];
     return cell;
 }
 
@@ -136,8 +134,8 @@
     }
 
     // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
-    self.alert = [UIAlertController alertControllerWithTitle:@"Connecting"
-                                                     message:[NSString stringWithFormat:@"Connecting to reader %@", reader.name]
+    self.alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connecting", nil)
+                                                     message:[NSString stringWithFormat:NSLocalizedString(@"Connecting to reader %@", nil), reader.name]
                                               preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:self.alert animated:YES completion:nil];
 
@@ -240,8 +238,8 @@
         [self.alert dismissViewControllerAnimated:YES completion:^{
             self.alert = nil;
             // show in an alert view
-            UIAlertController * errorAlert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                 message:@"Failed to connect to reader"
+            UIAlertController * errorAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                                 message:NSLocalizedString(@"Failed to connect to reader", nil)
                                                                           preferredStyle:UIAlertControllerStyleAlert];
 
             UIAlertAction* okButton = [UIAlertAction

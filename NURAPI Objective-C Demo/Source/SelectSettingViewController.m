@@ -96,8 +96,8 @@
 
 
     // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Saving"
-                                                                    message:@"Saving setting to non volatile memory."
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Saving", nil)
+                                                                    message:NSLocalizedString(@"Saving setting to non volatile memory.", nil)
                                                              preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:alert animated:YES completion:nil];
 
@@ -136,12 +136,12 @@
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
                                                                     message:message
                                                              preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:@"Ok"
+                               actionWithTitle:NSLocalizedString(@"Ok", nil)
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action) {
                                    // nothing special to do right now

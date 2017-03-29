@@ -16,7 +16,7 @@
 
     // if we have no reader show a different message
     if ( ! [Bluetooth sharedInstance].currentReader ) {
-        [self showStatus:@"Please connect an RFID reader"];
+        [self showStatus:NSLocalizedString(@"Please connect an RFID reader", nil)];
     }
 }
 
@@ -97,13 +97,13 @@
                     ignoreTrigger = YES;
                 }
                 else if ( status == NUR_ERROR_NO_TAG ) {
-                    [self showBarcode:@"No barcode found"];
+                    [self showBarcode:NSLocalizedString(@"No barcode found", nil)];
                 }
                 else {
                     [self showErrorMessage:status];
                 }
 
-                [self showStatus:@"Press trigger to read barcode"];
+                [self showStatus:NSLocalizedString(@"Press trigger to read barcode", nil)];
             }
         }
             break;
@@ -118,7 +118,7 @@
                         NurAccSetLedOpMode( [Bluetooth sharedInstance].nurapiHandle, NUR_ACC_LED_BLINK);
                         if (NurAccReadBarcodeAsync( [Bluetooth sharedInstance].nurapiHandle, 5000) == NUR_SUCCESS) {
                             readingBarcode = YES;
-                            [self showStatus:@"Reading barcode..."];
+                            [self showStatus:NSLocalizedString(@"Reading barcode...", nil)];
                             [self showBarcode:@""];
                         }
                         else {

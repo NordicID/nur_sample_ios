@@ -35,7 +35,7 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<Tag %@>", self.hex];
+    return [NSString stringWithFormat:NSLocalizedString(@"<Tag %@>", nil), self.hex];
 }
 
 

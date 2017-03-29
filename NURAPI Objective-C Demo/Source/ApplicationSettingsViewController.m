@@ -14,7 +14,7 @@ enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.parentViewController.navigationItem.title = @"Application Settings";
+    self.parentViewController.navigationItem.title = NSLocalizedString(@"Application Settings", nil);
 }
 
 
@@ -27,7 +27,7 @@ enum {
 
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Sounds enabled";
+    return NSLocalizedString(@"Sounds enabled", nil);
 }
 
 
@@ -42,12 +42,12 @@ enum {
 
     switch ( indexPath.row ) {
         case kSoundEnabled:
-            cell.textLabel.text = @"Application sounds";
+            cell.textLabel.text = NSLocalizedString(@"Application sounds", nil);
             cell.accessoryType = [AudioPlayer sharedInstance].soundsEnabled ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             break;
 
         case kAutomaticReconnectEnabled:
-            cell.textLabel.text = @"Automatically reconnect";
+            cell.textLabel.text = NSLocalizedString(@"Automatically reconnect", nil);
             cell.accessoryType = [ConnectionManager sharedInstance].reconnectMode == kAlwaysReconnect ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             break;
     }

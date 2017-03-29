@@ -1,6 +1,5 @@
 
 #import "WriteTagPopoverViewController.h"
-#import "UIButton+BackgroundColor.h"
 #import "AudioPlayer.h"
 
 @interface WriteTagPopoverViewController ()
@@ -19,13 +18,6 @@
 
     self.oldEpcLabel.text = self.writeTag.hex;
     self.epcEdit.text = self.writeTag.hex;
-}
-
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    [self.writeButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
 }
 
 

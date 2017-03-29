@@ -20,7 +20,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
-    self.parentViewController.navigationItem.title = @"About";
+    self.parentViewController.navigationItem.title = NSLocalizedString(@"About", nil);
 
     // set up links
     self.gitHubLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
@@ -37,19 +37,19 @@
         if ( NurApiGetFileVersion( buffer, 256 ) ) {
             NSString * versionString = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.nurApiVersionLabel.text = [NSString stringWithFormat:@"NurAPI version: %@", versionString];
+                self.nurApiVersionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NurAPI version: %@", nil), versionString];
             } );
         }
         else {
             // failed to get version...
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.nurApiVersionLabel.text = @"NurAPI version: unknown";
+                self.nurApiVersionLabel.text = NSLocalizedString(@"NurAPI version: unknown", nil);
             } );
         }
     } );
 
     // set up the version and build
-    self.appVersionLabel.text =[NSString stringWithFormat:@"App version: %@.%@",
+    self.appVersionLabel.text =[NSString stringWithFormat:NSLocalizedString(@"App version: %@.%@", nil),
                                 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                                 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
 }

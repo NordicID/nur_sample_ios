@@ -2,7 +2,6 @@
 #import "LocateTagViewController.h"
 #import "LocateTagAntennaSelector.h"
 #import "SmoothingBuffer.h"
-#import "UIButton+BackgroundColor.h"
 #import "AudioPlayer.h"
 
 @interface LocateTagViewController () {
@@ -41,7 +40,6 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     self.tagLabel.text = self.tag.hex;
-    [self.actionButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
 
     // copy the tag to more permanent storage
     epcLength = (unsigned int)self.tag.epc.length;
@@ -81,12 +79,12 @@
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
                                                                     message:message
                                                              preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:@"Ok"
+                               actionWithTitle:NSLocalizedString(@"Ok", nil)
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action) {
                                    // nothing special to do right now
@@ -143,7 +141,7 @@
 
         // show the error or update the button label on the main queue
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.actionButton setTitle: @"Stop" forState: UIControlStateNormal];
+            [self.actionButton setTitle: NSLocalizedString(@"Stop", nil) forState: UIControlStateNormal];
 
             if ( error != NUR_NO_ERROR ) {
                 NSLog( @"failed to start trace stream" );
@@ -201,7 +199,7 @@
 
         // show the error or update the button label on the main queue
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.actionButton setTitle: @"Start" forState: UIControlStateNormal];
+            [self.actionButton setTitle:NSLocalizedString(@"Start", nil) forState: UIControlStateNormal];
 
             if ( error != NUR_NO_ERROR ) {
                 NSLog( @"failed to stop trace stream" );

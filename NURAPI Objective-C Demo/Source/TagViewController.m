@@ -1,25 +1,19 @@
 
 #import "TagViewController.h"
 #import "LocateTagViewController.h"
-#import "UIButton+BackgroundColor.h"
 
 @implementation TagViewController
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.locateTagButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [super viewWillAppear:animated];
-}
 
 
 - (IBAction) locateTag {
     // is the tag too short to locate?
     if ( self.tag.epc.length == 0 ) {
         // too short tag
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:@"The tag EPC length is 0, can not locate!"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:NSLocalizedString(@"The tag EPC length is 0, can not locate!", nil)
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction
-                          actionWithTitle:@"Ok"
+                          actionWithTitle:NSLocalizedString(@"Ok", nil)
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction * action) {
                               // nothing special to do right now
@@ -56,50 +50,50 @@
 
     switch ( indexPath.row ) {
         case 0: {
-            cell.textLabel.text = @"Tag";
+            cell.textLabel.text = NSLocalizedString(@"Tag", nil);
             NSString * hex = self.tag.hex;
-            cell.detailTextLabel.text = hex.length == 0 ? @"<empty tag>" : hex;
+            cell.detailTextLabel.text = hex.length == 0 ? NSLocalizedString(@"<empty tag>", nil) : hex;
         }
             break;
             
         case 1:
-            cell.textLabel.text = @"Channel";
+            cell.textLabel.text = NSLocalizedString(@"Channel", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.channel];
             break;
 
         case 2:
-            cell.textLabel.text = @"RSSI";
+            cell.textLabel.text = NSLocalizedString(@"RSSI", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.rssi];
             break;
 
         case 3:
-            cell.textLabel.text = @"Scaled RSSI";
+            cell.textLabel.text = NSLocalizedString(@"Scaled RSSI", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.scaledRssi];
             break;
 
         case 4:
-            cell.textLabel.text = @"Timestamp";
+            cell.textLabel.text = NSLocalizedString(@"Timestamp", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.timestamp];
             break;
 
         case 5:
-            cell.textLabel.text = @"Frequency";
+            cell.textLabel.text = NSLocalizedString(@"Frequency", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.frequency];
             break;
 
         case 6:
-            cell.textLabel.text = @"Antenna Id";
+            cell.textLabel.text = NSLocalizedString(@"Antenna Id", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.antennaId];
             break;
 
         case 7:
-            cell.textLabel.text = @"Found count";
+            cell.textLabel.text = NSLocalizedString(@"Found count", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.tag.foundCount];
             break;
 
         case 8:
             NSLog( @"%d %d", self.tag.foundCount, self.rounds );
-            cell.textLabel.text = @"Found %";
+            cell.textLabel.text = NSLocalizedString(@"Found %", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f", ((double)self.tag.foundCount / (double)self.rounds) * 100];
             break;
     }

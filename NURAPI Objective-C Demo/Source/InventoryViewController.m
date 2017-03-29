@@ -2,10 +2,9 @@
 
 #import "InventoryViewController.h"
 #import "AudioPlayer.h"
-#import "Tagmanager.h"
+#import "TagManager.h"
 #import "TagViewController.h"
 #import "AverageBuffer.h"
-#import "UIButton+BackgroundColor.h"
 
 @interface InventoryViewController ()
 
@@ -38,13 +37,6 @@
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
     self.audioDispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0 );
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.inventoryButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.clearButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [super viewWillAppear:animated];
 }
 
 
@@ -88,11 +80,11 @@
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         // prompt the user to connect a reader
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:@"No RFID reader connected!"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:NSLocalizedString(@"No RFID reader connected!", nil)
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction
-                          actionWithTitle:@"Ok"
+                          actionWithTitle:NSLocalizedString(@"Ok", nil)
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction * action) {
                               // nothing special to do right now
@@ -136,7 +128,7 @@
             return;
         }
 
-        self.inventoryButton.titleLabel.text = @"Stop";
+        self.inventoryButton.titleLabel.text = NSLocalizedString(@"Stop", nil);
 
         // start a timer that updates the elapsed time
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
@@ -193,7 +185,7 @@
             return;
         }
 
-        self.inventoryButton.titleLabel.text = @"Start";
+        self.inventoryButton.titleLabel.text = NSLocalizedString(@"Start", nil);
         self.startTime = nil;
 
         if ( self.timer ) {
@@ -235,7 +227,7 @@
 
     // clear all labels
     self.tagsLabel.text = @"0";
-    self.elapsedTimeLabel.text = @"unique tags in 0 seconds";
+    self.elapsedTimeLabel.text = NSLocalizedString(@"unique tags in 0 seconds", nil);
     self.averageTagsPerSecondLabel.text = @"0";
     self.tagsPerSecondLabel.text = @"0";
     self.maxTagsPerSecondLabel.text = @"0";
@@ -252,7 +244,7 @@
     self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
     self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
 
-    self.elapsedTimeLabel.text = [NSString stringWithFormat:@"unique tags in %.1f seconds", self.elapsedSeconds];
+    self.elapsedTimeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"unique tags in %.1f seconds", nil), self.elapsedSeconds];
     self.tagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.tagsPerSecond];
     self.averageTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.averageTagsPerSecond];
     self.maxTagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.maxTagsPerSecond];
@@ -303,12 +295,12 @@
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
                                                                     message:message
                                                              preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:@"Ok"
+                               actionWithTitle:NSLocalizedString(@"Ok", nil)
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action) {
                                    // nothing special to do right now
@@ -354,7 +346,7 @@
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
 
     NSString * hex = tag.hex;
-    cell.textLabel.text = hex.length == 0 ? @"<empty tag>" : hex;
+    cell.textLabel.text = hex.length == 0 ? NSLocalizedString(@"<empty tag>", nil) : hex;
 
     return cell;
 }

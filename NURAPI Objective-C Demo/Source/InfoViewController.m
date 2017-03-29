@@ -71,11 +71,11 @@ enum {
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         [self.tableView reloadData];
         // prompt the user to connect a reader
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:@"No RFID reader connected!"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:NSLocalizedString(@"No RFID reader connected!", nil)
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction
-                          actionWithTitle:@"Ok"
+                          actionWithTitle:NSLocalizedString(@"Ok", nil)
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction * action) {
                               // nothing special to do right now
@@ -160,12 +160,12 @@ enum {
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
                                                                     message:message
                                                              preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction* okButton = [UIAlertAction
-                                actionWithTitle:@"Ok"
+                                actionWithTitle:NSLocalizedString(@"Ok", nil)
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction * action) {
                                     // nothing special to do right now
@@ -178,18 +178,18 @@ enum {
 
 
 - (void) createCellData {
-    self.cellData = @{ @(kSerialNumber): [CellData cellDataWithTitle:@"Serial number" value:@"?"],
-                       @(kAltSerialNumber):  [CellData cellDataWithTitle:@"Device number" value:@"?"],
-                       @(kName): [CellData cellDataWithTitle:@"Model" value:@"?"],
-                       @(kFccId): [CellData cellDataWithTitle:@"FCC id" value:@"?"],
-                       @(kHwVersion): [CellData cellDataWithTitle:@"Hardware version" value:@"?"],
-                       @(kFirmwareVersion): [CellData cellDataWithTitle:@"Firmware version" value:@"?"],
-                       @(kAccessoryFwVersion): [CellData cellDataWithTitle:@"Firmware version" value:@"?"],
+    self.cellData = @{ @(kSerialNumber): [CellData cellDataWithTitle:NSLocalizedString(@"Serial number", nil) value:@"?"],
+                       @(kAltSerialNumber):  [CellData cellDataWithTitle:NSLocalizedString(@"Device number", nil) value:@"?"],
+                       @(kName): [CellData cellDataWithTitle:NSLocalizedString(@"Model", nil) value:@"?"],
+                       @(kFccId): [CellData cellDataWithTitle:NSLocalizedString(@"FCC id", nil) value:@"?"],
+                       @(kHwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Hardware version", nil) value:@"?"],
+                       @(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Firmware version", nil) value:@"?"],
+                       @(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Firmware version", nil) value:@"?"],
 
-                       @(kBatteryPercentage): [CellData cellDataWithTitle:@"Percentage" value:@"?"],
-                       @(kBatteryCapacity): [CellData cellDataWithTitle:@"Capacity (mA)" value:@"?"],
+                       @(kBatteryPercentage): [CellData cellDataWithTitle:NSLocalizedString(@"Percentage", nil) value:@"?"],
+                       @(kBatteryCapacity): [CellData cellDataWithTitle:NSLocalizedString(@"Capacity (mA)", nil) value:@"?"],
 
-                       @(kAccessoryName): [CellData cellDataWithTitle:@"Name" value:@"?"],
+                       @(kAccessoryName): [CellData cellDataWithTitle:NSLocalizedString(@"Name", nil) value:@"?"],
                        };
 }
 
@@ -205,11 +205,11 @@ enum {
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch ( section ) {
         case 0:
-            return @"General information";
+            return NSLocalizedString(@"General information", nil);
         case 1:
-            return @"Battery status";
+            return NSLocalizedString(@"Battery status", nil);
         case 2:
-            return @"Accessory information";
+            return NSLocalizedString(@"Accessory information", nil);
     }
 
     return @"";

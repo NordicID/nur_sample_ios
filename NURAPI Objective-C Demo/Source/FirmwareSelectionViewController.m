@@ -24,8 +24,8 @@
     [super viewDidLoad];
 
     // a date formatter for nice dates in the cells
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
 
     self.modelName = @"INVALID";
 
@@ -48,7 +48,7 @@
             char buffer[256];
             NurApiGetErrorMessage( error, buffer, 256 );
             NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-            [self showErrorMessage:[NSString stringWithFormat:@"Failed to query device info: %@", message]];
+            [self showErrorMessage:[NSString stringWithFormat:NSLocalizedString(@"Failed to query device info: %@", nil), message]];
             return;
         }
 
@@ -70,8 +70,8 @@
     NSURL *url = [NSURL URLWithString:dataUrl];
 
     // show a progress view
-    self.inProgressAlert = [UIAlertController alertControllerWithTitle:@"Downloading data"
-                                                               message:@"Downloading available firmware updates, please wait."
+    self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Downloading data", nil)
+                                                               message:NSLocalizedString(@"Downloading available firmware updates, please wait.", nil)
                                                         preferredStyle:UIAlertControllerStyleAlert];
 
     // when the dialog is up, then start downloading
@@ -81,7 +81,7 @@
                                               dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                   if ( error != nil ) {
                                                       NSLog( @"failed to download firmware index file");
-                                                      [self showErrorMessage:@"Failed to download firmware update data!"];
+                                                      [self showErrorMessage:NSLocalizedString(@"Failed to download firmware update data!", nil)];
                                                       return;
                                                   }
 
@@ -89,11 +89,11 @@
                                                   if ( httpResponse == nil || httpResponse.statusCode != 200 ) {
                                                       if ( httpResponse ) {
                                                           NSLog( @"failed to download firmware index file, expected status 200, got: %ld", (long)httpResponse.statusCode );
-                                                          [self showErrorMessage:[NSString stringWithFormat:@"Failed to download firmware update data, status code: %ld", (long)httpResponse.statusCode]];
+                                                          [self showErrorMessage:[NSString stringWithFormat:NSLocalizedString(@"Failed to download firmware update data, status code: %ld", nil), (long)httpResponse.statusCode]];
                                                       }
                                                       else {
                                                           NSLog( @"failed to download firmware index file, no response" );
-                                                          [self showErrorMessage:@"Failed to download firmware update data, no response received!"];
+                                                          [self showErrorMessage:NSLocalizedString(@"Failed to download firmware update data, no response received!", nil)];
                                                       }
 
                                                       return;
@@ -114,7 +114,7 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if ( error ) {
         NSLog( @"error parsing JSON: %@", error.localizedDescription );
-        [self showErrorMessage:[NSString stringWithFormat:@"Failed to parse update data: %@", error.localizedDescription]];
+        [self showErrorMessage:[NSString stringWithFormat:NSLocalizedString(@"Failed to parse update data: %@", nil), error.localizedDescription]];
         return;
     }
 
@@ -173,12 +173,12 @@
         }
 
         // show in an alert view
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
                                                                         message:message
                                                                  preferredStyle:UIAlertControllerStyleAlert];
 
         UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:@"Ok"
+                                   actionWithTitle:NSLocalizedString(@"Ok", nil)
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action) {
                                        // nothing special to do right now

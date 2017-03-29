@@ -3,7 +3,6 @@
 
 #import "TuneViewController.h"
 #import "AudioPlayer.h"
-#import "UIButton+BackgroundColor.h"
 
 @interface TuneViewController ()
 
@@ -23,20 +22,13 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.tuneButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-}
-
-
 - (IBAction)tune:(UIButton *)sender {
     // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         // prompt the user to connect a reader
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:@"No RFID reader connected!"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:NSLocalizedString(@"No RFID reader connected!", nil)
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction
                           actionWithTitle:@"Ok"
@@ -49,8 +41,8 @@
     }
 
     // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Tuning"
-                                                                    message:@"Tuning all enabled antennas."
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Tuning", nil)
+                                                                    message:NSLocalizedString(@"Tuning all enabled antennas.", nil)
                                                              preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:alert animated:YES completion:nil];
 
@@ -83,10 +75,10 @@
                 // set up a message with the antenna name to show in the alert
                 NSString * antennaName;
                 if ( antennaError == NUR_NO_ERROR ) {
-                    antennaName = [NSString stringWithFormat:@"Tuning antenna %@...",[NSString stringWithCString:antennaMap[ index ].name encoding:NSASCIIStringEncoding]];
+                    antennaName = [NSString stringWithFormat:NSLocalizedString(@"Tuning antenna %@...", nil), [NSString stringWithCString:antennaMap[ index ].name encoding:NSASCIIStringEncoding]];
                 }
                 else {
-                    antennaName = [NSString stringWithFormat:@"Tuning antenna %d...", index];
+                    antennaName = [NSString stringWithFormat:NSLocalizedString(@"Tuning antenna %d...", nil), index];
                 }
 
                 // update the title
@@ -129,12 +121,12 @@
     NSLog( @"NURAPI error: %@", message );
 
     // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
                                                                     message:message
                                                              preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:@"Ok"
+                               actionWithTitle:NSLocalizedString(@"Ok", nil)
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action) {
                                    // nothing special to do right now

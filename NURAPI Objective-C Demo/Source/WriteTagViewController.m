@@ -4,7 +4,6 @@
 #import "WriteTagViewController.h"
 #import "WriteTagPopoverViewController.h"
 #import "TagManager.h"
-#import "UIButton+BackgroundColor.h"
 
 @interface WriteTagViewController ()
 
@@ -20,12 +19,6 @@
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.refreshButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [super viewWillAppear:animated];
 }
 
 
@@ -55,8 +48,8 @@
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         // prompt the user to connect a reader
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:@"No RFID reader connected!"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:NSLocalizedString(@"No RFID reader connected!", nil)
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction
                           actionWithTitle:@"Ok"
@@ -69,8 +62,8 @@
     }
 
     // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
-    UIAlertController * inProgressAlert = [UIAlertController alertControllerWithTitle:@"Refreshing"
-                                                                    message:@"Refreshing list of tags..."
+    UIAlertController * inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Refreshing", nil)
+                                                                    message:NSLocalizedString(@"Refreshing list of tags...", nil)
                                                              preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:inProgressAlert animated:YES completion:nil];
 
@@ -93,7 +86,9 @@
             // failed to do inventory, show error on UI thread
             dispatch_async( dispatch_get_main_queue(), ^{
                 [inProgressAlert dismissViewControllerAnimated:YES completion:nil];
-                [self showMessagePopup:message withTitle:@"Error" buttonTitle:@"Ok"];
+                [self showMessagePopup:message
+                             withTitle:NSLocalizedString(@"Error", nil)
+                           buttonTitle:NSLocalizedString(@"Ok", nil)];
             });
 
             return;
@@ -132,15 +127,15 @@
     // written ok?
     if ( error == NUR_NO_ERROR ) {
         // all ok
-        title = @"Status";
-        message = @"Tag written ok";
+        title = NSLocalizedString(@"Status", nil);
+        message = NSLocalizedString(@"Tag written ok", nil);
 
         // we have a changed tag, make sure it's shown
         [self.tableView reloadData];
     }
     else {
         // failed to write
-        title = @"Failed to write tag";
+        title = NSLocalizedString(@"Failed to write tag", nil);
 
         // extract the NURAPI error
         char buffer[256];
@@ -150,7 +145,7 @@
         NSLog( @"NURAPI error: %@", message );
     }
 
-    [self showMessagePopup:message withTitle:title buttonTitle:@"Ok"];
+    [self showMessagePopup:message withTitle:title buttonTitle:NSLocalizedString(@"Ok", nil)];
 }
 
 
@@ -162,7 +157,7 @@
 
     if ( buttonTitle ) {
         UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:@"Ok"
+                                   actionWithTitle:NSLocalizedString(@"Ok", nil)
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action) {
                                        // nothing special to do right now
@@ -196,7 +191,7 @@
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
 
     NSString * hex = tag.hex;
-    cell.textLabel.text = hex.length == 0 ? @"<empty tag>" : hex;
+    cell.textLabel.text = hex.length == 0 ? NSLocalizedString(@"<empty tag>", nil) : hex;
 
     return cell;
 }

@@ -95,13 +95,13 @@
     // find the masks for given named antennas
     for ( unsigned int index = 0; index < self.antennaNames.count; ++index ) {
         NSString * name = self.antennaNames[ index ];
-        if ( [name hasPrefix:@"CrossDipole"] ) {
+        if ( [name hasPrefix:NSLocalizedString(@"CrossDipole", nil)] ) {
             self.mCrossDipoleAntMask |= 1 << antennaMap[ index ].antennaId;
         }
-        else if ( [name hasPrefix:@"Circular"] ) {
+        else if ( [name hasPrefix:NSLocalizedString(@"Circular", nil)] ) {
             self.mCircularAntMask |= 1 << antennaMap[ index ].antennaId;
         }
-        else if ( [name hasPrefix:@"Proximity"] ) {
+        else if ( [name hasPrefix:NSLocalizedString(@"Proximity", nil)] ) {
             self.mProximityAntMask |= 1 << antennaMap[ index ].antennaId;
         }
     }

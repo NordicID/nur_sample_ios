@@ -2,7 +2,6 @@
 #import "LocateViewController.h"
 #import "LocateTagViewController.h"
 #import "TagManager.h"
-#import "UIButton+BackgroundColor.h"
 
 
 @interface LocateViewController ()
@@ -22,12 +21,6 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self.refreshButton setBackgroundColor:[UIColor colorWithRed:246/255.0 green:139/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [super viewWillAppear:animated];
-}
-
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     LocateTagViewController * destination = [segue destinationViewController];
     NSIndexPath *indexPath = [sender isKindOfClass:[NSIndexPath class]] ? (NSIndexPath*)sender : [self.tableView indexPathForSelectedRow];
@@ -40,11 +33,11 @@
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         // prompt the user to connect a reader
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:@"No RFID reader connected!"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:NSLocalizedString(@"No RFID reader connected!", nil)
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction
-                          actionWithTitle:@"Ok"
+                          actionWithTitle:NSLocalizedString(@"Ok", nil)
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction * action) {
                               // nothing special to do right now
@@ -54,8 +47,8 @@
     }
 
     // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
-    UIAlertController * inProgressAlert = [UIAlertController alertControllerWithTitle:@"Refreshing"
-                                                                              message:@"Refreshing list of tags..."
+    UIAlertController * inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Refreshing", nil)
+                                                                              message:NSLocalizedString(@"Refreshing list of tags...", nil)
                                                                        preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:inProgressAlert animated:YES completion:nil];
 
@@ -78,7 +71,9 @@
             // failed to do inventory, show error on UI thread
             dispatch_async( dispatch_get_main_queue(), ^{
                 [inProgressAlert dismissViewControllerAnimated:YES completion:nil];
-                [self showMessagePopup:message withTitle:@"Error" buttonTitle:@"Ok"];
+                [self showMessagePopup:message
+                             withTitle:NSLocalizedString(@"Error", nil)
+                           buttonTitle:NSLocalizedString(@"Ok", nil)];
             });
 
             return;
@@ -114,7 +109,7 @@
 
     if ( buttonTitle ) {
         UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:@"Ok"
+                                   actionWithTitle:NSLocalizedString(@"Ok", nil)
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action) {
                                        // nothing special to do right now
@@ -148,7 +143,7 @@
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
 
     NSString * hex = tag.hex;
-    cell.textLabel.text = hex.length == 0 ? @"<empty tag>" : hex;
+    cell.textLabel.text = hex.length == 0 ? NSLocalizedString(@"<empty tag>", nil) : hex;
 
     return cell;
 }
@@ -165,8 +160,8 @@
     // is the tag too short to locate?
     if ( tag.epc.length == 0 ) {
         // too short tag
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:@"The tag EPC length is 0, can not locate!"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                        message:NSLocalizedString(@"The tag EPC length is 0, can not locate!", nil)
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction
                           actionWithTitle:@"Ok"
