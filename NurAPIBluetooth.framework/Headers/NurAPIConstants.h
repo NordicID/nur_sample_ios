@@ -680,7 +680,9 @@ enum NUR_IRTYPE
 };
 
 
-/**< Use this flag with the XTID based inventory + read to include all of the TID data. */	
+/**
+ * Use this flag with the XTID based inventory + read to include all of the TID data. 
+ */	
 #define NUR_IR_XTID_EX_FLAG	0x80
 
 /** Operation flags. 

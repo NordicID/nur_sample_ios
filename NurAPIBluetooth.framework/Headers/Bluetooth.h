@@ -1,6 +1,7 @@
 
 #import "NURAPI.h"
 #import "NurAccessoryExtension.h"
+#import "NurAPIBootloader.h"
 
 #import <CoreBluetooth/CoreBluetooth.h>
 

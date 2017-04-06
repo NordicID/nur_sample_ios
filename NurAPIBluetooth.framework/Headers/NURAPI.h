@@ -1629,7 +1629,7 @@ int NURAPICONV NurApiConnectSerialPortEx(HANDLE hApi, const TCHAR *portName, int
 NUR_API
 int NURAPICONV NurApiConnectSocket(HANDLE hApi, const TCHAR *ip, int port);
 
-/**@fn int NurApiConnectAppleBLE(HANDLE hApi, void * wrapperReadDataFunction, void * wrapperWriteDataFunction)
+/** @fn int NurApiConnectAppleBLE(HANDLE hApi, void * readDataFunction, void * writeDataFunction, void * disconnectFunction)
  * Connect to NUR module using Apple Bluetooth LE transport.
  *
  * @sa NurApiConnectSerialPort(), NurApiConnectSocket(), NurApiConnectTransport(), NurApiConnect(), NurApiConnectTransportSpec(),
@@ -2399,7 +2399,7 @@ int NURAPICONV NurApiTIDInventory(HANDLE hApi, DWORD firstWord, DWORD nWords);
 NUR_API
 int NURAPICONV NurApiUserMemInventory(HANDLE hApi, DWORD firstWord, DWORD nWords);
 
-/** @fn BOOL NurApiConfigXTIDInventory(HANDLE hApi);
+/** @fn int NurApiConfigXTIDInventory(HANDLE hApi, BOOL dataOnly, BOOL includeHeader);
  * Configures the TID/XTID based inventory + read.
  *
  * @sa NurApiTIDInventory(), NurApiInventoryRead() 

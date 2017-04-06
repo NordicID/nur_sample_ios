@@ -27,9 +27,10 @@ typedef enum {
 @property (nonatomic, strong) NSDate *     buildTime;
 @property (nonatomic, strong) NSURL *      url;
 @property (nonatomic, strong) NSString *   md5;
-@property (nonatomic, strong) NSArray *    hw;
-@property (nonatomic, assign) FirmwareType firmwareType;
+@property (nonatomic, assign) FirmwareType type;
 
-- (instancetype) initWithName:(NSString *)name version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 hw:(NSArray *)hw;
+- (instancetype) initWithName:(NSString *)name version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 type:(FirmwareType)type;
+
+- (BOOL) isNewerThanMajor:(int)major minor:(int)minor build:(int)build;
 
 @end

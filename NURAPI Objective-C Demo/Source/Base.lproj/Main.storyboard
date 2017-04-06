@@ -604,7 +604,7 @@
                                             <rect key="frame" x="337.33333333333331" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -667,78 +667,121 @@
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which firmware should be updated?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nex-Lb-kHa">
-                                <rect key="frame" x="69" y="18" width="276" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aq1-zG-etG">
-                                <rect key="frame" x="107" y="99" width="200" height="50"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aq1-zG-etG">
+                                <rect key="frame" x="107" y="160" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6bm-cm-7G7"/>
                                     <constraint firstAttribute="width" constant="200" id="QYT-K8-3Cg"/>
                                 </constraints>
-                                <state key="normal" title="Reader firmware">
+                                <state key="normal" title="Update">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="153-Kv-mJ6" kind="show" identifier="ReaderFirmwareUpdateSegue" id="Uq3-Me-rKO"/>
+                                    <segue destination="lUe-aL-BgO" kind="show" identifier="ReaderFirmwareUpdateSegue" id="XsS-9U-ZsH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ca3-Lg-BrC">
-                                <rect key="frame" x="107" y="172" width="200" height="50"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ca3-Lg-BrC">
+                                <rect key="frame" x="107" y="399" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Rez-b5-LdK"/>
                                     <constraint firstAttribute="width" constant="200" id="dFh-ih-eU9"/>
                                 </constraints>
-                                <state key="normal" title="NUR RFID firmware">
+                                <state key="normal" title="Update">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="153-Kv-mJ6" kind="show" identifier="RFIDFirmwareUpdateSegue" id="2kO-3m-VMz"/>
+                                    <segue destination="lUe-aL-BgO" kind="show" identifier="NurRFIDFirmwareUpdateSegue" id="xgt-nV-eOA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help text line 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qh-9C-RQ2">
-                                <rect key="frame" x="151" y="273" width="112" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current reader firmware:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekl-Xb-bVF">
+                                <rect key="frame" x="113" y="20" width="188" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help text line 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2O-OG-Nhz">
-                                <rect key="frame" x="149.66666666666669" y="302" width="115.00000000000006" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available reader firmware:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtU-Gi-msD">
+                                <rect key="frame" x="109" y="90" width="197" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help text line 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sId-aY-dB7">
-                                <rect key="frame" x="149.66666666666669" y="331" width="115.00000000000006" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="619-aZ-HHC">
+                                <rect key="frame" x="141.33333333333331" y="51" width="131.33333333333331" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="UlF-Tx-zMJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No upate available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTf-97-xLu">
+                                <rect key="frame" x="141.33333333333331" y="121" width="131.33333333333331" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="Spn-yc-vJj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current NUR RFID module firmware:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLp-RQ-387">
+                                <rect key="frame" x="69" y="260" width="276" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available NUR RFID module firmware:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UZ-as-GNA">
+                                <rect key="frame" x="64.666666666666686" y="330" width="285" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhj-rm-SgW">
+                                <rect key="frame" x="174" y="291" width="67.333333333333343" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No upate available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-vb-3Ja">
+                                <rect key="frame" x="141.33333333333331" y="361" width="131.33333333333331" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Aq1-zG-etG" firstAttribute="top" secondItem="Nex-Lb-kHa" secondAttribute="bottom" constant="60" id="MTm-8a-I30"/>
-                            <constraint firstItem="Q2O-OG-Nhz" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="QuX-cE-q1h"/>
-                            <constraint firstItem="Nex-Lb-kHa" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="RIU-mm-lcQ"/>
-                            <constraint firstItem="Q2O-OG-Nhz" firstAttribute="top" secondItem="2qh-9C-RQ2" secondAttribute="bottom" constant="8" id="SPB-Lt-ZnX"/>
-                            <constraint firstItem="2qh-9C-RQ2" firstAttribute="top" secondItem="ca3-Lg-BrC" secondAttribute="bottom" constant="51" id="ZhC-QN-wh6"/>
-                            <constraint firstItem="ca3-Lg-BrC" firstAttribute="top" secondItem="Aq1-zG-etG" secondAttribute="bottom" constant="23" id="avn-AW-Fec"/>
+                            <constraint firstItem="Ekl-Xb-bVF" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="2FI-xV-1ML"/>
+                            <constraint firstItem="VLp-RQ-387" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="9hG-P2-xQX"/>
+                            <constraint firstItem="5Gb-vb-3Ja" firstAttribute="top" secondItem="3UZ-as-GNA" secondAttribute="bottom" constant="10" id="BeK-5S-Ux4"/>
+                            <constraint firstItem="ca3-Lg-BrC" firstAttribute="top" secondItem="5Gb-vb-3Ja" secondAttribute="bottom" constant="20" id="Glw-nK-M8W"/>
+                            <constraint firstItem="5Gb-vb-3Ja" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="HSq-GN-Rlf"/>
+                            <constraint firstItem="3UZ-as-GNA" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="J3b-8k-452"/>
+                            <constraint firstItem="pTf-97-xLu" firstAttribute="top" secondItem="MtU-Gi-msD" secondAttribute="bottom" constant="10" id="J7h-an-7PH"/>
+                            <constraint firstItem="Hhj-rm-SgW" firstAttribute="top" secondItem="VLp-RQ-387" secondAttribute="bottom" constant="10" id="O2j-Kl-7Sb"/>
+                            <constraint firstItem="Ekl-Xb-bVF" firstAttribute="top" secondItem="ew7-qy-V1X" secondAttribute="bottom" constant="20" id="XVQ-l0-Ms9"/>
+                            <constraint firstItem="pTf-97-xLu" firstAttribute="trailing" secondItem="619-aZ-HHC" secondAttribute="trailing" id="XZb-23-q79"/>
+                            <constraint firstItem="Aq1-zG-etG" firstAttribute="top" secondItem="pTf-97-xLu" secondAttribute="bottom" constant="20" id="YdU-CS-mE5"/>
+                            <constraint firstItem="Hhj-rm-SgW" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="bPb-Q3-KDp"/>
+                            <constraint firstItem="VLp-RQ-387" firstAttribute="top" secondItem="Aq1-zG-etG" secondAttribute="bottom" constant="50" id="bgg-vl-ojy"/>
+                            <constraint firstItem="MtU-Gi-msD" firstAttribute="top" secondItem="619-aZ-HHC" secondAttribute="bottom" constant="20" id="cxS-u0-58U"/>
+                            <constraint firstItem="MtU-Gi-msD" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="err-NB-FCD"/>
                             <constraint firstItem="Aq1-zG-etG" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="gdw-LB-Ory"/>
-                            <constraint firstItem="2qh-9C-RQ2" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="hya-tz-Y9j"/>
-                            <constraint firstItem="Nex-Lb-kHa" firstAttribute="top" secondItem="ew7-qy-V1X" secondAttribute="bottom" constant="18" id="ip9-Rm-KIv"/>
-                            <constraint firstItem="sId-aY-dB7" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="mtJ-jF-L2F"/>
-                            <constraint firstItem="sId-aY-dB7" firstAttribute="top" secondItem="Q2O-OG-Nhz" secondAttribute="bottom" constant="8" id="uWV-BI-fKm"/>
+                            <constraint firstItem="619-aZ-HHC" firstAttribute="top" secondItem="Ekl-Xb-bVF" secondAttribute="bottom" constant="10" id="j9p-h9-IIC"/>
+                            <constraint firstItem="pTf-97-xLu" firstAttribute="leading" secondItem="619-aZ-HHC" secondAttribute="leading" id="vSU-IE-vlN"/>
                             <constraint firstItem="ca3-Lg-BrC" firstAttribute="centerX" secondItem="cmI-LL-JW0" secondAttribute="centerX" id="w7V-jo-9rq"/>
+                            <constraint firstItem="619-aZ-HHC" firstAttribute="centerX" secondItem="Ekl-Xb-bVF" secondAttribute="centerX" id="xOX-fy-OqW"/>
+                            <constraint firstItem="3UZ-as-GNA" firstAttribute="top" secondItem="Hhj-rm-SgW" secondAttribute="bottom" constant="21" id="yJs-Hf-JS3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Firmware" image="Firmware" id="h1Q-Jq-ZEm"/>
                     <navigationItem key="navigationItem" title="Firmware Update" id="DsV-YC-7ec"/>
                     <connections>
+                        <outlet property="availableNurRfidFirmwareVersion" destination="5Gb-vb-3Ja" id="kbY-pX-cG3"/>
+                        <outlet property="availableReaderFirmwareVersion" destination="pTf-97-xLu" id="k5v-kR-fy6"/>
+                        <outlet property="currentNurRfidFirmwareVersion" destination="Hhj-rm-SgW" id="IvG-FF-wAb"/>
+                        <outlet property="currentReaderFirmwareVersion" destination="619-aZ-HHC" id="7bw-fS-OcL"/>
                         <outlet property="nurRfidFirmwareButton" destination="ca3-Lg-BrC" id="Oye-s3-ri9"/>
                         <outlet property="readerFirmwareButton" destination="Aq1-zG-etG" id="mMl-5z-wIU"/>
                     </connections>
@@ -752,7 +795,7 @@
             <objects>
                 <tableViewController id="153-Kv-mJ6" customClass="FirmwareSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" sectionHeaderHeight="18" sectionFooterHeight="18" id="ryQ-AY-P0e">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -810,7 +853,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ds-wj-n85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5283" y="618"/>
+            <point key="canvasLocation" x="5188" y="-128"/>
         </scene>
         <!--Firmware Update-->
         <scene sceneID="6MU-Z8-lJB">
@@ -825,7 +868,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6f3-JV-ZPP">
-                                <rect key="frame" x="107" y="201" width="200" height="50"/>
+                                <rect key="frame" x="107" y="181" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="CLB-ZF-dFc"/>
@@ -844,20 +887,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwx-L7-Q8L">
-                                <rect key="frame" x="187" y="73" width="40" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVA-eP-Fex">
-                                <rect key="frame" x="181.66666666666666" y="99" width="51" height="18"/>
+                                <rect key="frame" x="181.66666666666666" y="79" width="51" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1P-iF-Dhj">
-                                <rect key="frame" x="190" y="125" width="34" height="18"/>
+                                <rect key="frame" x="190" y="105" width="34" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -867,20 +904,18 @@
                         <constraints>
                             <constraint firstItem="6f3-JV-ZPP" firstAttribute="top" secondItem="O1P-iF-Dhj" secondAttribute="bottom" constant="58" id="2bV-DX-kVV"/>
                             <constraint firstItem="hco-ka-3kn" firstAttribute="top" secondItem="LuQ-0n-2Gh" secondAttribute="bottom" constant="18" id="HuH-F5-bjC"/>
-                            <constraint firstItem="Jwx-L7-Q8L" firstAttribute="top" secondItem="hco-ka-3kn" secondAttribute="bottom" constant="34" id="YMH-r6-RNn"/>
-                            <constraint firstItem="YVA-eP-Fex" firstAttribute="top" secondItem="Jwx-L7-Q8L" secondAttribute="bottom" constant="8" id="axX-yS-KcC"/>
+                            <constraint firstItem="YVA-eP-Fex" firstAttribute="top" secondItem="hco-ka-3kn" secondAttribute="bottom" constant="40" id="Ncw-9N-DcI"/>
                             <constraint firstItem="hco-ka-3kn" firstAttribute="centerX" secondItem="aXN-jd-9e8" secondAttribute="centerX" id="b8e-mK-D18"/>
                             <constraint firstItem="YVA-eP-Fex" firstAttribute="centerX" secondItem="aXN-jd-9e8" secondAttribute="centerX" id="j0u-Et-1K4"/>
                             <constraint firstItem="O1P-iF-Dhj" firstAttribute="centerX" secondItem="aXN-jd-9e8" secondAttribute="centerX" id="oe7-Z5-eB2"/>
                             <constraint firstItem="6f3-JV-ZPP" firstAttribute="centerX" secondItem="aXN-jd-9e8" secondAttribute="centerX" id="ulP-3w-77e"/>
                             <constraint firstItem="O1P-iF-Dhj" firstAttribute="top" secondItem="YVA-eP-Fex" secondAttribute="bottom" constant="8" id="xwf-jy-720"/>
-                            <constraint firstItem="Jwx-L7-Q8L" firstAttribute="centerX" secondItem="aXN-jd-9e8" secondAttribute="centerX" id="ydb-me-fxm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Firmware Update" id="Kau-ta-okL"/>
                     <connections>
                         <outlet property="buildTimeLabel" destination="O1P-iF-Dhj" id="ond-AJ-pr9"/>
-                        <outlet property="nameLabel" destination="Jwx-L7-Q8L" id="Oj6-cA-vQf"/>
+                        <outlet property="updateButton" destination="6f3-JV-ZPP" id="uGp-7C-0jN"/>
                         <outlet property="versionLabel" destination="YVA-eP-Fex" id="mXS-o4-LFQ"/>
                     </connections>
                 </viewController>
@@ -1005,13 +1040,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="info@nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4A-FY-jKq" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="135.33333333333331" y="261" width="143.99999999999994" height="21"/>
+                                <rect key="frame" x="135.66666666666669" y="261" width="144.00000000000006" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckh-3E-79I" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="136" y="302" width="143" height="21"/>
+                                <rect key="frame" x="136.33333333333331" y="302" width="142.99999999999994" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1023,7 +1058,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On GitHub: github.com/NordicID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-EW-k9b" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="83" y="343" width="249" height="21"/>
+                                <rect key="frame" x="83.333333333333314" y="343" width="249" height="21"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1087,7 +1122,7 @@
                                             <rect key="frame" x="355" y="11.999999999999998" width="44" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1130,7 +1165,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github.com/NordicID/nur_sample_ios" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rd-Xy-3YF" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="66.333333333333314" y="131" width="282" height="21"/>
+                                <rect key="frame" x="66.666666666666686" y="131" width="282" height="21"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -1622,8 +1657,8 @@
         <image name="Tune" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="xgt-nV-eOA"/>
         <segue reference="xeh-9q-R9R"/>
-        <segue reference="2kO-3m-VMz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>

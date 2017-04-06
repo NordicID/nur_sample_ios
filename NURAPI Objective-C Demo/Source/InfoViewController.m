@@ -183,8 +183,8 @@ enum {
                        @(kName): [CellData cellDataWithTitle:NSLocalizedString(@"Model", nil) value:@"?"],
                        @(kFccId): [CellData cellDataWithTitle:NSLocalizedString(@"FCC id", nil) value:@"?"],
                        @(kHwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Hardware version", nil) value:@"?"],
-                       @(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Firmware version", nil) value:@"?"],
-                       @(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Firmware version", nil) value:@"?"],
+                       @(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR RFID firmware", nil) value:@"?"],
+                       @(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Reader firmware", nil) value:@"?"],
 
                        @(kBatteryPercentage): [CellData cellDataWithTitle:NSLocalizedString(@"Percentage", nil) value:@"?"],
                        @(kBatteryCapacity): [CellData cellDataWithTitle:NSLocalizedString(@"Capacity (mA)", nil) value:@"?"],

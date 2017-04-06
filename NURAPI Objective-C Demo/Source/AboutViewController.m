@@ -37,13 +37,13 @@
         if ( NurApiGetFileVersion( buffer, 256 ) ) {
             NSString * versionString = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.nurApiVersionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NurAPI version: %@", nil), versionString];
+                self.nurApiVersionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NUR API version: %@", nil), versionString];
             } );
         }
         else {
             // failed to get version...
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.nurApiVersionLabel.text = NSLocalizedString(@"NurAPI version: unknown", nil);
+                self.nurApiVersionLabel.text = NSLocalizedString(@"NUR API version: unknown", nil);
             } );
         }
     } );
