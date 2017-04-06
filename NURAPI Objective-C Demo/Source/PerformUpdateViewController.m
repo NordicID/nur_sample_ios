@@ -147,12 +147,12 @@
             BYTE * buffer = (BYTE *)self.firmwareData.bytes;
             unsigned int bufferLength = (unsigned int)self.firmwareData.length;
             NSLog( @"starting update, %d bytes", bufferLength );
-            int error = NurApiProgramApp( [Bluetooth sharedInstance].nurapiHandle, buffer, bufferLength );
-            if ( error != NUR_NO_ERROR ) {
-                // failed to start update
-                NSLog( @"failed to start update, error: %d", error );
-                [self showNurApiErrorMessage:error];
-            }
+//            int error = NurApiProgramApp( [Bluetooth sharedInstance].nurapiHandle, buffer, bufferLength );
+//            if ( error != NUR_NO_ERROR ) {
+//                // failed to start update
+//                NSLog( @"failed to start update, error: %d", error );
+//                [self showNurApiErrorMessage:error];
+//            }
         });
     }];
 }
