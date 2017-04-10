@@ -59,7 +59,7 @@
         return YES;
     }
 
-    return NO;
+    return YES;
 }
 
 @end

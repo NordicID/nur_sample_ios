@@ -225,6 +225,7 @@
 
         // is this a firmware for our model? check all the models
         for ( NSString * model in hw ) {
+            NSLog( @"cheking model: %@", model );
             if ( [self.readerModelName isEqualToString:model] ) {
                 NSLog( @"found reader firmware" );
                 Firmware * firmware = [[Firmware alloc] initWithName:name version:version buildTime:buildTime url:url md5:md5 type:kReaderFirmware];

@@ -143,16 +143,73 @@
     // when the dialog is up, then start updating
     [self presentViewController:self.inProgressAlert animated:YES completion:^{
         dispatch_async(self.dispatchQueue, ^{
+            int error;
+            char mode = '?';
+
+            // set a longer timeout
+            int timeout = 60;
+            if ( ( error = NurApiSetCommTimeout( [Bluetooth sharedInstance].nurapiHandle, timeout )) != NUR_SUCCESS ) {
+                NSLog( @"failed to set NurApi timeout: %d", error );
+                [self showNurApiErrorMessage:error];
+                return;
+            }
+
+            // first get the current mode, we may not need to switch modes if the current is already 'B'
+            if ( (error = NurApiGetMode([Bluetooth sharedInstance].nurapiHandle, &mode )) != NUR_NO_ERROR ) {
+                // failed to get mode
+                [self showNurApiErrorMessage:error];
+                return;
+            }
+
+
+            // enter the firmware update mode if we're still in application mode ('A')
+            if ( mode != 'B' ) {
+                NSLog( @"mode '%c', entering bootloader mode", mode );
+                if ( (error = NurApiEnterBoot([Bluetooth sharedInstance].nurapiHandle)) != NUR_NO_ERROR ) {
+                    // failed to enter bootloader mode
+                    [self showNurApiErrorMessage:error];
+                    return;
+                }
+            }
+
+            NSLog( @"waiting for the reader to enter bootloader mode (if it isn't already)");
+
+            // now wait until the device is in bootloader mode and ready to be updated
+            int loops = 0;
+            while ( mode != 'B' ) {
+                if ( (error = NurApiGetMode([Bluetooth sharedInstance].nurapiHandle, &mode )) != NUR_NO_ERROR ) {
+                    // failed to get mode
+                    [self showNurApiErrorMessage:error];
+                    return;
+                }
+
+                NSLog( @"mode: %c (%d)", mode, mode );
+
+                // wait a bit for the device to boot into bootloader mode
+                [NSThread sleepForTimeInterval:1.0f];
+                loops++;
+
+                // don't wait too long
+                if ( loops == 60 ) {
+                    [self showErrorMessage:@"Reader failed to enter update mode"];
+                    return;
+                }
+            }
+
             // somewhat ugly casts...
             BYTE * buffer = (BYTE *)self.firmwareData.bytes;
             unsigned int bufferLength = (unsigned int)self.firmwareData.length;
-            NSLog( @"starting update, %d bytes", bufferLength );
-//            int error = NurApiProgramApp( [Bluetooth sharedInstance].nurapiHandle, buffer, bufferLength );
-//            if ( error != NUR_NO_ERROR ) {
-//                // failed to start update
-//                NSLog( @"failed to start update, error: %d", error );
-//                [self showNurApiErrorMessage:error];
-//            }
+            NSLog( @"now in bootloader mode, starting update, %d bytes", bufferLength );
+
+            error = NurApiProgramApp( [Bluetooth sharedInstance].nurapiHandle, buffer, bufferLength );
+            if ( error != NUR_NO_ERROR ) {
+                // failed to start update
+                NSLog( @"failed to start update, error: %d", error );
+                [self showNurApiErrorMessage:error];
+            }
+            else {
+                NSLog( @"update started ok" );
+            }
         });
     }];
 }
@@ -160,27 +217,27 @@
 
 - (void) showErrorMessage:(NSString *)message {
     dispatch_async(dispatch_get_main_queue(), ^{
-        // dismiss any old alert first
+        // dismiss any old alert first and wait for it to be completely dismissed before showing the error
         if ( self.inProgressAlert ) {
-            [self.inProgressAlert dismissViewControllerAnimated:YES completion:nil];
-            self.inProgressAlert = nil;
+            [self.inProgressAlert dismissViewControllerAnimated:YES completion:^{
+                self.inProgressAlert = nil;
+                // show in an alert view
+                UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                                message:message
+                                                                         preferredStyle:UIAlertControllerStyleAlert];
+
+                UIAlertAction* okButton = [UIAlertAction
+                                           actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * action) {
+                                               // nothing special to do right now
+                                           }];
+
+                
+                [alert addAction:okButton];
+                [self presentViewController:alert animated:YES completion:nil];
+            }];
         }
-
-        // show in an alert view
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                        message:message
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-
-        UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {
-                                       // nothing special to do right now
-                                   }];
-
-
-        [alert addAction:okButton];
-        [self presentViewController:alert animated:YES completion:nil];
     } );
 }
 
@@ -216,6 +273,14 @@
 - (void) showFlashingFailed:(int)error {
     NSLog( @"flashing failed" );
     [self showNurApiErrorMessage:error];
+
+    int error2;
+
+    // enter the firmware update mode
+    if ( (error2 = NurApiEnterBoot([Bluetooth sharedInstance].nurapiHandle)) != NUR_NO_ERROR ) {
+        // failed to enter application mode
+        return;
+    }
 }
 
 
@@ -235,7 +300,7 @@
     // update the alert
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( self.inProgressAlert ) {
-            self.inProgressAlert.message = [NSString stringWithFormat:NSLocalizedString(@"Update progress %d%", nil), progressPercent];
+            self.inProgressAlert.message = [NSString stringWithFormat:NSLocalizedString(@"Update progress %d%%", nil), progressPercent];
         }
     });
 }
@@ -243,6 +308,45 @@
 
 - (void) showFlashingCompleted {
     NSLog( @"flashing completed" );
+
+    // enter application mode again
+    int error;
+    if ( (error = NurApiEnterBoot([Bluetooth sharedInstance].nurapiHandle)) != NUR_NO_ERROR ) {
+        // failed to enter bootloader mode
+        [self showNurApiErrorMessage:error];
+        return;
+    }
+
+    // update the alert
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ( self.inProgressAlert ) {
+            self.inProgressAlert.message = NSLocalizedString(@"Rebooting device", nil);
+        }
+    });
+
+    char mode = '?';
+
+    // now wait until the device is in application mode again
+    int loops = 0;
+    while ( mode != 'A' ) {
+        if ( (error = NurApiGetMode([Bluetooth sharedInstance].nurapiHandle, &mode )) != NUR_NO_ERROR ) {
+            // failed to get mode
+            [self showNurApiErrorMessage:error];
+            return;
+        }
+
+        NSLog( @"mode: %c (%d)", mode, mode );
+
+        // wait a bit for the device to boot into bootloader mode
+        [NSThread sleepForTimeInterval:1.0f];
+        loops++;
+
+        // don't wait too long
+        if ( loops == 60 ) {
+            [self showErrorMessage:@"Reader failed to enter application mode"];
+            return;
+        }
+    }
 
     dispatch_async(dispatch_get_main_queue(), ^{
         // dismiss any old alert first
@@ -267,7 +371,6 @@
         [alert addAction:okButton];
         [self presentViewController:alert animated:YES completion:nil];
     } );
-
 }
 
 

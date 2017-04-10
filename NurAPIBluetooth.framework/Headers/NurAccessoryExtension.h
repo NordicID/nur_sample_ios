@@ -8,7 +8,7 @@
 #ifndef _NURACCESSORYEXTENSION_H_
 #define _NURACCESSORYEXTENSION_H_ 1
 
-#include "NurAPI.h"
+#include "NURAPI.h"
 
 #ifdef __cplusplus
 extern "C" {
