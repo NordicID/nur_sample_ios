@@ -1,4 +1,3 @@
-
 /* Class = "UILabel"; text = "Select the tag to write"; ObjectID = "0iv-4x-B7v"; */
 "0iv-4x-B7v.text" = "Select the tag to write";
 
@@ -16,9 +15,6 @@
 
 /* Class = "UINavigationItem"; title = "Tag Info"; ObjectID = "5VJ-oc-ytO"; */
 "5VJ-oc-ytO.title" = "Tag Info";
-
-/* Class = "UILabel"; text = "Unknown"; ObjectID = "619-aZ-HHC"; */
-"619-aZ-HHC.text" = "Unknown";
 
 /* Class = "UIButton"; normalTitle = "Update"; ObjectID = "6f3-JV-ZPP"; */
 "6f3-JV-ZPP.normalTitle" = "Update";
@@ -53,11 +49,14 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "9tP-eN-VcB"; */
 "9tP-eN-VcB.text" = "Label";
 
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "619-aZ-HHC"; */
+"619-aZ-HHC.text" = "Unknown";
+
 /* Class = "UIButton"; normalTitle = "Update"; ObjectID = "Aq1-zG-etG"; */
 "Aq1-zG-etG.normalTitle" = "Update";
 
 /* Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "BcA-X8-9yh"; */
-"BcA-X8-9yh.title" = "Connect";
+"BcA-X8-9yh.title" = "Anslut";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "BwV-Hf-Ysa"; */
 "BwV-Hf-Ysa.text" = "Label";
@@ -108,7 +107,7 @@
 "Idl-0K-YXL.text" = "Nordic ID";
 
 /* Class = "UILabel"; text = "Connected:"; ObjectID = "Ira-0N-Pn6"; */
-"Ira-0N-Pn6.text" = "Connected:";
+"Ira-0N-Pn6.text" = "Ansluten:";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "IwG-vT-qxB"; */
 "IwG-vT-qxB.text" = "0";
@@ -155,11 +154,11 @@
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "PkS-1S-UiJ"; */
 "PkS-1S-UiJ.title" = "Back";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "S16-2L-3zG"; */
-"S16-2L-3zG.text" = "Detail";
-
 /* Class = "UINavigationItem"; title = "Edit Setting"; ObjectID = "S5J-j5-YNG"; */
 "S5J-j5-YNG.title" = "Edit Setting";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "S16-2L-3zG"; */
+"S16-2L-3zG.text" = "Detail";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "SE9-Yu-992"; */
 "SE9-Yu-992.text" = "Title";
@@ -301,3 +300,4 @@
 
 /* Class = "UIViewController"; title = "Tune Antennas"; ObjectID = "zaF-OU-N1U"; */
 "zaF-OU-N1U.title" = "Tune Antennas";
+

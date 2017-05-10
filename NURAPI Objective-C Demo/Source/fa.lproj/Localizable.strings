@@ -1,15 +1,363 @@
-/* main menu */
-"Barcode" = "Streckkod";
+/* No comment provided by engineer. */
+"%d antenna%@" = "%1$d آنتن%2$@";
+
+/* No comment provided by engineer. */
+"<Tag %@>" = "<تگ %@>";
+
+/* No comment provided by engineer. */
+"<empty tag>" = "<تگ خام>";
+
+/* No comment provided by engineer. */
+"A or B" = "A یا B";
+
+/* No comment provided by engineer. */
+"About" = "راجع به";
+
+/* No comment provided by engineer. */
+"Accessory information" = "اطلاعات لوازم جانبی";
+
+/* No comment provided by engineer. */
+"Antenna Id" = "شناسه Id";
+
+/* No comment provided by engineer. */
+"Antennas" = "آنتن";
+
+/* No comment provided by engineer. */
+"App version: %@.%@" = "نگارش برنامه: %1$@.%2$@";
+
+/* No comment provided by engineer. */
+"Application Settings" = "تنظیمات برنامه";
+
+/* No comment provided by engineer. */
+"Application sounds" = "هشدارهای صوتی برنامه";
+
+/* No comment provided by engineer. */
+"Automatic" = "خودکار";
+
+/* No comment provided by engineer. */
+"Automatically reconnect" = "اتصال مجدد خودکار";
+
+/* No comment provided by engineer. */
+"Autotune" = "تنظیم خودکار";
 
 /* main menu */
-"Info" = "Information";
+"Barcode" = "بارکد";
+
+/* No comment provided by engineer. */
+"Battery status" = "وضعیت باطری";
+
+/* No comment provided by engineer. */
+"Build time: %@" = "زمان ایجاد: %@";
+
+/* No comment provided by engineer. */
+"Cancel" = "انصراف";
+
+/* No comment provided by engineer. */
+"Capacity (mA)" = "ظرفیت (mA)";
+
+/* No comment provided by engineer. */
+"Channel" = "کانال";
+
+/* No comment provided by engineer. */
+"Checksum mismatch on downloaded firmware!" = "بروز خطا در firmware دانلود شده!";
+
+/* No comment provided by engineer. */
+"Circular" = "دایره وار";
+
+/* No comment provided by engineer. */
+"Confirm" = "تایید";
+
+/* No comment provided by engineer. */
+"Connecting" = "درحال اتصال";
+
+/* No comment provided by engineer. */
+"Connecting to reader %@" = "در حال اتصال به تگ خوان%@";
+
+/* No comment provided by engineer. */
+"Contact" = "متصل شد";
+
+/* No comment provided by engineer. */
+"CrossDipole" = "تقاطع دوسویه";
+
+/* No comment provided by engineer. */
+"Device number" = "شماره دستگاه";
+
+/* No comment provided by engineer. */
+"Downloading available firmware updates, please wait." = "درحال دانلود firmware جدید، لطفاً صبر کنید.";
+
+/* No comment provided by engineer. */
+"Downloading data" = "درحال دانلود اطلاعات";
+
+/* No comment provided by engineer. */
+"Downloading firmware" = "درحال دانلود firmware";
+
+/* No comment provided by engineer. */
+"Downloading firmware data, please wait." = "در حال دانلود firmware، لطفاً صبر کنید.";
+
+/* No comment provided by engineer. */
+"ERROR" = "ERROR";
+
+/* No comment provided by engineer. */
+"Enabled Antennas" = "آنتن ها فعال شد";
+
+/* No comment provided by engineer. */
+"Error" = "خطا";
+
+/* No comment provided by engineer. */
+"Error getting NUR RFID firmware version" = "XXXXX";
+
+/* No comment provided by engineer. */
+"Error getting reader firmware version" = "XXXXX";
+
+/* No comment provided by engineer. */
+"FCC id" = "FCC شناسه";
+
+/* No comment provided by engineer. */
+"Failed to connect to reader" = "خطا در ارتباط با تگ خوان.";
+
+/* No comment provided by engineer. */
+"Failed to download firmware update data!" = "خطا در دانلود firmware!";
+
+/* No comment provided by engineer. */
+"Failed to download firmware update data, no response received!" = "خطا در دانلود firmware جدید، پاسخی از فرستنده دریافت نشد!";
+
+/* No comment provided by engineer. */
+"Failed to download firmware update data, status code: %ld" = "خطا در دانلود firmware جدید، کد وضعیت: %ld";
+
+/* No comment provided by engineer. */
+"Failed to parse update data: %@" = "خطا در به روز رسانی اطلاعات دریافتی: %@";
+
+/* No comment provided by engineer. */
+"Failed to write tag" = "خطا در نوشتن تگ";
+
+/* No comment provided by engineer. */
+"Found %" = "یافت شد %";
+
+/* No comment provided by engineer. */
+"Found count" = "تعداد یافته ها";
+
+/* No comment provided by engineer. */
+"Frequency" = "فرکانس";
+
+/* No comment provided by engineer. */
+"General information" = "اطلاعات عمومی";
+
+/* No comment provided by engineer. */
+"Hardware version" = "نگارش سخت افزار";
+
+/* No comment provided by engineer. */
+"High" = "بیشتر";
 
 /* main menu */
-"Locate" = "Hitta";
+"Info" = "اطلاعات";
 
 /* main menu */
-"Quick Guide" = "Snabbguide";
+"Inventory" = "لیست برداری";
+
+/* No comment provided by engineer. */
+"Inventory Rounds" = "میانگین لیست برداری";
+
+/* No comment provided by engineer. */
+"Inventory Target" = "لیست برداری اصلی";
+
+/* No comment provided by engineer. */
+"Link Frequency" = "فرکانس ارتباط";
 
 /* main menu */
-"Settings" = "Inställningar";
+"Locate" = "مکان یابی";
+
+/* No comment provided by engineer. */
+"Low" = "کمتر";
+
+/* No comment provided by engineer. */
+"Model" = "مدل";
+
+/* No comment provided by engineer. */
+"NUR API version: %@" = "XXXXX";
+
+/* No comment provided by engineer. */
+"NUR API version: unknown" = "XXXXX";
+
+/* No comment provided by engineer. */
+"NUR RFID firmware" = "XXXXX";
+
+/* No comment provided by engineer. */
+"Name" = "نام";
+
+/* No comment provided by engineer. */
+"No RFID reader connected!" = "دستگاه RFID وصل نیست!";
+
+/* No comment provided by engineer. */
+"No barcode found" = "بارکدی یافت نشد";
+
+/* No comment provided by engineer. */
+"Nominal" = "اسمی";
+
+/* No comment provided by engineer. */
+"Ok" = "Ok";
+
+/* No comment provided by engineer. */
+"On GitHub: github.com/NordicID" = "On GitHub: github.com/NordicID";
+
+/* No comment provided by engineer. */
+"Percentage" = "درصد";
+
+/* No comment provided by engineer. */
+"Please connect an RFID reader" = "لطفاً دستگاه RFID را متصل کنید";
+
+/* No comment provided by engineer. */
+"Press trigger to read barcode" = "کلید خواندن بارکد را فشار دهید";
+
+/* No comment provided by engineer. */
+"Proceed" = "ادامه";
+
+/* No comment provided by engineer. */
+"Proceed with updating the firmware?" = "فرایند به روز رسانی firmware ادامه یابد؟";
+
+/* No comment provided by engineer. */
+"Proximity" = "نزدیکی";
+
+/* No comment provided by engineer. */
+"Q" = "Q";
+
+/* main menu */
+"Quick Guide" = "راهنمای سریع";
+
+/* No comment provided by engineer. */
+"RSSI" = "RSSI";
+
+/* No comment provided by engineer. */
+"RSSI: %@" = "RSSI: %@";
+
+/* No comment provided by engineer. */
+"RX Decoding" = "RX رمز گشای";
+
+/* No comment provided by engineer. */
+"RX Modulation" = "RX کد گذاری";
+
+/* No comment provided by engineer. */
+"RX Sensitivity" = "RX حساسیت";
+
+/* No comment provided by engineer. */
+"RX decoding (Miller)" = "RX رمز گشایی (میلر)";
+
+/* No comment provided by engineer. */
+"Reader firmware" = "Reader firmware";
+
+/* No comment provided by engineer. */
+"Reading all settings from the device..." = "خواندن تمامی تنظیمات دستگاه...";
+
+/* No comment provided by engineer. */
+"Reading barcode..." = "خواندن بارکدها...";
+
+/* No comment provided by engineer. */
+"Reading settings" = "تنظیمات خواندن";
+
+/* No comment provided by engineer. */
+"Rebooting device" = "Rebooting device";
+
+/* No comment provided by engineer. */
+"Refreshing" = "بازخوانی مجدد";
+
+/* No comment provided by engineer. */
+"Refreshing list of tags..." = "بازخوانی مجدد لیست تگها...";
+
+/* No comment provided by engineer. */
+"Region" = "محدوده";
+
+/* No comment provided by engineer. */
+"Rounds" = "تقریبی";
+
+/* No comment provided by engineer. */
+"Saving" = "ذخیره";
+
+/* No comment provided by engineer. */
+"Saving setting to non volatile memory." = "ذخیره تنظیمات در حافظه ماندگار.";
+
+/* No comment provided by engineer. */
+"Scaled RSSI" = "درجه بندی RSSI";
+
+/* No comment provided by engineer. */
+"Serial number" = "شماره سریال";
+
+/* No comment provided by engineer. */
+"Session" = "دوره";
+
+/* main menu */
+"Settings" = "تنظیمات";
+
+/* No comment provided by engineer. */
+"Sounds enabled" = "صداها فعال شد";
+
+/* No comment provided by engineer. */
+"Start" = "شروع";
+
+/* No comment provided by engineer. */
+"Status" = "وضعیت";
+
+/* No comment provided by engineer. */
+"Stop" = "خاتمه";
+
+/* No comment provided by engineer. */
+"TX Level" = "TX سطح";
+
+/* No comment provided by engineer. */
+"TX modulation" = "TX کد گذاری";
+
+/* No comment provided by engineer. */
+"Tag" = "تگ";
+
+/* No comment provided by engineer. */
+"Tag written ok" = "تگ با موفقیت نوشته شد";
+
+/* No comment provided by engineer. */
+"Target" = "هدف";
+
+/* No comment provided by engineer. */
+"The tag EPC length is 0, can not locate!" = "طول EPC تگ صفر است، مکان یابی امکانپذیر نمی باشد!";
+
+/* No comment provided by engineer. */
+"Timestamp" = "نشانگر زمان";
+
+/* No comment provided by engineer. */
+"Tuning" = "تنظیم";
+
+/* No comment provided by engineer. */
+"Tuning all enabled antennas." = "تنظیم آنتنهای فعال.";
+
+/* No comment provided by engineer. */
+"Tuning antenna %@..." = "درحال تنظیم آنتنها %@...";
+
+/* No comment provided by engineer. */
+"Tuning antenna %d..." = "درحال تنظیم آنتنها %d...";
+
+/* No comment provided by engineer. */
+"Update completed" = "Update completed";
+
+/* No comment provided by engineer. */
+"Update progress %d%%" = "Update progress %d%%";
+
+/* No comment provided by engineer. */
+"Update progress 0%" = "Update progress 0%";
+
+/* No comment provided by engineer. */
+"Updating firmware" = "Updating firmware";
+
+/* No comment provided by engineer. */
+"Version: %@" = "نگارش: %@";
+
+/* main menu */
+"Write Tag" = "نوشتن تگ";
+
+/* No comment provided by engineer. */
+"info@nordicid.com" = "nfo@nordicid.com";
+
+/* No comment provided by engineer. */
+"unique tags in %.1f seconds" = "تگهای غیر تکراری در %.1f ثانیه";
+
+/* No comment provided by engineer. */
+"unique tags in 0 seconds" = "تگهای غیر تکراری در 0 ثانیه";
+
+/* No comment provided by engineer. */
+"www.nordicid.com" = "ww.nordicid.com";
 
