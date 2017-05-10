@@ -1,0 +1,303 @@
+
+/* Class = "UILabel"; text = "Select the tag to write"; ObjectID = "0iv-4x-B7v"; */
+"0iv-4x-B7v.text" = "Select the tag to write";
+
+/* Class = "UILabel"; text = "unique tags in 0 seconds"; ObjectID = "1Lp-9g-sSH"; */
+"1Lp-9g-sSH.text" = "unique tags in 0 seconds";
+
+/* Class = "UILabel"; text = "github.com/NordicID/nur_sample_ios"; ObjectID = "2Rd-Xy-3YF"; */
+"2Rd-Xy-3YF.text" = "github.com/NordicID/nur_sample_ios";
+
+/* Class = "UILabel"; text = "Available reader firmware:"; ObjectID = "3UZ-as-GNA"; */
+"3UZ-as-GNA.text" = "Available reader firmware:";
+
+/* Class = "UILabel"; text = "No upate available"; ObjectID = "5Gb-vb-3Ja"; */
+"5Gb-vb-3Ja.text" = "No upate available";
+
+/* Class = "UINavigationItem"; title = "Tag Info"; ObjectID = "5VJ-oc-ytO"; */
+"5VJ-oc-ytO.title" = "Tag Info";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "619-aZ-HHC"; */
+"619-aZ-HHC.text" = "Unknown";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "6f3-JV-ZPP"; */
+"6f3-JV-ZPP.normalTitle" = "Update";
+
+/* Class = "UILabel"; text = "Old EPC:"; ObjectID = "6pa-DD-akv"; */
+"6pa-DD-akv.text" = "Old EPC:";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "7K5-Y6-rPp"; */
+"7K5-Y6-rPp.normalTitle" = "Start";
+
+/* Class = "UITabBarItem"; title = "Device"; ObjectID = "7Pn-M4-Hvk"; */
+"7Pn-M4-Hvk.title" = "Device";
+
+/* Class = "UINavigationItem"; title = "Nordic ID RFID"; ObjectID = "7kd-db-aRs"; */
+"7kd-db-aRs.title" = "Nordic ID RFID";
+
+/* Class = "UILabel"; text = "International headquarter"; ObjectID = "8aX-RF-zni"; */
+"8aX-RF-zni.text" = "International headquarter";
+
+/* Class = "UITabBarItem"; title = "Tune"; ObjectID = "9B6-W0-m65"; */
+"9B6-W0-m65.title" = "Tune";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "9Sj-al-nno"; */
+"9Sj-al-nno.title" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Locate Tag"; ObjectID = "9So-T1-gUb"; */
+"9So-T1-gUb.normalTitle" = "Locate Tag";
+
+/* Class = "UINavigationItem"; title = "Inventory"; ObjectID = "9To-6h-8hL"; */
+"9To-6h-8hL.title" = "Inventory";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9tP-eN-VcB"; */
+"9tP-eN-VcB.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "Aq1-zG-etG"; */
+"Aq1-zG-etG.normalTitle" = "Update";
+
+/* Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "BcA-X8-9yh"; */
+"BcA-X8-9yh.title" = "Connect";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BwV-Hf-Ysa"; */
+"BwV-Hf-Ysa.text" = "Label";
+
+/* Class = "UILabel"; text = "Released under MIT License"; ObjectID = "CCt-Fy-r66"; */
+"CCt-Fy-r66.text" = "Released under MIT License";
+
+/* Class = "UILabel"; text = "1:2:3:4:5:6"; ObjectID = "CZG-qI-oPQ"; */
+"CZG-qI-oPQ.text" = "1:2:3:4:5:6";
+
+/* Class = "UILabel"; text = "112233445566778899101112"; ObjectID = "DV2-XO-Irm"; */
+"DV2-XO-Irm.text" = "112233445566778899101112";
+
+/* Class = "UILabel"; text = "On GitHub: github.com/NordicID"; ObjectID = "Df5-EW-k9b"; */
+"Df5-EW-k9b.text" = "On GitHub: github.com/NordicID";
+
+/* Class = "UINavigationItem"; title = "Firmware Update"; ObjectID = "DsV-YC-7ec"; */
+"DsV-YC-7ec.title" = "Firmware Update";
+
+/* Class = "UILabel"; text = "Current NUR RFID firmware:"; ObjectID = "Ekl-Xb-bVF"; */
+"Ekl-Xb-bVF.text" = "Current NUR RFID firmware:";
+
+/* Class = "UILabel"; text = "Select tag to locate"; ObjectID = "EnR-kt-YyY"; */
+"EnR-kt-YyY.text" = "Select tag to locate";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "F8a-P7-YJc"; */
+"F8a-P7-YJc.title" = "Back";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "FRg-zA-rVW"; */
+"FRg-zA-rVW.text" = "Title";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "GlL-BV-UVC"; */
+"GlL-BV-UVC.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "Scan Barcode"; ObjectID = "H0Y-tq-NTN"; */
+"H0Y-tq-NTN.title" = "Scan Barcode";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "Hhj-rm-SgW"; */
+"Hhj-rm-SgW.text" = "Unknown";
+
+/* Class = "UINavigationItem"; title = "Write Tag"; ObjectID = "Ht2-DJ-Vnf"; */
+"Ht2-DJ-Vnf.title" = "Write Tag";
+
+/* Class = "UIButton"; normalTitle = "Refresh"; ObjectID = "I2M-Xv-D0u"; */
+"I2M-Xv-D0u.normalTitle" = "Refresh";
+
+/* Class = "UILabel"; text = "Nordic ID"; ObjectID = "Idl-0K-YXL"; */
+"Idl-0K-YXL.text" = "Nordic ID";
+
+/* Class = "UILabel"; text = "Connected:"; ObjectID = "Ira-0N-Pn6"; */
+"Ira-0N-Pn6.text" = "Connected:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "IwG-vT-qxB"; */
+"IwG-vT-qxB.text" = "0";
+
+/* Class = "UINavigationItem"; title = "Quick Guide"; ObjectID = "KOn-0G-SxM"; */
+"KOn-0G-SxM.title" = "Quick Guide";
+
+/* Class = "UINavigationItem"; title = "Firmware Update"; ObjectID = "Kau-ta-okL"; */
+"Kau-ta-okL.title" = "Firmware Update";
+
+/* Class = "UILabel"; text = "Available NUR RFID firmware:"; ObjectID = "MtU-Gi-msD"; */
+"MtU-Gi-msD.text" = "Available NUR RFID firmware:";
+
+/* Class = "UINavigationItem"; title = "Locating Tag"; ObjectID = "N6h-7U-o07"; */
+"N6h-7U-o07.title" = "Locating Tag";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "NGO-5a-f4M"; */
+"NGO-5a-f4M.title" = "Settings";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "NXB-SG-kZ6"; */
+"NXB-SG-kZ6.text" = "Title";
+
+/* Class = "UILabel"; text = "Tags/s"; ObjectID = "NsO-tU-3sq"; */
+"NsO-tU-3sq.text" = "Tags/s";
+
+/* Class = "UILabel"; text = "Build"; ObjectID = "O1P-iF-Dhj"; */
+"O1P-iF-Dhj.text" = "Build";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "OZ8-nR-YbM"; */
+"OZ8-nR-YbM.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ohu-Qg-T7C"; */
+"Ohu-Qg-T7C.text" = "Label";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "PD9-dR-xQr"; */
+"PD9-dR-xQr.text" = "Detail";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "PEx-fR-uwk"; */
+"PEx-fR-uwk.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "PQv-ib-glU"; */
+"PQv-ib-glU.text" = "Title";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "PkS-1S-UiJ"; */
+"PkS-1S-UiJ.title" = "Back";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "S16-2L-3zG"; */
+"S16-2L-3zG.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "Edit Setting"; ObjectID = "S5J-j5-YNG"; */
+"S5J-j5-YNG.title" = "Edit Setting";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "SE9-Yu-992"; */
+"SE9-Yu-992.text" = "Title";
+
+/* Class = "UILabel"; text = "Max tags/s"; ObjectID = "SEj-oD-v41"; */
+"SEj-oD-v41.text" = "Max tags/s";
+
+/* Class = "UILabel"; text = "App version: X"; ObjectID = "Ud2-iV-pOn"; */
+"Ud2-iV-pOn.text" = "App version: X";
+
+/* Class = "UILabel"; text = "Current reader firmware:"; ObjectID = "VLp-RQ-387"; */
+"VLp-RQ-387.text" = "Current reader firmware:";
+
+/* Class = "UIButton"; normalTitle = "Write"; ObjectID = "WQK-Lx-Vwd"; */
+"WQK-Lx-Vwd.normalTitle" = "Write";
+
+/* Class = "UITabBarItem"; title = "Device"; ObjectID = "XgK-cn-XUQ"; */
+"XgK-cn-XUQ.title" = "Device";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Xha-RN-OWn"; */
+"Xha-RN-OWn.text" = "Title";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "YKM-wO-7Ia"; */
+"YKM-wO-7Ia.text" = "0";
+
+/* Class = "UILabel"; text = "Version"; ObjectID = "YVA-eP-Fex"; */
+"YVA-eP-Fex.text" = "Version";
+
+/* Class = "UILabel"; text = "Tap Tune to tune all enabled antennas."; ObjectID = "YfN-lU-NUE"; */
+"YfN-lU-NUE.text" = "Tap Tune to tune all enabled antennas.";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Z1s-hB-b1B"; */
+"Z1s-hB-b1B.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "ZJ8-uA-Vel"; */
+"ZJ8-uA-Vel.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Nordic ID RFID"; ObjectID = "ZTB-in-8gD"; */
+"ZTB-in-8gD.text" = "Nordic ID RFID";
+
+/* Class = "UINavigationItem"; title = "Firmware Selection"; ObjectID = "a9C-Uu-xwP"; */
+"a9C-Uu-xwP.title" = "Firmware Selection";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "aYI-hE-Amz"; */
+"aYI-hE-Amz.text" = "Title";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "bOd-9O-ft7"; */
+"bOd-9O-ft7.title" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "ca3-Lg-BrC"; */
+"ca3-Lg-BrC.normalTitle" = "Update";
+
+/* Class = "UILabel"; text = "www.nordicid.com"; ObjectID = "ckh-3E-79I"; */
+"ckh-3E-79I.text" = "www.nordicid.com";
+
+/* Class = "UILabel"; text = "<barcode>"; ObjectID = "dEr-OO-gPY"; */
+"dEr-OO-gPY.text" = "<barcode>";
+
+/* Class = "UIButton"; normalTitle = "Tune"; ObjectID = "doC-kY-riE"; */
+"doC-kY-riE.normalTitle" = "Tune";
+
+/* Class = "UILabel"; text = "Press trigger to read barcode"; ObjectID = "dys-yD-tMO"; */
+"dys-yD-tMO.text" = "Press trigger to read barcode";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ecp-Ib-qGn"; */
+"ecp-Ib-qGn.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Nordic ID RFID"; ObjectID = "f6f-8b-Y6V"; */
+"f6f-8b-Y6V.title" = "Nordic ID RFID";
+
+/* Class = "UITextField"; text = "112233445566778899101112"; ObjectID = "faY-7O-Vmc"; */
+"faY-7O-Vmc.text" = "112233445566778899101112";
+
+/* Class = "UILabel"; text = "Select  a device"; ObjectID = "fbV-1X-Zer"; */
+"fbV-1X-Zer.text" = "Select  a device";
+
+/* Class = "UILabel"; text = "Telephone: +358 2 727 7700"; ObjectID = "ffA-GT-qTO"; */
+"ffA-GT-qTO.text" = "Telephone: +358 2 727 7700";
+
+/* Class = "UILabel"; text = "Fax: +358 2 727 7720"; ObjectID = "fi8-9L-dhx"; */
+"fi8-9L-dhx.text" = "Fax: +358 2 727 7720";
+
+/* Class = "UILabel"; text = "Myllyojankatu 2 A, 24100 Salo, Finland"; ObjectID = "gcQ-gC-B9N"; */
+"gcQ-gC-B9N.text" = "Myllyojankatu 2 A, 24100 Salo, Finland";
+
+/* Class = "UITabBarItem"; title = "Firmware"; ObjectID = "h1Q-Jq-ZEm"; */
+"h1Q-Jq-ZEm.title" = "Firmware";
+
+/* Class = "UILabel"; text = "XYZ"; ObjectID = "hTN-JQ-s9w"; */
+"hTN-JQ-s9w.text" = "XYZ";
+
+/* Class = "UILabel"; text = "Firmware information"; ObjectID = "hco-ka-3kn"; */
+"hco-ka-3kn.text" = "Firmware information";
+
+/* Class = "UILabel"; text = "?"; ObjectID = "kZr-na-7by"; */
+"kZr-na-7by.text" = "?";
+
+/* Class = "UITabBarItem"; title = "Application"; ObjectID = "loP-9f-kob"; */
+"loP-9f-kob.title" = "Application";
+
+/* Class = "UITabBarItem"; title = "About"; ObjectID = "ma9-N6-BqK"; */
+"ma9-N6-BqK.title" = "About";
+
+/* Class = "UILabel"; text = "Average tags/s"; ObjectID = "nEs-TW-jSZ"; */
+"nEs-TW-jSZ.text" = "Average tags/s";
+
+/* Class = "UILabel"; text = "NurAPI version: X"; ObjectID = "nUF-j2-IVb"; */
+"nUF-j2-IVb.text" = "NurAPI version: X";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "ngj-9t-bum"; */
+"ngj-9t-bum.text" = "Title";
+
+/* Class = "UILabel"; text = "No upate available"; ObjectID = "pTf-97-xLu"; */
+"pTf-97-xLu.text" = "No upate available";
+
+/* Class = "UIButton"; normalTitle = "Clear"; ObjectID = "rCo-Ld-GCi"; */
+"rCo-Ld-GCi.normalTitle" = "Clear";
+
+/* Class = "UINavigationItem"; title = "Locate Tag"; ObjectID = "rHm-3b-BJD"; */
+"rHm-3b-BJD.title" = "Locate Tag";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rny-a4-UPb"; */
+"rny-a4-UPb.text" = "0";
+
+/* Class = "UITabBarItem"; title = "Contact"; ObjectID = "tWP-LW-rCq"; */
+"tWP-LW-rCq.title" = "Contact";
+
+/* Class = "UILabel"; text = "Enter the new EPC"; ObjectID = "uVm-hL-AJt"; */
+"uVm-hL-AJt.text" = "Enter the new EPC";
+
+/* Class = "UIButton"; normalTitle = "Refresh"; ObjectID = "vOG-xu-uph"; */
+"vOG-xu-uph.normalTitle" = "Refresh";
+
+/* Class = "UIButton"; normalTitle = "Disconnect"; ObjectID = "wfZ-V3-IKe"; */
+"wfZ-V3-IKe.normalTitle" = "Disconnect";
+
+/* Class = "UILabel"; text = "info@nordicid.com"; ObjectID = "y4A-FY-jKq"; */
+"y4A-FY-jKq.text" = "info@nordicid.com";
+
+/* Class = "UIViewController"; title = "Tune Antennas"; ObjectID = "zaF-OU-N1U"; */
+"zaF-OU-N1U.title" = "Tune Antennas";

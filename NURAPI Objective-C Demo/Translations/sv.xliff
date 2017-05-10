@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="Source/Info.plist" source-language="en" target-language="sv" datatype="plaintext" target-language="sv">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.2" build-num="8E2002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source>Nordic ID RFID</source>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.2</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Source/Localizable.strings" source-language="en" target-language="sv" datatype="plaintext" target-language="sv">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.2" build-num="8E2002"/>
+    </header>
+    <body>
+      <trans-unit id="%d antenna%@">
+        <source>%1$d antenna%2$@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="&lt;Tag %@&gt;">
+        <source>&lt;Tag %@&gt;</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="&lt;empty tag&gt;">
+        <source>&lt;empty tag&gt;</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="A or B">
+        <source>A or B</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About">
+        <source>About</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Accessory information">
+        <source>Accessory information</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Antenna Id">
+        <source>Antenna Id</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Antennas">
+        <source>Antennas</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="App version: %@.%@">
+        <source>App version: %1$@.%2$@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application Settings">
+        <source>Application Settings</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application sounds">
+        <source>Application sounds</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Automatic">
+        <source>Automatic</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Automatically reconnect">
+        <source>Automatically reconnect</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Autotune">
+        <source>Autotune</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Barcode">
+        <source>Barcode</source>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Battery status">
+        <source>Battery status</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Build time: %@">
+        <source>Build time: %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Capacity (mA)">
+        <source>Capacity (mA)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Channel">
+        <source>Channel</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Checksum mismatch on downloaded firmware!">
+        <source>Checksum mismatch on downloaded firmware!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Circular">
+        <source>Circular</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Confirm">
+        <source>Confirm</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Connecting">
+        <source>Connecting</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Connecting to reader %@">
+        <source>Connecting to reader %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Contact">
+        <source>Contact</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="CrossDipole">
+        <source>CrossDipole</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Device number">
+        <source>Device number</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading available firmware updates, please wait.">
+        <source>Downloading available firmware updates, please wait.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading data">
+        <source>Downloading data</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading firmware">
+        <source>Downloading firmware</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading firmware data, please wait.">
+        <source>Downloading firmware data, please wait.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ERROR">
+        <source>ERROR</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enabled Antennas">
+        <source>Enabled Antennas</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Error">
+        <source>Error</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Error getting NUR RFID firmware version">
+        <source>Error getting NUR RFID firmware version</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Error getting reader firmware version">
+        <source>Error getting reader firmware version</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="FCC id">
+        <source>FCC id</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to connect to reader">
+        <source>Failed to connect to reader</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to download firmware update data!">
+        <source>Failed to download firmware update data!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to download firmware update data, no response received!">
+        <source>Failed to download firmware update data, no response received!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to download firmware update data, status code: %ld">
+        <source>Failed to download firmware update data, status code: %ld</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to parse update data: %@">
+        <source>Failed to parse update data: %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to write tag">
+        <source>Failed to write tag</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Found %">
+        <source>Found %</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Found count">
+        <source>Found count</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Frequency">
+        <source>Frequency</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="General information">
+        <source>General information</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hardware version">
+        <source>Hardware version</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="High">
+        <source>High</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Info">
+        <source>Info</source>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Inventory">
+        <source>Inventory</source>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Inventory Rounds">
+        <source>Inventory Rounds</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Inventory Target">
+        <source>Inventory Target</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Link Frequency">
+        <source>Link Frequency</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Locate">
+        <source>Locate</source>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Low">
+        <source>Low</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Model">
+        <source>Model</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NUR API version: %@">
+        <source>NUR API version: %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NUR API version: unknown">
+        <source>NUR API version: unknown</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NUR RFID firmware">
+        <source>NUR RFID firmware</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name">
+        <source>Name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No RFID reader connected!">
+        <source>No RFID reader connected!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No barcode found">
+        <source>No barcode found</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Nominal">
+        <source>Nominal</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ok">
+        <source>Ok</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="On GitHub: github.com/NordicID">
+        <source>On GitHub: github.com/NordicID</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Percentage">
+        <source>Percentage</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please connect an RFID reader">
+        <source>Please connect an RFID reader</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Press trigger to read barcode">
+        <source>Press trigger to read barcode</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Proceed">
+        <source>Proceed</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Proceed with updating the firmware?">
+        <source>Proceed with updating the firmware?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Proximity">
+        <source>Proximity</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Q">
+        <source>Q</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Quick Guide">
+        <source>Quick Guide</source>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="RSSI">
+        <source>RSSI</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RSSI: %@">
+        <source>RSSI: %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RX Decoding">
+        <source>RX Decoding</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RX Modulation">
+        <source>RX Modulation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RX Sensitivity">
+        <source>RX Sensitivity</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RX decoding (Miller)">
+        <source>RX decoding (Miller)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reader firmware">
+        <source>Reader firmware</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reading all settings from the device...">
+        <source>Reading all settings from the device...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reading barcode...">
+        <source>Reading barcode...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reading settings">
+        <source>Reading settings</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rebooting device">
+        <source>Rebooting device</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Refreshing">
+        <source>Refreshing</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Refreshing list of tags...">
+        <source>Refreshing list of tags...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Region">
+        <source>Region</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rounds">
+        <source>Rounds</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Saving">
+        <source>Saving</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Saving setting to non volatile memory.">
+        <source>Saving setting to non volatile memory.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Scaled RSSI">
+        <source>Scaled RSSI</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Serial number">
+        <source>Serial number</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Session">
+        <source>Session</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Settings">
+        <source>Settings</source>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Sounds enabled">
+        <source>Sounds enabled</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Start">
+        <source>Start</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Status">
+        <source>Status</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Stop">
+        <source>Stop</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="TX Level">
+        <source>TX Level</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="TX modulation">
+        <source>TX modulation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tag">
+        <source>Tag</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tag written ok">
+        <source>Tag written ok</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Target">
+        <source>Target</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The tag EPC length is 0, can not locate!">
+        <source>The tag EPC length is 0, can not locate!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Timestamp">
+        <source>Timestamp</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tuning">
+        <source>Tuning</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tuning all enabled antennas.">
+        <source>Tuning all enabled antennas.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tuning antenna %@...">
+        <source>Tuning antenna %@...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tuning antenna %d...">
+        <source>Tuning antenna %d...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Update completed">
+        <source>Update completed</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Update progress %d%%">
+        <source>Update progress %d%%</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Update progress 0%">
+        <source>Update progress 0%</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Updating firmware">
+        <source>Updating firmware</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version: %@">
+        <source>Version: %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Write Tag">
+        <source>Write Tag</source>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="info@nordicid.com">
+        <source>info@nordicid.com</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="unique tags in %.1f seconds">
+        <source>unique tags in %.1f seconds</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="unique tags in 0 seconds">
+        <source>unique tags in 0 seconds</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="www.nordicid.com">
+        <source>www.nordicid.com</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

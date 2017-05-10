@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="Source/Base.lproj/LaunchScreen.storyboard" source-language="en" datatype="plaintext" target-language="fa">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.2" build-num="8E2002"/>
+    </header>
+    <body/>
+  </file>
+  <file original="Source/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="fa">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.2" build-num="8E2002"/>
+    </header>
+    <body>
+      <trans-unit id="0iv-4x-B7v.text">
+        <source>Select the tag to write</source>
+        <target>تگی را جهت نوشتن انتخاب کنید</target>
+        <note>Class = "UILabel"; text = "Select the tag to write"; ObjectID = "0iv-4x-B7v";</note>
+      </trans-unit>
+      <trans-unit id="1Lp-9g-sSH.text">
+        <source>unique tags in 0 seconds</source>
+        <target>تگهای غیر تکراری در 0 ثانیه</target>
+        <note>Class = "UILabel"; text = "unique tags in 0 seconds"; ObjectID = "1Lp-9g-sSH";</note>
+      </trans-unit>
+      <trans-unit id="2Rd-Xy-3YF.text">
+        <source>github.com/NordicID/nur_sample_ios</source>
+        <target>github.com/NordicID/nur_sample_ios</target>
+        <note>Class = "UILabel"; text = "github.com/NordicID/nur_sample_ios"; ObjectID = "2Rd-Xy-3YF";</note>
+      </trans-unit>
+      <trans-unit id="2qh-9C-RQ2.text">
+        <source>Help text line 1</source>
+        <target>متن راهنما سطر 1</target>
+      </trans-unit>
+      <trans-unit id="3UZ-as-GNA.text">
+        <source>Available reader firmware:</source>
+        <target>Available reader firmware:</target>
+        <note>Class = "UILabel"; text = "Available reader firmware:"; ObjectID = "3UZ-as-GNA";</note>
+      </trans-unit>
+      <trans-unit id="5Gb-vb-3Ja.text">
+        <source>No upate available</source>
+        <target>No upate available</target>
+        <note>Class = "UILabel"; text = "No upate available"; ObjectID = "5Gb-vb-3Ja";</note>
+      </trans-unit>
+      <trans-unit id="5VJ-oc-ytO.title">
+        <source>Tag Info</source>
+        <target>اطلاعات تگ</target>
+        <note>Class = "UINavigationItem"; title = "Tag Info"; ObjectID = "5VJ-oc-ytO";</note>
+      </trans-unit>
+      <trans-unit id="6f3-JV-ZPP.normalTitle">
+        <source>Update</source>
+        <target>به روز رسانی</target>
+        <note>Class = "UIButton"; normalTitle = "Update"; ObjectID = "6f3-JV-ZPP";</note>
+      </trans-unit>
+      <trans-unit id="6pa-DD-akv.text">
+        <source>Old EPC:</source>
+        <target>قدیمی EPC:</target>
+        <note>Class = "UILabel"; text = "Old EPC:"; ObjectID = "6pa-DD-akv";</note>
+      </trans-unit>
+      <trans-unit id="7K5-Y6-rPp.normalTitle">
+        <source>Start</source>
+        <target>شروع</target>
+        <note>Class = "UIButton"; normalTitle = "Start"; ObjectID = "7K5-Y6-rPp";</note>
+      </trans-unit>
+      <trans-unit id="7Pn-M4-Hvk.title">
+        <source>Device</source>
+        <target>دستگاه</target>
+        <note>Class = "UITabBarItem"; title = "Device"; ObjectID = "7Pn-M4-Hvk";</note>
+      </trans-unit>
+      <trans-unit id="7kd-db-aRs.title">
+        <source>Nordic ID RFID</source>
+        <target>Nordic ID RFID</target>
+        <note>Class = "UINavigationItem"; title = "Nordic ID RFID"; ObjectID = "7kd-db-aRs";</note>
+      </trans-unit>
+      <trans-unit id="8aX-RF-zni.text">
+        <source>International headquarter</source>
+        <target>دفتر مرکزی بین المللی</target>
+        <note>Class = "UILabel"; text = "International headquarter"; ObjectID = "8aX-RF-zni";</note>
+      </trans-unit>
+      <trans-unit id="9B6-W0-m65.title">
+        <source>Tune</source>
+        <target>تنظیم</target>
+        <note>Class = "UITabBarItem"; title = "Tune"; ObjectID = "9B6-W0-m65";</note>
+      </trans-unit>
+      <trans-unit id="9Sj-al-nno.title">
+        <source>Back</source>
+        <target>برگشت</target>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "9Sj-al-nno";</note>
+      </trans-unit>
+      <trans-unit id="9So-T1-gUb.normalTitle">
+        <source>Locate Tag</source>
+        <target>مکان یابی تگ</target>
+        <note>Class = "UIButton"; normalTitle = "Locate Tag"; ObjectID = "9So-T1-gUb";</note>
+      </trans-unit>
+      <trans-unit id="9To-6h-8hL.title">
+        <source>Inventory</source>
+        <target>لیست برداری</target>
+        <note>Class = "UINavigationItem"; title = "Inventory"; ObjectID = "9To-6h-8hL";</note>
+      </trans-unit>
+      <trans-unit id="9tP-eN-VcB.text">
+        <source>Label</source>
+        <target>برچسب</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "9tP-eN-VcB";</note>
+      </trans-unit>
+      <trans-unit id="619-aZ-HHC.text">
+        <source>Unknown</source>
+        <target>Unknown</target>
+        <note>Class = "UILabel"; text = "Unknown"; ObjectID = "619-aZ-HHC";</note>
+      </trans-unit>
+      <trans-unit id="Aq1-zG-etG.normalTitle">
+        <source>Reader firmware</source>
+        <target>Firmware تگ خوان</target>
+        <note>Class = "UIButton"; normalTitle = "Update"; ObjectID = "Aq1-zG-etG";</note>
+      </trans-unit>
+      <trans-unit id="BcA-X8-9yh.title">
+        <source>Connect</source>
+        <target>ارتباط</target>
+        <note>Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "BcA-X8-9yh";</note>
+      </trans-unit>
+      <trans-unit id="BwV-Hf-Ysa.text">
+        <source>Label</source>
+        <target>برچسب</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "BwV-Hf-Ysa";</note>
+      </trans-unit>
+      <trans-unit id="CCt-Fy-r66.text">
+        <source>Released under MIT License</source>
+        <target>دارای مجوز از MIT</target>
+        <note>Class = "UILabel"; text = "Released under MIT License"; ObjectID = "CCt-Fy-r66";</note>
+      </trans-unit>
+      <trans-unit id="CZG-qI-oPQ.text">
+        <source>1:2:3:4:5:6</source>
+        <target>1:2:3:4:5:6</target>
+        <note>Class = "UILabel"; text = "1:2:3:4:5:6"; ObjectID = "CZG-qI-oPQ";</note>
+      </trans-unit>
+      <trans-unit id="DV2-XO-Irm.text">
+        <source>112233445566778899101112</source>
+        <target>112233445566778899101112</target>
+        <note>Class = "UILabel"; text = "112233445566778899101112"; ObjectID = "DV2-XO-Irm";</note>
+      </trans-unit>
+      <trans-unit id="Df5-EW-k9b.text">
+        <source>On GitHub: github.com/NordicID</source>
+        <target>On GitHub: github.com/NordicID</target>
+        <note>Class = "UILabel"; text = "On GitHub: github.com/NordicID"; ObjectID = "Df5-EW-k9b";</note>
+      </trans-unit>
+      <trans-unit id="DsV-YC-7ec.title">
+        <source>Firmware Update</source>
+        <target>به روز رسانی Firmware</target>
+        <note>Class = "UINavigationItem"; title = "Firmware Update"; ObjectID = "DsV-YC-7ec";</note>
+      </trans-unit>
+      <trans-unit id="Ekl-Xb-bVF.text">
+        <source>Current NUR RFID firmware:</source>
+        <target>Current NUR RFID firmware:</target>
+        <note>Class = "UILabel"; text = "Current NUR RFID firmware:"; ObjectID = "Ekl-Xb-bVF";</note>
+      </trans-unit>
+      <trans-unit id="EnR-kt-YyY.text">
+        <source>Select tag to locate</source>
+        <target>تگی را جهت مکان یابی انتخاب کنید</target>
+        <note>Class = "UILabel"; text = "Select tag to locate"; ObjectID = "EnR-kt-YyY";</note>
+      </trans-unit>
+      <trans-unit id="F8a-P7-YJc.title">
+        <source>Back</source>
+        <target>برگشت</target>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "F8a-P7-YJc";</note>
+      </trans-unit>
+      <trans-unit id="FRg-zA-rVW.text">
+        <source>Title</source>
+        <target>عنوان</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "FRg-zA-rVW";</note>
+      </trans-unit>
+      <trans-unit id="GlL-BV-UVC.text">
+        <source>Detail</source>
+        <target>جزئیات</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "GlL-BV-UVC";</note>
+      </trans-unit>
+      <trans-unit id="H0Y-tq-NTN.title">
+        <source>Scan Barcode</source>
+        <target>خواندن بارکد</target>
+        <note>Class = "UINavigationItem"; title = "Scan Barcode"; ObjectID = "H0Y-tq-NTN";</note>
+      </trans-unit>
+      <trans-unit id="Hhj-rm-SgW.text">
+        <source>Unknown</source>
+        <target>Unknown</target>
+        <note>Class = "UILabel"; text = "Unknown"; ObjectID = "Hhj-rm-SgW";</note>
+      </trans-unit>
+      <trans-unit id="Ht2-DJ-Vnf.title">
+        <source>Write Tag</source>
+        <target>نوشتن تگ</target>
+        <note>Class = "UINavigationItem"; title = "Write Tag"; ObjectID = "Ht2-DJ-Vnf";</note>
+      </trans-unit>
+      <trans-unit id="I2M-Xv-D0u.normalTitle">
+        <source>Refresh</source>
+        <target>فراخوانی مجدد</target>
+        <note>Class = "UIButton"; normalTitle = "Refresh"; ObjectID = "I2M-Xv-D0u";</note>
+      </trans-unit>
+      <trans-unit id="Idl-0K-YXL.text">
+        <source>Nordic ID</source>
+        <target>Nordic ID</target>
+        <note>Class = "UILabel"; text = "Nordic ID"; ObjectID = "Idl-0K-YXL";</note>
+      </trans-unit>
+      <trans-unit id="Ira-0N-Pn6.text">
+        <source>Connected:</source>
+        <target>وصل شده:</target>
+        <note>Class = "UILabel"; text = "Connected:"; ObjectID = "Ira-0N-Pn6";</note>
+      </trans-unit>
+      <trans-unit id="IwG-vT-qxB.text">
+        <source>0</source>
+        <target>0</target>
+        <note>Class = "UILabel"; text = "0"; ObjectID = "IwG-vT-qxB";</note>
+      </trans-unit>
+      <trans-unit id="Jwx-L7-Q8L.text">
+        <source>Name</source>
+        <target>نام</target>
+      </trans-unit>
+      <trans-unit id="KOn-0G-SxM.title">
+        <source>Quick Guide</source>
+        <target>راهنمای سریع</target>
+        <note>Class = "UINavigationItem"; title = "Quick Guide"; ObjectID = "KOn-0G-SxM";</note>
+      </trans-unit>
+      <trans-unit id="Kau-ta-okL.title">
+        <source>Firmware Update</source>
+        <target>به روز رسانی Firmware</target>
+        <note>Class = "UINavigationItem"; title = "Firmware Update"; ObjectID = "Kau-ta-okL";</note>
+      </trans-unit>
+      <trans-unit id="MtU-Gi-msD.text">
+        <source>Available NUR RFID firmware:</source>
+        <target>Available NUR RFID firmware:</target>
+        <note>Class = "UILabel"; text = "Available NUR RFID firmware:"; ObjectID = "MtU-Gi-msD";</note>
+      </trans-unit>
+      <trans-unit id="N6h-7U-o07.title">
+        <source>Locating Tag</source>
+        <target>مکان یابی تگ</target>
+        <note>Class = "UINavigationItem"; title = "Locating Tag"; ObjectID = "N6h-7U-o07";</note>
+      </trans-unit>
+      <trans-unit id="NGO-5a-f4M.title">
+        <source>Settings</source>
+        <target>تنظیمات</target>
+        <note>Class = "UINavigationItem"; title = "Settings"; ObjectID = "NGO-5a-f4M";</note>
+      </trans-unit>
+      <trans-unit id="NXB-SG-kZ6.text">
+        <source>Title</source>
+        <target>عنوان</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "NXB-SG-kZ6";</note>
+      </trans-unit>
+      <trans-unit id="Nex-Lb-kHa.text">
+        <source>Which firmware should be updated?</source>
+        <target>کدام firmware به روز رسانی شود؟</target>
+      </trans-unit>
+      <trans-unit id="NsO-tU-3sq.text">
+        <source>Tags/s</source>
+        <target>تگها/ثانیه</target>
+        <note>Class = "UILabel"; text = "Tags/s"; ObjectID = "NsO-tU-3sq";</note>
+      </trans-unit>
+      <trans-unit id="O1P-iF-Dhj.text">
+        <source>Build</source>
+        <target>ایجاد</target>
+        <note>Class = "UILabel"; text = "Build"; ObjectID = "O1P-iF-Dhj";</note>
+      </trans-unit>
+      <trans-unit id="OZ8-nR-YbM.text">
+        <source>Subtitle</source>
+        <target>عنوان فرعی</target>
+        <note>Class = "UILabel"; text = "Subtitle"; ObjectID = "OZ8-nR-YbM";</note>
+      </trans-unit>
+      <trans-unit id="Ohu-Qg-T7C.text">
+        <source>Label</source>
+        <target>برچسب</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "Ohu-Qg-T7C";</note>
+      </trans-unit>
+      <trans-unit id="PD9-dR-xQr.text">
+        <source>Detail</source>
+        <target>جزئیات</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "PD9-dR-xQr";</note>
+      </trans-unit>
+      <trans-unit id="PEx-fR-uwk.text">
+        <source>Title</source>
+        <target>عنوان</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "PEx-fR-uwk";</note>
+      </trans-unit>
+      <trans-unit id="PQv-ib-glU.text">
+        <source>Title</source>
+        <target>عنوان</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "PQv-ib-glU";</note>
+      </trans-unit>
+      <trans-unit id="PkS-1S-UiJ.title">
+        <source>Back</source>
+        <target>برگشت</target>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "PkS-1S-UiJ";</note>
+      </trans-unit>
+      <trans-unit id="Q2O-OG-Nhz.text">
+        <source>Help text line 2</source>
+        <target>متن راهنما سطر 2</target>
+      </trans-unit>
+      <trans-unit id="S5J-j5-YNG.title">
+        <source>Edit Setting</source>
+        <target>ویرایش تنظیمات</target>
+        <note>Class = "UINavigationItem"; title = "Edit Setting"; ObjectID = "S5J-j5-YNG";</note>
+      </trans-unit>
+      <trans-unit id="S16-2L-3zG.text">
+        <source>Detail</source>
+        <target>جزئیات</target>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "S16-2L-3zG";</note>
+      </trans-unit>
+      <trans-unit id="SE9-Yu-992.text">
+        <source>Title</source>
+        <target>عنوان</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "SE9-Yu-992";</note>
+      </trans-unit>
+      <trans-unit id="SEj-oD-v41.text">
+        <source>Max tags/s</source>
+        <target>حداکثر تگها/ثانیه</target>
+        <note>Class = "UILabel"; text = "Max tags/s"; ObjectID = "SEj-oD-v41";</note>
+      </trans-unit>
+      <trans-unit id="Ud2-iV-pOn.text">
+        <source>App version: X</source>
+        <target>نگارش برنامه: X</target>
+        <note>Class = "UILabel"; text = "App version: X"; ObjectID = "Ud2-iV-pOn";</note>
+      </trans-unit>
+      <trans-unit id="VLp-RQ-387.text">
+        <source>Current reader firmware:</source>
+        <target>Current reader firmware:</target>
+        <note>Class = "UILabel"; text = "Current reader firmware:"; ObjectID = "VLp-RQ-387";</note>
+      </trans-unit>
+      <trans-unit id="WQK-Lx-Vwd.normalTitle">
+        <source>Write</source>
+        <target>نوشتن</target>
+        <note>Class = "UIButton"; normalTitle = "Write"; ObjectID = "WQK-Lx-Vwd";</note>
+      </trans-unit>
+      <trans-unit id="XgK-cn-XUQ.title">
+        <source>Device</source>
+        <target>دستگاه</target>
+        <note>Class = "UITabBarItem"; title = "Device"; ObjectID = "XgK-cn-XUQ";</note>
+      </trans-unit>
+      <trans-unit id="Xha-RN-OWn.text">
+        <source>Title</source>
+        <target>عنوان</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "Xha-RN-OWn";</note>
+      </trans-unit>
+      <trans-unit id="YKM-wO-7Ia.text">
+        <source>0</source>
+        <target>0</target>
+        <note>Class = "UILabel"; text = "0"; ObjectID = "YKM-wO-7Ia";</note>
+      </trans-unit>
+      <trans-unit id="YVA-eP-Fex.text">
+        <source>Version</source>
+        <target>نگارش</target>
+        <note>Class = "UILabel"; text = "Version"; ObjectID = "YVA-eP-Fex";</note>
+      </trans-unit>
+      <trans-unit id="YfN-lU-NUE.text">
+        <source>Tap Tune to tune all enabled antennas.</source>
+        <target>جهت تنظیم آنتنها، تنظیم را لمس کنید</target>
+        <note>Class = "UILabel"; text = "Tap Tune to tune all enabled antennas."; ObjectID = "YfN-lU-NUE";</note>
+      </trans-unit>
+      <trans-unit id="Z1s-hB-b1B.text">
+        <source>0</source>
+        <target>0</target>
+        <note>Class = "UILabel"; text = "0"; ObjectID = "Z1s-hB-b1B";</note>
+      </trans-unit>
+      <trans-unit id="ZJ8-uA-Vel.normalTitle">
+        <source>Start</source>
+        <target>شروع</target>
+        <note>Class = "UIButton"; normalTitle = "Start"; ObjectID = "ZJ8-uA-Vel";</note>
+      </trans-unit>
+      <trans-unit id="ZTB-in-8gD.text">
+        <source>Nordic ID RFID</source>
+        <target>Nordic ID RFID</target>
+        <note>Class = "UILabel"; text = "Nordic ID RFID"; ObjectID = "ZTB-in-8gD";</note>
+      </trans-unit>
+      <trans-unit id="a9C-Uu-xwP.title">
+        <source>Firmware Selection</source>
+        <target>انتخاب Firmware</target>
+        <note>Class = "UINavigationItem"; title = "Firmware Selection"; ObjectID = "a9C-Uu-xwP";</note>
+      </trans-unit>
+      <trans-unit id="aYI-hE-Amz.text">
+        <source>Title</source>
+        <target>عنوان</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "aYI-hE-Amz";</note>
+      </trans-unit>
+      <trans-unit id="bOd-9O-ft7.title">
+        <source>Back</source>
+        <target>برگشت</target>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "bOd-9O-ft7";</note>
+      </trans-unit>
+      <trans-unit id="ca3-Lg-BrC.normalTitle">
+        <source>NUR RFID firmware</source>
+        <target>Update</target>
+        <note>Class = "UIButton"; normalTitle = "Update"; ObjectID = "ca3-Lg-BrC";</note>
+      </trans-unit>
+      <trans-unit id="ckh-3E-79I.text">
+        <source>www.nordicid.com</source>
+        <target>www.nordicid.com</target>
+        <note>Class = "UILabel"; text = "www.nordicid.com"; ObjectID = "ckh-3E-79I";</note>
+      </trans-unit>
+      <trans-unit id="dEr-OO-gPY.text">
+        <source>&lt;barcode&gt;</source>
+        <target>&lt;بارکد&gt;</target>
+        <note>Class = "UILabel"; text = "&lt;barcode&gt;"; ObjectID = "dEr-OO-gPY";</note>
+      </trans-unit>
+      <trans-unit id="doC-kY-riE.normalTitle">
+        <source>Tune</source>
+        <target>تنظیم</target>
+        <note>Class = "UIButton"; normalTitle = "Tune"; ObjectID = "doC-kY-riE";</note>
+      </trans-unit>
+      <trans-unit id="dys-yD-tMO.text">
+        <source>Press trigger to read barcode</source>
+        <target>کلید خواندن بارکد را فشار دهید</target>
+        <note>Class = "UILabel"; text = "Press trigger to read barcode"; ObjectID = "dys-yD-tMO";</note>
+      </trans-unit>
+      <trans-unit id="ecp-Ib-qGn.text">
+        <source>Label</source>
+        <target>برچسب</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "ecp-Ib-qGn";</note>
+      </trans-unit>
+      <trans-unit id="f6f-8b-Y6V.title">
+        <source>Nordic ID RFID</source>
+        <target>Nordic ID RFID</target>
+        <note>Class = "UINavigationItem"; title = "Nordic ID RFID"; ObjectID = "f6f-8b-Y6V";</note>
+      </trans-unit>
+      <trans-unit id="faY-7O-Vmc.text">
+        <source>112233445566778899101112</source>
+        <target>112233445566778899101112</target>
+        <note>Class = "UITextField"; text = "112233445566778899101112"; ObjectID = "faY-7O-Vmc";</note>
+      </trans-unit>
+      <trans-unit id="fbV-1X-Zer.text">
+        <source>Select  a device</source>
+        <target>دستگاهی را انتخاب کنید</target>
+        <note>Class = "UILabel"; text = "Select  a device"; ObjectID = "fbV-1X-Zer";</note>
+      </trans-unit>
+      <trans-unit id="ffA-GT-qTO.text">
+        <source>Telephone: +358 2 727 7700</source>
+        <target>تلفن: +358 2 727 7700</target>
+        <note>Class = "UILabel"; text = "Telephone: +358 2 727 7700"; ObjectID = "ffA-GT-qTO";</note>
+      </trans-unit>
+      <trans-unit id="fi8-9L-dhx.text">
+        <source>Fax: +358 2 727 7720</source>
+        <target>فکس: +358 2 727 7720</target>
+        <note>Class = "UILabel"; text = "Fax: +358 2 727 7720"; ObjectID = "fi8-9L-dhx";</note>
+      </trans-unit>
+      <trans-unit id="gcQ-gC-B9N.text">
+        <source>Myllyojankatu 2 A, 24100 Salo, Finland</source>
+        <target>Myllyojankatu 2 A, 24100 Salo, Finland</target>
+        <note>Class = "UILabel"; text = "Myllyojankatu 2 A, 24100 Salo, Finland"; ObjectID = "gcQ-gC-B9N";</note>
+      </trans-unit>
+      <trans-unit id="h1Q-Jq-ZEm.title">
+        <source>Firmware</source>
+        <target>Firmware</target>
+        <note>Class = "UITabBarItem"; title = "Firmware"; ObjectID = "h1Q-Jq-ZEm";</note>
+      </trans-unit>
+      <trans-unit id="hTN-JQ-s9w.text">
+        <source>XYZ</source>
+        <target>XYZ</target>
+        <note>Class = "UILabel"; text = "XYZ"; ObjectID = "hTN-JQ-s9w";</note>
+      </trans-unit>
+      <trans-unit id="hco-ka-3kn.text">
+        <source>Firmware information</source>
+        <target>اطلاعات Firmware</target>
+        <note>Class = "UILabel"; text = "Firmware information"; ObjectID = "hco-ka-3kn";</note>
+      </trans-unit>
+      <trans-unit id="kZr-na-7by.text">
+        <source>?</source>
+        <target>?</target>
+        <note>Class = "UILabel"; text = "?"; ObjectID = "kZr-na-7by";</note>
+      </trans-unit>
+      <trans-unit id="loP-9f-kob.title">
+        <source>Application</source>
+        <target>برنامه</target>
+        <note>Class = "UITabBarItem"; title = "Application"; ObjectID = "loP-9f-kob";</note>
+      </trans-unit>
+      <trans-unit id="ma9-N6-BqK.title">
+        <source>About</source>
+        <target>راجع به</target>
+        <note>Class = "UITabBarItem"; title = "About"; ObjectID = "ma9-N6-BqK";</note>
+      </trans-unit>
+      <trans-unit id="nEs-TW-jSZ.text">
+        <source>Average tags/s</source>
+        <target>میانگین تگها/ثانیه</target>
+        <note>Class = "UILabel"; text = "Average tags/s"; ObjectID = "nEs-TW-jSZ";</note>
+      </trans-unit>
+      <trans-unit id="nUF-j2-IVb.text">
+        <source>NurAPI version: X</source>
+        <target>NurAPI نگارش: X</target>
+        <note>Class = "UILabel"; text = "NurAPI version: X"; ObjectID = "nUF-j2-IVb";</note>
+      </trans-unit>
+      <trans-unit id="ngj-9t-bum.text">
+        <source>Title</source>
+        <target>عنوان</target>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "ngj-9t-bum";</note>
+      </trans-unit>
+      <trans-unit id="pTf-97-xLu.text">
+        <source>No upate available</source>
+        <target>No upate available</target>
+        <note>Class = "UILabel"; text = "No upate available"; ObjectID = "pTf-97-xLu";</note>
+      </trans-unit>
+      <trans-unit id="rCo-Ld-GCi.normalTitle">
+        <source>Clear</source>
+        <target>پاک کردن</target>
+        <note>Class = "UIButton"; normalTitle = "Clear"; ObjectID = "rCo-Ld-GCi";</note>
+      </trans-unit>
+      <trans-unit id="rHm-3b-BJD.title">
+        <source>Locate Tag</source>
+        <target>مکان یابی تگ</target>
+        <note>Class = "UINavigationItem"; title = "Locate Tag"; ObjectID = "rHm-3b-BJD";</note>
+      </trans-unit>
+      <trans-unit id="rny-a4-UPb.text">
+        <source>0</source>
+        <target>0</target>
+        <note>Class = "UILabel"; text = "0"; ObjectID = "rny-a4-UPb";</note>
+      </trans-unit>
+      <trans-unit id="sId-aY-dB7.text">
+        <source>Help text line 3</source>
+        <target>متن راهنما سطر 3</target>
+      </trans-unit>
+      <trans-unit id="tWP-LW-rCq.title">
+        <source>Contact</source>
+        <target>ارتباط</target>
+        <note>Class = "UITabBarItem"; title = "Contact"; ObjectID = "tWP-LW-rCq";</note>
+      </trans-unit>
+      <trans-unit id="uVm-hL-AJt.text">
+        <source>Enter the new EPC</source>
+        <target>EPC جدید را وارد کنید</target>
+        <note>Class = "UILabel"; text = "Enter the new EPC"; ObjectID = "uVm-hL-AJt";</note>
+      </trans-unit>
+      <trans-unit id="vOG-xu-uph.normalTitle">
+        <source>Refresh</source>
+        <target>بازخوانی مجدد</target>
+        <note>Class = "UIButton"; normalTitle = "Refresh"; ObjectID = "vOG-xu-uph";</note>
+      </trans-unit>
+      <trans-unit id="wfZ-V3-IKe.normalTitle">
+        <source>Disconnect</source>
+        <target>قطع ارتباط</target>
+        <note>Class = "UIButton"; normalTitle = "Disconnect"; ObjectID = "wfZ-V3-IKe";</note>
+      </trans-unit>
+      <trans-unit id="y4A-FY-jKq.text">
+        <source>info@nordicid.com</source>
+        <target>info@nordicid.com</target>
+        <note>Class = "UILabel"; text = "info@nordicid.com"; ObjectID = "y4A-FY-jKq";</note>
+      </trans-unit>
+      <trans-unit id="zaF-OU-N1U.title">
+        <source>Tune Antennas</source>
+        <target>تنظیم آنتنها</target>
+        <note>Class = "UIViewController"; title = "Tune Antennas"; ObjectID = "zaF-OU-N1U";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Source/Info.plist" source-language="en" datatype="plaintext" target-language="fa">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.2" build-num="8E2002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source>Nordic ID RFID</source>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.2</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Source/Localizable.strings" source-language="en" datatype="plaintext" target-language="fa">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.2" build-num="8E2002"/>
+    </header>
+    <body>
+      <trans-unit id="%d antenna%@">
+        <source>%1$d antenna%2$@</source>
+        <target>%1$d آنتن%2$@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="&lt;Tag %@&gt;">
+        <source>&lt;Tag %@&gt;</source>
+        <target>&lt;تگ %@&gt;</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="&lt;empty tag&gt;">
+        <source>&lt;empty tag&gt;</source>
+        <target>&lt;تگ خام&gt;</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="A or B">
+        <source>A or B</source>
+        <target>A یا B</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About">
+        <source>About</source>
+        <target>راجع به</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Accessory information">
+        <source>Accessory information</source>
+        <target>اطلاعات لوازم جانبی</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Antenna Id">
+        <source>Antenna Id</source>
+        <target>شناسه Id</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Antennas">
+        <source>Antennas</source>
+        <target>آنتن</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="App version: %@.%@">
+        <source>App version: %1$@.%2$@</source>
+        <target>نگارش برنامه: %1$@.%2$@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application Settings">
+        <source>Application Settings</source>
+        <target>تنظیمات برنامه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application sounds">
+        <source>Application sounds</source>
+        <target>هشدارهای صوتی برنامه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Automatic">
+        <source>Automatic</source>
+        <target>خودکار</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Automatically reconnect">
+        <source>Automatically reconnect</source>
+        <target>اتصال مجدد خودکار</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Autotune">
+        <source>Autotune</source>
+        <target>تنظیم خودکار</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Barcode">
+        <source>Barcode</source>
+        <target>بارکد</target>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Battery status">
+        <source>Battery status</source>
+        <target>وضعیت باطری</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Build time: %@">
+        <source>Build time: %@</source>
+        <target>زمان ایجاد: %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>انصراف</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Capacity (mA)">
+        <source>Capacity (mA)</source>
+        <target>ظرفیت (mA)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Channel">
+        <source>Channel</source>
+        <target>کانال</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Checksum mismatch on downloaded firmware!">
+        <source>Checksum mismatch on downloaded firmware!</source>
+        <target>بروز خطا در firmware دانلود شده!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Circular">
+        <source>Circular</source>
+        <target>دایره وار</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Confirm">
+        <source>Confirm</source>
+        <target>تایید</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Connecting">
+        <source>Connecting</source>
+        <target>درحال اتصال</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Connecting to reader %@">
+        <source>Connecting to reader %@</source>
+        <target>در حال اتصال به تگ خوان%@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Contact">
+        <source>Contact</source>
+        <target>متصل شد</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="CrossDipole">
+        <source>CrossDipole</source>
+        <target>تقاطع دوسویه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Device number">
+        <source>Device number</source>
+        <target>شماره دستگاه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading available firmware updates, please wait.">
+        <source>Downloading available firmware updates, please wait.</source>
+        <target>درحال دانلود firmware جدید، لطفاً صبر کنید.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading data">
+        <source>Downloading data</source>
+        <target>درحال دانلود اطلاعات</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading firmware">
+        <source>Downloading firmware</source>
+        <target>درحال دانلود firmware</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading firmware data, please wait.">
+        <source>Downloading firmware data, please wait.</source>
+        <target>در حال دانلود firmware، لطفاً صبر کنید.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ERROR">
+        <source>ERROR</source>
+        <target>ERROR</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enabled Antennas">
+        <source>Enabled Antennas</source>
+        <target>آنتن ها فعال شد</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Error">
+        <source>Error</source>
+        <target>خطا</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Error getting NUR RFID firmware version">
+        <source>Error getting NUR RFID firmware version</source>
+        <target>XXXXX</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Error getting reader firmware version">
+        <source>Error getting reader firmware version</source>
+        <target>XXXXX</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="FCC id">
+        <source>FCC id</source>
+        <target>FCC شناسه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to connect to reader">
+        <source>Failed to connect to reader</source>
+        <target>خطا در ارتباط با تگ خوان.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to download firmware update data!">
+        <source>Failed to download firmware update data!</source>
+        <target>خطا در دانلود firmware!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to download firmware update data, no response received!">
+        <source>Failed to download firmware update data, no response received!</source>
+        <target>خطا در دانلود firmware جدید، پاسخی از فرستنده دریافت نشد!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to download firmware update data, status code: %ld">
+        <source>Failed to download firmware update data, status code: %ld</source>
+        <target>خطا در دانلود firmware جدید، کد وضعیت: %ld</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to parse update data: %@">
+        <source>Failed to parse update data: %@</source>
+        <target>خطا در به روز رسانی اطلاعات دریافتی: %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to write tag">
+        <source>Failed to write tag</source>
+        <target>خطا در نوشتن تگ</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Found %">
+        <source>Found %</source>
+        <target>یافت شد %</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Found count">
+        <source>Found count</source>
+        <target>تعداد یافته ها</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Frequency">
+        <source>Frequency</source>
+        <target>فرکانس</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="General information">
+        <source>General information</source>
+        <target>اطلاعات عمومی</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hardware version">
+        <source>Hardware version</source>
+        <target>نگارش سخت افزار</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="High">
+        <source>High</source>
+        <target>بیشتر</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Info">
+        <source>Info</source>
+        <target>اطلاعات</target>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Inventory">
+        <source>Inventory</source>
+        <target>لیست برداری</target>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Inventory Rounds">
+        <source>Inventory Rounds</source>
+        <target>میانگین لیست برداری</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Inventory Target">
+        <source>Inventory Target</source>
+        <target>لیست برداری اصلی</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Link Frequency">
+        <source>Link Frequency</source>
+        <target>فرکانس ارتباط</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Locate">
+        <source>Locate</source>
+        <target>مکان یابی</target>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Low">
+        <source>Low</source>
+        <target>کمتر</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Model">
+        <source>Model</source>
+        <target>مدل</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NUR API version: %@">
+        <source>NUR API version: %@</source>
+        <target>XXXXX</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NUR API version: unknown">
+        <source>NUR API version: unknown</source>
+        <target>XXXXX</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NUR RFID firmware">
+        <source>NUR RFID firmware</source>
+        <target>XXXXX</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name">
+        <source>Name</source>
+        <target>نام</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No RFID reader connected!">
+        <source>No RFID reader connected!</source>
+        <target>دستگاه RFID وصل نیست!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No barcode found">
+        <source>No barcode found</source>
+        <target>بارکدی یافت نشد</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Nominal">
+        <source>Nominal</source>
+        <target>اسمی</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ok">
+        <source>Ok</source>
+        <target>Ok</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="On GitHub: github.com/NordicID">
+        <source>On GitHub: github.com/NordicID</source>
+        <target>On GitHub: github.com/NordicID</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Percentage">
+        <source>Percentage</source>
+        <target>درصد</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please connect an RFID reader">
+        <source>Please connect an RFID reader</source>
+        <target>لطفاً دستگاه RFID را متصل کنید</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Press trigger to read barcode">
+        <source>Press trigger to read barcode</source>
+        <target>کلید خواندن بارکد را فشار دهید</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Proceed">
+        <source>Proceed</source>
+        <target>ادامه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Proceed with updating the firmware?">
+        <source>Proceed with updating the firmware?</source>
+        <target>فرایند به روز رسانی firmware ادامه یابد؟</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Proximity">
+        <source>Proximity</source>
+        <target>نزدیکی</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Q">
+        <source>Q</source>
+        <target>Q</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Quick Guide">
+        <source>Quick Guide</source>
+        <target>راهنمای سریع</target>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="RSSI">
+        <source>RSSI</source>
+        <target>RSSI</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RSSI: %@">
+        <source>RSSI: %@</source>
+        <target>RSSI: %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RX Decoding">
+        <source>RX Decoding</source>
+        <target>RX رمز گشای</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RX Modulation">
+        <source>RX Modulation</source>
+        <target>RX کد گذاری</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RX Sensitivity">
+        <source>RX Sensitivity</source>
+        <target>RX حساسیت</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RX decoding (Miller)">
+        <source>RX decoding (Miller)</source>
+        <target>RX رمز گشایی (میلر)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reader firmware">
+        <source>Reader firmware</source>
+        <target>Reader firmware</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reading all settings from the device...">
+        <source>Reading all settings from the device...</source>
+        <target>خواندن تمامی تنظیمات دستگاه...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reading barcode...">
+        <source>Reading barcode...</source>
+        <target>خواندن بارکدها...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reading settings">
+        <source>Reading settings</source>
+        <target>تنظیمات خواندن</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rebooting device">
+        <source>Rebooting device</source>
+        <target>Rebooting device</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Refreshing">
+        <source>Refreshing</source>
+        <target>بازخوانی مجدد</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Refreshing list of tags...">
+        <source>Refreshing list of tags...</source>
+        <target>بازخوانی مجدد لیست تگها...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Region">
+        <source>Region</source>
+        <target>محدوده</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rounds">
+        <source>Rounds</source>
+        <target>تقریبی</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Saving">
+        <source>Saving</source>
+        <target>ذخیره</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Saving setting to non volatile memory.">
+        <source>Saving setting to non volatile memory.</source>
+        <target>ذخیره تنظیمات در حافظه ماندگار.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Scaled RSSI">
+        <source>Scaled RSSI</source>
+        <target>درجه بندی RSSI</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Serial number">
+        <source>Serial number</source>
+        <target>شماره سریال</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Session">
+        <source>Session</source>
+        <target>دوره</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Settings">
+        <source>Settings</source>
+        <target>تنظیمات</target>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="Sounds enabled">
+        <source>Sounds enabled</source>
+        <target>صداها فعال شد</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Start">
+        <source>Start</source>
+        <target>شروع</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Status">
+        <source>Status</source>
+        <target>وضعیت</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Stop">
+        <source>Stop</source>
+        <target>خاتمه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="TX Level">
+        <source>TX Level</source>
+        <target>TX سطح</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="TX modulation">
+        <source>TX modulation</source>
+        <target>TX کد گذاری</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tag">
+        <source>Tag</source>
+        <target>تگ</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tag written ok">
+        <source>Tag written ok</source>
+        <target>تگ با موفقیت نوشته شد</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Target">
+        <source>Target</source>
+        <target>هدف</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The tag EPC length is 0, can not locate!">
+        <source>The tag EPC length is 0, can not locate!</source>
+        <target>طول EPC تگ صفر است، مکان یابی امکانپذیر نمی باشد!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Timestamp">
+        <source>Timestamp</source>
+        <target>نشانگر زمان</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tuning">
+        <source>Tuning</source>
+        <target>تنظیم</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tuning all enabled antennas.">
+        <source>Tuning all enabled antennas.</source>
+        <target>تنظیم آنتنهای فعال.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tuning antenna %@...">
+        <source>Tuning antenna %@...</source>
+        <target>درحال تنظیم آنتنها %@...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tuning antenna %d...">
+        <source>Tuning antenna %d...</source>
+        <target>درحال تنظیم آنتنها %d...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Update completed">
+        <source>Update completed</source>
+        <target>Update completed</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Update progress %d%%">
+        <source>Update progress %d%%</source>
+        <target>Update progress %d%%</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Update progress 0%">
+        <source>Update progress 0%</source>
+        <target>Update progress 0%</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Updating firmware">
+        <source>Updating firmware</source>
+        <target>Updating firmware</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version: %@">
+        <source>Version: %@</source>
+        <target>نگارش: %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Write Tag">
+        <source>Write Tag</source>
+        <target>نوشتن تگ</target>
+        <note>main menu</note>
+      </trans-unit>
+      <trans-unit id="info@nordicid.com">
+        <source>info@nordicid.com</source>
+        <target>nfo@nordicid.com</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="unique tags in %.1f seconds">
+        <source>unique tags in %.1f seconds</source>
+        <target>تگهای غیر تکراری در %.1f ثانیه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="unique tags in 0 seconds">
+        <source>unique tags in 0 seconds</source>
+        <target>تگهای غیر تکراری در 0 ثانیه</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="www.nordicid.com">
+        <source>www.nordicid.com</source>
+        <target>ww.nordicid.com</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
