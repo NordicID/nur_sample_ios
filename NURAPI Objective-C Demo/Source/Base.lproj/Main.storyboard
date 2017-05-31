@@ -540,6 +540,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Inventory" id="9To-6h-8hL">
                         <barButtonItem key="backBarButtonItem" title="Back" id="bOd-9O-ft7"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="DdS-0I-RSW">
+                            <connections>
+                                <action selector="shareInventory:" destination="QJG-B1-hyz" id="au0-4R-00a"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="averageTagsPerSecondLabel" destination="rny-a4-UPb" id="ljy-jc-pea"/>
@@ -547,6 +552,7 @@
                         <outlet property="elapsedTimeLabel" destination="1Lp-9g-sSH" id="TIw-vE-TM8"/>
                         <outlet property="inventoryButton" destination="7K5-Y6-rPp" id="uKl-W4-cjr"/>
                         <outlet property="maxTagsPerSecondLabel" destination="Z1s-hB-b1B" id="x0y-av-jCb"/>
+                        <outlet property="shareButton" destination="DdS-0I-RSW" id="QAW-Pc-FLt"/>
                         <outlet property="tableView" destination="UBu-HN-D5c" id="1v8-zg-Zg1"/>
                         <outlet property="tagsLabel" destination="IwG-vT-qxB" id="fNm-qd-uRP"/>
                         <outlet property="tagsPerSecondLabel" destination="YKM-wO-7Ia" id="eeH-ng-8Hk"/>
@@ -1040,13 +1046,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="info@nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4A-FY-jKq" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="135.66666666666669" y="261" width="144.00000000000006" height="21"/>
+                                <rect key="frame" x="135" y="261" width="144" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckh-3E-79I" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="136" y="302" width="143" height="21"/>
+                                <rect key="frame" x="136.33333333333331" y="302" width="142.99999999999994" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1058,7 +1064,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On GitHub: github.com/NordicID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-EW-k9b" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="83.333333333333314" y="343" width="249" height="21"/>
+                                <rect key="frame" x="82.666666666666686" y="343" width="249" height="21"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1165,7 +1171,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github.com/NordicID/nur_sample_ios" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rd-Xy-3YF" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="66.666666666666686" y="131" width="282" height="21"/>
+                                <rect key="frame" x="66" y="131" width="282" height="21"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>

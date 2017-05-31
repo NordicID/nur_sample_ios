@@ -37,6 +37,9 @@
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
     self.audioDispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0 );
+
+    // initially the share button is hidden, nothing to share
+    self.shareButton.enabled = NO;
 }
 
 
@@ -72,6 +75,71 @@
     self.inventoryRoundsDone = 0;
     self.elapsedSeconds = 0;
     self.lastRoundUniqueTags = 0;
+}
+
+
+- (IBAction)shareInventory:(UIBarButtonItem *)sender {
+    NSLog( @"in" );
+
+    NSString * content = @"";
+
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+
+    // create a CSV string with one tag per line
+    for ( Tag * tag in [TagManager sharedInstance].tags ) {
+        content = [content stringByAppendingFormat:@"%@,%@,%@,%d\n",
+                   [dateFormatter stringFromDate:tag.firstFound],
+                   [dateFormatter stringFromDate:tag.lastFound],
+                   tag.hex,
+                   (int)tag.scaledRssi];
+    }
+
+    // save to a temporary file
+    NSString * filename = [NSString stringWithFormat:@"Inventory %@.csv", [dateFormatter stringFromDate:[NSDate date]]];
+    NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+    NSURL *fileURL = [tmpDirURL URLByAppendingPathComponent:filename];
+
+    NSError * error = nil;
+    [content writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if ( error != nil ) {
+        // failed to save the content to a temporary file
+        NSLog( @"failed to save CSV file: %@", error.localizedDescription );
+        return;
+    }
+
+    NSLog( @"saved CSV to: %@", fileURL );
+
+    // set up the activity controller for sharing a single URL
+    NSArray* sharedObjects = [NSArray arrayWithObjects:fileURL, nil];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
+                                                        initWithActivityItems:sharedObjects applicationActivities:nil];
+
+    // when the activity is completed delete the temporary file
+    activityViewController.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        NSLog(@"activity: %@ - finished flag: %d", activityType, completed);
+        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+
+        // show an error if there was one
+        if ( activityError != nil ) {
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error Sharing CSV File", nil)
+                                                                            message:activityError.localizedDescription
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertAction* okButton = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action) {
+                                           // nothing special to do right now
+                                       }];
+
+
+            [alert addAction:okButton];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    };
+
+    [self presentViewController:activityViewController animated:true completion:nil];
 }
 
 
@@ -129,6 +197,9 @@
         }
 
         self.inventoryButton.titleLabel.text = NSLocalizedString(@"Stop", nil);
+
+        // no sharing while we're doing an inventory
+        self.shareButton.enabled = NO;
 
         // start a timer that updates the elapsed time
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
@@ -191,6 +262,11 @@
         if ( self.timer ) {
             [self.timer invalidate];
             self.timer = nil;
+        }
+
+        // do we have any tags?
+        if ( [TagManager sharedInstance].tags.count > 0 ) {
+            self.shareButton.enabled = YES;
         }
     } );
 }

@@ -9,6 +9,7 @@
 @property (nonatomic, assign, readwrite) DWORD       timestamp;
 @property (nonatomic, assign, readwrite) BYTE        channel;
 @property (nonatomic, assign, readwrite) BYTE        antennaId;
+@property (nonatomic, strong, readwrite) NSDate *    firstFound;
 
 @end
 
@@ -28,6 +29,10 @@
 
         // we're found once now
         self.foundCount = 1;
+
+        // found now
+        self.firstFound = [NSDate date];
+        self.lastFound = self.firstFound;
     }
 
     return self;

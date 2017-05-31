@@ -14,9 +14,11 @@
 @property (nonatomic, assign, readonly) DWORD        timestamp;
 @property (nonatomic, assign, readonly) BYTE         channel;
 @property (nonatomic, assign, readonly) BYTE         antennaId;
+@property (nonatomic, strong, readonly) NSDate *     firstFound;
 
 // the count can be updated if the tag is found multiple times
 @property (nonatomic, assign, readwrite) unsigned int foundCount;
+@property (nonatomic, strong, readwrite) NSDate *     lastFound;
 
 // this property is written to when locating
 @property (nonatomic, assign, readwrite) char       scaledRssi;

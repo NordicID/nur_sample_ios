@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UITableView * tableView;
 @property (weak, nonatomic) IBOutlet UIButton *    inventoryButton;
 @property (weak, nonatomic) IBOutlet UIButton *    clearButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 @end

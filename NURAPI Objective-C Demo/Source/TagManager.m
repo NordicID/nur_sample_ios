@@ -68,6 +68,7 @@
         if ( [tag.hex isEqualToString:old.hex] ) {
             // found the old one
             old.foundCount++;
+            old.lastFound = [NSDate date];
             break;
         }
     }

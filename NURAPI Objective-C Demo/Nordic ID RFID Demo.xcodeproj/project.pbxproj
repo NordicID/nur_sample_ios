@@ -26,7 +26,6 @@
 		6F7959EF1EC2D83000A458AA /* LocateTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B21EC2D83000A458AA /* LocateTagViewController.m */; };
 		6F7959F01EC2D83000A458AA /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B41EC2D83000A458AA /* LocateViewController.m */; };
 		6F7959F11EC2D83000A458AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B51EC2D83000A458AA /* main.m */; };
-		6F7959F21EC2D83000A458AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959B61EC2D83000A458AA /* Main.storyboard */; };
 		6F7959F31EC2D83000A458AA /* MainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B81EC2D83000A458AA /* MainMenuCell.m */; };
 		6F7959F41EC2D83000A458AA /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959BA1EC2D83000A458AA /* MainMenuViewController.m */; };
 		6F7959F51EC2D83000A458AA /* PerformUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959BC1EC2D83000A458AA /* PerformUpdateViewController.m */; };
@@ -115,7 +114,6 @@
 		6F7959B31EC2D83000A458AA /* LocateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocateViewController.h; sourceTree = "<group>"; };
 		6F7959B41EC2D83000A458AA /* LocateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocateViewController.m; sourceTree = "<group>"; };
 		6F7959B51EC2D83000A458AA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6F7959B61EC2D83000A458AA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6F7959B71EC2D83000A458AA /* MainMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuCell.h; sourceTree = "<group>"; };
 		6F7959B81EC2D83000A458AA /* MainMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuCell.m; sourceTree = "<group>"; };
 		6F7959B91EC2D83000A458AA /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 				6F7959B21EC2D83000A458AA /* LocateTagViewController.m */,
 				6F7959B31EC2D83000A458AA /* LocateViewController.h */,
 				6F7959B41EC2D83000A458AA /* LocateViewController.m */,
-				6F7959B61EC2D83000A458AA /* Main.storyboard */,
 				6F7959B71EC2D83000A458AA /* MainMenuCell.h */,
 				6F7959B81EC2D83000A458AA /* MainMenuCell.m */,
 				6F7959B91EC2D83000A458AA /* MainMenuViewController.h */,
@@ -433,7 +430,6 @@
 				6F795A101EC2D8FD00A458AA /* blep_100ms.wav in Resources */,
 				6F795A3B1EC2F8C000A458AA /* LaunchScreen.storyboard in Resources */,
 				6F7959DF1EC2D83000A458AA /* Assets.xcassets in Resources */,
-				6F7959F21EC2D83000A458AA /* Main.storyboard in Resources */,
 				6F7959ED1EC2D83000A458AA /* LaunchScreen.storyboard in Resources */,
 				6F795A3A1EC2F8BB00A458AA /* Main.storyboard in Resources */,
 				6F795A121EC2D8FD00A458AA /* blep_40ms.wav in Resources */,
