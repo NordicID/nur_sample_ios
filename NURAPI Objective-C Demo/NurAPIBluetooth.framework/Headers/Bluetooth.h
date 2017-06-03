@@ -130,6 +130,14 @@
 @property (nonatomic, assign, readonly) void * nurapiHandle;
 
 /**
+ * This is a time in seconds for how often a keepalive is sent to a connected reader. The keepalive is handled
+ * by sending a NurApiPing() to the reader. Setting the value stops any current keep alive and resets the timer.
+ *
+ * Default: 0 = no keepalives are sent
+ **/
+@property (nonatomic, assign) unsigned int keepaliveTime;
+
+/**
  * Global singleton accessor method. Use this to access all the functionality provided by this API.
  *
  * @return singleton instance.
@@ -186,7 +194,15 @@
  **/
 - (void) disconnectFromReader;
 
-- (void) restoreConnection:(NSString *)uuid;
+/**
+ * Attempts to restore the connection to the reader with the given @p uuid. If the reader is already paired and connected to by iOS then
+ * the connection is performed immediately, otherwise a scan is started to find the reader.
+ *
+ * @param uuid the UUID of the device to connect to.
+ *
+ * @return YES if the restore could proceed (all data and state valid) and NO on error.
+ **/
+- (BOOL) restoreConnection:(NSString *)uuid;
 
 - (void) cancelRestoreConnection;
 

@@ -467,6 +467,7 @@
                     // play a short blip if the tag was new
                     if ( isTagNew ) {
                         [newTags addObject:tag];
+                        NSLog( @"found new tag: %@", tag );
                     }
                 }
             }

@@ -248,6 +248,8 @@
 - (void) readerConnectionOk {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog( @"connection ok, handle: %p", [Bluetooth sharedInstance].nurapiHandle );
+        NSLog( @"MTU with write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithResponse] );
+        NSLog( @"MTU without write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithoutResponse] );
         self.scanButton.enabled = YES;
         self.settingsButton.enabled = YES;
         self.writeTagButton.enabled = YES;
