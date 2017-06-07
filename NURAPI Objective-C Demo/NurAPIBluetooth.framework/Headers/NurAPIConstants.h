@@ -128,6 +128,8 @@
 #define NUR_TAM_MAXBLOCKS		4
 /** ISO 29167-10 authentication: size of single custom data block in bytes. */
 #define NUR_SZ_TAM2_BLOCK		8	
+/** ISO29167-10 authentication: size of protection mode 2,3 CMAC in bytes. */
+#define NUR_SZ_TAM2_CMACLEN		12	
 /** ISO 29167-10 authentication: maximum block offset/address value. */
 #define NUR_MAX_TAM_OFFSET		0xFFF
 /** ISO 29167-10 defined prepended constant for decryption check. */

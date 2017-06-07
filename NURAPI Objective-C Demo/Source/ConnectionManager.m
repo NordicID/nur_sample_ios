@@ -5,8 +5,6 @@
 
 @interface ConnectionManager ()
 
-//@property (nonatomic, strong) NSString * previousUuid;
-
 @property (nonatomic, assign) BOOL connectionOk;
 
 @end
@@ -30,7 +28,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        //self.previousUuid = nil;
         self.connectionOk = NO;
 
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];

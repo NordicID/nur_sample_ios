@@ -1024,6 +1024,7 @@ struct NUR_TAM_RESP
 	BYTE challenge[TAM_CHALLENGE_BYTELEN]; /**< The challenge used in TAM1 or 2. */
 	BYTE firstBlock[NUR_TAM_KEYLEN]; /**< Decrypted or raw contents of the first block. */
 	BYTE blockData[NUR_TAM_MAXBLOCKS * NUR_SZ_TAM2_BLOCK];	/**< Block data if custom data was requested. */
+	BYTE cmac[NUR_SZ_TAM2_CMACLEN];	/**< CMAC data if protection mode 2,3. */
 };
 
 /**
