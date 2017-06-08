@@ -44,8 +44,10 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    NSLog( @"viewDidAppear" );
 
     // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
     // in that case
@@ -66,6 +68,7 @@
 
 
     // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
+    NSLog( @"creating popup" );
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Reading settings", nil)
                                                                     message:NSLocalizedString(@"Reading all settings from the device...", nil)
                                                              preferredStyle:UIAlertControllerStyleAlert];
@@ -76,6 +79,7 @@
 
     dispatch_async(self.dispatchQueue, ^{
         // get current settings
+        NSLog( @"getting setting" );
         int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_ALL, &setup, sizeof(struct NUR_MODULESETUP) );
 
         if ( error == NUR_NO_ERROR ) {
@@ -106,6 +110,7 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog( @"dismissing popup" );
             // now dismsis the "reading" popup and show and error or show the table
             [alert dismissViewControllerAnimated:YES completion:^{
                 if (error != NUR_NO_ERROR) {

@@ -63,6 +63,9 @@
         return YES;
     }
 
+
+    // TODO: thread
+
     // find our tag
     for ( Tag * old in self.tags ) {
         if ( [tag.hex isEqualToString:old.hex] ) {
