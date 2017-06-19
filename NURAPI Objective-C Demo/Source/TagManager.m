@@ -11,7 +11,9 @@
 
 @end
 
-@implementation TagManager
+@implementation TagManager {
+    pthread_mutex_t mutex;
+}
 
 + (TagManager *) sharedInstance {
     static TagManager * instance = nil;
@@ -31,6 +33,8 @@
     if (self) {
         self.tags = [NSMutableArray array];
         self.tagIds = [NSMutableSet set];
+
+        pthread_mutex_init(&mutex, NULL);
     }
 
     return self;
@@ -56,15 +60,16 @@
 
 
 - (BOOL) addTag:(Tag *)tag {
+    [self lock];
+
     if ( tag && ! [self.tagIds containsObject:tag.hex ] ) {
         // a new tag
         [self.tags addObject:tag];
         [self.tagIds addObject:tag.hex];
+
+        [self unlock];
         return YES;
     }
-
-
-    // TODO: thread
 
     // find our tag
     for ( Tag * old in self.tags ) {
@@ -76,14 +81,29 @@
         }
     }
 
+    [self unlock];
     return NO;
 }
 
 
 - (void) clear {
+    [self lock];
+
     // simply clear all the tags we have
     [self.tags removeAllObjects];
     [self.tagIds removeAllObjects];
+
+    [self unlock];
+}
+
+
+- (void) lock {
+    pthread_mutex_lock(&mutex);
+}
+
+
+- (void) unlock {
+    pthread_mutex_unlock(&mutex);
 }
 
 

@@ -16,6 +16,9 @@
 // Adds a tag. Returns YES if the tag was new and NO if it was already found.
 - (BOOL) addTag:(Tag *)tag;
 
+- (void) lock;
+- (void) unlock;
+
 - (void) clear;
 
 @end

@@ -86,6 +86,8 @@
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
 
+    [[TagManager sharedInstance] lock];
+
     // create a CSV string with one tag per line
     for ( Tag * tag in [TagManager sharedInstance].tags ) {
         content = [content stringByAppendingFormat:@"%@,%@,%@,%d\n",
@@ -94,6 +96,8 @@
                    tag.hex,
                    (int)tag.scaledRssi];
     }
+
+    [[TagManager sharedInstance] unlock];
 
     // save to a temporary file
     NSString * filename = [NSString stringWithFormat:@"Inventory %@.csv", [dateFormatter stringFromDate:[NSDate date]]];
@@ -195,6 +199,9 @@
             [self showErrorMessage:error];
             return;
         }
+
+        // clear all statistics data as we now started again
+        [self clearData];
 
         self.inventoryButton.titleLabel.text = NSLocalizedString(@"Stop", nil);
 
@@ -318,7 +325,6 @@
 
     // found tags
     self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
-    self.tagsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[TagManager sharedInstance].tags.count];
 
     self.elapsedTimeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"unique tags in %.1f seconds", nil), self.elapsedSeconds];
     self.tagsPerSecondLabel.text = [NSString stringWithFormat:@"%.1f", self.tagsPerSecond];
@@ -395,7 +401,10 @@
     TagViewController * destination = [segue destinationViewController];
     NSIndexPath *indexPath = [sender isKindOfClass:[NSIndexPath class]] ? (NSIndexPath*)sender : [self.tableView indexPathForSelectedRow];
 
+    [[TagManager sharedInstance] lock];
     destination.tag = [TagManager sharedInstance].tags[ indexPath.row ];
+    [[TagManager sharedInstance] unlock];
+
     destination.rounds = self.inventoryRoundsDone;
     NSLog( @"rounds: %d", self.inventoryRoundsDone );
 }
@@ -419,7 +428,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell" forIndexPath:indexPath];
 
     // get the associated tag
+    [[TagManager sharedInstance] lock];
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
+    [[TagManager sharedInstance] unlock];
 
     NSString * hex = tag.hex;
     cell.textLabel.text = hex.length == 0 ? NSLocalizedString(@"<empty tag>", nil) : hex;

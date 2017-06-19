@@ -349,7 +349,9 @@
                             <constraint firstItem="EnR-kt-YyY" firstAttribute="centerX" secondItem="4vO-hd-JZC" secondAttribute="centerX" id="qmA-46-upe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Locate Tag" id="rHm-3b-BJD"/>
+                    <navigationItem key="navigationItem" title="Locate Tag" id="rHm-3b-BJD">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="8BA-LG-0H6"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="refreshButton" destination="I2M-Xv-D0u" id="bTx-sO-QIs"/>
                         <outlet property="tableView" destination="Nqm-Ep-2Ic" id="qks-kr-3QE"/>
@@ -1052,7 +1054,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckh-3E-79I" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="135.66666666666669" y="302" width="143.00000000000006" height="21"/>
+                                <rect key="frame" x="136.66666666666669" y="302" width="143.00000000000006" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1310,7 +1312,9 @@
                             <constraint firstItem="9So-T1-gUb" firstAttribute="top" secondItem="6yV-2J-NZA" secondAttribute="bottom" constant="30" id="PyL-T7-1Hp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tag Info" id="5VJ-oc-ytO"/>
+                    <navigationItem key="navigationItem" title="Tag Info" id="5VJ-oc-ytO">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Q2R-Jd-BsD"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="locateTagButton" destination="9So-T1-gUb" id="qLh-TH-G5t"/>
                         <outlet property="tableView" destination="6yV-2J-NZA" id="aoF-8M-pcW"/>
