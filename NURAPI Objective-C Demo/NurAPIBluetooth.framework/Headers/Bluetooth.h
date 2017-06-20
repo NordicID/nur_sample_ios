@@ -122,10 +122,11 @@
 @property (nonatomic, readonly) CBCentralManagerState state;
 
 /**
- * The low level NurAPI handle. Use this with all low level NurAPI calls. This is set once a connection to a
- * device has been successfully initialized. When the delegate callback readerConnectionOk is called
- * this handle is valid and can be used. Using the handle before a connection to a reader has been formed or
- * after a reader has been disconnected will result in errors.
+ * The low level NurAPI handle. Use this with all low level NurAPI calls. This is set once a the first instance
+ * of this class is retrieved using sharedInstance and is valid from that point on. It is not tied to a particular
+ * device and does not change even if the current reader changes. 
+ *
+ * This handle is used when doing any NurAPI calls.
  **/
 @property (nonatomic, assign, readonly) void * nurapiHandle;
 
@@ -138,7 +139,8 @@
 @property (nonatomic, assign) unsigned int keepaliveTime;
 
 /**
- * Global singleton accessor method. Use this to access all the functionality provided by this API.
+ * Global singleton accessor method. Use this to access all the functionality provided by this API. First time this
+ * is accessed nurApiHandle is initialized.
  *
  * @return singleton instance.
  **/

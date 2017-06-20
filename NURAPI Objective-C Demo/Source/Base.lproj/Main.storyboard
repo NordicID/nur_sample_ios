@@ -1120,7 +1120,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PEx-fR-uwk">
-                                            <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="15" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -1173,7 +1173,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github.com/NordicID/nur_sample_ios" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rd-Xy-3YF" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="66.666666666666686" y="134" width="282" height="21"/>
+                                <rect key="frame" x="68.333333333333314" y="134" width="279" height="21"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -1193,12 +1193,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NurAPI wrapper version: X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f9-rM-fgh">
+                                <rect key="frame" x="106.66666666666669" y="257" width="201" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CCt-Fy-r66" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="9JT-IA-4Zs"/>
                             <constraint firstItem="ZTB-in-8gD" firstAttribute="top" secondItem="tH6-1P-3CP" secondAttribute="bottom" constant="40" id="Kcz-WO-mX6"/>
+                            <constraint firstItem="9f9-rM-fgh" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="KzC-6V-Z9S"/>
                             <constraint firstItem="2Rd-Xy-3YF" firstAttribute="top" secondItem="CCt-Fy-r66" secondAttribute="bottom" constant="20" id="NUh-jE-gSk"/>
+                            <constraint firstItem="9f9-rM-fgh" firstAttribute="top" secondItem="nUF-j2-IVb" secondAttribute="bottom" constant="20" id="RLy-VK-LhS"/>
                             <constraint firstItem="ZTB-in-8gD" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="Smh-mi-eOn"/>
                             <constraint firstItem="Ud2-iV-pOn" firstAttribute="top" secondItem="2Rd-Xy-3YF" secondAttribute="bottom" constant="20" id="bwM-wy-ABM"/>
                             <constraint firstItem="nUF-j2-IVb" firstAttribute="centerX" secondItem="QNW-t9-P7P" secondAttribute="centerX" id="cZJ-4u-cW5"/>
@@ -1213,6 +1221,7 @@
                         <outlet property="appVersionLabel" destination="Ud2-iV-pOn" id="0nG-ul-rEb"/>
                         <outlet property="gitHubLabel" destination="2Rd-Xy-3YF" id="bSa-1Y-ZuF"/>
                         <outlet property="nurApiVersionLabel" destination="nUF-j2-IVb" id="VgQ-d1-35f"/>
+                        <outlet property="nurApiWrapperVersionLabel" destination="9f9-rM-fgh" id="MjX-KB-BMC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rmQ-E8-UqY" userLabel="First Responder" sceneMemberID="firstResponder"/>

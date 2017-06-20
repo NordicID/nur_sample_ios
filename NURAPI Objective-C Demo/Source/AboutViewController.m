@@ -1,5 +1,5 @@
 
-#import <NurAPIBluetooth/Bluetooth.h>
+#import <NurAPIBluetooth/NurAPIBluetooth.h>
 
 #import "AboutViewController.h"
 
@@ -52,6 +52,8 @@
     self.appVersionLabel.text =[NSString stringWithFormat:NSLocalizedString(@"App version: %@.%@", nil),
                                 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                                 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+
+    self.nurApiWrapperVersionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NurAPI wrapper version: %d", nil), NURAPIBLUETOOTH_VERSION];
 }
 
 

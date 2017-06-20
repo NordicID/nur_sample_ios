@@ -92,8 +92,7 @@
 
     // always reconnect
     if ( self.reconnectMode == kAlwaysReconnect ) {
-        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-        NSString * uuid = [defaults objectForKey:@"lastUuid"];
+        NSString * uuid = [self getLastConnectedUuid];
         if ( uuid ) {
             NSLog( @"found previously connected to device, uuid: %@, attempting to reconnect", uuid );
 
@@ -101,19 +100,6 @@
             [[Bluetooth sharedInstance] restoreConnection:uuid];
         }
     }
-
-//    else {
-//        if ( self.previousUuid ) {
-//            // we have a device that we were last connected to, restore that connection
-//            NSLog( @"found previously connected to device, uuid: %@, attempting to reconnect", self.previousUuid );
-//
-//            // attempt to restore the connection
-//            [[Bluetooth sharedInstance] restoreConnection:self.previousUuid];
-//
-//            // make sure we don't do this more than once, so clear the UUID
-//            self.previousUuid = nil;
-//        }
-//    }
 }
 
 
@@ -122,22 +108,29 @@
     CBPeripheral * currentReader = [Bluetooth sharedInstance].currentReader;
     if ( currentReader ) {
         if ( self.reconnectMode == kAlwaysReconnect ) {
-            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-            NSString * uuid = currentReader.identifier.UUIDString;
-            [defaults setObject:uuid forKey:@"lastUuid"];
-            [defaults synchronize];
-            NSLog( @"permanently storing currently connected device uuid: %@", uuid );
+            [self setLastConnectedUuid:currentReader.identifier.UUIDString];
         }
-
-//        else {
-//            self.previousUuid = currentReader.identifier.UUIDString;
-//            NSLog( @"saving currently connected device uuid: %@", self.previousUuid );
-//        }
 
         // disconnect and release the reader
         [[Bluetooth sharedInstance] disconnectFromReader];
     }
 }
+
+
+- (NSString *) getLastConnectedUuid {
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:@"lastUuid"];
+}
+
+
+- (void) setLastConnectedUuid:(NSString *)uuid {
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:uuid forKey:@"lastUuid"];
+    [defaults synchronize];
+
+    NSLog( @"permanently stored currently connected device uuid: %@", uuid );
+}
+
 
 /*****************************************************************************************************************
  * Bluetooth delegate callbacks
@@ -145,6 +138,8 @@
 - (void) readerConnectionOk {
     NSLog( @"reader connected, connection ok" );
     self.connectionOk = YES;
+
+    [self setLastConnectedUuid:[Bluetooth sharedInstance].currentReader.identifier.UUIDString];
 }
 
 
