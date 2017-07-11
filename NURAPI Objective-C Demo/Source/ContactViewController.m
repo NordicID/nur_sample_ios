@@ -10,8 +10,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.parentViewController.navigationItem.title = NSLocalizedString(@"Contact", nil);
-
     // set up links
     self.emailLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     self.emailLabel.delegate = self;
@@ -29,6 +27,14 @@
     self.gitHubLabel.text = NSLocalizedString(@"On GitHub: github.com/NordicID", nil);
 
 }
+
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    self.parentViewController.navigationItem.title = NSLocalizedString(@"Contact", nil);
+}
+
 
 
 //****************************************************************************************************************

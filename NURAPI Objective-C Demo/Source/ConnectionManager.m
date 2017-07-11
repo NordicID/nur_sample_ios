@@ -144,7 +144,7 @@
 
 
 - (void) readerDisconnected {
-    NSLog( @"reader disconnection, connection no longer ok" );
+    NSLog( @"reader disconnected, connection no longer ok" );
     self.connectionOk = NO;
 }
 

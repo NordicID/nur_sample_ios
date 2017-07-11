@@ -273,6 +273,7 @@
 
         // do we have any tags?
         if ( [TagManager sharedInstance].tags.count > 0 ) {
+            NSLog( @"enabling sharing button" );
             self.shareButton.enabled = YES;
         }
     } );

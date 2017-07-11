@@ -20,8 +20,6 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
-    self.parentViewController.navigationItem.title = NSLocalizedString(@"About", nil);
-
     // set up links
     self.gitHubLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     self.gitHubLabel.delegate = self;
@@ -54,6 +52,13 @@
                                 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
 
     self.nurApiWrapperVersionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NurAPI wrapper version: %d", nil), NURAPIBLUETOOTH_VERSION];
+}
+
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    self.parentViewController.navigationItem.title = NSLocalizedString(@"About", nil);
 }
 
 

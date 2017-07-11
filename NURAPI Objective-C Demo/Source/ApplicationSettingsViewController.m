@@ -11,8 +11,8 @@ enum {
 
 @implementation ApplicationSettingsViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
     self.parentViewController.navigationItem.title = NSLocalizedString(@"Application Settings", nil);
 }

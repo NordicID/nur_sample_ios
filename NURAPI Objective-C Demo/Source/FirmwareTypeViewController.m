@@ -38,9 +38,6 @@
 
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         [self showErrorMessage:@"Please connect an RFID reader"];
-
-        self.readerFirmwareButton.enabled = NO;
-        self.nurRfidFirmwareButton.enabled = NO;
         return;
     }
 
@@ -55,6 +52,8 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    self.parentViewController.navigationItem.title = NSLocalizedString(@"Firmware Update", nil);
 
     // start by getting our model
     [self fetchDeviceInformation];
@@ -221,7 +220,7 @@
 
         NSLog( @"name: %@, version: %@", name, version);
         NSLog( @"url: %@, md5: %@", url, md5);
-        NSLog( @"buildTime: %@, stamp: %ld", buildTime, buildTimestamp);
+        NSLog( @"buildTime: %@, stamp: %ld", buildTime, (unsigned long)buildTimestamp);
 
         // is this a firmware for our model? check all the models
         for ( NSString * model in hw ) {
@@ -268,8 +267,8 @@
             self.inProgressAlert = nil;
         }
 
-        self.readerFirmwareButton.hidden = YES;
-        self.nurRfidFirmwareButton.hidden = YES;
+        self.readerFirmwareButton.enabled = NO;
+        self.nurRfidFirmwareButton.enabled = NO;
 
         // find the newest reader firmware
         if ( self.readerFirmwares.count > 0 ) {
@@ -277,7 +276,7 @@
 
             // TODO: is it newer that our?
             self.availableReaderFirmwareVersion.text = newest.version;
-            self.readerFirmwareButton.hidden = NO;
+            self.readerFirmwareButton.enabled = YES;
         }
         else {
             self.availableReaderFirmwareVersion.text = @"No update available";
@@ -293,7 +292,7 @@
             }
             else {
                 self.availableNurRfidFirmwareVersion.text = newest.version;
-                self.nurRfidFirmwareButton.hidden = NO;
+                self.nurRfidFirmwareButton.enabled = YES;
             }
         }
         else {

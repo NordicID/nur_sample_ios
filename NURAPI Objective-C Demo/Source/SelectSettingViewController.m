@@ -68,8 +68,11 @@
                         setup.regionId = alternative.value;
                         break;
 
-                        // not used
                     case NUR_SETUP_AUTOTUNE:
+                        setup.autotune.mode = alternative.value;
+
+                        // TODO: this is hardcoded so far, taken from Android version
+                        setup.autotune.threshold_dBm = -10;
                         break;
                         
                     case NUR_SETUP_RXDEC:

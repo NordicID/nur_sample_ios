@@ -17,7 +17,6 @@
 		6F7959E51EC2D83000A458AA /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79599E1EC2D83000A458AA /* ContactViewController.m */; };
 		6F7959E61EC2D83000A458AA /* Firmware.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A21EC2D83000A458AA /* Firmware.m */; };
 		6F7959E71EC2D83000A458AA /* FirmwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A41EC2D83000A458AA /* FirmwareCell.m */; };
-		6F7959E81EC2D83000A458AA /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A61EC2D83000A458AA /* FirmwareSelectionViewController.m */; };
 		6F7959E91EC2D83000A458AA /* FirmwareTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */; };
 		6F7959EB1EC2D83000A458AA /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959AB1EC2D83000A458AA /* InfoViewController.m */; };
 		6F7959EC1EC2D83000A458AA /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959AD1EC2D83000A458AA /* InventoryViewController.m */; };
@@ -97,8 +96,6 @@
 		6F7959A21EC2D83000A458AA /* Firmware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Firmware.m; sourceTree = "<group>"; };
 		6F7959A31EC2D83000A458AA /* FirmwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareCell.h; sourceTree = "<group>"; };
 		6F7959A41EC2D83000A458AA /* FirmwareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareCell.m; sourceTree = "<group>"; };
-		6F7959A51EC2D83000A458AA /* FirmwareSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareSelectionViewController.h; sourceTree = "<group>"; };
-		6F7959A61EC2D83000A458AA /* FirmwareSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareSelectionViewController.m; sourceTree = "<group>"; };
 		6F7959A71EC2D83000A458AA /* FirmwareTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareTypeViewController.h; sourceTree = "<group>"; };
 		6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareTypeViewController.m; sourceTree = "<group>"; };
 		6F7959A91EC2D83000A458AA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -216,7 +213,6 @@
 				6F795A051EC2D84800A458AA /* Storyboards */,
 				6F79599B1EC2D83000A458AA /* ConnectionManager.h */,
 				6F79599C1EC2D83000A458AA /* ConnectionManager.m */,
-				6F7959A91EC2D83000A458AA /* Info.plist */,
 				6F7959AC1EC2D83000A458AA /* InventoryViewController.h */,
 				6F7959AD1EC2D83000A458AA /* InventoryViewController.m */,
 				6F7959AE1EC2D83000A458AA /* LaunchScreen.storyboard */,
@@ -230,8 +226,6 @@
 				6F7959B81EC2D83000A458AA /* MainMenuCell.m */,
 				6F7959B91EC2D83000A458AA /* MainMenuViewController.h */,
 				6F7959BA1EC2D83000A458AA /* MainMenuViewController.m */,
-				6F7959BB1EC2D83000A458AA /* PerformUpdateViewController.h */,
-				6F7959BC1EC2D83000A458AA /* PerformUpdateViewController.m */,
 				6F7959BD1EC2D83000A458AA /* ProgressView.h */,
 				6F7959BE1EC2D83000A458AA /* ProgressView.m */,
 				6F7959BF1EC2D83000A458AA /* QuickGuideViewController.h */,
@@ -294,10 +288,10 @@
 				6F7959A21EC2D83000A458AA /* Firmware.m */,
 				6F7959A31EC2D83000A458AA /* FirmwareCell.h */,
 				6F7959A41EC2D83000A458AA /* FirmwareCell.m */,
-				6F7959A51EC2D83000A458AA /* FirmwareSelectionViewController.h */,
-				6F7959A61EC2D83000A458AA /* FirmwareSelectionViewController.m */,
 				6F7959A71EC2D83000A458AA /* FirmwareTypeViewController.h */,
 				6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */,
+				6F7959BB1EC2D83000A458AA /* PerformUpdateViewController.h */,
+				6F7959BC1EC2D83000A458AA /* PerformUpdateViewController.m */,
 				6F7959C51EC2D83000A458AA /* SelectSettingViewController.h */,
 				6F7959C61EC2D83000A458AA /* SelectSettingViewController.m */,
 				6F7959C71EC2D83000A458AA /* SettingsAlternative.h */,
@@ -313,6 +307,7 @@
 		6F795A091EC2D8CC00A458AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6F7959A91EC2D83000A458AA /* Info.plist */,
 				6F79598E1EC2D83000A458AA /* AppDelegate.h */,
 				6F79598F1EC2D83000A458AA /* AppDelegate.m */,
 				6F7959B51EC2D83000A458AA /* main.m */,
@@ -494,7 +489,6 @@
 				6F7959FC1EC2D83000A458AA /* SettingsViewController.m in Sources */,
 				6F7959EC1EC2D83000A458AA /* InventoryViewController.m in Sources */,
 				6F7959EB1EC2D83000A458AA /* InfoViewController.m in Sources */,
-				6F7959E81EC2D83000A458AA /* FirmwareSelectionViewController.m in Sources */,
 				6F7959FB1EC2D83000A458AA /* SettingsAlternative.m in Sources */,
 				6F7959F61EC2D83000A458AA /* ProgressView.m in Sources */,
 				6F7959FA1EC2D83000A458AA /* SelectSettingViewController.m in Sources */,

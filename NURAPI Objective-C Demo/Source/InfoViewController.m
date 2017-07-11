@@ -61,8 +61,6 @@ enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.parentViewController.navigationItem.title = @"Info";
-
     // create the info data
     [self createCellData];
 
@@ -148,6 +146,13 @@ enum {
             [self.tableView reloadData];
         });
     });
+}
+
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    self.parentViewController.navigationItem.title = NSLocalizedString(@"Info", nil);
 }
 
 

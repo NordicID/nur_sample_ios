@@ -33,12 +33,11 @@
 
 @end
 
+
 @implementation SettingsViewController
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-
-    self.parentViewController.navigationItem.title = @"Device Settings";
 
     dataReady = NO;
 }
@@ -47,7 +46,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    NSLog( @"viewDidAppear" );
+    self.parentViewController.navigationItem.title = NSLocalizedString(@"Device Settings", nil);
+    self.parentViewController.navigationItem.backBarButtonItem.title = NSLocalizedString(@"Back", nil);
 
     // if we do not have a current reader then we're coming here before having connected one. Don't do any NurAPI calls
     // in that case
@@ -68,7 +68,6 @@
 
 
     // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
-    NSLog( @"creating popup" );
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Reading settings", nil)
                                                                     message:NSLocalizedString(@"Reading all settings from the device...", nil)
                                                              preferredStyle:UIAlertControllerStyleAlert];
@@ -79,22 +78,17 @@
 
     dispatch_async(self.dispatchQueue, ^{
         // get current settings
-        NSLog( @"getting setting" );
         int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_ALL, &setup, sizeof(struct NUR_MODULESETUP) );
 
         if ( error == NUR_NO_ERROR ) {
             // fetched ok, get antenna mask
             error = NurApiGetAntennaMap( [Bluetooth sharedInstance].nurapiHandle, antennaMap, &antennaMappingCount, NUR_MAX_ANTENNAS_EX, sizeof(struct NUR_ANTENNA_MAPPING) );
 
-            NSLog( @"retrieved %d antenna mappings", antennaMappingCount );
-
             // region info
             if ( error == NUR_NO_ERROR ) {
                 // the the number of regions and allocate space for them
                 error = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &readerInfo, sizeof(struct NUR_READERINFO) );
                 regionInfo = malloc( readerInfo.numRegions * sizeof( struct NUR_REGIONINFO ) );
-
-                NSLog( @"retrieving %d region infos", readerInfo.numRegions );
 
                 if ( error == NUR_NO_ERROR ) {
                     for ( unsigned int index = 0; index < readerInfo.numRegions; ++index ) {
@@ -110,7 +104,6 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog( @"dismissing popup" );
             // now dismsis the "reading" popup and show and error or show the table
             [alert dismissViewControllerAnimated:YES completion:^{
                 if (error != NUR_NO_ERROR) {
@@ -269,10 +262,9 @@
             cell.detailTextLabel.text = [NSString stringWithCString:regionInfo[ setup.regionId ].name encoding:NSASCIIStringEncoding];
             break;
 
-            // not used
         case NUR_SETUP_AUTOTUNE:
             cell.textLabel.text = NSLocalizedString(@"Autotune", nil);
-            cell.detailTextLabel.text = @"";
+            cell.detailTextLabel.text = (setup.autotune.mode & AUTOTUNE_MODE_ENABLE) ? NSLocalizedString(@"Enabled", @"Auto tune setting enabled") : NSLocalizedString(@"Disabled", @"Auto tune setting disabled");
             break;
 
         case NUR_SETUP_RXDEC:
@@ -305,7 +297,7 @@
 - (void) setupAlternativesForRow:(NSInteger)row into:(SelectSettingViewController *)destination {
     int setupKeys[] = { NUR_SETUP_INVQ, NUR_SETUP_INVROUNDS, NUR_SETUP_INVSESSION, NUR_SETUP_INVTARGET,
         NUR_SETUP_TXLEVEL, NUR_SETUP_ANTMASKEX, NUR_SETUP_LINKFREQ, NUR_SETUP_REGION, NUR_SETUP_AUTOTUNE,
-        NUR_SETUP_RXDEC, NUR_SETUP_RXSENS, NUR_SETUP_TXMOD };
+        NUR_SETUP_RXDEC, NUR_SETUP_RXSENS, NUR_SETUP_TXMOD, NUR_SETUP_AUTOTUNE };
 
     NSMutableArray * alternatives = [NSMutableArray new];
 
@@ -428,7 +420,9 @@
             break;
 
         case NUR_SETUP_AUTOTUNE:
-            // TODO
+            destination.settingName = NSLocalizedString(@"Autotune", nil);
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:NSLocalizedString(@"Disabled", nil) value:0 selected:setup.autotune.mode == 0]];
+            [alternatives addObject:[SettingsAlternative alternativeWithTitle:NSLocalizedString(@"Enabled", nil) value:(AUTOTUNE_MODE_ENABLE | AUTOTUNE_MODE_THRESHOLD_ENABLE) selected:setup.autotune.mode & AUTOTUNE_MODE_ENABLE]];
             break;
 
         case NUR_SETUP_RXDEC:

@@ -15,11 +15,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.parentViewController.navigationItem.title = @"Tune";
-
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 }
+
+
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    // register for bluetooth events
+    //[[Bluetooth sharedInstance] registerDelegate:self];
+
+    self.parentViewController.navigationItem.title = NSLocalizedString(@"Tune", nil);
+}
+
+
+/*- (void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    // we no longer need bluetooth events
+    [[Bluetooth sharedInstance] deregisterDelegate:self];
+}*/
 
 
 - (IBAction)tune:(UIButton *)sender {
@@ -45,6 +62,9 @@
                                                                     message:NSLocalizedString(@"Tuning all enabled antennas.", nil)
                                                              preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:alert animated:YES completion:nil];
+
+    // clear the result text
+    self.resultText.text = @"";
 
     dispatch_async(self.dispatchQueue, ^{
         struct NUR_ANTENNA_MAPPING antennaMap[NUR_MAX_ANTENNAS_EX];
@@ -86,8 +106,11 @@
                     alert.message = antennaName;
                 });
 
+                BOOL wideTune = 1;
+                BOOL saveResults = 1;
+
                 // tune this antenna
-                if ( ( error = NurApiTuneAntenna( [Bluetooth sharedInstance].nurapiHandle, index, 1, 1, dbmResults)) != NUR_NO_ERROR ) {
+                if ( ( error = NurApiTuneAntenna( [Bluetooth sharedInstance].nurapiHandle, index, wideTune, saveResults, dbmResults)) != NUR_NO_ERROR ) {
                     NSLog( @"error %d tuning antenna %d", error, index );
 
                     // show error on UI thread
@@ -99,9 +122,17 @@
                     return;
                 }
 
+                // show the result to the user
+                NSString * result = antennaName;
                 for ( int index = 0; index < 6; ++index ) {
-                    NSLog( @"tuning result %d = %d", index, dbmResults[index] );
+                    float dBm = dbmResults[index] / 1000.0f;
+                    NSLog( @"tuning result %d = %.1f dBm", index, dBm );
+                    result = [result stringByAppendingFormat:@"\n    %d = %.1f", index, dBm];
                 }
+
+                dispatch_async( dispatch_get_main_queue(), ^{
+                    self.resultText.text = [self.resultText.text stringByAppendingFormat:@"%@\n\n", result];
+                });
             }
         }
 
@@ -144,7 +175,8 @@
 - (void) notificationReceived:(DWORD)timestamp type:(int)type data:(LPVOID)data length:(int)length {
     switch ( type ) {
         case NUR_NOTIFICATION_TUNEEVENT: {
-            NSLog( @"tuning..." );
+            const struct NUR_TUNEEVENT_DATA *tuneData = (const struct NUR_TUNEEVENT_DATA *)data;
+            NSLog( @"*********************' tuning antenna %d, frequency: %d, reflected power value: %d", tuneData->antenna, tuneData->freqKhz, tuneData->reflPower_dBm );
         }
     }
 }

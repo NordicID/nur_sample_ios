@@ -205,6 +205,10 @@
         [[Bluetooth sharedInstance] connectToReader:self.shouldConnectTo];
         self.shouldConnectTo = nil;
     }
+    else {
+        // no reader and nothing to connect to, start scanning again
+        [[Bluetooth sharedInstance] startScanning];
+    }
 }
 
 /*- (void) reader:(CBPeripheral *)reader rssiUpdated:(NSNumber *)rssi {

@@ -35,17 +35,17 @@
 
     NSUInteger dashLocation = range.location;
 
-    NSLog( @"dot: %lu, dash: %lu", (unsigned long)dotLocation, (unsigned long)dashLocation );
+    //NSLog( @"dot: %lu, dash: %lu", (unsigned long)dotLocation, (unsigned long)dashLocation );
 
     NSString * ownMajorStr = [self.version substringToIndex:dotLocation];
     NSString * ownMinorStr = [self.version substringWithRange:NSMakeRange(dotLocation +1, dashLocation - dotLocation - 1)];
     NSString * ownBuildStr = [self.version substringFromIndex:dashLocation + 1];
-    NSLog( @"major: %@, minor: %@, build: %@", ownMajorStr, ownMinorStr, ownBuildStr );
+    //NSLog( @"major: %@, minor: %@, build: %@", ownMajorStr, ownMinorStr, ownBuildStr );
 
     int ownMajor = [ownMajorStr intValue];
     int ownMinor = [ownMinorStr intValue];
     char ownBuild = [ownBuildStr characterAtIndex:0] & 0xff;
-    NSLog( @"major: %d, minor: %d, build: %d %d", ownMajor, ownMinor, ownBuild, build );
+    //NSLog( @"major: %d, minor: %d, build: %d %d", ownMajor, ownMinor, ownBuild, build );
 
     if ( ownMajor > major ) {
         return YES;
@@ -59,7 +59,7 @@
         return YES;
     }
 
-    return YES;
+    return NO;
 }
 
 @end
