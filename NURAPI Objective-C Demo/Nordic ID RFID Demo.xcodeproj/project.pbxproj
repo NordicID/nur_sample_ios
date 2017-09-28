@@ -48,8 +48,6 @@
 		6F795A121EC2D8FD00A458AA /* blep_40ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0E1EC2D8FD00A458AA /* blep_40ms.wav */; };
 		6F795A131EC2D8FD00A458AA /* blipblipblip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0F1EC2D8FD00A458AA /* blipblipblip.wav */; };
 		6F795A171EC2D90E00A458AA /* QuickGuide.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A151EC2D90E00A458AA /* QuickGuide.html */; };
-		6F795A1C1EC2D93C00A458AA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F795A1A1EC2D93C00A458AA /* Fabric.framework */; };
-		6F795A1D1EC2D93C00A458AA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F795A1B1EC2D93C00A458AA /* Crashlytics.framework */; };
 		6F795A211EC2D94E00A458AA /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F795A3A1EC2F8BB00A458AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959991EC2D83000A458AA /* Main.storyboard */; };
 		6F795A3B1EC2F8C000A458AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959971EC2D83000A458AA /* LaunchScreen.storyboard */; };
@@ -170,8 +168,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F795A1D1EC2D93C00A458AA /* Crashlytics.framework in Frameworks */,
-				6F795A1C1EC2D93C00A458AA /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +364,6 @@
 				6F79596F1EC2D77600A458AA /* Resources */,
 				6F795A221EC2D94E00A458AA /* Embed Frameworks */,
 				6F795A241EC2DAED00A458AA /* ShellScript */,
-				6F795A251EC2DB0200A458AA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -385,7 +380,7 @@
 		6F7959691EC2D77600A458AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Jan Ekholm";
 				TargetAttributes = {
 					6F7959701EC2D77600A458AA = {
@@ -461,19 +456,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
-		};
-		6F795A251EC2DB0200A458AA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 83bb56fdd2080fec948c59ae9c2a895425e421cd 4285413da27ce90ce8705280b912b36d4b07607d7f9a7a46451c0d78d87fd4c9\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -576,7 +558,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -584,7 +568,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -626,7 +614,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -634,7 +624,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

@@ -1,7 +1,4 @@
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
-
 #import "AppDelegate.h"
 #import "ConnectionManager.h"
 
@@ -13,9 +10,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // initialize Crashlytics
-    [Fabric with:@[[Crashlytics class]]];
-
     // set up the connection manager so that it's aware of everything that happens
     [[ConnectionManager sharedInstance] setup];
     return YES;
