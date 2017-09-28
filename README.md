@@ -146,7 +146,8 @@ allows the same framework to be used for both simulator testing as well as deplo
 is submitted to the App Store the i386 simulator libraries can not be included and must be stripped away from the
 build. This can be easily done with a build phase script that is executed last in the build.
 
-The relevant script is below. It strips out all architectures that are not currently needed.
+The relevant script is below. It strips out all architectures that are not currently needed. If your ``Info.plist`` is in some other location adapt the path on line ``FRAMEWORK_EXECUTABLE_NAME=$(defaults read "$FRAMEWORK/Info.plist" CFBundleExecutable)``.
+
 
 ```bash
 APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
