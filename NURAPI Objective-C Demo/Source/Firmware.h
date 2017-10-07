@@ -5,8 +5,10 @@
  * Types of available firmware updates.
  **/
 typedef enum {
-    kReaderFirmware,
-    kNurRfidFirmware
+    kNurFirmware,
+    kNurBootloader,
+    kDeviceFirmware,
+    kDeviceBootloader,
 } FirmwareType;
 
 
@@ -28,8 +30,9 @@ typedef enum {
 @property (nonatomic, strong) NSURL *      url;
 @property (nonatomic, strong) NSString *   md5;
 @property (nonatomic, assign) FirmwareType type;
+@property (nonatomic, strong) NSArray *    hw;
 
-- (instancetype) initWithName:(NSString *)name version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 type:(FirmwareType)type;
+- (instancetype) initWithName:(NSString *)name type:(FirmwareType)type version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 hw:(NSArray *)hw;
 
 - (BOOL) isNewerThanMajor:(int)major minor:(int)minor build:(int)build;
 

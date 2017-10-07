@@ -1,7 +1,8 @@
 
 #import <UIKit/UIKit.h>
+#import "FirmwareDownloader.h"
 
-@interface FirmwareTypeViewController : UIViewController
+@interface FirmwareTypeViewController : UIViewController <FirmwareDownloaderDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentReaderFirmwareVersion;
 @property (weak, nonatomic) IBOutlet UILabel *currentNurRfidFirmwareVersion;

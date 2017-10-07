@@ -608,6 +608,9 @@ struct NUR_MODULESETUP
 
 	/** The receiver sensitivity field. 0 = Nominal, 1 = Low, 2 = High */
 	int rxSensitivity;
+
+	/** The RF profile. 0 = Robust, 1 = Nominal, 2 = High speed */
+	int rfProfile;
 };
 
 /**
@@ -4096,6 +4099,19 @@ int NURAPICONV NurApiCustomCmd(HANDLE hApi, BYTE cmd, BYTE *inbuffer, DWORD inbu
  */
 NUR_API
 int NURAPICONV NurApiTuneAntenna(HANDLE hApi, int antenna, BOOL wideTune, BOOL bSaveResults, int *dBmResults);
+
+/** @fn int NurApiProductionTune(HANDLE hApi, BYTE *code, int *dBmResults)
+ * Executes an production tune. NOTE: Only used at Nordic ID production.
+ *
+ * @param hApi            	Handle to valid NurApi object instance
+ * @param code       		Production tune code
+ * @param dBmResults		Pointer to 6 integer values. The reflected power will be stored into these values in format dBm * 1000.
+ *							This parameter may be NULL.
+ *
+ * @return	Zero when succeeded, on error non-zero error code is returned.
+ */
+NUR_API
+int NURAPICONV NurApiProductionTune(HANDLE hApi, BYTE *code, int *dBmResults);
 
 /** @fn int NurApiRestoreTuning(HANDLE hApi, BOOL factoryReset)
  * Executes an antenna tune.

@@ -3,7 +3,6 @@
 
 #import "FirmwareTypeViewController.h"
 #import "PerformUpdateViewController.h"
-#import "Firmware.h"
 
 @interface FirmwareTypeViewController () {
     int minorVersion;
@@ -21,10 +20,15 @@
 @property (nonatomic, strong) NSMutableArray * readerFirmwares;
 @property (nonatomic, strong) NSMutableArray * nurRfidFirmwares;
 
+@property (nonatomic, strong) FirmwareDownloader * downloader;
+
 @end
 
 
-#define FIRMWARE_URL @"https://raw.githubusercontent.com/NordicID/nur_firmware/master/firmwares.json"
+#define NUR_FIRMWARE_URL      @"https://raw.githubusercontent.com/NordicID/nur_firmware/master/firmwares.json"
+#define NUR_BOOTLOADER_URL    @"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/firmwares.json"
+#define DEVICE_FIRMWARE_URL   @"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Applicationfirmwares.json<"
+#define DEVICE_BOOTLOADER_URL @"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Bootloaderfirmwares.json"
 
 
 @implementation FirmwareTypeViewController
@@ -47,6 +51,8 @@
 
     self.readerModelName = @"INVALID";
     self.nurRfidModelName = @"INVALID";
+
+    self.downloader = [[FirmwareDownloader alloc] initWithDelegate:self];
 }
 
 
@@ -110,7 +116,8 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             // now start downloading the index file
-            [self downloadIndexFile];
+            [self.downloader downloadIndexFiles];
+            //[self downloadIndexFile];
         } );
     });
     
@@ -149,7 +156,7 @@
 
 
 - (void) downloadIndexFile {
-    NSString *dataUrl = FIRMWARE_URL;
+    NSString *dataUrl = NUR_FIRMWARE_URL;
     NSURL *url = [NSURL URLWithString:dataUrl];
 
     // show a progress view
@@ -227,13 +234,13 @@
             NSLog( @"cheking model: %@", model );
             if ( [self.readerModelName isEqualToString:model] ) {
                 NSLog( @"found reader firmware" );
-                Firmware * firmware = [[Firmware alloc] initWithName:name version:version buildTime:buildTime url:url md5:md5 type:kReaderFirmware];
-                [self.readerFirmwares addObject:firmware];
+                //Firmware * firmware = [[Firmware alloc] initWithName:name version:version buildTime:buildTime url:url md5:md5 type:kNurFirmware];
+                //[self.readerFirmwares addObject:firmware];
             }
             else if ( [self.nurRfidModelName isEqualToString:model] ) {
                 NSLog( @"found NurRFID firmware" );
-                Firmware * firmware = [[Firmware alloc] initWithName:name version:version buildTime:buildTime url:url md5:md5 type:kNurRfidFirmware];
-                [self.nurRfidFirmwares addObject:firmware];
+                //Firmware * firmware = [[Firmware alloc] initWithName:name version:version buildTime:buildTime url:url md5:md5 type:kNurBootloader];
+                //[self.nurRfidFirmwares addObject:firmware];
             }
             else {
                 NSLog( @"firmware not for our device" );
@@ -313,6 +320,23 @@
     else if ( [segue.identifier isEqualToString:@"ReaderFirmwareUpdateSegue"] ) {
         destination.firmware = [self.readerFirmwares lastObject];
     }
+}
+
+
+//*****************************************************************************************************************
+#pragma mark - Firmware downloader delegate
+
+- (void) firmwareMetaDataDownloaded:(FirmwareType)type firmwares:(NSArray *)firmwares {
+    NSLog( @"meta data downloaded for type: %d, firmwares found: %lu", type, (unsigned long)(firmwares != nil ? firmwares.count : 0));
+
+    for ( Firmware * firmware in firmwares ) {
+        NSLog( @"found firmware: %@", firmware );
+    }
+}
+
+
+- (void) firmwareMetaDataFailed:(FirmwareType)type error:(NSString *)error {
+    NSLog( @"meta data download failed for type: %d, error: %@", type, error );
 }
 
 @end

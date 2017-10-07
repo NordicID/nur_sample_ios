@@ -258,9 +258,9 @@
 
         // start a timer that updates the battery level periodically
         self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
-    });
 
-    [self updateStatusInfo];
+        [self updateStatusInfo];
+    });
 }
 
 

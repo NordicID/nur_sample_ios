@@ -3,18 +3,23 @@
 
 @implementation Firmware
 
-- (instancetype) initWithName:(NSString *)name version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 type:(FirmwareType)type {
+- (instancetype) initWithName:(NSString *)name type:(FirmwareType)type version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 hw:(NSArray *)hw {
     self = [super init];
     if (self) {
         self.name = name;
+        self.type = type;
         self.version = version;
         self.buildTime = buildTime;
         self.url = url;
         self.md5 = md5;
-        self.type = type;
+        self.hw = hw;
     }
     
     return self;
+}
+
+- (NSString *) description {
+    return [NSString stringWithFormat:@"[name: '%@' type: %d version: %@, hw: %lu]", self.name, self.type, self.version, (unsigned long)self.hw.count];
 }
 
 
