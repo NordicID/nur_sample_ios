@@ -48,13 +48,13 @@
 		6F795A121EC2D8FD00A458AA /* blep_40ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0E1EC2D8FD00A458AA /* blep_40ms.wav */; };
 		6F795A131EC2D8FD00A458AA /* blipblipblip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0F1EC2D8FD00A458AA /* blipblipblip.wav */; };
 		6F795A171EC2D90E00A458AA /* QuickGuide.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A151EC2D90E00A458AA /* QuickGuide.html */; };
-		6F795A1C1EC2D93C00A458AA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F795A1A1EC2D93C00A458AA /* Fabric.framework */; };
-		6F795A1D1EC2D93C00A458AA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F795A1B1EC2D93C00A458AA /* Crashlytics.framework */; };
 		6F795A211EC2D94E00A458AA /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F795A3A1EC2F8BB00A458AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959991EC2D83000A458AA /* Main.storyboard */; };
 		6F795A3B1EC2F8C000A458AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959971EC2D83000A458AA /* LaunchScreen.storyboard */; };
 		6F795A3E1EC2FB8000A458AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A401EC2FB8000A458AA /* InfoPlist.strings */; };
 		6F795A431EC2FB8100A458AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A451EC2FB8100A458AA /* Localizable.strings */; };
+		6F921BE91F862D2C0088AC3E /* FirmwareDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */; };
+		6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -163,6 +163,10 @@
 		6F795A471EC2FDBF00A458AA /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Main.strings; sourceTree = "<group>"; };
 		6F795A481EC2FDBF00A458AA /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6F795A491EC2FDBF00A458AA /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6F921BE71F862D2B0088AC3E /* FirmwareDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirmwareDownloader.h; sourceTree = "<group>"; };
+		6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirmwareDownloader.m; sourceTree = "<group>"; };
+		6F921BEF1F87B7560088AC3E /* FirmwareSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirmwareSelectionViewController.h; sourceTree = "<group>"; };
+		6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirmwareSelectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +174,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F795A1D1EC2D93C00A458AA /* Crashlytics.framework in Frameworks */,
-				6F795A1C1EC2D93C00A458AA /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +290,8 @@
 				6F7959A21EC2D83000A458AA /* Firmware.m */,
 				6F7959A31EC2D83000A458AA /* FirmwareCell.h */,
 				6F7959A41EC2D83000A458AA /* FirmwareCell.m */,
+				6F921BE71F862D2B0088AC3E /* FirmwareDownloader.h */,
+				6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */,
 				6F7959A71EC2D83000A458AA /* FirmwareTypeViewController.h */,
 				6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */,
 				6F7959BB1EC2D83000A458AA /* PerformUpdateViewController.h */,
@@ -300,6 +304,8 @@
 				6F7959CA1EC2D83000A458AA /* SettingsViewController.m */,
 				6F7959D61EC2D83000A458AA /* TuneViewController.h */,
 				6F7959D71EC2D83000A458AA /* TuneViewController.m */,
+				6F921BEF1F87B7560088AC3E /* FirmwareSelectionViewController.h */,
+				6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -368,7 +374,6 @@
 				6F79596F1EC2D77600A458AA /* Resources */,
 				6F795A221EC2D94E00A458AA /* Embed Frameworks */,
 				6F795A241EC2DAED00A458AA /* ShellScript */,
-				6F795A251EC2DB0200A458AA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -385,7 +390,7 @@
 		6F7959691EC2D77600A458AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Jan Ekholm";
 				TargetAttributes = {
 					6F7959701EC2D77600A458AA = {
@@ -462,19 +467,6 @@
 			shellPath = /bin/sh;
 			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
 		};
-		6F795A251EC2DB0200A458AA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 83bb56fdd2080fec948c59ae9c2a895425e421cd 4285413da27ce90ce8705280b912b36d4b07607d7f9a7a46451c0d78d87fd4c9\n\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -500,6 +492,7 @@
 				6F7959F71EC2D83000A458AA /* QuickGuideViewController.m in Sources */,
 				6F7959F01EC2D83000A458AA /* LocateViewController.m in Sources */,
 				6F7959E91EC2D83000A458AA /* FirmwareTypeViewController.m in Sources */,
+				6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */,
 				6F795A031EC2D83000A458AA /* WriteTagPopoverViewController.m in Sources */,
 				6F7959E71EC2D83000A458AA /* FirmwareCell.m in Sources */,
 				6F795A041EC2D83000A458AA /* WriteTagViewController.m in Sources */,
@@ -508,6 +501,7 @@
 				6F7959F11EC2D83000A458AA /* main.m in Sources */,
 				6F7959E41EC2D83000A458AA /* ConnectionManager.m in Sources */,
 				6F7959FD1EC2D83000A458AA /* SmoothingBuffer.m in Sources */,
+				6F921BE91F862D2C0088AC3E /* FirmwareDownloader.m in Sources */,
 				6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */,
 				6F7959F31EC2D83000A458AA /* MainMenuCell.m in Sources */,
 				6F7959E01EC2D83000A458AA /* AudioPlayer.m in Sources */,
@@ -576,7 +570,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -584,7 +580,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -626,7 +626,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -634,7 +636,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

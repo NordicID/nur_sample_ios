@@ -33,7 +33,7 @@
 #define NUR_DEFAULT_BAUDRATE	(115200)
 
 /** Maximum number of GPIOs. */
-#define NUR_MAX_GPIO			(7)
+#define NUR_MAX_GPIO			(8)
 
 /** Maximum number of invetoryex filters. */
 #define NUR_MAX_FILTERS			(8)
@@ -68,6 +68,13 @@
 #define NUR_RXSENS_NOMINAL	0
 /** Receiver sensitivity "high" setting.  */
 #define NUR_RXSENS_HIGH		2
+
+/** Robust RF profile. This profile is recommended to use in noisy RF environments. */
+#define NUR_RFPROFILE_ROBUST		0
+/** Nominal RF profile. This profile works good in most environments. */
+#define NUR_RFPROFILE_NOMINAL		1
+/** High speed RF profile. This profile provides best throughput, but is prone to RF interference. */
+#define NUR_RFPROFILE_HIGHSPEED		2
 
 /** Maximum length of antenna mapping's name. */
 #define MAX_MAPPINGLEN	16
@@ -622,7 +629,10 @@ enum NUR_MODULESETUP_FLAGS
 	NUR_SETUP_PERANTPOWER_EX = (1<<27), /**< antPowerEx field in struct NUR_MODULESETUP is valid */
 	NUR_SETUP_RXSENS		= (1<<28), /**< rxSensitivity field in struct NUR_MODULESETUP is valid */
 
-	NUR_SETUP_ALL			=	((1 << 29) - 1)	/**< All setup flags in the structure. */
+	// ADDED NUR2 7.0
+	NUR_SETUP_RFPROFILE		= (1<<29), /**< rfProfile field in struct NUR_MODULESETUP is valid */
+
+	NUR_SETUP_ALL			=	((1 << 30) - 1)	/**< All setup flags in the structure. */
 };
 
 /** Possible inventory targets. 
@@ -796,7 +806,8 @@ enum NUR_DEVCAPS_F1
 	NUR_DC_FETCHSINGLE	= (1<<21),  /**< This module supports fetching tags one by one. */
 	NUR_DC_ANTENNAMAP	= (1<<22),  /**< This module provides antenna mapping information. */
 	NUR_DC_GEN2VER2		= (1<<23),  /**< The module FW supports Gen2 version 2 at some level. */
-	NUR_DC_LASTBITF1	= (1<<24),	/**< Next available bit for future extensions. */	
+	NUR_DC_RFPROFILE	= (1<<24),  /**< The module FW supports RF profile setting. */
+	NUR_DC_LASTBITF1	= (1<<25),	/**< Next available bit for future extensions. */	
 };
 
 /** Flag field 1 'all device caps' bitmask. */
@@ -819,7 +830,9 @@ enum NUR_CHIPVER
 	/** Chip version AS3992 */
 	NUR_CHIPVER_AS3992 = 1,
 	/** Chip version AS3993 */
-	NUR_CHIPVER_AS3993 = 2
+	NUR_CHIPVER_AS3993 = 2,
+	/** Chip version R2000 */
+	NUR_CHIPVER_R2000 = 3
 };
 
 /**
@@ -835,7 +848,9 @@ enum NUR_MODULETYPE
 	/** Module type NUR05WL2 */
 	NUR_MODULETYPE_NUR05WL2 = 3,
 	/** Module type NUR10W (1W module)*/
-	NUR_MODULETYPE_NUR10W = 4
+	NUR_MODULETYPE_NUR10W = 4,
+	/** Module type NUR2-1W (1W module)*/
+	NUR_MODULETYPE_NUR2_1W = 5
 };
 
 /**

@@ -11,7 +11,7 @@
 #include <ctype.h>
 #include <math.h>
 
-#ifdef __yocto__
+#if defined(__yocto__) || defined(__ANDROID__)
 #include <pthread.h>
 #endif
 

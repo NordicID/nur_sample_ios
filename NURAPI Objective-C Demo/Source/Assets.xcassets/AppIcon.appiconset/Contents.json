@@ -128,6 +128,12 @@
       "idiom" : "ipad",
       "filename" : "Nordic_ID_app_icon_83.5@2.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "Nordic_ID_1024x1024px_appstore_icon.png",
+      "scale" : "1x"
     }
   ],
   "info" : {

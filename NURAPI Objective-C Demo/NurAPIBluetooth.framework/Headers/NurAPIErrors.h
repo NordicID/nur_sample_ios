@@ -78,6 +78,10 @@ enum NUR_ERRORCODES
 
 	/** HW error */
 	NUR_ERROR_READER_HW = 0x60,
+	/** Antenna too bad */
+	NUR_ERROR_BAD_ANTENNA,
+	/** Low voltage */
+	NUR_ERROR_LOW_VOLTAGE,
 
 	/** Invalid handle passed to function */
 	NUR_ERROR_INVALID_HANDLE = 0x1000,

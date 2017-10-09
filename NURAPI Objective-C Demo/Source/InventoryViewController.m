@@ -182,6 +182,37 @@
 }
 
 
+/**
+ * Used to test a case where an EXA51 was crashing with these particular parameters,
+ **/
+- (void) hardcodedTest {
+    BYTE sMask[112];
+    BYTE rdBuffer[192];
+   int error = NurApiReadSingulatedTag32( [Bluetooth sharedInstance].nurapiHandle,
+                                         0, //DWORD passwd,
+                                         0, //BOOL secured,
+                                         1, //BYTE sBank,
+                                         32, //DWORD sAddress,
+                                         112, //int sMaskBitLength,
+                                         sMask, //BYTE *sMask,
+                                         3, //BYTE rdBank,
+                                         0, //DWORD rdAddress,
+                                         192, //int rdByteCount,
+                                         rdBuffer //BYTE *rdBuffer
+                                         );
+
+    NSLog( @"hardcodedTest: error: %d", error );
+
+    // show the error or update the button label on the main queue
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ( error != NUR_NO_ERROR ) {
+            NSLog( @"failed to start inventory stream" );
+            [self showErrorMessage:error];
+            return;
+        }
+    } );
+}
+
 - (void) startStream {
     NSLog( @"starting inventory stream" );
 
