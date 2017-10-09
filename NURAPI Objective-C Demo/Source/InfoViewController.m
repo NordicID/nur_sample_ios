@@ -183,13 +183,16 @@ enum {
 
 
 - (void) createCellData {
-    self.cellData = @{ @(kSerialNumber): [CellData cellDataWithTitle:NSLocalizedString(@"Serial number", nil) value:@"?"],
-                       @(kAltSerialNumber):  [CellData cellDataWithTitle:NSLocalizedString(@"Device number", nil) value:@"?"],
-                       @(kName): [CellData cellDataWithTitle:NSLocalizedString(@"Model", nil) value:@"?"],
+    self.cellData = @{ @(kSerialNumber): [CellData cellDataWithTitle:NSLocalizedString(@"NUR serial number", nil) value:@"?"],
+                       @(kAltSerialNumber):  [CellData cellDataWithTitle:NSLocalizedString(@"Device serial number", nil) value:@"?"],
+                       @(kName): [CellData cellDataWithTitle:NSLocalizedString(@"NUR model", nil) value:@"?"],
                        @(kFccId): [CellData cellDataWithTitle:NSLocalizedString(@"FCC id", nil) value:@"?"],
                        @(kHwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Hardware version", nil) value:@"?"],
-                       @(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR RFID firmware", nil) value:@"?"],
-                       @(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Reader firmware", nil) value:@"?"],
+
+                       @(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR firmware", nil) value:@"?"],
+                       //@(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR bootloader", nil) value:@"?"],
+                       @(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Device firmware", nil) value:@"?"],
+                       //@(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Device bootloader", nil) value:@"?"],
 
                        @(kBatteryPercentage): [CellData cellDataWithTitle:NSLocalizedString(@"Percentage", nil) value:@"?"],
                        @(kBatteryCapacity): [CellData cellDataWithTitle:NSLocalizedString(@"Capacity (mA)", nil) value:@"?"],
