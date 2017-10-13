@@ -50,15 +50,14 @@
 
     // default versions
     self.versionStrings = [NSMutableArray arrayWithObjects:
-                           @"Unknown",
-                           @"Unknown",
-                           @"Unknown",
-                           @"Unknown",
+                           NSLocalizedString(@"unknown", @"firmware version unknown"),
+                           NSLocalizedString(@"unknown", @"firmware version unknown"),
+                           NSLocalizedString(@"unknown", @"firmware version unknown"),
+                           NSLocalizedString(@"unknown", @"firmware version unknown"),
                            nil ];
 
     // downloader that handles getting the firmware index files and also the real firmwares
     self.downloader = [[FirmwareDownloader alloc] initWithDelegate:self];
-    [self.downloader downloadIndexFiles];
 }
 
 
@@ -73,13 +72,13 @@
 
 
 - (void) fetchDeviceInformation {
-
     dispatch_async(self.dispatchQueue, ^{
         struct NUR_READERINFO info;
         TCHAR deviceVersionsTmp[32] = _T("");
         NSString * deviceVersions;
 
         // get current settings
+        NSLog( @"querying device versions" );
         int error1 = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &info, sizeof(struct NUR_READERINFO) );
         int error2 = NurAccGetFwVersion( [Bluetooth sharedInstance].nurapiHandle, deviceVersionsTmp, 32);
         deviceVersions = [NSString stringWithCString:deviceVersionsTmp encoding:NSASCIIStringEncoding];
@@ -112,7 +111,7 @@
             else {
                 NSArray * parts = [deviceVersions componentsSeparatedByString:@";"];
                 if ( parts.count  != 2 ) {
-                    [self.versionStrings setObject: NSLocalizedString( @"Error getting device firmware version", nil) atIndexedSubscript:kDeviceFirmware];
+                    [self.versionStrings setObject: NSLocalizedString( @"Unexpected device firmware version format", nil) atIndexedSubscript:kDeviceFirmware];
                     [self showNurApiErrorMessage:error2];
                 }
                 else {
@@ -130,7 +129,6 @@
             [self.downloader downloadIndexFiles];
         });
     });
-
 }
 
 
@@ -230,13 +228,14 @@
     }
 
     header.nameLabel.text = title;
-    header.versionLabel.text = self.versionStrings[ firmwareType ];
+    header.versionLabel.text = [NSString stringWithFormat: NSLocalizedString(@"Current version: %@", @"current firmware version in firmware selection screen"), self.versionStrings[ firmwareType ]];
     return header;
 }
 
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44;
+    // this is to be kept in sync with the view heigh in FirmwareSectionHeader.xib
+    return 86;
 }
 
 
