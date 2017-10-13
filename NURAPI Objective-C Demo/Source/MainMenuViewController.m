@@ -4,20 +4,49 @@
 #import "Tag.h"
 #import "ConnectionManager.h"
 
-@interface MainMenuViewController ()
+/**
+ * A single entry in the main menu.
+ **/
+@interface MainMenuEntry : NSObject
 
-@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
-@property (nonatomic, strong) NSTimer * timer;
+@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) NSString * iconName;
+@property (nonatomic, strong) NSString * seque;
+@property (nonatomic, assign) BOOL       enabled;
+@property (nonatomic, assign) BOOL       alwaysEnabled;
 
-// main menu data
-@property (nonatomic, assign) UIEdgeInsets insets;
-@property (nonatomic, assign) CGSize cellSize;
-@property (nonatomic, strong) NSArray * iconNames;
-@property (nonatomic, strong) NSArray * titles;
-@property (nonatomic, strong) NSArray * segues;
+- (instancetype) initWithTitle:(NSString *)title icon:(NSString *)icon segue:(NSString *)seque enabled:(BOOL)enabled alwaysEnabled:(BOOL)alwaysEnabled;
 
 @end
 
+@implementation MainMenuEntry
+
+- (instancetype) initWithTitle:(NSString *)title icon:(NSString *)icon segue:(NSString *)seque enabled:(BOOL)enabled alwaysEnabled:(BOOL)alwaysEnabled {
+    self = [super init];
+    if (self) {
+        self.title = title;
+        self.iconName = icon;
+        self.seque = seque;
+        self.enabled = enabled;
+        self.alwaysEnabled = alwaysEnabled;
+    }
+    return self;
+}
+
+@end
+
+
+@interface MainMenuViewController ()
+
+@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+@property (nonatomic, strong) NSTimer *        timer;
+
+// main menu data
+@property (nonatomic, assign) UIEdgeInsets insets;
+@property (nonatomic, assign) CGSize       cellSize;
+@property (nonatomic, strong) NSArray *    menuEntries;
+
+@end
 
 @implementation MainMenuViewController
 
@@ -47,27 +76,13 @@
     self.insets = UIEdgeInsetsMake( top, left, bottom, right );
     self.cellSize = CGSizeMake( cellWidth, cellHeight );
 
-    self.iconNames = @[ @"MainMenuInventory",
-                        @"MainMenuLocate",
-                        @"MainMenuWrite",
-                        @"MainMenuBarcode",
-                        @"MainMenuSettings",
-                        @"MainMenuInfo",
-                        @"MainMenuGuide" ];
-    self.titles    = @[ NSLocalizedString(@"Inventory", @"main menu"),
-                        NSLocalizedString( @"Locate", @"main menu"),
-                        NSLocalizedString(@"Write Tag", @"main menu"),
-                        NSLocalizedString(@"Barcode", @"main menu"),
-                        NSLocalizedString(@"Settings", @"main menu"),
-                        NSLocalizedString(@"Info", @"main menu"),
-                        NSLocalizedString(@"Quick Guide", @"main menu") ];
-    self.segues    = @[ @"InventorySegue",
-                        @"LocateSegue",
-                        @"WriteTagSegue",
-                        @"BarcodeSegue",
-                        @"SettingsSegue",
-                        @"InfoSegue",
-                        @"QuickGuideSegue", ];
+    self.menuEntries = @[ [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Inventory", @"main menu") icon:@"MainMenuInventory" segue:@"InventorySegue" enabled:NO alwaysEnabled:NO],
+                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString( @"Locate", @"main menu") icon:@"MainMenuLocate" segue:@"LocateSegue" enabled:NO alwaysEnabled:NO],
+                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Write Tag", @"main menu") icon:@"MainMenuWrite" segue:@"WriteTagSegue" enabled:NO alwaysEnabled:NO],
+                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Barcode", @"main menu") icon:@"MainMenuBarcode" segue:@"BarcodeSegue" enabled:NO alwaysEnabled:NO],
+                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", @"main menu") icon:@"MainMenuSettings" segue:@"SettingsSegue" enabled:NO alwaysEnabled:NO],
+                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Info", @"main menu") icon:@"MainMenuInfo" segue:@"InfoSegue" enabled:NO alwaysEnabled:NO],
+                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Quick Guide", @"main menu") icon:@"MainMenuGuide" segue:@"QuickGuideSegue" enabled:YES alwaysEnabled:YES] ];
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
@@ -79,6 +94,8 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
+
+    [self updateMenuEntryState];
 
     // connection already ok?
     if ( [ConnectionManager sharedInstance].currentReader != nil && self.timer == nil) {
@@ -179,6 +196,24 @@
 }
 
 
+- (void) updateMenuEntryState {
+    if ( [ConnectionManager sharedInstance].currentReader ) {
+        // enable all entries
+        for ( MainMenuEntry * entry in self.menuEntries ) {
+            entry.enabled = YES;
+        }
+    }
+    else {
+        // disable all entries
+        for ( MainMenuEntry * entry in self.menuEntries ) {
+            if ( ! entry.alwaysEnabled ) {
+                entry.enabled = NO;
+            }
+        }
+    }
+}
+
+
 //****************************************************************************************************************
 #pragma mark - Collection view delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -187,16 +222,18 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.titles.count;
+    return self.menuEntries.count;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MainMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MainMenuCell" forIndexPath:indexPath];
 
+    MainMenuEntry * entry = self.menuEntries[ indexPath.row ];
+
     // populate the cell
-    cell.title.text = self.titles[ indexPath.row ];
-    cell.icon.image = [UIImage imageNamed:self.iconNames[ indexPath.row ]];
+    cell.title.text = entry.title;
+    cell.icon.image = [UIImage imageNamed:entry.iconName];
 
     // DEBUG
     //cell.backgroundColor = [UIColor redColor];
@@ -205,7 +242,15 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:self.segues[ indexPath.row] sender:nil];
+    MainMenuEntry * entry = self.menuEntries[ indexPath.row ];
+
+    // is the entry enabled?
+    if ( entry.enabled == NO && entry.alwaysEnabled == NO ) {
+        NSLog( @"entry disabled" );
+        return;
+    }
+
+    [self performSegueWithIdentifier:entry.seque sender:nil];
 }
 
 
@@ -250,11 +295,11 @@
         NSLog( @"connection ok, handle: %p", [Bluetooth sharedInstance].nurapiHandle );
         NSLog( @"MTU with write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithResponse] );
         NSLog( @"MTU without write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithoutResponse] );
-        self.scanButton.enabled = YES;
-        self.settingsButton.enabled = YES;
-        self.writeTagButton.enabled = YES;
-        self.infoButton.enabled = YES;
-        self.readBarcodeButton.enabled = YES;
+
+        // enable all entries
+        for ( MainMenuEntry * entry in self.menuEntries ) {
+            entry.enabled = YES;
+        }
 
         // start a timer that updates the battery level periodically
         self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
@@ -268,6 +313,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog( @"reader disconnected" );
 
+        [self updateMenuEntryState];
+
         // stop any old timeout timer that we may have
         if ( self.timer ) {
             [self.timer invalidate];
@@ -278,14 +325,11 @@
     });
 }
 
+
 - (void) readerConnectionFailed {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog( @"connection failed" );
-        self.scanButton.enabled = NO;
-        self.settingsButton.enabled = NO;
-        self.writeTagButton.enabled = NO;
-        self.infoButton.enabled = NO;
-        self.readBarcodeButton.enabled = NO;
+        [self updateMenuEntryState];
     });
 }
 
