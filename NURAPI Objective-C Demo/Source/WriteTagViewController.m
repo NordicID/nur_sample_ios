@@ -74,6 +74,9 @@
     dispatch_async(self.dispatchQueue, ^{
         TagManager * tm = [TagManager sharedInstance];
 
+        // clear the tags from the reader too
+        NurApiClearTags( [Bluetooth sharedInstance].nurapiHandle );
+
         // perform a simple inventory round
         struct NUR_INVENTORY_RESPONSE inventoryResponse;
         int error = NurApiSimpleInventory( [Bluetooth sharedInstance].nurapiHandle, &inventoryResponse );

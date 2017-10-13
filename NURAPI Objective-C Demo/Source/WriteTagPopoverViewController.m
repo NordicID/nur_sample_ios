@@ -23,16 +23,23 @@
 
 - (IBAction) performTagWriting {
     // data for the new tag
-    const char *chars = [self.epcEdit.text UTF8String];
-    unsigned int charCount = (unsigned int)self.epcEdit.text.length;
+    const char *chars = [self.epcEdit.text cStringUsingEncoding:NSASCIIStringEncoding];
+    unsigned int charCount = (unsigned int)strlen(chars); //(unsigned int)self.epcEdit.text.length;
     unsigned int newEpcLength = charCount / 2;
 
-    NSLog( @"writing new tag: %@", self.epcEdit.text );
+//    NSLog( @"writing new tag: %s, length: %d", chars, charCount );
+//    for ( int index = 0; index < charCount; index++ ) {
+//        NSLog( @"new %d = %d", index, chars[index] );
+//    }
 
     // play a short blip
     [[AudioPlayer sharedInstance] playSound:kBlep100ms];
 
     dispatch_async(self.dispatchQueue, ^{
+        // copy the old characters to make sure they survive
+        char oldChars[NUR_MAX_EPC_LENGTH];
+        strncpy( oldChars, chars, NUR_MAX_EPC_LENGTH );
+
         // get the previous TX level so that we can restore it later. It should be at maximum when writing tags
         struct NUR_MODULESETUP setup;
         int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
@@ -50,26 +57,27 @@
         NSLog( @"current tx level: %d", oldTxLevel );
 
         // set the TX level to 0 (maximum)
-        setup.txLevel = 0;
-        error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
-        if ( error != NUR_NO_ERROR ) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog( @"failed to set new tx level" );
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [self.delegate writeCompletedWithError:error];
-            } );
+        if ( setup.txLevel != 0 ) {
+            setup.txLevel = 0;
+            error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
+            if ( error != NUR_NO_ERROR ) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog( @"failed to set new tx level" );
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self.delegate writeCompletedWithError:error];
+                } );
 
-            return;
+                return;
+            }
         }
 
-
-        // convert the hex string like "112233..." to 12 bytes
+        // convert the hex string like "112233..." to bytes
         unsigned char newEpc[NUR_MAX_EPC_LENGTH];
         char byteChars[3] = {'\0','\0','\0'};
-        int charIndex = 0, resultIndex = 0;
-        while( charIndex < charCount ) {
-            byteChars[0] = chars[charIndex++];
-            byteChars[1] = chars[charIndex++];
+        int resultIndex = 0;
+        for ( int charIndex = 0; charIndex < charCount; charIndex += 2 ) {
+            byteChars[0] = oldChars[charIndex ];
+            byteChars[1] = oldChars[charIndex + 1];
             unsigned long wholeByte = strtoul(byteChars, NULL, 16);
             newEpc[resultIndex++] = wholeByte & 0xff;
         }
@@ -83,7 +91,16 @@
         BYTE wrBank = 1;
         DWORD wrAddress = 2;
 
-        NSLog( @"writing new tag, bytes: %d, old bytes: %d", newEpcLength, oldEpcLength );
+//        NSLog( @"tag old epc: %@", self.writeTag.hex );
+//        for ( int index = 0; index < oldEpcLength; index++ ) {
+//            NSLog( @"old %d = %d", index, oldEpc[index] );
+//        }
+//        for ( int index = 0; index < newEpcLength; index++ ) {
+//            NSLog( @"new %d = %d", index, newEpc[index] );
+//        }
+//        for ( int index = 0; index < charCount; index++ ) {
+//            NSLog( @"chars %d = %d", index, oldChars[index] );
+//        }
 
         // perform the real tag writing
         error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, oldEpcLength, wrBank, wrAddress, newEpcLength, newEpc );
@@ -99,20 +116,23 @@
 
         // update the internal tag too
         self.writeTag.epc = [NSData dataWithBytes:newEpc length:newEpcLength];
+        //NSLog( @"tag new epc: %@", self.writeTag.hex );
 
         // restore the TX level
-        setup.txLevel = oldTxLevel;
-        NSLog( @"restoring previous tx level: %d", oldTxLevel );
+        if ( setup.txLevel != oldTxLevel ) {
+            setup.txLevel = oldTxLevel;
+            NSLog( @"restoring previous tx level: %d", oldTxLevel );
 
-        error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
-        if ( error != NUR_NO_ERROR ) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog( @"failed to restore old tx level" );
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [self.delegate writeCompletedWithError:error];
-            } );
+            error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
+            if ( error != NUR_NO_ERROR ) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog( @"failed to restore old tx level" );
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self.delegate writeCompletedWithError:error];
+                } );
 
-            return;
+                return;
+            }
         }
 
         // we're done, written ok
