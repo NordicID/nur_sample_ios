@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F04D1631F8B7FAE0064A229 /* FirmwareSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */; };
+		6F04D1671F8B96950064A229 /* FirmwareSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */; };
 		6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598D1EC2D83000A458AA /* AboutViewController.m */; };
 		6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
 		6F7959DE1EC2D83000A458AA /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959911EC2D83000A458AA /* ApplicationSettingsViewController.m */; };
@@ -72,6 +74,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareSectionHeader.m; sourceTree = "<group>"; };
+		6F04D1621F8B7FAE0064A229 /* FirmwareSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareSectionHeader.h; sourceTree = "<group>"; };
+		6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirmwareSectionHeader.xib; sourceTree = "<group>"; };
 		6F7959711EC2D77600A458AA /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F79598C1EC2D83000A458AA /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		6F79598D1EC2D83000A458AA /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -264,6 +269,7 @@
 			children = (
 				6F7959971EC2D83000A458AA /* LaunchScreen.storyboard */,
 				6F7959991EC2D83000A458AA /* Main.storyboard */,
+				6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -284,6 +290,8 @@
 		6F795A081EC2D8B600A458AA /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6F04D1621F8B7FAE0064A229 /* FirmwareSectionHeader.h */,
+				6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */,
 				6F7959901EC2D83000A458AA /* ApplicationSettingsViewController.h */,
 				6F7959911EC2D83000A458AA /* ApplicationSettingsViewController.m */,
 				6F7959A11EC2D83000A458AA /* Firmware.h */,
@@ -429,6 +437,7 @@
 				6F795A171EC2D90E00A458AA /* QuickGuide.html in Resources */,
 				6F795A101EC2D8FD00A458AA /* blep_100ms.wav in Resources */,
 				6F795A3B1EC2F8C000A458AA /* LaunchScreen.storyboard in Resources */,
+				6F04D1671F8B96950064A229 /* FirmwareSectionHeader.xib in Resources */,
 				6F7959DF1EC2D83000A458AA /* Assets.xcassets in Resources */,
 				6F7959ED1EC2D83000A458AA /* LaunchScreen.storyboard in Resources */,
 				6F795A3A1EC2F8BB00A458AA /* Main.storyboard in Resources */,
@@ -493,6 +502,7 @@
 				6F7959F01EC2D83000A458AA /* LocateViewController.m in Sources */,
 				6F7959E91EC2D83000A458AA /* FirmwareTypeViewController.m in Sources */,
 				6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */,
+				6F04D1631F8B7FAE0064A229 /* FirmwareSectionHeader.m in Sources */,
 				6F795A031EC2D83000A458AA /* WriteTagPopoverViewController.m in Sources */,
 				6F7959E71EC2D83000A458AA /* FirmwareCell.m in Sources */,
 				6F795A041EC2D83000A458AA /* WriteTagViewController.m in Sources */,
