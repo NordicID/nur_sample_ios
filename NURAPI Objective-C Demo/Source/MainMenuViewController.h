@@ -2,7 +2,9 @@
 #import <UIKit/UIKit.h>
 #import <NurAPIBluetooth/Bluetooth.h>
 
-@interface MainMenuViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BluetoothDelegate>
+#import "ConnectionManager.h"
+
+@interface MainMenuViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ConnectionManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView * collectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *batteryIconLabel;

@@ -26,8 +26,10 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
 
-    self.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Version: %@", nil), self.firmware.version];
-    self.buildTimeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Build time: %@", nil), [dateFormatter stringFromDate:self.firmware.buildTime]];
+    self.firmwareTypeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Type: %@", @"Perform update view"), [Firmware getTypeString:self.firmware.type]];
+    self.nameLabel.text         = [NSString stringWithFormat:NSLocalizedString(@"Name: %@", @"Perform update view"), self.firmware.name];
+    self.versionLabel.text      = [NSString stringWithFormat:NSLocalizedString(@"Version: %@", @"Perform update view"), self.firmware.version];
+    self.buildTimeLabel.text    = [NSString stringWithFormat:NSLocalizedString(@"Build time: %@", @"Perform update view"), [dateFormatter stringFromDate:self.firmware.buildTime]];
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
@@ -132,6 +134,18 @@
 - (void) performUpdate {
     NSLog( @"performing update" );
 
+    // prompt the user to connect a reader
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Not enabled", nil)
+                                                                    message:NSLocalizedString(@"Flashing is currently not enabled!", nil)
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction
+                      actionWithTitle:NSLocalizedString(@"Ok", nil)
+                      style:UIAlertActionStyleDefault
+                      handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+    return;
+
+
     // hide the button so that more updates can not be triggered
     self.updateButton.hidden = YES;
 
@@ -145,14 +159,6 @@
         dispatch_async(self.dispatchQueue, ^{
             int error;
             char mode = '?';
-
-            // set a longer timeout
-            int timeout = 60;
-            if ( ( error = NurApiSetCommTimeout( [Bluetooth sharedInstance].nurapiHandle, timeout )) != NUR_SUCCESS ) {
-                NSLog( @"failed to set NurApi timeout: %d", error );
-                [self showNurApiErrorMessage:error];
-                return;
-            }
 
             // first get the current mode, we may not need to switch modes if the current is already 'B'
             if ( (error = NurApiGetMode([Bluetooth sharedInstance].nurapiHandle, &mode )) != NUR_NO_ERROR ) {

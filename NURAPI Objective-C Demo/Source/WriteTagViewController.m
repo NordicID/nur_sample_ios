@@ -48,24 +48,9 @@
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         // prompt the user to connect a reader
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                        message:NSLocalizedString(@"No RFID reader connected!", nil)
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction
-                          actionWithTitle:@"Ok"
-                          style:UIAlertActionStyleDefault
-                          handler:^(UIAlertAction * action) {
-                              // nothing special to do right now
-                          }]];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self showMessagePopup:NSLocalizedString(@"No RFID reader connected!", nil) withTitle:NSLocalizedString(@"Error", nil) buttonTitle:NSLocalizedString(@"Error", nil) completion:nil];
         return;
     }
-
-    // show a status popup that has no ok/cancel buttons, it's shown as long as the saving takes
-    UIAlertController * inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Refreshing", nil)
-                                                                    message:NSLocalizedString(@"Refreshing list of tags...", nil)
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-    [self presentViewController:inProgressAlert animated:YES completion:nil];
 
     // first clear all the tags
     [[TagManager sharedInstance] clear];
@@ -88,12 +73,11 @@
 
             // failed to do inventory, show error on UI thread
             dispatch_async( dispatch_get_main_queue(), ^{
-                [inProgressAlert dismissViewControllerAnimated:YES completion:nil];
                 [self showMessagePopup:message
                              withTitle:NSLocalizedString(@"Error", nil)
-                           buttonTitle:NSLocalizedString(@"Ok", nil)];
+                           buttonTitle:NSLocalizedString(@"Ok", nil)
+                            completion:nil];
             });
-
             return;
         }
 
@@ -112,7 +96,6 @@
 
         // dismiss the alert
         dispatch_async(dispatch_get_main_queue(), ^{
-            [inProgressAlert dismissViewControllerAnimated:YES completion:nil];
             [self.tableView reloadData];
         } );
     } );
@@ -124,53 +107,65 @@
 - (void) writeCompletedWithError:(int)error {
     NSLog( @"tag writing completed with error: %d", error );
 
-    NSString * title;
-    NSString * message;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // dismiss the popover
+        [self dismissViewControllerAnimated:YES completion:^{
+            NSString * title;
+            NSString * message;
 
-    // written ok?
-    if ( error == NUR_NO_ERROR ) {
-        // all ok
-        title = NSLocalizedString(@"Status", nil);
-        message = NSLocalizedString(@"Tag written ok", nil);
+            // written ok?
+            if ( error == NUR_NO_ERROR ) {
+                // all ok
+                [self refreshInventory];
+//                [self showMessagePopup:NSLocalizedString(@"Tag written ok", nil)
+//                             withTitle:NSLocalizedString(@"Status", nil)
+//                           buttonTitle:NSLocalizedString(@"Ok", nil)
+//                            completion:^{
+//                                // refresh automatically when done
+//                                [self refreshInventory];
+//                            }];
+                // we have a changed tag, make sure it's shown
+                //[self.tableView reloadData];
+            }
+            else {
+                // failed to write
+                title = NSLocalizedString(@"Failed to write tag", nil);
 
-        // we have a changed tag, make sure it's shown
-        [self.tableView reloadData];
-    }
-    else {
-        // failed to write
-        title = NSLocalizedString(@"Failed to write tag", nil);
+                // extract the NURAPI error
+                char buffer[256];
+                NurApiGetErrorMessage( error, buffer, 256 );
+                message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+                NSLog( @"NURAPI error: %@", message );
 
-        // extract the NURAPI error
-        char buffer[256];
-        NurApiGetErrorMessage( error, buffer, 256 );
-        message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-        NSLog( @"NURAPI error: %@", message );
-    }
-
-    [self showMessagePopup:message withTitle:title buttonTitle:NSLocalizedString(@"Ok", nil)];
+                [self showMessagePopup:message
+                             withTitle:NSLocalizedString(@"Failed to write tag", nil)
+                           buttonTitle:NSLocalizedString(@"Ok", nil)
+                            completion:nil];
+            }
+        }];
+    });
 }
 
 
-- (void) showMessagePopup:(NSString *)message withTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle {
+- (UIAlertController *) showMessagePopup:(NSString *)message withTitle:(NSString *)title buttonTitle:(NSString *)buttonTitle completion:(void (^ __nullable)(void))completion {
     // show in an alert view
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:title
                                                                     message:message
                                                              preferredStyle:UIAlertControllerStyleAlert];
 
     if ( buttonTitle ) {
-        UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {
-                                       // nothing special to do right now
-                                   }];
-
-
-        [alert addAction:okButton];
+        UIAlertAction* button = [UIAlertAction
+                                 actionWithTitle:buttonTitle
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action) {
+                                     // nothing special to do right now
+                                 }];
+        [alert addAction:button];
     }
 
-    [self presentViewController:alert animated:YES completion:nil];
+    NSLog( @"presenting %@ %@", title, message );
+    [self presentViewController:alert animated:YES completion:completion];
+    return alert;
 }
 
 

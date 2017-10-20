@@ -7,7 +7,7 @@
 @protocol WriteTagPopoverViewControllerDelegate <NSObject>
 
 /**
- * Result method. This is always called on the main UI thread.
+ * Result method. This is called on a secondary thread, not the main UI thread.
  **/
 - (void) writeCompletedWithError:(int)error;
 

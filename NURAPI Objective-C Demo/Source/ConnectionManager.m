@@ -5,7 +5,8 @@
 
 @interface ConnectionManager ()
 
-@property (nonatomic, assign) BOOL connectionOk;
+@property (nonatomic, assign) BOOL           connectionOk;
+@property (nonatomic, strong) NSMutableSet * delegates;
 
 @end
 
@@ -29,6 +30,7 @@
     self = [super init];
     if (self) {
         self.connectionOk = NO;
+        self.delegates = [NSMutableSet set];
 
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
         if ( [defaults objectForKey:@"reconnectMode"] ) {
@@ -76,6 +78,26 @@
 
 - (void) setup {
     [[Bluetooth sharedInstance] registerDelegate:self];
+}
+
+
+//*****************************************************************************************************************
+#pragma mark - Delegate handling
+
+- (void) registerDelegate:(id<ConnectionManagerDelegate>)delegate {
+    if ( ! [self.delegates containsObject:delegate] ) {
+        [self.delegates addObject:delegate];
+    }
+}
+
+
+- (void) deregisterDelegate:(id<ConnectionManagerDelegate>)delegate {
+    [self.delegates removeObject:delegate];
+}
+
+
+- (NSSet *) getDelegates {
+    return self.delegates;
 }
 
 
@@ -140,12 +162,41 @@
     self.connectionOk = YES;
 
     [self setLastConnectedUuid:[Bluetooth sharedInstance].currentReader.identifier.UUIDString];
+
+    // inform all delegates
+    NSSet * copiedDelegates = [[NSSet alloc] initWithSet:self.delegates];
+    for ( id<BluetoothDelegate> delegate in copiedDelegates ) {
+        if ( delegate && [delegate respondsToSelector:@selector(readerConnectionOk)] ) {
+            [delegate readerConnectionOk];
+        }
+    }
 }
 
 
 - (void) readerDisconnected {
     NSLog( @"reader disconnected, connection no longer ok" );
     self.connectionOk = NO;
+
+    // inform all delegates
+    NSSet * copiedDelegates = [[NSSet alloc] initWithSet:self.delegates];
+    for ( id<BluetoothDelegate> delegate in copiedDelegates ) {
+        if ( delegate && [delegate respondsToSelector:@selector(readerDisconnected)] ) {
+            [delegate readerDisconnected];
+        }
+    }
+}
+
+
+- (void) readerConnectionFailed {
+    self.connectionOk = NO;
+
+    // inform all delegates
+    NSSet * copiedDelegates = [[NSSet alloc] initWithSet:self.delegates];
+    for ( id<BluetoothDelegate> delegate in copiedDelegates ) {
+        if ( delegate && [delegate respondsToSelector:@selector(readerConnectionFailed)] ) {
+            [delegate readerConnectionFailed];
+        }
+    }
 }
 
 

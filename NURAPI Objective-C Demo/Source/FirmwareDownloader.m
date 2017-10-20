@@ -14,10 +14,11 @@
     if (self) {
         self.delegate = delegate;
 
-        self.indexFileUrls = @{ @(kNurFirmware): [NSURL URLWithString:@"https://raw.githubusercontent.com/NordicID/nur_firmware/master/firmwares.json"],
-                                @(kNurBootloader): [NSURL URLWithString:@"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/firmwares.json"],
-                                @(kDeviceFirmware): [NSURL URLWithString:@"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Applicationfirmwares.json"],
-                                @(kDeviceBootloader): [NSURL URLWithString:@"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Bootloaderfirmwares.json"] };
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        self.indexFileUrls = @{ @(kNurFirmware): [NSURL URLWithString:[defaults stringForKey:@"NurFirmwareIndexUrl"]],
+                                @(kNurBootloader): [NSURL URLWithString:[defaults stringForKey:@"NurBootloaderIndexUrl"]],
+                                @(kDeviceFirmware): [NSURL URLWithString:[defaults stringForKey:@"DeviceFirmwareIndexUrl"]],
+                                @(kDeviceBootloader): [NSURL URLWithString:[defaults stringForKey:@"DeviceBootloaderIndexUrl"]]};
     }
 
     return self;

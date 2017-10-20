@@ -23,6 +23,27 @@
 }
 
 
++ (NSString *) getTypeString:(FirmwareType)type {
+    switch ( type ) {
+        case kNurFirmware:
+            return NSLocalizedString(@"NUR firmware", @"section title in firmware selection screen");
+            break;
+        case kNurBootloader:
+            return NSLocalizedString(@"NUR bootloader ", @"section title in firmware selection screen");
+            break;
+        case kDeviceFirmware:
+            return NSLocalizedString(@"Device firmare", @"section title in firmware selection screen");
+            break;
+        case kDeviceBootloader:
+            return NSLocalizedString(@"Device bootloader", @"section title in firmware selection screen");
+            break;
+    }
+
+    // should never happen
+    return @"INVALID";
+}
+
+
 - (BOOL) isNewerThanMajor:(int)major minor:(int)minor build:(int)build {
     NSRange range = [self.version rangeOfString:@"."];
     if ( range.length == 0 ) {

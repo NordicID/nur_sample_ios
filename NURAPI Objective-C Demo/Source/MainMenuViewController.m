@@ -92,8 +92,8 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    // register for bluetooth events
-    [[Bluetooth sharedInstance] registerDelegate:self];
+    // register for reader events
+    [[ConnectionManager sharedInstance] registerDelegate:self];
 
     [self updateMenuEntryState];
 
@@ -111,7 +111,7 @@
     [super viewDidDisappear:animated];
 
     // we no longer need bluetooth events
-    [[Bluetooth sharedInstance] deregisterDelegate:self];
+    [[ConnectionManager sharedInstance] deregisterDelegate:self];
 
     // disable the timer
     if ( self.timer ) {
@@ -172,9 +172,10 @@
                 self.batteryLevelLabel.hidden = YES;
                 self.batteryIconLabel.hidden = YES;
             }
-            else if ( batteryInfo.percentage == -1 ) {
-                self.batteryLevelLabel.hidden = YES;
+            else if ( batteryInfo.flags & NUR_ACC_BATT_FL_CHARGING ) {
+                self.batteryLevelLabel.hidden = NO;
                 self.batteryIconLabel.hidden = YES;
+                self.batteryLevelLabel.text = NSLocalizedString(@"Charging", @"Battery is charging text in main menu" );
             }
             else {
                 self.batteryLevelLabel.hidden = NO;
@@ -284,11 +285,11 @@
 
 
 /*****************************************************************************************************************
- * Bluetooth delegate callbacks
+ * Connection manager delegate callbacks
  * The callbacks do not necessarily come on the main thread, so make sure everything that touches the UI is done on
  * the main thread only.
  **/
-#pragma mark - Bluetooth delegate
+#pragma mark - Connection manager delegate
 
 - (void) readerConnectionOk {
     dispatch_async(dispatch_get_main_queue(), ^{

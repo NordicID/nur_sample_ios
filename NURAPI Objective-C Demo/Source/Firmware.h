@@ -36,4 +36,9 @@ typedef enum {
 
 - (BOOL) isNewerThanMajor:(int)major minor:(int)minor build:(int)build;
 
+/**
+ * Returns the given type as a string that can be used in the UI.
+ **/
++ (NSString *) getTypeString:(FirmwareType)type;
+
 @end

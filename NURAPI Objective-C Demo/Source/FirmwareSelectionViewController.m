@@ -4,6 +4,7 @@
 #import "FirmwareSelectionViewController.h"
 #import "FirmwareCell.h"
 #import "FirmwareSectionHeader.h"
+#import "PerformUpdateViewController.h"
 
 @interface FirmwareSelectionViewController ()
 
@@ -75,15 +76,21 @@
     dispatch_async(self.dispatchQueue, ^{
         struct NUR_READERINFO info;
         TCHAR deviceVersionsTmp[32] = _T("");
-        NSString * deviceVersions;
+        TCHAR primaryVersionTmp[32] = _T("");
+        TCHAR secondaryVersionTmp[32] = _T("");
+        BYTE mode;
+        NSString * deviceVersions, *primaryVersion, *secondaryVersion;
 
         // get current settings
         NSLog( @"querying device versions" );
         int error1 = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &info, sizeof(struct NUR_READERINFO) );
         int error2 = NurAccGetFwVersion( [Bluetooth sharedInstance].nurapiHandle, deviceVersionsTmp, 32);
-        deviceVersions = [NSString stringWithCString:deviceVersionsTmp encoding:NSASCIIStringEncoding];
+        int error3 = NurApiGetVersions( [Bluetooth sharedInstance].nurapiHandle, &mode, primaryVersionTmp, secondaryVersionTmp );
 
-        NSLog( @"device versions: %@, %s", deviceVersions, deviceVersionsTmp );
+        deviceVersions   = [NSString stringWithCString:deviceVersionsTmp encoding:NSASCIIStringEncoding];
+        primaryVersion   = [NSString stringWithCString:primaryVersionTmp encoding:NSASCIIStringEncoding];
+        secondaryVersion = [NSString stringWithCString:secondaryVersionTmp encoding:NSASCIIStringEncoding];
+
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error1 != NUR_NO_ERROR) {
                 // failed to get info
@@ -123,6 +130,17 @@
                     NSLog( @"current device firmware version: '%@'", self.versionStrings[kDeviceFirmware] );
                     NSLog( @"current device bootloader version: '%@'", self.versionStrings[kDeviceBootloader] );
                 }
+            }
+
+            if (error3 != NUR_NO_ERROR) {
+                // failed to get accessory version
+                [self.versionStrings setObject: NSLocalizedString( @"Error getting device firmware version", nil) atIndexedSubscript:kDeviceFirmware];
+                [self showNurApiErrorMessage:error3];
+            }
+            else {
+                NSLog( @"primary version: %@", primaryVersion );
+                NSLog( @"secondary version: %@", secondaryVersion );
+                [self.versionStrings setObject:secondaryVersion atIndexedSubscript:kNurBootloader];
             }
 
             // now start downloading the index file that we have all own versions
@@ -171,22 +189,6 @@
 }
 
 
-//- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    switch ( section ) {
-//        case 0:
-//            return NSLocalizedString(@"NUR firmware", @"section title in firmware selection screen");
-//        case 1:
-//            return NSLocalizedString(@"NUR booloader ", @"section title in firmware selection screen");
-//        case 2:
-//            return NSLocalizedString(@"Device firmare", @"section title in firmware selection screen");
-//        case 3:
-//            return NSLocalizedString(@"Device booloader", @"section title in firmware selection screen");
-//    }
-//
-//    return @"";
-//}
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ( ! self.allFirmwares) {
         return 0;
@@ -202,22 +204,6 @@
 
     FirmwareType firmwareType = (FirmwareType)section;
 
-    NSString * title;
-    switch ( firmwareType ) {
-        case kNurFirmware:
-            title = NSLocalizedString(@"NUR firmware", @"section title in firmware selection screen");
-            break;
-        case kNurBootloader:
-            title = NSLocalizedString(@"NUR bootloader ", @"section title in firmware selection screen");
-            break;
-        case kDeviceFirmware:
-            title = NSLocalizedString(@"Device firmare", @"section title in firmware selection screen");
-            break;
-        case kDeviceBootloader:
-            title = NSLocalizedString(@"Device bootloader", @"section title in firmware selection screen");
-            break;
-    }
-
     // do we have any available firmwares for this type?
     NSArray * firmwares = self.allFirmwares[ firmwareType ];
     if ( firmwares.count > 0 ) {
@@ -227,7 +213,7 @@
         header.statusLabel.text = NSLocalizedString(@"No updates available", @"update status in firmware selection screen");
     }
 
-    header.nameLabel.text = title;
+    header.nameLabel.text = [Firmware getTypeString:firmwareType];
     header.versionLabel.text = [NSString stringWithFormat: NSLocalizedString(@"Current version: %@", @"current firmware version in firmware selection screen"), self.versionStrings[ firmwareType ]];
     return header;
 }
@@ -235,7 +221,21 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     // this is to be kept in sync with the view heigh in FirmwareSectionHeader.xib
-    return 86;
+    return 78;
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // get the firmware
+    NSArray * firmwares = self.allFirmwares[ indexPath.section ];
+    Firmware * firmware = firmwares[ indexPath.row ];
+
+    // instantiate the view controller
+    PerformUpdateViewController * vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PerformUpdateViewController"];
+    vc.firmware = firmware;
+
+    // and show it
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -252,16 +252,6 @@
     return cell;
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 //*****************************************************************************************************************
 #pragma mark - Firmware downloader delegate

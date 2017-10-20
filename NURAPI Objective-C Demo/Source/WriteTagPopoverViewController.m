@@ -24,13 +24,8 @@
 - (IBAction) performTagWriting {
     // data for the new tag
     const char *chars = [self.epcEdit.text cStringUsingEncoding:NSASCIIStringEncoding];
-    unsigned int charCount = (unsigned int)strlen(chars); //(unsigned int)self.epcEdit.text.length;
+    unsigned int charCount = (unsigned int)strlen(chars); 
     unsigned int newEpcLength = charCount / 2;
-
-//    NSLog( @"writing new tag: %s, length: %d", chars, charCount );
-//    for ( int index = 0; index < charCount; index++ ) {
-//        NSLog( @"new %d = %d", index, chars[index] );
-//    }
 
     // play a short blip
     [[AudioPlayer sharedInstance] playSound:kBlep100ms];
@@ -44,12 +39,7 @@
         struct NUR_MODULESETUP setup;
         int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
         if ( error != NUR_NO_ERROR ) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog( @"failed to get current tx level" );
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [self.delegate writeCompletedWithError:error];
-            } );
-
+            [self.delegate writeCompletedWithError:error];
             return;
         }
 
@@ -61,18 +51,16 @@
             setup.txLevel = 0;
             error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
             if ( error != NUR_NO_ERROR ) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog( @"failed to set new tx level" );
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    [self.delegate writeCompletedWithError:error];
-                } );
-
+                [self.delegate writeCompletedWithError:error];
                 return;
             }
         }
 
-        // convert the hex string like "112233..." to bytes
+        // EPC buffer, filled with 0
         unsigned char newEpc[NUR_MAX_EPC_LENGTH];
+        memset( newEpc, 0, NUR_MAX_EPC_LENGTH);
+
+        // convert the hex string like "112233..." to bytes
         char byteChars[3] = {'\0','\0','\0'};
         int resultIndex = 0;
         for ( int charIndex = 0; charIndex < charCount; charIndex += 2 ) {
@@ -85,32 +73,26 @@
         unsigned char * oldEpc = (unsigned char *)self.writeTag.epc.bytes;
         int oldEpcLength = (int)self.writeTag.epc.length;
 
-        // mostly hardocded data, but named for ease of reading
-        DWORD password = 0;
-        BOOL secured = 0;
-        BYTE wrBank = 1;
-        DWORD wrAddress = 2;
-
-//        NSLog( @"tag old epc: %@", self.writeTag.hex );
 //        for ( int index = 0; index < oldEpcLength; index++ ) {
 //            NSLog( @"old %d = %d", index, oldEpc[index] );
 //        }
 //        for ( int index = 0; index < newEpcLength; index++ ) {
 //            NSLog( @"new %d = %d", index, newEpc[index] );
 //        }
-//        for ( int index = 0; index < charCount; index++ ) {
-//            NSLog( @"chars %d = %d", index, oldChars[index] );
-//        }
+
+        // mostly hardocded data, but named for ease of reading
+        DWORD password = 0;
+        BOOL secured = 0;
+
+        NSLog( @"old length: %d", oldEpcLength );
+        NSLog( @"new length: %d", newEpcLength );
 
         // perform the real tag writing
-        error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, oldEpcLength, wrBank, wrAddress, newEpcLength, newEpc );
+        error = NurApiWriteEPCByEPC([Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, oldEpcLength, newEpc, newEpcLength);
+        //error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, oldEpcLength, wrBank, wrAddress, paddedEpcLength + 2, newEpc );
         if ( error != NUR_NO_ERROR ) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog( @"failed to write tag" );
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [self.delegate writeCompletedWithError:error];
-            } );
-
+            NSLog( @"failed to write tag" );
+            [self.delegate writeCompletedWithError:error];
             return;
         }
 
@@ -125,22 +107,14 @@
 
             error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
             if ( error != NUR_NO_ERROR ) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog( @"failed to restore old tx level" );
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    [self.delegate writeCompletedWithError:error];
-                } );
-
+                [self.delegate writeCompletedWithError:error];
                 return;
             }
         }
 
         // we're done, written ok
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog( @"write and restore completed ok" );
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self.delegate writeCompletedWithError:NUR_NO_ERROR];
-        } );
+        NSLog( @"write and restore completed ok" );
+        [self.delegate writeCompletedWithError:NUR_NO_ERROR];
     } );
 }
 

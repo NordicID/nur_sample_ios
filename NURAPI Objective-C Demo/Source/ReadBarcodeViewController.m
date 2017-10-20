@@ -7,6 +7,8 @@
     BOOL ignoreTrigger;
 }
 
+@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+
 @end
 
 @implementation ReadBarcodeViewController
@@ -18,6 +20,9 @@
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         [self showStatus:NSLocalizedString(@"Please connect an RFID reader", nil)];
     }
+
+    // set up the queue used to async any NURAPI calls
+    self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
 }
 
 
@@ -66,6 +71,26 @@
         self.barcode.text = status;
         self.barcode.hidden = NO;
     } );
+}
+
+
+- (IBAction)scanBarcode:(id)sender {
+    if (!readingBarcode && !ignoreTrigger) {
+        dispatch_async(self.dispatchQueue, ^{
+
+            NurAccSetLedOpMode( [Bluetooth sharedInstance].nurapiHandle, NUR_ACC_LED_BLINK);
+            if (NurAccReadBarcodeAsync( [Bluetooth sharedInstance].nurapiHandle, 5000) == NUR_SUCCESS) {
+                readingBarcode = YES;
+                [self showStatus:NSLocalizedString(@"Reading barcode...", nil)];
+                [self showBarcode:@""];
+            }
+            else {
+                NurAccSetLedOpMode( [Bluetooth sharedInstance].nurapiHandle, NUR_ACC_LED_UNSET);
+            }
+
+            ignoreTrigger = NO;
+        } );
+    }
 }
 
 

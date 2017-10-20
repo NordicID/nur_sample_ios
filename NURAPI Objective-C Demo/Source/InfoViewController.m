@@ -45,6 +45,8 @@ enum {
     kBatteryCapacity,
 
     kAccessoryName,
+    kAccessoryHidRfid,
+    kAccessoryHidBarcode,
 } CellType;
 
 
@@ -132,6 +134,8 @@ enum {
             else {
                 // populate the cell data structures
                 ((CellData *)self.cellData[ @(kAccessoryName) ]).value = [NSString stringWithCString:accessoryInfo.device_name encoding:NSASCIIStringEncoding];
+                ((CellData *)self.cellData[ @(kAccessoryHidRfid) ]).value = accessoryInfo.flags & NUR_ACC_FL_HID_RFID ? NSLocalizedString(@"enabled", nil) : NSLocalizedString(@"disabled", nil);
+                ((CellData *)self.cellData[ @(kAccessoryHidBarcode) ]).value = accessoryInfo.flags & NUR_ACC_FL_HID_BARCODE ? NSLocalizedString(@"enabled", nil) : NSLocalizedString(@"disabled", nil);
             }
 
             if (error4 != NUR_NO_ERROR) {
@@ -198,6 +202,8 @@ enum {
                        @(kBatteryCapacity): [CellData cellDataWithTitle:NSLocalizedString(@"Capacity (mA)", nil) value:@"?"],
 
                        @(kAccessoryName): [CellData cellDataWithTitle:NSLocalizedString(@"Name", nil) value:@"?"],
+                       @(kAccessoryHidRfid): [CellData cellDataWithTitle:NSLocalizedString(@"RFID HID", nil) value:@"?"],
+                       @(kAccessoryHidBarcode): [CellData cellDataWithTitle:NSLocalizedString(@"Barcode HID", nil) value:@"?"],
                        };
 }
 
@@ -231,7 +237,7 @@ enum {
         case 1:
             return 2;
         case 2:
-            return 1;
+            return 3;
     }
     
     // never called
