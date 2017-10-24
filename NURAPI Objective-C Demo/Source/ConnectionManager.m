@@ -157,6 +157,19 @@
 /*****************************************************************************************************************
  * Bluetooth delegate callbacks
  **/
+- (void) connectingToReader:(CBPeripheral *)reader {
+    NSLog( @"connecting to reader: %@", reader.name );
+
+    // inform all delegates
+    NSSet * copiedDelegates = [[NSSet alloc] initWithSet:self.delegates];
+    for ( id<BluetoothDelegate> delegate in copiedDelegates ) {
+        if ( delegate && [delegate respondsToSelector:@selector(connectingToReader:)] ) {
+            [delegate connectingToReader:reader];
+        }
+    }
+}
+
+
 - (void) readerConnectionOk {
     NSLog( @"reader connected, connection ok" );
     self.connectionOk = YES;

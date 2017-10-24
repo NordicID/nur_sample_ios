@@ -11,6 +11,15 @@ typedef enum {
 @protocol ConnectionManagerDelegate <NSObject>
 
 @optional
+
+/**
+ * Callback indicating that a connection to the given reader has been initiated. At this point it is not yet usable for any NurAPI
+ * calls, wait for readerConnectionOk before interacting with the device.
+ *
+ * @param reader the reader that is being connected to.
+ **/
+- (void) connectingToReader:(CBPeripheral *)reader;
+
 /**
 *
 * Callback indicating that the connection to a reader was successful.

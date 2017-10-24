@@ -146,10 +146,10 @@
     CBPeripheral * reader = [ConnectionManager sharedInstance].currentReader;
 
     if ( reader ) {
-        self.connectedLabel.text = reader.name;
+        self.connectedLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Connected", @"connection status in main menu footer"), reader.name];
     }
     else {
-        self.connectedLabel.text = @"no";
+        self.connectedLabel.text = NSLocalizedString(@"Not connected", @"connection status in main menu footer");
     }
 }
 
@@ -191,7 +191,7 @@
                 self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
 
                 interval = 1;
-                
+
                 // set up the charging icon
                 chargingAnimationFrame++;
                 switch ( chargingAnimationFrame % 3 ) {
@@ -331,6 +331,13 @@
  * the main thread only.
  **/
 #pragma mark - Connection manager delegate
+
+- (void) connectingToReader:(CBPeripheral *)reader {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.connectedLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Connecting to", @"connection status in main menu footer"), reader.name];
+    });
+}
+
 
 - (void) readerConnectionOk {
     dispatch_async(dispatch_get_main_queue(), ^{
