@@ -1,6 +1,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UIViewController+Theme.h"
+
 @interface SelectSettingViewController : UITableViewController
 
 @property (nonatomic, strong) NSArray * alternatives;

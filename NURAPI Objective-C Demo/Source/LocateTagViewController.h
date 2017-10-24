@@ -1,6 +1,7 @@
 
 #import <UIKit/UIKit.h>
 #import <NurAPIBluetooth/Bluetooth.h>
+#import "UIViewController+Theme.h"
 
 #import "Tag.h"
 #import "ProgressView.h"

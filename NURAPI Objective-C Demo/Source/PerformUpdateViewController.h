@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 
 #import "Firmware.h"
+#import "UIViewController+Theme.h"
 
 @interface PerformUpdateViewController : UIViewController <BluetoothDelegate>
 

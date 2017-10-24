@@ -16,6 +16,9 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     // if we have no reader show a different message
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         [self showStatus:NSLocalizedString(@"Please connect an RFID reader", nil)];
@@ -60,7 +63,6 @@
 
 - (void) showStatus:(NSString *)status {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog( @"status: %@, %@", status, self.status );
         self.status.text = status;
     } );
 }
@@ -110,7 +112,8 @@
                 NurAccSetLedOpMode( [Bluetooth sharedInstance].nurapiHandle, NUR_ACC_LED_UNSET);
 
                 if (status == NUR_SUCCESS) {
-                    NSString * barcode = [NSString stringWithCString:(char*)&dataPtr[1] encoding:NSUTF8StringEncoding];
+                    // create an ASCII string from the data after the type
+                    NSString * barcode = [[NSString alloc] initWithBytes:data + 1 length:length - 1 encoding:NSASCIIStringEncoding];
                     NSLog( @"barcode: %@", barcode );
                     [self showBarcode:barcode];
 

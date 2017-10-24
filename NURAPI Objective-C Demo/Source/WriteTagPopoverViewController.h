@@ -3,6 +3,7 @@
 #import <NurAPIBluetooth/NurAPIBluetooth.h>
 
 #import "Tag.h"
+#import "UIViewController+Theme.h"
 
 @protocol WriteTagPopoverViewControllerDelegate <NSObject>
 

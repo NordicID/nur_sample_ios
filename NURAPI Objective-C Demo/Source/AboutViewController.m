@@ -20,6 +20,9 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     // set up links
     self.gitHubLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     self.gitHubLabel.delegate = self;

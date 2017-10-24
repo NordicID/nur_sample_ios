@@ -39,6 +39,9 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     dataReady = NO;
 }
 

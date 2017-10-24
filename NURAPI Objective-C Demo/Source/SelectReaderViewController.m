@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     // map for UUID -> RRSI
     self.rssiMap = [NSMutableDictionary dictionary];
 

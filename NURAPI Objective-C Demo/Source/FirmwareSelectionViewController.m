@@ -25,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         [self showErrorMessage:@"Please connect an RFID reader"];
         return;

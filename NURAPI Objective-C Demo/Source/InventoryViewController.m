@@ -31,6 +31,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     // clear all statistics
     [self clearData];
 

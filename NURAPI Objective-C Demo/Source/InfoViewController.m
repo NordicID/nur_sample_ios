@@ -63,6 +63,9 @@ enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     // create the info data
     [self createCellData];
 

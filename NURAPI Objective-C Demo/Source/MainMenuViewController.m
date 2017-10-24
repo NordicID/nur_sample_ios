@@ -36,10 +36,14 @@
 @end
 
 
-@interface MainMenuViewController ()
+@interface MainMenuViewController () {
+    // charging animation counter. increases for each time the charging icon is changed
+    unsigned int chargingAnimationFrame;
+}
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
-@property (nonatomic, strong) NSTimer *        timer;
+//@property (nonatomic, strong) NSTimer *        timer;
+@property (nonatomic, strong) NSTimer *        batteryTimer;
 
 // main menu data
 @property (nonatomic, assign) UIEdgeInsets insets;
@@ -52,6 +56,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    // set up the theme
+    [self setupTheme];
+
+    chargingAnimationFrame = 0;
 
     CGFloat top, left, bottom, right;
     CGFloat cellWidth, cellHeight;
@@ -98,12 +107,13 @@
     [self updateMenuEntryState];
 
     // connection already ok?
-    if ( [ConnectionManager sharedInstance].currentReader != nil && self.timer == nil) {
+    if ( [ConnectionManager sharedInstance].currentReader != nil && self.batteryTimer == nil) {
         // start a timer that updates the battery level periodically
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateStatusInfo) userInfo:nil repeats:YES];
+        self.batteryTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
     }
 
-    [self updateStatusInfo];
+    [self updateConnectedLabel];
+    [self updateBatteryLevel];
 }
 
 
@@ -114,9 +124,9 @@
     [[ConnectionManager sharedInstance] deregisterDelegate:self];
 
     // disable the timer
-    if ( self.timer ) {
-        [self.timer invalidate];
-        self.timer = nil;
+    if ( self.batteryTimer ) {
+        [self.batteryTimer invalidate];
+        self.batteryTimer = nil;
     }
 }
 
@@ -126,10 +136,10 @@
 }
 
 
-- (void) updateStatusInfo {
-    [self updateConnectedLabel];
-    [self updateBatteryLevel];
-}
+//- (void) updateStatusInfo {
+//    [self updateConnectedLabel];
+//    [self updateBatteryLevel];
+//}
 
 
 - (void) updateConnectedLabel {
@@ -162,6 +172,8 @@
         int error = NurAccGetBattInfo( [Bluetooth sharedInstance].nurapiHandle, &batteryInfo, sizeof(NUR_ACC_BATT_INFO));
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            int interval = 5;
+
             // the percentage is -1 if unknown
             if (error != NUR_NO_ERROR ) {
                 // failed to get battery info
@@ -173,11 +185,29 @@
                 self.batteryIconLabel.hidden = YES;
             }
             else if ( batteryInfo.flags & NUR_ACC_BATT_FL_CHARGING ) {
+                NSLog(@"charging");
                 self.batteryLevelLabel.hidden = NO;
-                self.batteryIconLabel.hidden = YES;
-                self.batteryLevelLabel.text = NSLocalizedString(@"Charging", @"Battery is charging text in main menu" );
+                self.batteryIconLabel.hidden = NO;
+                self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
+
+                interval = 1;
+                
+                // set up the charging icon
+                chargingAnimationFrame++;
+                switch ( chargingAnimationFrame % 3 ) {
+                    case 0:
+                        self.batteryIconLabel.image = [UIImage imageNamed:@"Battery-33"];
+                        break;
+                    case 1:
+                        self.batteryIconLabel.image = [UIImage imageNamed:@"Battery-66"];
+                        break;
+                    default:
+                        self.batteryIconLabel.image = [UIImage imageNamed:@"Battery-100"];
+                        break;
+                }
             }
             else {
+                NSLog(@"normal");
                 self.batteryLevelLabel.hidden = NO;
                 self.batteryIconLabel.hidden = NO;
                 self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
@@ -191,6 +221,17 @@
                 else {
                     self.batteryIconLabel.image = [UIImage imageNamed:@"Battery-100"];
                 }
+            }
+
+            // set up a battery timer if we don't already have one
+            if ( self.batteryTimer == nil ) {
+                // start a timer that updates the battery level periodically
+                self.batteryTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
+            }
+            else if ( fabs( self.batteryTimer.timeInterval - interval) > 2 ) {
+                // the timer is running, but it's using the wrong interval
+                [self.batteryTimer invalidate];
+                self.batteryTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
             }
         });
     });
@@ -302,10 +343,8 @@
             entry.enabled = YES;
         }
 
-        // start a timer that updates the battery level periodically
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateBatteryLevel) userInfo:nil repeats:YES];
-
-        [self updateStatusInfo];
+        [self updateConnectedLabel];
+        [self updateBatteryLevel];
     });
 }
 
@@ -317,12 +356,13 @@
         [self updateMenuEntryState];
 
         // stop any old timeout timer that we may have
-        if ( self.timer ) {
-            [self.timer invalidate];
-            self.timer = nil;
+        if ( self.batteryTimer ) {
+            [self.batteryTimer invalidate];
+            self.batteryTimer = nil;
         }
 
-        [self updateStatusInfo];
+        [self updateConnectedLabel];
+        [self updateBatteryLevel];
     });
 }
 

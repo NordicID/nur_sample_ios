@@ -10,6 +10,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     // set up links
     self.emailLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     self.emailLabel.delegate = self;

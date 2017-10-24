@@ -108,6 +108,28 @@
 		6FE754921F96444B00CE8B66 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FE754901F96442400CE8B66 /* SharedAssets.xcassets */; };
 		6FE7549B1F96484500CE8B66 /* TargetAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */; };
 		6FED46E01F99EA43009BB353 /* ReaderSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46DE1F99EA43009BB353 /* ReaderSettingsViewController.m */; };
+		6FED46E41F9B4BC5009BB353 /* ThemeableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46E31F9B4BC5009BB353 /* ThemeableButton.m */; };
+		6FED46E51F9B4BC5009BB353 /* ThemeableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46E31F9B4BC5009BB353 /* ThemeableButton.m */; };
+		6FED46E91F9B4DC2009BB353 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46E71F9B4DC2009BB353 /* ThemeManager.m */; };
+		6FED46EA1F9B4DC2009BB353 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46E71F9B4DC2009BB353 /* ThemeManager.m */; };
+		6FED46ED1F9B515E009BB353 /* ThemeableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */; };
+		6FED46EE1F9B515E009BB353 /* ThemeableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */; };
+		6FED46F11F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */; };
+		6FED46F21F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */; };
+		6FED46F51F9B5931009BB353 /* ThemeableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46F31F9B5931009BB353 /* ThemeableTableViewCell.m */; };
+		6FED46F61F9B5931009BB353 /* ThemeableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46F31F9B5931009BB353 /* ThemeableTableViewCell.m */; };
+		6FED46F91F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46F71F9B5A8F009BB353 /* ThemeableAttributedLabel.m */; };
+		6FED46FA1F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46F71F9B5A8F009BB353 /* ThemeableAttributedLabel.m */; };
+		6FED46FD1F9BA179009BB353 /* ThemeableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */; };
+		6FED46FE1F9BA179009BB353 /* ThemeableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */; };
+		6FED47011F9DFE37009BB353 /* ThemeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47001F9DFE37009BB353 /* ThemeableView.m */; };
+		6FED47021F9DFE37009BB353 /* ThemeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47001F9DFE37009BB353 /* ThemeableView.m */; };
+		6FED47051F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */; };
+		6FED47061F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */; };
+		6FED47091F9E03A3009BB353 /* UIViewController+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */; };
+		6FED470A1F9E03A3009BB353 /* UIViewController+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */; };
+		6FED470D1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */; };
+		6FED470E1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -235,12 +257,34 @@
 		6FAC4CF81F96118B0045DA7D /* Alien Technology Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alien Technology Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBC8D881F9650E9005CC09F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FBC8D8E1F98A5A0005CC09F /* Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
-		6FBC8D901F98A81B005CC09F /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
 		6FE7548E1F96398600CE8B66 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FE754901F96442400CE8B66 /* SharedAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SharedAssets.xcassets; sourceTree = "<group>"; };
 		6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TargetAssets.xcassets; sourceTree = "<group>"; };
 		6FED46DE1F99EA43009BB353 /* ReaderSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderSettingsViewController.m; sourceTree = "<group>"; };
 		6FED46DF1F99EA43009BB353 /* ReaderSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderSettingsViewController.h; sourceTree = "<group>"; };
+		6FED46E21F9B4BC5009BB353 /* ThemeableButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeableButton.h; sourceTree = "<group>"; };
+		6FED46E31F9B4BC5009BB353 /* ThemeableButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeableButton.m; sourceTree = "<group>"; };
+		6FED46E61F9B4DC2009BB353 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		6FED46E71F9B4DC2009BB353 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
+		6FED46E81F9B4DC2009BB353 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
+		6FED46EB1F9B515E009BB353 /* ThemeableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableLabel.h; sourceTree = "<group>"; };
+		6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableLabel.m; sourceTree = "<group>"; };
+		6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableTitleLabel.m; sourceTree = "<group>"; };
+		6FED46F01F9B5236009BB353 /* ThemeableTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableTitleLabel.h; sourceTree = "<group>"; };
+		6FED46F31F9B5931009BB353 /* ThemeableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableTableViewCell.m; sourceTree = "<group>"; };
+		6FED46F41F9B5931009BB353 /* ThemeableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableTableViewCell.h; sourceTree = "<group>"; };
+		6FED46F71F9B5A8F009BB353 /* ThemeableAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableAttributedLabel.m; sourceTree = "<group>"; };
+		6FED46F81F9B5A8F009BB353 /* ThemeableAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableAttributedLabel.h; sourceTree = "<group>"; };
+		6FED46FB1F9BA178009BB353 /* ThemeableTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableTextField.h; sourceTree = "<group>"; };
+		6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableTextField.m; sourceTree = "<group>"; };
+		6FED46FF1F9DFE37009BB353 /* ThemeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableView.h; sourceTree = "<group>"; };
+		6FED47001F9DFE37009BB353 /* ThemeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableView.m; sourceTree = "<group>"; };
+		6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableCollectionView.m; sourceTree = "<group>"; };
+		6FED47041F9DFF60009BB353 /* ThemeableCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableCollectionView.h; sourceTree = "<group>"; };
+		6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Theme.m"; sourceTree = "<group>"; };
+		6FED47081F9E03A3009BB353 /* UIViewController+Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Theme.h"; sourceTree = "<group>"; };
+		6FED470B1F9E0C00009BB353 /* ThemeableTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableTabBar.h; sourceTree = "<group>"; };
+		6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableTabBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,7 +328,7 @@
 		6F79598B1EC2D83000A458AA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6FBC8D901F98A81B005CC09F /* Theme.h */,
+				6FED46E11F9B4BA0009BB353 /* Theme */,
 				6FAC4CFA1F96126B0045DA7D /* Targets */,
 				6F795A451EC2FB8100A458AA /* Localizable.strings */,
 				6F795A401EC2FB8000A458AA /* InfoPlist.strings */,
@@ -482,6 +526,36 @@
 				6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		6FED46E11F9B4BA0009BB353 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				6FED470B1F9E0C00009BB353 /* ThemeableTabBar.h */,
+				6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */,
+				6FED47081F9E03A3009BB353 /* UIViewController+Theme.h */,
+				6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */,
+				6FED47041F9DFF60009BB353 /* ThemeableCollectionView.h */,
+				6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */,
+				6FED46FF1F9DFE37009BB353 /* ThemeableView.h */,
+				6FED47001F9DFE37009BB353 /* ThemeableView.m */,
+				6FED46FB1F9BA178009BB353 /* ThemeableTextField.h */,
+				6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */,
+				6FED46F81F9B5A8F009BB353 /* ThemeableAttributedLabel.h */,
+				6FED46F71F9B5A8F009BB353 /* ThemeableAttributedLabel.m */,
+				6FED46F41F9B5931009BB353 /* ThemeableTableViewCell.h */,
+				6FED46F31F9B5931009BB353 /* ThemeableTableViewCell.m */,
+				6FED46F01F9B5236009BB353 /* ThemeableTitleLabel.h */,
+				6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */,
+				6FED46EB1F9B515E009BB353 /* ThemeableLabel.h */,
+				6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */,
+				6FED46E61F9B4DC2009BB353 /* Theme.h */,
+				6FED46E81F9B4DC2009BB353 /* ThemeManager.h */,
+				6FED46E71F9B4DC2009BB353 /* ThemeManager.m */,
+				6FED46E21F9B4BC5009BB353 /* ThemeableButton.h */,
+				6FED46E31F9B4BC5009BB353 /* ThemeableButton.m */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -697,6 +771,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F7959E51EC2D83000A458AA /* ContactViewController.m in Sources */,
+				6FED47091F9E03A3009BB353 /* UIViewController+Theme.m in Sources */,
 				6F7959F91EC2D83000A458AA /* SelectReaderViewController.m in Sources */,
 				6F7959E11EC2D83000A458AA /* AverageBuffer.m in Sources */,
 				6F795A011EC2D83000A458AA /* TTTAttributedLabel.m in Sources */,
@@ -705,14 +780,18 @@
 				6F7959EB1EC2D83000A458AA /* InfoViewController.m in Sources */,
 				6F7959FB1EC2D83000A458AA /* SettingsAlternative.m in Sources */,
 				6F7959F61EC2D83000A458AA /* ProgressView.m in Sources */,
+				6FED46FD1F9BA179009BB353 /* ThemeableTextField.m in Sources */,
 				6F7959FA1EC2D83000A458AA /* SelectSettingViewController.m in Sources */,
 				6F7959F51EC2D83000A458AA /* PerformUpdateViewController.m in Sources */,
 				6F7959F41EC2D83000A458AA /* MainMenuViewController.m in Sources */,
+				6FED470D1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */,
 				6F7959E61EC2D83000A458AA /* Firmware.m in Sources */,
 				6F7959DE1EC2D83000A458AA /* ApplicationSettingsViewController.m in Sources */,
 				6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */,
+				6FED46E41F9B4BC5009BB353 /* ThemeableButton.m in Sources */,
 				6F7959F71EC2D83000A458AA /* QuickGuideViewController.m in Sources */,
 				6F7959F01EC2D83000A458AA /* LocateViewController.m in Sources */,
+				6FED46E91F9B4DC2009BB353 /* ThemeManager.m in Sources */,
 				6F7959E91EC2D83000A458AA /* FirmwareTypeViewController.m in Sources */,
 				6FED46E01F99EA43009BB353 /* ReaderSettingsViewController.m in Sources */,
 				6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */,
@@ -726,14 +805,20 @@
 				6F7959E41EC2D83000A458AA /* ConnectionManager.m in Sources */,
 				6F7959FD1EC2D83000A458AA /* SmoothingBuffer.m in Sources */,
 				6F921BE91F862D2C0088AC3E /* FirmwareDownloader.m in Sources */,
+				6FED47011F9DFE37009BB353 /* ThemeableView.m in Sources */,
+				6FED47051F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */,
+				6FED46F91F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */,
 				6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */,
 				6F7959F31EC2D83000A458AA /* MainMenuCell.m in Sources */,
 				6F7959E01EC2D83000A458AA /* AudioPlayer.m in Sources */,
 				6F7959F81EC2D83000A458AA /* ReadBarcodeViewController.m in Sources */,
+				6FED46F11F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */,
+				6FED46F51F9B5931009BB353 /* ThemeableTableViewCell.m in Sources */,
 				6FBC8D8F1F98A5A0005CC09F /* Theme.m in Sources */,
 				6F795A001EC2D83000A458AA /* TagViewController.m in Sources */,
 				6F7959FF1EC2D83000A458AA /* TagManager.m in Sources */,
 				6F7959EE1EC2D83000A458AA /* LocateTagAntennaSelector.m in Sources */,
+				6FED46ED1F9B515E009BB353 /* ThemeableLabel.m in Sources */,
 				6F795A021EC2D83000A458AA /* TuneViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,27 +829,38 @@
 			files = (
 				6FAC4CBE1F96118B0045DA7D /* ContactViewController.m in Sources */,
 				6FAC4CBF1F96118B0045DA7D /* SelectReaderViewController.m in Sources */,
+				6FED46EE1F9B515E009BB353 /* ThemeableLabel.m in Sources */,
 				6FAC4CC01F96118B0045DA7D /* AverageBuffer.m in Sources */,
+				6FED46F21F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */,
 				6FAC4CC11F96118B0045DA7D /* TTTAttributedLabel.m in Sources */,
 				6FAC4CC21F96118B0045DA7D /* RfidSettingsViewController.m in Sources */,
+				6FED46E51F9B4BC5009BB353 /* ThemeableButton.m in Sources */,
 				6FAC4CC31F96118B0045DA7D /* InventoryViewController.m in Sources */,
 				6FAC4CC41F96118B0045DA7D /* InfoViewController.m in Sources */,
 				6FAC4CC51F96118B0045DA7D /* SettingsAlternative.m in Sources */,
 				6FAC4CC61F96118B0045DA7D /* ProgressView.m in Sources */,
+				6FED470E1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */,
 				6FAC4CC71F96118B0045DA7D /* SelectSettingViewController.m in Sources */,
+				6FED46F61F9B5931009BB353 /* ThemeableTableViewCell.m in Sources */,
+				6FED47021F9DFE37009BB353 /* ThemeableView.m in Sources */,
+				6FED46EA1F9B4DC2009BB353 /* ThemeManager.m in Sources */,
 				6FAC4CC81F96118B0045DA7D /* PerformUpdateViewController.m in Sources */,
 				6FAC4CC91F96118B0045DA7D /* MainMenuViewController.m in Sources */,
 				6FAC4CCA1F96118B0045DA7D /* Firmware.m in Sources */,
 				6FAC4CCB1F96118B0045DA7D /* ApplicationSettingsViewController.m in Sources */,
+				6FED46FE1F9BA179009BB353 /* ThemeableTextField.m in Sources */,
 				6FAC4CCC1F96118B0045DA7D /* AppDelegate.m in Sources */,
 				6FAC4CCD1F96118B0045DA7D /* QuickGuideViewController.m in Sources */,
+				6FED46FA1F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */,
 				6FAC4CCE1F96118B0045DA7D /* LocateViewController.m in Sources */,
 				6FAC4CCF1F96118B0045DA7D /* FirmwareTypeViewController.m in Sources */,
 				6FAC4CD01F96118B0045DA7D /* FirmwareSelectionViewController.m in Sources */,
 				6FAC4CD11F96118B0045DA7D /* FirmwareSectionHeader.m in Sources */,
+				6FED47061F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */,
 				6FAC4CD21F96118B0045DA7D /* WriteTagPopoverViewController.m in Sources */,
 				6FAC4CD31F96118B0045DA7D /* FirmwareCell.m in Sources */,
 				6FAC4CD41F96118B0045DA7D /* WriteTagViewController.m in Sources */,
+				6FED470A1F9E03A3009BB353 /* UIViewController+Theme.m in Sources */,
 				6FAC4CD51F96118B0045DA7D /* LocateTagViewController.m in Sources */,
 				6FAC4CD61F96118B0045DA7D /* Tag.m in Sources */,
 				6FAC4CD71F96118B0045DA7D /* main.m in Sources */,

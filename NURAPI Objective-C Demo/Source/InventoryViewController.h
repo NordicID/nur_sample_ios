@@ -1,6 +1,7 @@
 
 #import <UIKit/UIKit.h>
 #import <NurAPIBluetooth/Bluetooth.h>
+#import "UIViewController+Theme.h"
 
 @interface InventoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BluetoothDelegate>
 

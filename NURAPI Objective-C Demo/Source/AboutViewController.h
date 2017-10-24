@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 
 #import "TTTAttributedLabel.h"
+#import "UIViewController+Theme.h"
 
 @interface AboutViewController : UIViewController <TTTAttributedLabelDelegate>
 

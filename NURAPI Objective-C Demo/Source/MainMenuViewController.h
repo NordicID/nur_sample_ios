@@ -3,6 +3,7 @@
 #import <NurAPIBluetooth/Bluetooth.h>
 
 #import "ConnectionManager.h"
+#import "UIViewController+Theme.h"
 
 @interface MainMenuViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ConnectionManagerDelegate>
 

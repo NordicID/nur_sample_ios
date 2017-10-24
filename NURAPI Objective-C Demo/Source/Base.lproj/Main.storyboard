@@ -1044,11 +1044,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dys-yD-tMO" firstAttribute="centerX" secondItem="XQG-Hj-4ib" secondAttribute="centerX" id="08p-8x-Wai"/>
+                            <constraint firstItem="f6f-av-4s8" firstAttribute="top" secondItem="dys-yD-tMO" secondAttribute="bottom" constant="142.5" id="BeR-Qv-DVQ"/>
                             <constraint firstItem="dys-yD-tMO" firstAttribute="top" secondItem="MkQ-Lz-7Pe" secondAttribute="bottom" constant="32" id="W3d-xw-1qs"/>
                             <constraint firstItem="dEr-OO-gPY" firstAttribute="top" secondItem="dys-yD-tMO" secondAttribute="bottom" constant="62" id="aVX-eG-6lj"/>
                             <constraint firstItem="dEr-OO-gPY" firstAttribute="centerX" secondItem="XQG-Hj-4ib" secondAttribute="centerX" id="k4s-hM-aHf"/>
                             <constraint firstItem="f6f-av-4s8" firstAttribute="centerX" secondItem="XQG-Hj-4ib" secondAttribute="centerX" id="rrZ-Jo-Ozl"/>
-                            <constraint firstItem="f6f-av-4s8" firstAttribute="top" secondItem="dEr-OO-gPY" secondAttribute="bottom" constant="60" id="xea-R1-HCh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Scan Barcode" id="H0Y-tq-NTN"/>
@@ -1104,7 +1104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckh-3E-79I" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="88.5" y="315.5" width="143" height="21"/>
+                                <rect key="frame" x="89" y="315.5" width="143" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1231,7 +1231,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github.com/NordicID/nur_sample_ios" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rd-Xy-3YF" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="19.5" y="134" width="281" height="21"/>
+                                <rect key="frame" x="20" y="134" width="281" height="21"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>

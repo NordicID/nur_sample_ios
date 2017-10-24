@@ -27,6 +27,9 @@ enum {
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     // no settings read yet
     settingsRead = NO;
     writeInProgress = NO;
@@ -44,7 +47,6 @@ enum {
             }
             else {
                 settingsRead = YES;
-                NSLog( @"flags: %d", config.flags );
                 [self.tableView reloadData];
             }
         });
@@ -187,8 +189,6 @@ enum {
         NSLog( @"write already in progress, skipping" );
         return;
     }
-
-    NSLog( @"flags: %d", config.flags );
 
     writeInProgress = YES;
 

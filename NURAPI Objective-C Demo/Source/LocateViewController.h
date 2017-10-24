@@ -1,6 +1,7 @@
 
 #import <UIKit/UIKit.h>
 #import <NurAPIBluetooth/Bluetooth.h>
+#import "UIViewController+Theme.h"
 
 @interface LocateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BluetoothDelegate>
 

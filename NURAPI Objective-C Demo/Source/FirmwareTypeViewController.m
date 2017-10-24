@@ -36,6 +36,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // set up the theme
+    [self setupTheme];
+
     minorVersion = -1;
     majorVersion = -1;
     build = -1;

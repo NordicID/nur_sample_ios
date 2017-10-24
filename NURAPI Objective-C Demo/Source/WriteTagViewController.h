@@ -3,6 +3,7 @@
 #import <NurAPIBluetooth/Bluetooth.h>
 
 #import "WriteTagPopoverViewController.h"
+#import "UIViewController+Theme.h"
 
 @interface WriteTagViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, BluetoothDelegate, WriteTagPopoverViewControllerDelegate>
 

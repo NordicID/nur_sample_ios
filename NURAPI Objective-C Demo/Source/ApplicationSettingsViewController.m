@@ -12,6 +12,15 @@ enum {
 
 @implementation ApplicationSettingsViewController
 
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    // set up the theme
+    [self setupTheme];
+}
+
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 

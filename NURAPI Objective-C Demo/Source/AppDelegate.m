@@ -1,7 +1,7 @@
 
 #import "AppDelegate.h"
 #import "ConnectionManager.h"
-#import "Theme.h"
+#import "ThemeManager.h"
 
 @implementation AppDelegate
 
@@ -19,7 +19,7 @@
     [[ConnectionManager sharedInstance] setup];
 
     // set up the theme
-    [Theme setupTheme];
+    [ThemeManager sharedInstance];
 
     return YES;
 }
