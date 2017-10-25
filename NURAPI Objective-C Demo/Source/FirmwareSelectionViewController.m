@@ -6,7 +6,10 @@
 #import "FirmwareSectionHeader.h"
 #import "PerformUpdateViewController.h"
 
-@interface FirmwareSelectionViewController ()
+@interface FirmwareSelectionViewController () {
+    // values representing our own versions, used to compare with downloaded version numbers
+    NSUInteger compareVersions[4];
+}
 
 @property (nonatomic, strong) FirmwareDownloader * downloader;
 @property (nonatomic, strong) dispatch_queue_t     dispatchQueue;
@@ -60,6 +63,11 @@
                            NSLocalizedString(@"unknown", @"firmware version unknown"),
                            nil ];
 
+    // start all our compare versions from 0
+    for ( int index = 0; index < 4; ++index ) {
+        compareVersions[index] = 0;
+    }
+
     // downloader that handles getting the firmware index files and also the real firmwares
     self.downloader = [[FirmwareDownloader alloc] initWithDelegate:self];
 }
@@ -107,7 +115,9 @@
                 int majorVersion = info.swVerMajor;
                 int minorVersion = info.swVerMinor;
                 char build = info.devBuild;
-                [self.versionStrings setObject:[NSString stringWithFormat:@"%d.%d-%c", majorVersion, minorVersion, build] atIndexedSubscript:kNurFirmware];
+                NSString * version = [NSString stringWithFormat:@"%d.%d-%c", majorVersion, minorVersion, build];
+                [self.versionStrings setObject:version atIndexedSubscript:kNurFirmware];
+                compareVersions[kNurFirmware] = [Firmware calculateCompareVersion:version type:kNurFirmware];
 
                 NSLog( @"our device model: %@", self.modelName );
                 NSLog( @"current NUR firmware version: %@", self.versionStrings[kNurFirmware] );
@@ -130,6 +140,9 @@
 
                     [self.versionStrings setObject:deviceFirmwareVersion atIndexedSubscript:kDeviceFirmware];
                     [self.versionStrings setObject:deviceBootloaderVersion atIndexedSubscript:kDeviceBootloader];
+                    compareVersions[kDeviceFirmware] = [Firmware calculateCompareVersion:deviceFirmwareVersion type:kDeviceFirmware];
+                    compareVersions[kDeviceBootloader] = [Firmware calculateCompareVersion:deviceBootloaderVersion type:kDeviceBootloader];
+
                     NSLog( @"current device firmware version: '%@'", self.versionStrings[kDeviceFirmware] );
                     NSLog( @"current device bootloader version: '%@'", self.versionStrings[kDeviceBootloader] );
                 }
@@ -144,8 +157,13 @@
                 NSLog( @"primary version: %@", primaryVersion );
                 NSLog( @"secondary version: %@", secondaryVersion );
                 [self.versionStrings setObject:secondaryVersion atIndexedSubscript:kNurBootloader];
+                compareVersions[kNurBootloader] = [Firmware calculateCompareVersion:secondaryVersion type:kNurBootloader];
             }
 
+            for ( int index = 0; index < 4; ++index ) {
+                NSLog( @"compare version: %@ == %lu", self.versionStrings[index], (unsigned long)compareVersions[index] );
+            }
+            
             // now start downloading the index file that we have all own versions
             [self.downloader downloadIndexFiles];
         });
@@ -266,12 +284,17 @@
         return;
     }
 
+    // only actually use the ones that are newer than ours
+    NSMutableArray * valid = [NSMutableArray new];
     for ( Firmware * firmware in firmwares ) {
-        NSLog( @"found firmware: %@", firmware );
+        if ( firmware.compareVersion > compareVersions[type] ) {
+            NSLog( @"found newer firmware: %@", firmware );
+            [valid addObject:firmware];
+        }
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.allFirmwares[ type ] = firmwares;
+        self.allFirmwares[ type ] = valid;
         [self.tableView reloadData];
     } );
 }

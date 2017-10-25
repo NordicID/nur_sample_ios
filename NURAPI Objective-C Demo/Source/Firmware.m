@@ -1,6 +1,13 @@
 
 #import "Firmware.h"
 
+@interface Firmware ()
+
+@property (nonatomic, assign, readwrite) NSUInteger compareVersion;
+
+@end
+
+
 @implementation Firmware
 
 - (instancetype) initWithName:(NSString *)name type:(FirmwareType)type version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 hw:(NSArray *)hw {
@@ -13,6 +20,10 @@
         self.url = url;
         self.md5 = md5;
         self.hw = hw;
+
+        // set up the versin that allows firmwares to be compared
+        self.compareVersion = [Firmware calculateCompareVersion:self.version type:self.type];
+       // NSLog( @"%@ == %ld", self, (unsigned long)self.compareVersion );
     }
     
     return self;
@@ -44,18 +55,34 @@
 }
 
 
-- (BOOL) isNewerThanMajor:(int)major minor:(int)minor build:(int)build {
-    NSRange range = [self.version rangeOfString:@"."];
++ (NSUInteger) calculateCompareVersion:(NSString *)version type:(FirmwareType)type {
+    if ( type == kDeviceBootloader ) {
+        return [version intValue];
+    }
+
+    int major, minor, build;
+
+    if ( ! [Firmware extractMajor:&major minor:&minor build:&build fromVersion:version] ) {
+        return 0;
+    }
+
+    //NSLog( @"version: %@, major: %d, minor: %d, build: %d", version, major, minor, build );
+    return major * 1000000 + minor * 1000 + build;
+}
+
+
++ (BOOL) extractMajor:(int *)major minor:(int *)minor build:(int *)build fromVersion:(NSString *)version {
+    NSRange range = [version rangeOfString:@"."];
     if ( range.length == 0 ) {
-        // no dot found, can not compare
+        // no dot found
         return NO;
     }
 
     NSUInteger dotLocation = range.location;
 
-    range = [self.version rangeOfString:@"-"];
+    range = [version rangeOfString:@"-"];
     if ( range.length == 0 ) {
-        // no dash found, can not compare
+        // no dash found, not valid
         return NO;
     }
 
@@ -63,29 +90,17 @@
 
     //NSLog( @"dot: %lu, dash: %lu", (unsigned long)dotLocation, (unsigned long)dashLocation );
 
-    NSString * ownMajorStr = [self.version substringToIndex:dotLocation];
-    NSString * ownMinorStr = [self.version substringWithRange:NSMakeRange(dotLocation +1, dashLocation - dotLocation - 1)];
-    NSString * ownBuildStr = [self.version substringFromIndex:dashLocation + 1];
-    //NSLog( @"major: %@, minor: %@, build: %@", ownMajorStr, ownMinorStr, ownBuildStr );
+    // extract the version parts
+    NSString * ownMajorStr = [version substringToIndex:dotLocation];
+    NSString * ownMinorStr = [version substringWithRange:NSMakeRange(dotLocation +1, dashLocation - dotLocation - 1)];
+    NSString * ownBuildStr = [version substringFromIndex:dashLocation + 1];
 
-    int ownMajor = [ownMajorStr intValue];
-    int ownMinor = [ownMinorStr intValue];
-    char ownBuild = [ownBuildStr characterAtIndex:0] & 0xff;
-    //NSLog( @"major: %d, minor: %d, build: %d %d", ownMajor, ownMinor, ownBuild, build );
+    *major = [ownMajorStr intValue];
+    *minor = [ownMinorStr intValue];
+    *build = [ownBuildStr characterAtIndex:0] & 0xff;
 
-    if ( ownMajor > major ) {
-        return YES;
-    }
-
-    if ( ownMajor == major && ownMinor > minor ) {
-        return YES;
-    }
-
-    if ( ownMajor == major && ownMinor == minor && ownBuild > build ) {
-        return YES;
-    }
-
-    return NO;
+    // successfully converted
+    return YES;
 }
 
 @end

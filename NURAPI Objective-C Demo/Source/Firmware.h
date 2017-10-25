@@ -32,9 +32,16 @@ typedef enum {
 @property (nonatomic, assign) FirmwareType type;
 @property (nonatomic, strong) NSArray *    hw;
 
+// a value calculated from the version string that can be used to compare versions. Larger is newer
+@property (nonatomic, assign, readonly) NSUInteger compareVersion;
+
 - (instancetype) initWithName:(NSString *)name type:(FirmwareType)type version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 hw:(NSArray *)hw;
 
-- (BOOL) isNewerThanMajor:(int)major minor:(int)minor build:(int)build;
+/**
+ * Calculates a numeric value from the given version that can be used to compare versions of the given type. It can not be used
+ * to compare versions of different firmware types. A larger value means a higher version.
+ **/
++ (NSUInteger) calculateCompareVersion:(NSString *)version type:(FirmwareType)type;
 
 /**
  * Returns the given type as a string that can be used in the UI.

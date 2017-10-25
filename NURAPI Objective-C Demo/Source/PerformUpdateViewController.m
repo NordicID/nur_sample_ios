@@ -137,17 +137,17 @@
 - (void) performUpdate {
     NSLog( @"performing update" );
 
-    // prompt the user to connect a reader
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Not enabled", nil)
-                                                                    message:NSLocalizedString(@"Flashing is currently not enabled!", nil)
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction
-                      actionWithTitle:NSLocalizedString(@"Ok", nil)
-                      style:UIAlertActionStyleDefault
-                      handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
-    return;
-
+    if ( self.firmware.type == kDeviceFirmware || self.firmware.type == kDeviceBootloader ) {
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Not enabled", nil)
+                                                                        message:NSLocalizedString(@"Flashing is currently not available for device firmware of this type!", nil)
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:NSLocalizedString(@"Ok", nil)
+                          style:UIAlertActionStyleDefault
+                          handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
 
     // hide the button so that more updates can not be triggered
     self.updateButton.hidden = YES;
@@ -161,48 +161,11 @@
     [self presentViewController:self.inProgressAlert animated:YES completion:^{
         dispatch_async(self.dispatchQueue, ^{
             int error;
-            char mode = '?';
 
-            // first get the current mode, we may not need to switch modes if the current is already 'B'
-            if ( (error = NurApiGetMode([Bluetooth sharedInstance].nurapiHandle, &mode )) != NUR_NO_ERROR ) {
-                // failed to get mode
-                [self showNurApiErrorMessage:error];
+            // first enter bootloader mode
+            if ( ! [self setBootloaderMode:'B'] ) {
+                // failed to enter bootloader mode
                 return;
-            }
-
-
-            // enter the firmware update mode if we're still in application mode ('A')
-            if ( mode != 'B' ) {
-                NSLog( @"mode '%c', entering bootloader mode", mode );
-                if ( (error = NurApiEnterBoot([Bluetooth sharedInstance].nurapiHandle)) != NUR_NO_ERROR ) {
-                    // failed to enter bootloader mode
-                    [self showNurApiErrorMessage:error];
-                    return;
-                }
-            }
-
-            NSLog( @"waiting for the reader to enter bootloader mode (if it isn't already)");
-
-            // now wait until the device is in bootloader mode and ready to be updated
-            int loops = 0;
-            while ( mode != 'B' ) {
-                if ( (error = NurApiGetMode([Bluetooth sharedInstance].nurapiHandle, &mode )) != NUR_NO_ERROR ) {
-                    // failed to get mode
-                    [self showNurApiErrorMessage:error];
-                    return;
-                }
-
-                NSLog( @"mode: %c (%d)", mode, mode );
-
-                // wait a bit for the device to boot into bootloader mode
-                [NSThread sleepForTimeInterval:1.0f];
-                loops++;
-
-                // don't wait too long
-                if ( loops == 60 ) {
-                    [self showErrorMessage:@"Reader failed to enter update mode"];
-                    return;
-                }
             }
 
             // somewhat ugly casts...
@@ -210,17 +173,82 @@
             unsigned int bufferLength = (unsigned int)self.firmwareData.length;
             NSLog( @"now in bootloader mode, starting update, %d bytes", bufferLength );
 
-            error = NurApiProgramApp( [Bluetooth sharedInstance].nurapiHandle, buffer, bufferLength );
+            if ( self.firmware.type == kNurFirmware ) {
+                error = NurApiProgramApp( [Bluetooth sharedInstance].nurapiHandle, buffer, bufferLength );
+            }
+            else if ( self.firmware.type == kNurBootloader ) {
+                error = NurApiProgramBootloader( [Bluetooth sharedInstance].nurapiHandle, buffer, bufferLength );
+            }
+            else {
+                // should not even be here...
+                NSLog( @"can not update firmware of type: %@", self.firmware.name );
+                return;
+            }
+
             if ( error != NUR_NO_ERROR ) {
                 // failed to start update
                 NSLog( @"failed to start update, error: %d", error );
                 [self showNurApiErrorMessage:error];
+
+                // TODO: set back bootloader mode to application 'A'
+                [self setBootloaderMode:'A'];
             }
             else {
                 NSLog( @"update started ok" );
             }
         });
     }];
+}
+
+
+- (BOOL) setBootloaderMode:(char)newMode {
+    int error;
+    char currentMode;
+
+    // first get the current mode, we may not need to switch modes if the current is already 'B'
+    if ( (error = NurApiGetMode([Bluetooth sharedInstance].nurapiHandle, &currentMode )) != NUR_NO_ERROR ) {
+        // failed to get mode
+        [self showNurApiErrorMessage:error];
+        return NO;
+    }
+
+
+    // enter the firmware update mode if we're still in application mode ('A')
+    if ( currentMode == newMode) {
+        // current mode is the one we want
+        return YES;
+    }
+
+    NSLog( @"current mode '%c', entering mode '%c'", currentMode, newMode );
+    if ( (error = NurApiEnterBoot([Bluetooth sharedInstance].nurapiHandle)) != NUR_NO_ERROR ) {
+        // failed to enter bootloader mode
+        [self showNurApiErrorMessage:error];
+        return NO;
+    }
+
+    // now wait until the device is in bootloader mode and ready to be updated
+    int loops = 0;
+    while ( currentMode != newMode ) {
+        if ( (error = NurApiGetMode([Bluetooth sharedInstance].nurapiHandle, &currentMode )) != NUR_NO_ERROR ) {
+            // failed to get mode
+            [self showNurApiErrorMessage:error];
+            return NO;
+        }
+
+        NSLog( @"current mode: %c (%d)", currentMode, currentMode );
+
+        // wait a bit for the device to boot into bootloader mode
+        [NSThread sleepForTimeInterval:1.0f];
+        loops++;
+
+        // don't wait too long
+        if ( loops == 60 ) {
+            [self showErrorMessage:@"Reader failed to enter update mode"];
+            return NO;
+        }
+    }
+
+    return YES;
 }
 
 

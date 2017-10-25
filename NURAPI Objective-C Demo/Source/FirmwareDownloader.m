@@ -96,6 +96,24 @@
     NSLog( @"parsing firmware index file for type %d", type);
     NSMutableArray * foundFirmwares = [NSMutableArray new];
 
+    // testing
+/*    if ( type == kNurFirmware ) {
+        Firmware * firmware = [[Firmware alloc] initWithName:@"Test 1" type:kNurFirmware version:@"6.0-A" buildTime:[NSDate date] url:[NSURL URLWithString:@"http://www.google.com"] md5:@"md5" hw:nil];
+        [foundFirmwares addObject:firmware];
+        firmware = [[Firmware alloc] initWithName:@"Test 2" type:kNurFirmware version:@"4.0-A" buildTime:[NSDate date] url:[NSURL URLWithString:@"http://www.google.com"] md5:@"md5" hw:nil];
+        [foundFirmwares addObject:firmware];
+        firmware = [[Firmware alloc] initWithName:@"Test 3" type:kNurFirmware version:@"5.11-B" buildTime:[NSDate date] url:[NSURL URLWithString:@"http://www.google.com"] md5:@"md5" hw:nil];
+        [foundFirmwares addObject:firmware];
+        firmware = [[Firmware alloc] initWithName:@"Test 5" type:kNurFirmware version:@"6.10-B" buildTime:[NSDate date] url:[NSURL URLWithString:@"http://www.google.com"] md5:@"md5" hw:nil];
+        [foundFirmwares addObject:firmware];
+        firmware = [[Firmware alloc] initWithName:@"Test 6" type:kNurFirmware version:@"6.10-C" buildTime:[NSDate date] url:[NSURL URLWithString:@"http://www.google.com"] md5:@"md5" hw:nil];
+        [foundFirmwares addObject:firmware];
+        firmware = [[Firmware alloc] initWithName:@"Test 7" type:kNurFirmware version:@"6.11-D" buildTime:[NSDate date] url:[NSURL URLWithString:@"http://www.google.com"] md5:@"md5" hw:nil];
+        [foundFirmwares addObject:firmware];
+        firmware = [[Firmware alloc] initWithName:@"Test 4" type:kNurFirmware version:@"5.11-C" buildTime:[NSDate date] url:[NSURL URLWithString:@"http://www.google.com"] md5:@"md5" hw:nil];
+        [foundFirmwares addObject:firmware];
+    }*/
+
     for (NSMutableDictionary *firmwares in [json objectForKey:@"firmwares"]) {
         NSString *name = [firmwares objectForKey:@"name"];
         NSString *version = [firmwares objectForKey:@"version"];
@@ -107,10 +125,6 @@
         // convert the timestamp to a date
         NSDate * buildTime = [NSDate dateWithTimeIntervalSince1970:buildTimestamp];
         NSURL * url = [NSURL URLWithString:urlString];
-
-//        NSLog( @"name: %@, version: %@", name, version);
-//        NSLog( @"url: %@, md5: %@", url, md5);
-//        NSLog( @"buildTime: %@, stamp: %ld", buildTime, (unsigned long)buildTimestamp);
 
         NSMutableArray * validHw = [NSMutableArray new];
 
@@ -129,7 +143,11 @@
     [foundFirmwares sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Firmware * f1 = (Firmware *)obj1;
         Firmware * f2 = (Firmware *)obj2;
-        return [f1.buildTime compare:f2.buildTime];
+        if ( f1.compareVersion == f2.compareVersion ) {
+            return NSOrderedSame;
+        }
+
+        return f1.compareVersion < f2.compareVersion ? NSOrderedDescending : NSOrderedAscending;
     }];
 
     if ( self.delegate ) {

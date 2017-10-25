@@ -297,13 +297,13 @@
             Firmware * newest = [self.nurRfidFirmwares lastObject];
 
             // is it newer that our?
-            if ( ! [newest isNewerThanMajor:majorVersion minor:minorVersion build:build] ) {
-                self.availableNurRfidFirmwareVersion.text = @"Newest version already installed";
-            }
-            else {
-                self.availableNurRfidFirmwareVersion.text = newest.version;
-                self.nurRfidFirmwareButton.enabled = YES;
-            }
+//            if ( ! [newest isNewerThanMajor:majorVersion minor:minorVersion build:build] ) {
+//                self.availableNurRfidFirmwareVersion.text = @"Newest version already installed";
+//            }
+//            else {
+//                self.availableNurRfidFirmwareVersion.text = newest.version;
+//                self.nurRfidFirmwareButton.enabled = YES;
+//            }
         }
         else {
             self.availableNurRfidFirmwareVersion.text = @"No update available";
