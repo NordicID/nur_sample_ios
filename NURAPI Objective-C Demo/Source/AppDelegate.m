@@ -2,6 +2,7 @@
 #import "AppDelegate.h"
 #import "ConnectionManager.h"
 #import "ThemeManager.h"
+#import "ViewControllerManager.h"
 
 @implementation AppDelegate
 
@@ -20,6 +21,10 @@
 
     // set up the theme
     [ThemeManager sharedInstance];
+
+    // the targets are allowed to set the root view controller to fit their needs
+    self.window = [ViewControllerManager setupRootViewController];
+    [self.window makeKeyAndVisible];
 
     return YES;
 }

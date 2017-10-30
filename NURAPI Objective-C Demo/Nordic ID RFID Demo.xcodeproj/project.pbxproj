@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		6F04D1631F8B7FAE0064A229 /* FirmwareSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */; };
 		6F04D1671F8B96950064A229 /* FirmwareSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */; };
+		6F547D481FA7164800BA0B59 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F547D461FA7152200BA0B59 /* Theme.m */; };
+		6F547D4B1FA71E5D00BA0B59 /* EULA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F547D491FA71E4E00BA0B59 /* EULA.storyboard */; };
+		6F547D4E1FA7210800BA0B59 /* EULAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F547D4D1FA7210800BA0B59 /* EULAViewController.m */; };
+		6F547D511FA72D5C00BA0B59 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F547D501FA72D5C00BA0B59 /* ViewControllerManager.m */; };
+		6F547D541FA730B200BA0B59 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F547D521FA730AC00BA0B59 /* ViewControllerManager.m */; };
 		6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598D1EC2D83000A458AA /* AboutViewController.m */; };
 		6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
 		6F7959DE1EC2D83000A458AA /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959911EC2D83000A458AA /* ApplicationSettingsViewController.m */; };
@@ -161,6 +166,15 @@
 		6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareSectionHeader.m; sourceTree = "<group>"; };
 		6F04D1621F8B7FAE0064A229 /* FirmwareSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareSectionHeader.h; sourceTree = "<group>"; };
 		6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirmwareSectionHeader.xib; sourceTree = "<group>"; };
+		6F547D421FA7077A00BA0B59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6F547D441FA7078600BA0B59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6F547D461FA7152200BA0B59 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
+		6F547D491FA71E4E00BA0B59 /* EULA.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EULA.storyboard; sourceTree = "<group>"; };
+		6F547D4C1FA7210800BA0B59 /* EULAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EULAViewController.h; sourceTree = "<group>"; };
+		6F547D4D1FA7210800BA0B59 /* EULAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EULAViewController.m; sourceTree = "<group>"; };
+		6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerManager.h; sourceTree = "<group>"; };
+		6F547D501FA72D5C00BA0B59 /* ViewControllerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewControllerManager.m; sourceTree = "<group>"; };
+		6F547D521FA730AC00BA0B59 /* ViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerManager.m; sourceTree = "<group>"; };
 		6F7959711EC2D77600A458AA /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F79598C1EC2D83000A458AA /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		6F79598D1EC2D83000A458AA /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -373,6 +387,7 @@
 				6F7959DA1EC2D83000A458AA /* WriteTagViewController.h */,
 				6F7959DB1EC2D83000A458AA /* WriteTagViewController.m */,
 				6FE7549C1F96485200CE8B66 /* Assets */,
+				6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -505,6 +520,8 @@
 		6FAC4CFD1F96126B0045DA7D /* Nordic ID RFID Demo */ = {
 			isa = PBXGroup;
 			children = (
+				6F547D521FA730AC00BA0B59 /* ViewControllerManager.m */,
+				6F547D421FA7077A00BA0B59 /* Assets.xcassets */,
 				6FE7548E1F96398600CE8B66 /* Info.plist */,
 				6FBC8D8E1F98A5A0005CC09F /* Theme.m */,
 			);
@@ -514,7 +531,13 @@
 		6FBC8D861F9650E9005CC09F /* Alien Technology Demo */ = {
 			isa = PBXGroup;
 			children = (
+				6F547D461FA7152200BA0B59 /* Theme.m */,
+				6F547D441FA7078600BA0B59 /* Assets.xcassets */,
 				6FBC8D881F9650E9005CC09F /* Info.plist */,
+				6F547D491FA71E4E00BA0B59 /* EULA.storyboard */,
+				6F547D4C1FA7210800BA0B59 /* EULAViewController.h */,
+				6F547D4D1FA7210800BA0B59 /* EULAViewController.m */,
+				6F547D501FA72D5C00BA0B59 /* ViewControllerManager.m */,
 			);
 			path = "Alien Technology Demo";
 			sourceTree = "<group>";
@@ -675,6 +698,7 @@
 				6FAC4CEE1F96118B0045DA7D /* Main.storyboard in Resources */,
 				6FAC4CEF1F96118B0045DA7D /* blep_40ms.wav in Resources */,
 				6FE754921F96444B00CE8B66 /* SharedAssets.xcassets in Resources */,
+				6F547D4B1FA71E5D00BA0B59 /* EULA.storyboard in Resources */,
 				6FAC4CF11F96118B0045DA7D /* blep_300ms.wav in Resources */,
 				6FBC8D8C1F965241005CC09F /* TargetAssets.xcassets in Resources */,
 			);
@@ -774,6 +798,7 @@
 				6FED47091F9E03A3009BB353 /* UIViewController+Theme.m in Sources */,
 				6F7959F91EC2D83000A458AA /* SelectReaderViewController.m in Sources */,
 				6F7959E11EC2D83000A458AA /* AverageBuffer.m in Sources */,
+				6F547D541FA730B200BA0B59 /* ViewControllerManager.m in Sources */,
 				6F795A011EC2D83000A458AA /* TTTAttributedLabel.m in Sources */,
 				6F7959FC1EC2D83000A458AA /* RfidSettingsViewController.m in Sources */,
 				6F7959EC1EC2D83000A458AA /* InventoryViewController.m in Sources */,
@@ -827,9 +852,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F547D481FA7164800BA0B59 /* Theme.m in Sources */,
 				6FAC4CBE1F96118B0045DA7D /* ContactViewController.m in Sources */,
 				6FAC4CBF1F96118B0045DA7D /* SelectReaderViewController.m in Sources */,
 				6FED46EE1F9B515E009BB353 /* ThemeableLabel.m in Sources */,
+				6F547D511FA72D5C00BA0B59 /* ViewControllerManager.m in Sources */,
 				6FAC4CC01F96118B0045DA7D /* AverageBuffer.m in Sources */,
 				6FED46F21F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */,
 				6FAC4CC11F96118B0045DA7D /* TTTAttributedLabel.m in Sources */,
@@ -845,6 +872,7 @@
 				6FED47021F9DFE37009BB353 /* ThemeableView.m in Sources */,
 				6FED46EA1F9B4DC2009BB353 /* ThemeManager.m in Sources */,
 				6FAC4CC81F96118B0045DA7D /* PerformUpdateViewController.m in Sources */,
+				6F547D4E1FA7210800BA0B59 /* EULAViewController.m in Sources */,
 				6FAC4CC91F96118B0045DA7D /* MainMenuViewController.m in Sources */,
 				6FAC4CCA1F96118B0045DA7D /* Firmware.m in Sources */,
 				6FAC4CCB1F96118B0045DA7D /* ApplicationSettingsViewController.m in Sources */,

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="btR-UB-AtM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="h90-o5-jDK">
+            <objects>
+                <viewController storyboardIdentifier="EULAViewController" id="btR-UB-AtM" customClass="EULAViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FyX-I7-E0k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="END USER LICENSE AGREEMENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfz-CJ-I9o" customClass="ThemeableLabel">
+                                <rect key="frame" x="58.5" y="40" width="257.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kUS-9i-rHv">
+                                <rect key="frame" x="47.5" y="577" width="280" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwQ-JL-xyS" customClass="ThemeableButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="0wu-Dr-BcC"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="26D-WR-cxK"/>
+                                            <constraint firstAttribute="height" constant="50" id="UFK-aH-G8i"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="kPY-D9-lzC"/>
+                                        </constraints>
+                                        <state key="normal" title="Accept">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="accept:" destination="btR-UB-AtM" eventType="primaryActionTriggered" id="80R-8V-bI1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf9-b2-zob" customClass="ThemeableButton">
+                                        <rect key="frame" x="155" y="0.0" width="125" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="1h4-ad-cBy"/>
+                                            <constraint firstAttribute="height" constant="50" id="6aR-OX-H8I"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="D7t-Av-oLE"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="WdI-fb-Ddc"/>
+                                        </constraints>
+                                        <state key="normal" title="Decline">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="decline:" destination="btR-UB-AtM" eventType="primaryActionTriggered" id="sPw-w0-8gL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f2D-ml-82c">
+                                <rect key="frame" x="16" y="80.5" width="343" height="456.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">BY OPENING THE SOFTWARE MEDIA PACKAGE, YOU AGREE TO THE TERMS OF THIS END USER LICENSE AGREEMENT AND ANY PROVIDED SUPPLEMENTAL TERMS (COLLECTIVELY “AGREEMENT”). IF YOU ARE ACCESSING THE SOFTWARE ELECTRONICALLY, INDICATE YOUR ACCEPTANCE OF THESE TERMS BY SELECTING THE "ACCEPT" BUTTON AT THE END OF THIS AGREEMENT. IF YOU DO NOT AGREE TO ALL THESE TERMS, PROMPTLY RETURN THE UNUSED SOFTWARE TO YOUR PLACE OF PURCHASE FOR A REFUND OR, IF THE SOFTWARE IS ACCESSED ELECTRONICALLY, SELECT THE "DECLINE" BUTTON AT THE END OF THIS AGREEMENT.
+
+Section 1 	GRANT OF LICENSE.  This Agreement grants you a personal, non-exclusive and non-transferable license to use the software components and the accompanying documentation (collectively “Software”) supplied to you by Alien Technology, LLC (“Alien”) subject to the Conditions of Use set forth in Section 2 below and the terms and conditions of this Agreement. The Software includes the software supplied to you on any media, including without limitation disks, diskettes, CD-ROM disks, and as part of the equipment enclosed with Alien product (the “Hardware”) and any modifications, enhancements to and/or replacements of such Software supplied to you by Alien. This Agreement also imposes certain restrictions on your use of the Software and Hardware.
+
+Section 2	CONDITIONS OF USE.  Any use of the Software outside of the conditions (“Conditions of Use”) set forth herein is strictly prohibited and will be deemed a breach of this Agreement:
+2.1	Only your employees or agents may use the Software.  You will take all necessary steps to insure that your employees and agents abide by the terms of this Agreement.  
+2.2	You may use the Software (i) only for developing value-added and lawful applications in connection with the Software, (ii) only as described in the Software or product documentation; (iii) only with its related Hardware product, if the Software is provided on or with equipment; and (iv) in strict accordance with this Agreement.
+2.3	You may not transfer, copy, download, or in any way install or use the Software at a different or additional location.  
+2.4	Unless enforcement is prohibited by applicable law, you will not modify, reverse engineer, prepare derivative works of, de-compile or disassemble any object code of the Software or the Hardware for any reason.  You may not make any copy of any of the Software and you may not make any copy of any of the written materials accompanying the Software and/or Hardware, except that you may make one copy per single licensed location of Software for backup or archival purposes.  With regard to the copy made for backup or archival purposes, you agree to reproduce any Alien copyright notice, and other proprietary legends appearing thereon.  Such copyright notice(s) may appear in any of several forms, including machine-readable form, and you agree to reproduce such notice in each form in which it appears, to the extent it is physically possible to do so.   
+2.5	You will not remove, destroy, or alter any proprietary markings or legends placed upon or contained within the Software, related materials or documentation. 
+2.6	Provided all the terms of this Agreement are complied with, you may redistribute the object code built from the source files provided as parts of the Software.  Otherwise, you will not export, re-export, resell, ship or divert or cause to be exported, re-exported, resold, shipped or diverted, directly or indirectly, the Software under this Agreement.
+
+Section 3  	RESTRICTIONS.  Software is confidential and copyrighted.  Alien and its licensors retain ownership the Software and no rights are granted to you other than a license to use the Software on the terms expressly set forth in this Agreement. You acknowledge that the underlying structure, sequence, organization and source code of the Software and the design and structure of the Hardware are valuable trade secrets of Alien and/or its licensors.  
+
+Section 4	NO RIGHT TO USE ALIEN’S NAME.  You may not use any trademark of Alien, or any word or symbol likely to be confused with any Alien trademark, service mark, logo or trade name of Alien, either alone or in any combination with another word or words, without the prior written consent of an officer of Alien.
+
+Section 5	PAYMENT:	The rights granted hereunder are contingent upon payment to Alien for the Software and/or Hardware.  All payments shall be due net thirty (30) days from date of Alien's invoice.
+
+Section 6	LIMITED WARRANTY.  Alien warrants that the media (the “Software Media”) which contain the Software will be free from defects in materials and workmanship for a period of ninety (90) days after transfer of title (the “Warranty Term”) provided that such defect does not arise from (a) abuse, misuse, neglect, vandalism or accident, (b) modification or repair of the Software by personnel not certified by Alien to perform such modification or repair, or (c) use of the Software outside of the environmental specifications set forth in published product specifications, manuals or other documentation.  The limited warranty for the Software Media set forth above does not apply to the Software itself, which is provided “AS IS.”  Your exclusive remedy and Alien's entire liability under this limited warranty will be at Alien's option to replace Software Media or refund the fee paid for Software.  
+
+Section 7	DISCLAIMER OF WARRANTY.  UNLESS SPECIFIED IN THIS AGREEMENT, ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT ARE DISCLAIMED, EXCEPT TO THE EXTENT THAT THESE DISCLAIMERS ARE HELD TO BE LEGALLY INVALID.
+
+Section 8 	LIMITATION OF LIABILITY. TO THE EXTENT NOT PROHIBITED BY LAW, IN NO EVENT WILL ALIEN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR SPECIAL, INDIRECT, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF OR RELATED TO THE USE OF OR INABILITY TO USE SOFTWARE, EVEN IF ALIEN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  In no event will Alien's liability to you, whether in contract, tort (including negligence), or otherwise, exceed the amount paid by you for Software under this Agreement. The foregoing limitations will apply even if the above stated warranty fails of its essential purpose.
+
+Section 9	MAINTENANCE.  Alien shall not be responsible for maintenance or field service of the Software under this Agreement.
+
+Section 10	TERMINATION.  Upon any violation of any of the provisions of this Agreement, your rights to use the Software and related Hardware shall automatically terminate without notice from Alien.  If terminated, you shall be obligated to return to Alien or to destroy the Software, and to return to Alien the Hardware at your expense.
+
+Section 11	ASSIGNMENT.  You may not transfer or assign your rights to use the Software without the prior written consent of Alien. Any attempted assignment without such consent shall be void. 
+
+Section 12	EXPORT REGULATIONS.  All Software and technical data delivered under this Agreement are subject to US export control laws and may be subject to export or import regulations in other countries. You agree to comply strictly with all such laws and regulations and acknowledge that you have the responsibility to obtain such licenses to export, re-export, or import as may be required after delivery to you.
+
+Section 13	U.S. GOVERNMENT RESTRICTED RIGHTS. If Software is being acquired by or on behalf of the U.S. Government or by a U.S. Government prime contractor or subcontractor (at any tier), then the Government's rights in Software and accompanying documentation will be only as set forth in this Agreement; this is in accordance with 48 CFR 227.7201 through 227.7202-4 (for Department of Defense (DOD) acquisitions) and with 48 CFR 2.101 and 12.212 (for non-DOD acquisitions).
+
+Section 14	SEVERABILITY.  If any provision of this Agreement is held to be unenforceable, this Agreement will remain in effect with the provision omitted, unless omission would frustrate the intent of the parties, in which case this Agreement will immediately terminate.
+
+Section 15	LAW.  This Agreement will be governed by and interpreted in accordance with the laws of the State of California.  Choice of law rules of any jurisdiction and the United Nations Convention on Contracts for the International Sale of Goods will not apply.  Alien and you agree to submit to the personal and exclusive jurisdiction of the Superior Court of the State of California for the County of Santa Clara or the United States District Court for the Northern District of California.
+
+Section 16	SURVIVAL OF PROVISIONS.  The parties agree that where the context of any provision indicates an intent that it shall survive, the term of this Agreement then it shall survive.
+
+Section 17	ENTIRE AGREEMENT.  This Agreement is the entire agreement between you and Alien relating to its subject matter.  It supersedes all prior or contemporaneous oral or written communications, proposals, representations and warranties and prevails over any conflicting or additional terms of any quote, order, acknowledgment, or other communication between the parties relating to its subject matter during the term of this Agreement. No modification of this Agreement will be binding, unless in writing and signed by an authorized representative of each party.
+
+For inquiries please contact: Alien Technology, LLC, 845 Embedded Way, San Jose, California 95138  USA.
+
+
+
+Doc Control #8500008-000 Rev D</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xfz-CJ-I9o" firstAttribute="top" secondItem="XAF-Jw-Kwv" secondAttribute="top" constant="20" id="13T-la-6DO"/>
+                            <constraint firstItem="XAF-Jw-Kwv" firstAttribute="trailing" secondItem="f2D-ml-82c" secondAttribute="trailing" constant="16" id="1bK-LI-6jn"/>
+                            <constraint firstItem="XAF-Jw-Kwv" firstAttribute="bottom" secondItem="kUS-9i-rHv" secondAttribute="bottom" constant="40" id="VDm-qi-RIK"/>
+                            <constraint firstItem="xfz-CJ-I9o" firstAttribute="centerX" secondItem="FyX-I7-E0k" secondAttribute="centerX" id="e6y-dm-1AR"/>
+                            <constraint firstItem="kUS-9i-rHv" firstAttribute="centerX" secondItem="FyX-I7-E0k" secondAttribute="centerX" id="fpa-7L-PEl"/>
+                            <constraint firstItem="f2D-ml-82c" firstAttribute="leading" secondItem="XAF-Jw-Kwv" secondAttribute="leading" constant="16" id="lHA-f6-3dc"/>
+                            <constraint firstItem="kUS-9i-rHv" firstAttribute="top" secondItem="f2D-ml-82c" secondAttribute="bottom" constant="40" id="nSh-bp-kZm"/>
+                            <constraint firstItem="f2D-ml-82c" firstAttribute="top" secondItem="xfz-CJ-I9o" secondAttribute="bottom" constant="20" id="xSq-0p-Dy0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XAF-Jw-Kwv"/>
+                    </view>
+                    <connections>
+                        <outlet property="acceptButton" destination="LwQ-JL-xyS" id="WUW-cO-wnH"/>
+                        <outlet property="declineButton" destination="mf9-b2-zob" id="VNr-vx-3aL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2gB-n6-ZDk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-242.40000000000001" y="54.422788605697157"/>
+        </scene>
+    </scenes>
+</document>
