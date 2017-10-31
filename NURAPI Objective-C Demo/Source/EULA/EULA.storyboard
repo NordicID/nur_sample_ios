@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="btR-UB-AtM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="h90-o5-jDK">
+            <objects>
+                <viewController storyboardIdentifier="EULAViewController" id="btR-UB-AtM" customClass="EULAViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FyX-I7-E0k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="END USER LICENSE AGREEMENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfz-CJ-I9o" customClass="ThemeableLabel">
+                                <rect key="frame" x="59" y="40" width="257.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kUS-9i-rHv">
+                                <rect key="frame" x="47.5" y="577" width="280" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwQ-JL-xyS" customClass="ThemeableButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="0wu-Dr-BcC"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="26D-WR-cxK"/>
+                                            <constraint firstAttribute="height" constant="50" id="UFK-aH-G8i"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="kPY-D9-lzC"/>
+                                        </constraints>
+                                        <state key="normal" title="Accept">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="accept:" destination="btR-UB-AtM" eventType="primaryActionTriggered" id="80R-8V-bI1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf9-b2-zob" customClass="ThemeableButton">
+                                        <rect key="frame" x="155" y="0.0" width="125" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="1h4-ad-cBy"/>
+                                            <constraint firstAttribute="height" constant="50" id="6aR-OX-H8I"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="D7t-Av-oLE"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="WdI-fb-Ddc"/>
+                                        </constraints>
+                                        <state key="normal" title="Decline">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="decline:" destination="btR-UB-AtM" eventType="primaryActionTriggered" id="sPw-w0-8gL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f2D-ml-82c">
+                                <rect key="frame" x="16" y="80.5" width="343" height="456.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xfz-CJ-I9o" firstAttribute="top" secondItem="XAF-Jw-Kwv" secondAttribute="top" constant="20" id="13T-la-6DO"/>
+                            <constraint firstItem="XAF-Jw-Kwv" firstAttribute="trailing" secondItem="f2D-ml-82c" secondAttribute="trailing" constant="16" id="1bK-LI-6jn"/>
+                            <constraint firstItem="XAF-Jw-Kwv" firstAttribute="bottom" secondItem="kUS-9i-rHv" secondAttribute="bottom" constant="40" id="VDm-qi-RIK"/>
+                            <constraint firstItem="xfz-CJ-I9o" firstAttribute="centerX" secondItem="FyX-I7-E0k" secondAttribute="centerX" id="e6y-dm-1AR"/>
+                            <constraint firstItem="kUS-9i-rHv" firstAttribute="centerX" secondItem="FyX-I7-E0k" secondAttribute="centerX" id="fpa-7L-PEl"/>
+                            <constraint firstItem="f2D-ml-82c" firstAttribute="leading" secondItem="XAF-Jw-Kwv" secondAttribute="leading" constant="16" id="lHA-f6-3dc"/>
+                            <constraint firstItem="kUS-9i-rHv" firstAttribute="top" secondItem="f2D-ml-82c" secondAttribute="bottom" constant="40" id="nSh-bp-kZm"/>
+                            <constraint firstItem="f2D-ml-82c" firstAttribute="top" secondItem="xfz-CJ-I9o" secondAttribute="bottom" constant="20" id="xSq-0p-Dy0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XAF-Jw-Kwv"/>
+                    </view>
+                    <connections>
+                        <outlet property="acceptButton" destination="LwQ-JL-xyS" id="WUW-cO-wnH"/>
+                        <outlet property="declineButton" destination="mf9-b2-zob" id="VNr-vx-3aL"/>
+                        <outlet property="eulaTextView" destination="f2D-ml-82c" id="4XP-8z-w8A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2gB-n6-ZDk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-242.40000000000001" y="54.422788605697157"/>
+        </scene>
+    </scenes>
+</document>

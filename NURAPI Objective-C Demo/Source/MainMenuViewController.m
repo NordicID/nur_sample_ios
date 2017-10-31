@@ -3,6 +3,7 @@
 #import "MainMenuCell.h"
 #import "Tag.h"
 #import "ConnectionManager.h"
+#import "ThemeManager.h"
 
 /**
  * A single entry in the main menu.
@@ -42,7 +43,6 @@
 }
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
-//@property (nonatomic, strong) NSTimer *        timer;
 @property (nonatomic, strong) NSTimer *        batteryTimer;
 
 // main menu data
@@ -56,6 +56,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.navigationItem.title = [ThemeManager sharedInstance].theme.applicationTitle;
 
     // set up the theme
     [self setupTheme];

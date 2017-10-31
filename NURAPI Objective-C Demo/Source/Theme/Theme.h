@@ -13,4 +13,7 @@
 @property (nonatomic, strong) UIColor * lightTextColor;
 @property (nonatomic, strong) UIColor * darkTextColor;
 
+// textual theming
+@property (nonatomic, strong) NSString * applicationTitle;
+
 @end

@@ -19,6 +19,9 @@
         [UINavigationBar appearance].barTintColor = self.primaryColor;
         [UINavigationBar appearance].tintColor = self.lightTextColor;
         [UINavigationBar appearance].titleTextAttributes = @{ NSForegroundColorAttributeName: self.lightTextColor };
+
+        // textual theming
+        self.applicationTitle = @"Nordic ID RFID";
     }
 
     return self;

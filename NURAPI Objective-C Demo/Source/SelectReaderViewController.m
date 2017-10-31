@@ -2,6 +2,7 @@
 #import "SelectReaderViewController.h"
 #import "MainMenuViewController.h"
 #import "ConnectionManager.h"
+#import "ThemeManager.h"
 
 @interface SelectReaderViewController ()
 
@@ -16,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.navigationItem.title = [ThemeManager sharedInstance].theme.applicationTitle;
 
     // set up the theme
     [self setupTheme];

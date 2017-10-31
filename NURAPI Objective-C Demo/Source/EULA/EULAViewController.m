@@ -1,5 +1,6 @@
 
 #import "EULAViewController.h"
+#import "ThemeManager.h"
 
 @interface EULAViewController ()
 
@@ -9,6 +10,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.navigationItem.title = [ThemeManager sharedInstance].theme.applicationTitle;
+
+    // load the EULA from the bundle
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"EULA" ofType:@"txt"];
+    NSError * error = nil;
+    NSString* eula = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:&error];
+    if ( error ) {
+        NSLog( @"failed to read EULA from bundle: %@", error.localizedDescription );
+    }
+
+    self.eulaTextView.text = eula;
+}
+
+
+- (void) viewWillLayoutSubviews {
+    [self.eulaTextView scrollRangeToVisible:NSMakeRange(0, 0)];
 }
 
 
@@ -35,18 +55,33 @@
                                     style:UIAlertActionStyleCancel
                                     handler:^(UIAlertAction * action) {
                                         NSLog(@"user declined" );
-                                    }];
+                                        [self showDeclinePrompt];
+                                   }];
 
     [alert addAction:acceptButton];
     [alert addAction:declineButton];
-
-    // when the dialog is up, then start downloading
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 
 - (IBAction)decline:(UIButton *)sender {
     NSLog(@"user declined" );
+    [self showDeclinePrompt];
+}
+
+
+- (void) showDeclinePrompt {
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"License Agreemement", @"EULA declined popup title")
+                                                                    message:NSLocalizedString(@"The license agreement must be accepted before the application can be used.", @"EULA declined popup text")
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okButton = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Ok", @"EULA declined ok button in popup")
+                                   style:UIAlertActionStyleDefault
+                                   handler:nil];
+
+    [alert addAction:okButton];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
