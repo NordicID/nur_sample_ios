@@ -1,0 +1,18 @@
+PODS:
+  - iOSDFULibrary (4.0.2):
+    - Zip (~> 1.0)
+  - TTTAttributedLabel (2.0.0)
+  - Zip (1.0.0)
+
+DEPENDENCIES:
+  - iOSDFULibrary
+  - TTTAttributedLabel
+
+SPEC CHECKSUMS:
+  iOSDFULibrary: 739d3b5f2c99120b4e9b93ca165d9e451e3c8dec
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  Zip: 115a122433829a1bbf33f5575fa84047438dcc12
+
+PODFILE CHECKSUM: 01a258db4d8ed5955aaf8ceeda506c8aeb0e6058
+
+COCOAPODS: 1.2.1

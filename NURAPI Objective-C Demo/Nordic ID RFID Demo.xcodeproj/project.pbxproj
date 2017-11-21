@@ -48,7 +48,6 @@
 		6F7959FE1EC2D83000A458AA /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959CE1EC2D83000A458AA /* Tag.m */; };
 		6F7959FF1EC2D83000A458AA /* TagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D01EC2D83000A458AA /* TagManager.m */; };
 		6F795A001EC2D83000A458AA /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D21EC2D83000A458AA /* TagViewController.m */; };
-		6F795A011EC2D83000A458AA /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D51EC2D83000A458AA /* TTTAttributedLabel.m */; };
 		6F795A021EC2D83000A458AA /* TuneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D71EC2D83000A458AA /* TuneViewController.m */; };
 		6F795A031EC2D83000A458AA /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D91EC2D83000A458AA /* WriteTagPopoverViewController.m */; };
 		6F795A041EC2D83000A458AA /* WriteTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959DB1EC2D83000A458AA /* WriteTagViewController.m */; };
@@ -67,7 +66,6 @@
 		6FAC4CBE1F96118B0045DA7D /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79599E1EC2D83000A458AA /* ContactViewController.m */; };
 		6FAC4CBF1F96118B0045DA7D /* SelectReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959C41EC2D83000A458AA /* SelectReaderViewController.m */; };
 		6FAC4CC01F96118B0045DA7D /* AverageBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959961EC2D83000A458AA /* AverageBuffer.m */; };
-		6FAC4CC11F96118B0045DA7D /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D51EC2D83000A458AA /* TTTAttributedLabel.m */; };
 		6FAC4CC21F96118B0045DA7D /* RfidSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959CA1EC2D83000A458AA /* RfidSettingsViewController.m */; };
 		6FAC4CC31F96118B0045DA7D /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959AD1EC2D83000A458AA /* InventoryViewController.m */; };
 		6FAC4CC41F96118B0045DA7D /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959AB1EC2D83000A458AA /* InfoViewController.m */; };
@@ -139,6 +137,8 @@
 		6FED470A1F9E03A3009BB353 /* UIViewController+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */; };
 		6FED470D1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */; };
 		6FED470E1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */; };
+		ACE7B84AA43EE8F47CA810FE /* Pods_Alien_Technology_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */; };
+		E1E3DE1224B6E11B19DAC853 /* Pods_Nordic_ID_RFID_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -167,6 +167,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A113DEBB001F96E887EFDA8 /* Pods-Alien Technology Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alien Technology Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		4FFF129810DC220C3978CA6A /* Pods-Nordic ID RFID Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nordic ID RFID Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alien_Technology_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareSectionHeader.m; sourceTree = "<group>"; };
 		6F04D1621F8B7FAE0064A229 /* FirmwareSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareSectionHeader.h; sourceTree = "<group>"; };
 		6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirmwareSectionHeader.xib; sourceTree = "<group>"; };
@@ -205,7 +208,6 @@
 		6F7959A41EC2D83000A458AA /* FirmwareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareCell.m; sourceTree = "<group>"; };
 		6F7959A71EC2D83000A458AA /* FirmwareTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareTypeViewController.h; sourceTree = "<group>"; };
 		6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareTypeViewController.m; sourceTree = "<group>"; };
-		6F7959A91EC2D83000A458AA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F7959AA1EC2D83000A458AA /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		6F7959AB1EC2D83000A458AA /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		6F7959AC1EC2D83000A458AA /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
@@ -245,8 +247,6 @@
 		6F7959D01EC2D83000A458AA /* TagManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagManager.m; sourceTree = "<group>"; };
 		6F7959D11EC2D83000A458AA /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
 		6F7959D21EC2D83000A458AA /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
-		6F7959D41EC2D83000A458AA /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
-		6F7959D51EC2D83000A458AA /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		6F7959D61EC2D83000A458AA /* TuneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuneViewController.h; sourceTree = "<group>"; };
 		6F7959D71EC2D83000A458AA /* TuneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuneViewController.m; sourceTree = "<group>"; };
 		6F7959D81EC2D83000A458AA /* WriteTagPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTagPopoverViewController.h; sourceTree = "<group>"; };
@@ -304,6 +304,9 @@
 		6FED47081F9E03A3009BB353 /* UIViewController+Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Theme.h"; sourceTree = "<group>"; };
 		6FED470B1F9E0C00009BB353 /* ThemeableTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableTabBar.h; sourceTree = "<group>"; };
 		6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableTabBar.m; sourceTree = "<group>"; };
+		7BB6AA733015FC9C3401FB06 /* Pods-Nordic ID RFID Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nordic ID RFID Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo.release.xcconfig"; sourceTree = "<group>"; };
+		CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nordic_ID_RFID_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E682CAE593D6D7D73F452A7C /* Pods-Alien Technology Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alien Technology Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E3DE1224B6E11B19DAC853 /* Pods_Nordic_ID_RFID_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +322,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACE7B84AA43EE8F47CA810FE /* Pods_Alien_Technology_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +347,7 @@
 				6F795A0B1EC2D8FD00A458AA /* Audio */,
 				6F79598B1EC2D83000A458AA /* Source */,
 				6F7959721EC2D77600A458AA /* Products */,
+				7AC08F414DE6497DC16A9B2D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -398,7 +404,6 @@
 				6F7959D21EC2D83000A458AA /* TagViewController.m */,
 				6FAC4CFA1F96126B0045DA7D /* Targets */,
 				6FED46E11F9B4BA0009BB353 /* Theme */,
-				6F7959D31EC2D83000A458AA /* TTTAttributedLabel */,
 				6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */,
 				6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */,
 				6F7959D81EC2D83000A458AA /* WriteTagPopoverViewController.h */,
@@ -407,15 +412,6 @@
 				6F7959DB1EC2D83000A458AA /* WriteTagViewController.m */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		6F7959D31EC2D83000A458AA /* TTTAttributedLabel */ = {
-			isa = PBXGroup;
-			children = (
-				6F7959D41EC2D83000A458AA /* TTTAttributedLabel.h */,
-				6F7959D51EC2D83000A458AA /* TTTAttributedLabel.m */,
-			);
-			path = TTTAttributedLabel;
 			sourceTree = "<group>";
 		};
 		6F795A051EC2D84800A458AA /* Storyboards */ = {
@@ -477,7 +473,6 @@
 		6F795A091EC2D8CC00A458AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6F7959A91EC2D83000A458AA /* Info.plist */,
 				6F79598E1EC2D83000A458AA /* AppDelegate.h */,
 				6F79598F1EC2D83000A458AA /* AppDelegate.m */,
 				6F7959B51EC2D83000A458AA /* main.m */,
@@ -521,6 +516,8 @@
 				6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */,
 				6F795A1A1EC2D93C00A458AA /* Fabric.framework */,
 				6F795A1B1EC2D93C00A458AA /* Crashlytics.framework */,
+				5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */,
+				CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -595,6 +592,17 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		7AC08F414DE6497DC16A9B2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A113DEBB001F96E887EFDA8 /* Pods-Alien Technology Demo.debug.xcconfig */,
+				E682CAE593D6D7D73F452A7C /* Pods-Alien Technology Demo.release.xcconfig */,
+				4FFF129810DC220C3978CA6A /* Pods-Nordic ID RFID Demo.debug.xcconfig */,
+				7BB6AA733015FC9C3401FB06 /* Pods-Nordic ID RFID Demo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -602,6 +610,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F7959881EC2D77700A458AA /* Build configuration list for PBXNativeTarget "Nordic ID RFID Demo" */;
 			buildPhases = (
+				B7DB445AE567A8A0BDF7EDB0 /* [CP] Check Pods Manifest.lock */,
 				6FE7549D1F9648AE00CE8B66 /* Copy Target Specific Assets */,
 				6F79596D1EC2D77600A458AA /* Sources */,
 				6F79596E1EC2D77600A458AA /* Frameworks */,
@@ -609,6 +618,8 @@
 				6F79596F1EC2D77600A458AA /* Resources */,
 				6F795A221EC2D94E00A458AA /* Embed Frameworks */,
 				6F795A241EC2DAED00A458AA /* ShellScript */,
+				45BD03EF94D4D226C9AB1329 /* [CP] Embed Pods Frameworks */,
+				3CB70613BFD6D3D28D54CB52 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -623,6 +634,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6FAC4CF51F96118B0045DA7D /* Build configuration list for PBXNativeTarget "Alien Technology Demo" */;
 			buildPhases = (
+				CB942FB73E701B38838AF9C8 /* [CP] Check Pods Manifest.lock */,
 				6FBC8D8B1F9651B6005CC09F /* Copy Target Specific Assets */,
 				6FAC4CBD1F96118B0045DA7D /* Sources */,
 				6FAC4CE31F96118B0045DA7D /* Frameworks */,
@@ -630,6 +642,8 @@
 				6FAC4CE51F96118B0045DA7D /* Resources */,
 				6FAC4CF21F96118B0045DA7D /* Embed Frameworks */,
 				6FAC4CF41F96118B0045DA7D /* ShellScript */,
+				5B2B4FFF5235C2204E694F4E /* [CP] Embed Pods Frameworks */,
+				EC1CDE0D89C9A92861668850 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -724,6 +738,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3CB70613BFD6D3D28D54CB52 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45BD03EF94D4D226C9AB1329 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B2B4FFF5235C2204E694F4E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6F795A231EC2DA6A00A458AA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -804,6 +863,51 @@
 			shellPath = /bin/sh;
 			shellScript = "echo \"Handling Assets\"\n\nxcassetsFile=\"${PROJECT_DIR}/Source/TargetAssets.xcassets\"\nappSpecificXcassetsFile=\"${PROJECT_DIR}/Source/Targets/${TARGET_NAME}/Assets.xcassets\"\n\nif [ -d \"$appSpecificXcassetsFile\" ] ; then\n\n    echo \"Removing existing xcassets folder: $xcassetsFile\"\n    rm -rf \"$xcassetsFile\"\n\n    echo \"Copying target assets folder: $appSpecificXcassetsFile\"\n    cp -r \"$appSpecificXcassetsFile\" \"$xcassetsFile\"\n\n    touch \"$xcassetsFile\"\nfi\n";
 		};
+		B7DB445AE567A8A0BDF7EDB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CB942FB73E701B38838AF9C8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EC1CDE0D89C9A92861668850 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -815,7 +919,6 @@
 				6FED47091F9E03A3009BB353 /* UIViewController+Theme.m in Sources */,
 				6F7959F91EC2D83000A458AA /* SelectReaderViewController.m in Sources */,
 				6F7959E11EC2D83000A458AA /* AverageBuffer.m in Sources */,
-				6F795A011EC2D83000A458AA /* TTTAttributedLabel.m in Sources */,
 				6F7959FC1EC2D83000A458AA /* RfidSettingsViewController.m in Sources */,
 				6F7959EC1EC2D83000A458AA /* InventoryViewController.m in Sources */,
 				6F7959EB1EC2D83000A458AA /* InfoViewController.m in Sources */,
@@ -877,7 +980,6 @@
 				6F050B331FA85D9000D9CF95 /* ViewControllerManager.m in Sources */,
 				6FAC4CC01F96118B0045DA7D /* AverageBuffer.m in Sources */,
 				6FED46F21F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */,
-				6FAC4CC11F96118B0045DA7D /* TTTAttributedLabel.m in Sources */,
 				6FAC4CC21F96118B0045DA7D /* RfidSettingsViewController.m in Sources */,
 				6FED46E51F9B4BC5009BB353 /* ThemeableButton.m in Sources */,
 				6FAC4CC31F96118B0045DA7D /* InventoryViewController.m in Sources */,
@@ -1078,6 +1180,7 @@
 		};
 		6F7959891EC2D77700A458AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FFF129810DC220C3978CA6A /* Pods-Nordic ID RFID Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGSJJLLG7M;
@@ -1096,6 +1199,7 @@
 		};
 		6F79598A1EC2D77700A458AA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BB6AA733015FC9C3401FB06 /* Pods-Nordic ID RFID Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGSJJLLG7M;
@@ -1114,6 +1218,7 @@
 		};
 		6FAC4CF61F96118B0045DA7D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A113DEBB001F96E887EFDA8 /* Pods-Alien Technology Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGSJJLLG7M;
@@ -1132,6 +1237,7 @@
 		};
 		6FAC4CF71F96118B0045DA7D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E682CAE593D6D7D73F452A7C /* Pods-Alien Technology Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGSJJLLG7M;
