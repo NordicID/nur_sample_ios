@@ -17,7 +17,7 @@
                                                               }];
 
     // set up the connection manager so that it's aware of everything that happens
-    [[ConnectionManager sharedInstance] setup];
+    //[[ConnectionManager sharedInstance] setup];
 
     // set up the theme
     [ThemeManager sharedInstance];

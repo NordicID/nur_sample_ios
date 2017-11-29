@@ -9,15 +9,23 @@ enum {
     kAutomaticReconnectEnabled = 1,
 } ApplicationSettingType;
 
+@interface ApplicationSettingsViewController() {
+    BOOL advancedOptionsShown;
+}
+
+@end
+
 
 @implementation ApplicationSettingsViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // set up the theme
     [self setupTheme];
+
+    // no advanced options by default
+    advancedOptionsShown = NO;
 }
 
 
@@ -32,7 +40,7 @@ enum {
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return advancedOptionsShown ? 3 : 2;
 }
 
 
@@ -40,6 +48,8 @@ enum {
     switch ( section ) {
         case 0:
             return NSLocalizedString(@"General", @"Application settings section title");
+        case 1:
+            return NSLocalizedString(@"Advanced options", @"Application settings section title");
         default:
             return NSLocalizedString(@"Firmware update URLs", @"Application settings section title");
     }
@@ -50,6 +60,9 @@ enum {
     switch ( section ) {
         case 0:
             return 2;
+
+        case 1:
+            return 1;
 
         default:
             return 4;
@@ -76,6 +89,12 @@ enum {
                     cell.accessoryType = [ConnectionManager sharedInstance].reconnectMode == kAlwaysReconnect ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
                     break;
             }
+            break;
+
+        case 1:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationSettingCell" forIndexPath:indexPath];
+            cell.textLabel.text = NSLocalizedString(@"Show advanced options", nil);
+            cell.accessoryType = advancedOptionsShown ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             break;
 
         default:
@@ -120,14 +139,20 @@ enum {
         else {
             return;
         }
+
+        // refresh
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+
+    else if ( indexPath.section == 1 ) {
+        // toggle advanced options and reload everything
+        advancedOptionsShown = advancedOptionsShown ? NO : YES;
+        [tableView reloadData];
     }
 
     else {
         // handle editing of the URL:s
     }
-
-    // refresh
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 

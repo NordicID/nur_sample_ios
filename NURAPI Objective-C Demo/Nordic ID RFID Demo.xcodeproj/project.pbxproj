@@ -27,7 +27,6 @@
 		6F7959E51EC2D83000A458AA /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79599E1EC2D83000A458AA /* ContactViewController.m */; };
 		6F7959E61EC2D83000A458AA /* Firmware.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A21EC2D83000A458AA /* Firmware.m */; };
 		6F7959E71EC2D83000A458AA /* FirmwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A41EC2D83000A458AA /* FirmwareCell.m */; };
-		6F7959E91EC2D83000A458AA /* FirmwareTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */; };
 		6F7959EB1EC2D83000A458AA /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959AB1EC2D83000A458AA /* InfoViewController.m */; };
 		6F7959EC1EC2D83000A458AA /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959AD1EC2D83000A458AA /* InventoryViewController.m */; };
 		6F7959EE1EC2D83000A458AA /* LocateTagAntennaSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B01EC2D83000A458AA /* LocateTagAntennaSelector.m */; };
@@ -79,7 +78,6 @@
 		6FAC4CCC1F96118B0045DA7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
 		6FAC4CCD1F96118B0045DA7D /* QuickGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959C01EC2D83000A458AA /* QuickGuideViewController.m */; };
 		6FAC4CCE1F96118B0045DA7D /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B41EC2D83000A458AA /* LocateViewController.m */; };
-		6FAC4CCF1F96118B0045DA7D /* FirmwareTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */; };
 		6FAC4CD01F96118B0045DA7D /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */; };
 		6FAC4CD11F96118B0045DA7D /* FirmwareSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */; };
 		6FAC4CD21F96118B0045DA7D /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D91EC2D83000A458AA /* WriteTagPopoverViewController.m */; };
@@ -206,8 +204,6 @@
 		6F7959A21EC2D83000A458AA /* Firmware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Firmware.m; sourceTree = "<group>"; };
 		6F7959A31EC2D83000A458AA /* FirmwareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareCell.h; sourceTree = "<group>"; };
 		6F7959A41EC2D83000A458AA /* FirmwareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareCell.m; sourceTree = "<group>"; };
-		6F7959A71EC2D83000A458AA /* FirmwareTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareTypeViewController.h; sourceTree = "<group>"; };
-		6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareTypeViewController.m; sourceTree = "<group>"; };
 		6F7959AA1EC2D83000A458AA /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		6F7959AB1EC2D83000A458AA /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		6F7959AC1EC2D83000A458AA /* InventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryViewController.h; sourceTree = "<group>"; };
@@ -452,8 +448,6 @@
 				6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */,
 				6F921BEF1F87B7560088AC3E /* FirmwareSelectionViewController.h */,
 				6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */,
-				6F7959A71EC2D83000A458AA /* FirmwareTypeViewController.h */,
-				6F7959A81EC2D83000A458AA /* FirmwareTypeViewController.m */,
 				6F7959BB1EC2D83000A458AA /* PerformUpdateViewController.h */,
 				6F7959BC1EC2D83000A458AA /* PerformUpdateViewController.m */,
 				6FED46DF1F99EA43009BB353 /* ReaderSettingsViewController.h */,
@@ -937,7 +931,6 @@
 				6F7959F71EC2D83000A458AA /* QuickGuideViewController.m in Sources */,
 				6F7959F01EC2D83000A458AA /* LocateViewController.m in Sources */,
 				6FED46E91F9B4DC2009BB353 /* ThemeManager.m in Sources */,
-				6F7959E91EC2D83000A458AA /* FirmwareTypeViewController.m in Sources */,
 				6FED46E01F99EA43009BB353 /* ReaderSettingsViewController.m in Sources */,
 				6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */,
 				6F04D1631F8B7FAE0064A229 /* FirmwareSectionHeader.m in Sources */,
@@ -1000,7 +993,6 @@
 				6FAC4CCD1F96118B0045DA7D /* QuickGuideViewController.m in Sources */,
 				6FED46FA1F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */,
 				6FAC4CCE1F96118B0045DA7D /* LocateViewController.m in Sources */,
-				6FAC4CCF1F96118B0045DA7D /* FirmwareTypeViewController.m in Sources */,
 				6FAC4CD01F96118B0045DA7D /* FirmwareSelectionViewController.m in Sources */,
 				6FAC4CD11F96118B0045DA7D /* FirmwareSectionHeader.m in Sources */,
 				6FED47061F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */,

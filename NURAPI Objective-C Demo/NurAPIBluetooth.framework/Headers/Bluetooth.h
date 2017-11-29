@@ -119,6 +119,12 @@
 @property (nonatomic, strong, readonly) NSMutableArray * readers;
 
 /**
+ * The Core Bluetooth central manager used for all device communication and scanning. This is exposed mainly
+ * for DFU (device firmware update) purposes.
+ **/
+@property (nonatomic, strong) CBCentralManager * central;
+
+/**
  * The current connected reader. Set when connectToReader: is called.
  **/
 @property (nonatomic, strong, readonly) CBPeripheral * currentReader;

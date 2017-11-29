@@ -1,10 +1,11 @@
 
 #import <UIKit/UIKit.h>
+@import iOSDFULibrary;
 
 #import "Firmware.h"
 #import "UIViewController+Theme.h"
 
-@interface PerformUpdateViewController : UIViewController <BluetoothDelegate>
+@interface PerformUpdateViewController : UIViewController <BluetoothDelegate, DFUProgressDelegate, LoggerDelegate, DFUServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firmwareTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

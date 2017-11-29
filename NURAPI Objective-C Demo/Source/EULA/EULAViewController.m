@@ -16,11 +16,14 @@
     // load the EULA from the bundle
     NSString* path = [[NSBundle mainBundle] pathForResource:@"EULA" ofType:@"txt"];
     NSError * error = nil;
+
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:path];
+
     NSString* eula = [NSString stringWithContentsOfFile:path
                                                   encoding:NSUTF8StringEncoding
                                                      error:&error];
     if ( error ) {
-        NSLog( @"failed to read EULA from bundle: %@", error.localizedDescription );
+        NSLog( @"failed to read EULA from bundle: %@ %d", error.localizedDescription, exists );
     }
 
     self.eulaTextView.text = eula;

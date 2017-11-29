@@ -9,6 +9,7 @@
 @property (nonatomic, strong) UIAlertController * inProgressAlert;
 @property (nonatomic, strong) NSData * firmwareData;
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+@property (nonatomic, strong) DFUServiceController * dfuController;
 
 @end
 
@@ -46,6 +47,9 @@
     [[Bluetooth sharedInstance] deregisterDelegate:self];
 }
 
+
+//*****************************************************************************************************************
+#pragma mark - Download update
 
 - (IBAction)downloadFirmware:(UIButton *)sender {
     NSLog( @"updating to firmware %@", self.firmware.name );
@@ -102,6 +106,21 @@
 }
 
 
+- (NSString *) md5:(NSData *)input {
+    // perform the MD5 digest
+    unsigned char digest[16];
+    CC_MD5( input.bytes, (unsigned int)input.length, digest );
+
+    // convert to a hex string
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+
+    return  output;
+}
+
+
 - (void) askForConfirmation {
     dispatch_async(dispatch_get_main_queue(), ^{
         // dismiss any old alert first
@@ -134,26 +153,107 @@
 }
 
 
+//*****************************************************************************************************************
+#pragma mark - Perform update
+
 - (void) performUpdate {
-    NSLog( @"performing update" );
-
-    if ( self.firmware.type == kDeviceFirmware || self.firmware.type == kDeviceBootloader ) {
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Not enabled", nil)
-                                                                        message:NSLocalizedString(@"Flashing is currently not available for device firmware of this type!", nil)
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction
-                          actionWithTitle:NSLocalizedString(@"Ok", nil)
-                          style:UIAlertActionStyleDefault
-                          handler:nil]];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-
     // hide the button so that more updates can not be triggered
     self.updateButton.hidden = YES;
 
+    if ( self.firmware.type == kDeviceFirmware || self.firmware.type == kDeviceBootloader ) {
+        [self performDeviceUpdate];
+    }
+    else {
+        [self performNurUpdate];
+    }
+}
+
+
+//*****************************************************************************************************************
+#pragma mark - Device update
+
+- (void) performDeviceUpdate {
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Not enabled", nil)
+                                                                    message:NSLocalizedString(@"Device firmware updating is currently not enabled! It will be enabled in a future update to this application.", nil)
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction
+                      actionWithTitle:NSLocalizedString(@"Ok", nil)
+                      style:UIAlertActionStyleDefault
+                      handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+    return;
+
+    NSLog( @"performing a device update" );
+
+    // precautions
+    CBCentralManager * centralManager = [Bluetooth sharedInstance].central;
+    CBPeripheral * reader = [Bluetooth sharedInstance].currentReader;
+    if ( reader == nil ) {
+        // no reader, the we can't really proceed with this process
+    }
+
     // show a progress view
-    self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Updating firmware", nil)
+    self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Updating NUR firmware", nil)
+                                                               message:NSLocalizedString(@"Update progress 0%", nil)
+                                                        preferredStyle:UIAlertControllerStyleAlert];
+
+    // when the dialog is up, then start updating
+    [self presentViewController:self.inProgressAlert animated:YES completion:^{
+        NSLog( @"DFU starting" );
+        DFUFirmwareType type = self.firmware.type == kDeviceFirmware ? DFUFirmwareTypeApplication : DFUFirmwareTypeBootloader;
+        DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithZipFile:self.firmwareData type:type];
+
+        // disconnect from the reader
+        [[Bluetooth sharedInstance] disconnectFromReader];
+        
+        DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:centralManager target:reader];
+        [initiator withFirmware:selectedFirmware];
+
+        // Optional:
+        // initiator.forceDfu = YES/NO; // default NO
+        // initiator.packetReceiptNotificationParameter = N; // default is 12
+        initiator.logger = self; // - to get log info
+        initiator.delegate = self; // - to be informed about current state and errors
+        initiator.progressDelegate = self; 
+                                           // initiator.peripheralSelector = ... // the default selector is used
+
+        self.dfuController = [initiator start];
+        NSLog( @"DFU has started" );
+    }];
+}
+
+
+//*****************************************************************************************************************
+#pragma mark - DFU delegate methods
+
+- (void) dfuProgressDidChangeFor:(NSInteger)part outOf:(NSInteger)totalParts to:(NSInteger)progress currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond {
+    NSLog( @"DFU progress, part: %ld, total: %ld, to: %ld", (long)part, (long)totalParts, (long)progress );
+}
+
+
+- (void) logWith:(enum LogLevel)level message:(NSString *)message {
+    NSLog( @"DFU log: %@", message );
+}
+
+
+- (void) dfuStateDidChangeTo:(enum DFUState)state {
+    NSLog( @"DFU state changed to: %ld", (long)state );
+}
+
+
+- (void) dfuError:(enum DFUError)error didOccurWithMessage:(NSString *)message {
+    NSLog( @"DFU error: %ld, message: %@", (long)error, message );
+}
+
+
+//*****************************************************************************************************************
+#pragma mark - NUR update
+
+- (void) performNurUpdate {
+    NSLog( @"performing a NUR update" );
+
+    // show a progress view
+    self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Updating NUR firmware", nil)
                                                                message:NSLocalizedString(@"Update progress 0%", nil)
                                                         preferredStyle:UIAlertControllerStyleAlert];
 
@@ -287,22 +387,6 @@
 
     [self showErrorMessage:message];
 }
-
-
-- (NSString *) md5:(NSData *)input {
-    // perform the MD5 digest
-    unsigned char digest[16];
-    CC_MD5( input.bytes, (unsigned int)input.length, digest );
-
-    // convert to a hex string
-    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
-    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
-        [output appendFormat:@"%02x", digest[i]];
-    }
-    
-    return  output;
-}
-
 
 //*****************************************************************************************************************
 #pragma mark - Flashing status

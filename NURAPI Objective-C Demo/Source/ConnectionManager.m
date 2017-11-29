@@ -5,6 +5,7 @@
 
 @interface ConnectionManager ()
 
+@property (nonatomic, assign) BOOL           setupPerformed;
 @property (nonatomic, assign) BOOL           connectionOk;
 @property (nonatomic, strong) NSMutableSet * delegates;
 
@@ -30,6 +31,7 @@
     self = [super init];
     if (self) {
         self.connectionOk = NO;
+        self.setupPerformed = NO;
         self.delegates = [NSMutableSet set];
 
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -77,7 +79,12 @@
 
 
 - (void) setup {
+    if ( self.setupPerformed ) {
+        return;
+    }
+
     [[Bluetooth sharedInstance] registerDelegate:self];
+    self.setupPerformed = YES;
 }
 
 
@@ -93,6 +100,7 @@
 
 - (void) deregisterDelegate:(id<ConnectionManagerDelegate>)delegate {
     [self.delegates removeObject:delegate];
+    self.setupPerformed = NO;
 }
 
 
@@ -107,6 +115,12 @@
 
 
 - (void) applicationActivated {
+    // if setup hasn't been done yet then do nothing. This will be called once when the application window initially becomes active
+    // from the AppDelegate and this check avoids connecting before any EULA or similar has been accepted
+    if ( !self.setupPerformed ) {
+        return;
+    }
+
     // if we have a reader we're happy, do nothing
     if ( [Bluetooth sharedInstance].currentReader ) {
         return;

@@ -62,6 +62,10 @@
     // set up the theme
     [self setupTheme];
 
+    // set up the connection manager so that it's aware of everything that happens
+    [[ConnectionManager sharedInstance] setup];
+    [[ConnectionManager sharedInstance] applicationActivated];
+
     chargingAnimationFrame = 0;
 
     CGFloat top, left, bottom, right;
@@ -188,9 +192,16 @@
             }
             else if ( batteryInfo.flags & NUR_ACC_BATT_FL_CHARGING ) {
                 NSLog(@"charging");
-                self.batteryLevelLabel.hidden = NO;
                 self.batteryIconLabel.hidden = NO;
-                self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
+
+                // avoid showing a "-1"
+                if ( batteryInfo.percentage < 0 ) {
+                    self.batteryLevelLabel.hidden = YES;
+                }
+                else {
+                    self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
+                    self.batteryLevelLabel.hidden = NO;
+                }
 
                 interval = 1;
 
@@ -209,10 +220,16 @@
                 }
             }
             else {
-                NSLog(@"normal");
-                self.batteryLevelLabel.hidden = NO;
                 self.batteryIconLabel.hidden = NO;
-                self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
+
+                // avoid showing a "-1"
+                if ( batteryInfo.percentage < 0 ) {
+                    self.batteryLevelLabel.hidden = YES;
+                }
+                else {
+                    self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", batteryInfo.percentage];
+                    self.batteryLevelLabel.hidden = NO;
+                }
 
                 if ( batteryInfo.percentage <= 33 ) {
                     self.batteryIconLabel.image = [UIImage imageNamed:@"Battery-33"];
