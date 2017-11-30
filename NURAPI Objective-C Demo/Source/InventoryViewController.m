@@ -122,6 +122,8 @@
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
                                                         initWithActivityItems:sharedObjects applicationActivities:nil];
 
+    activityViewController.popoverPresentationController.barButtonItem = self.shareButton;
+
     // when the activity is completed delete the temporary file
     activityViewController.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
         NSLog(@"activity: %@ - finished flag: %d", activityType, completed);
