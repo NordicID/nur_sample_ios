@@ -62,6 +62,8 @@
 		6F795A431EC2FB8100A458AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A451EC2FB8100A458AA /* Localizable.strings */; };
 		6F921BE91F862D2C0088AC3E /* FirmwareDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */; };
 		6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */; };
+		6F99FD291FE3DC6200BE478A /* ReaderSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */; };
+		6F99FD2A1FE3DC6200BE478A /* ReaderSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */; };
 		6FAC4CBE1F96118B0045DA7D /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79599E1EC2D83000A458AA /* ContactViewController.m */; };
 		6FAC4CBF1F96118B0045DA7D /* SelectReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959C41EC2D83000A458AA /* SelectReaderViewController.m */; };
 		6FAC4CC01F96118B0045DA7D /* AverageBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959961EC2D83000A458AA /* AverageBuffer.m */; };
@@ -269,6 +271,8 @@
 		6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirmwareDownloader.m; sourceTree = "<group>"; };
 		6F921BEF1F87B7560088AC3E /* FirmwareSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirmwareSelectionViewController.h; sourceTree = "<group>"; };
 		6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirmwareSelectionViewController.m; sourceTree = "<group>"; };
+		6F99FD271FE3DC6200BE478A /* ReaderSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReaderSettingCell.h; sourceTree = "<group>"; };
+		6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReaderSettingCell.m; sourceTree = "<group>"; };
 		6FAC4CF81F96118B0045DA7D /* Alien Technology Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alien Technology Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBC8D881F9650E9005CC09F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FBC8D8E1F98A5A0005CC09F /* Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
@@ -450,6 +454,8 @@
 				6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */,
 				6F7959BB1EC2D83000A458AA /* PerformUpdateViewController.h */,
 				6F7959BC1EC2D83000A458AA /* PerformUpdateViewController.m */,
+				6F99FD271FE3DC6200BE478A /* ReaderSettingCell.h */,
+				6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */,
 				6FED46DF1F99EA43009BB353 /* ReaderSettingsViewController.h */,
 				6FED46DE1F99EA43009BB353 /* ReaderSettingsViewController.m */,
 				6F7959C91EC2D83000A458AA /* RfidSettingsViewController.h */,
@@ -917,6 +923,7 @@
 				6F7959EC1EC2D83000A458AA /* InventoryViewController.m in Sources */,
 				6F7959EB1EC2D83000A458AA /* InfoViewController.m in Sources */,
 				6F7959FB1EC2D83000A458AA /* SettingsAlternative.m in Sources */,
+				6F99FD291FE3DC6200BE478A /* ReaderSettingCell.m in Sources */,
 				6F7959F61EC2D83000A458AA /* ProgressView.m in Sources */,
 				6FED46FD1F9BA179009BB353 /* ThemeableTextField.m in Sources */,
 				6F7959FA1EC2D83000A458AA /* SelectSettingViewController.m in Sources */,
@@ -999,6 +1006,7 @@
 				6FAC4CD21F96118B0045DA7D /* WriteTagPopoverViewController.m in Sources */,
 				6FAC4CD31F96118B0045DA7D /* FirmwareCell.m in Sources */,
 				6FAC4CD41F96118B0045DA7D /* WriteTagViewController.m in Sources */,
+				6F99FD2A1FE3DC6200BE478A /* ReaderSettingCell.m in Sources */,
 				6FED470A1F9E03A3009BB353 /* UIViewController+Theme.m in Sources */,
 				6FAC4CD51F96118B0045DA7D /* LocateTagViewController.m in Sources */,
 				6FAC4CD61F96118B0045DA7D /* Tag.m in Sources */,

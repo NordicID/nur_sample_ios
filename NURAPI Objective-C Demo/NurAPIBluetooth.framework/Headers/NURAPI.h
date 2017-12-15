@@ -1150,10 +1150,41 @@ struct NUR_WLAN_SCAN_RESULT
 	BYTE reserved[10];	/**< Reserved */	
 };
 
+/**
+ * Diagnostics report data.
+ * @sa NurApiDiagGetReport
+ * @sa NurApiDiagGetConfig
+ * @sa NurApiDiagSetConfig
+ */
+struct NUR_DIAG_REPORT
+{
+	DWORD flags;		/**< Report flags. see enum NUR_DIAG_REPORT_FLAGS */
+	DWORD uptime;		/**< Uptime in milliseconds */
+	DWORD rfActiveTime;	/**< RF on time in milliseconds */
+	int   temperature;	/**< Temperature in celcius. 1000 if not supported */
+	DWORD bytesIn;		/**< Number of bytes in to module */
+	DWORD bytesOut;		/**< Number of bytes out from module */
+	DWORD bytesIgnored;	/**< Number of ignored (invalid) bytes */
+	DWORD antennaErrors; /**< Number of bad antenna errors */
+	DWORD hwErrors;		/**< Number of automatically recovered internal HW failures */
+	DWORD invTags;		/**< Number of successfully inventoried tags */
+	DWORD invColl;		/**< Number of collisions during inventory */
+	DWORD readTags;		/**< Number of successfully read tag commands */
+	DWORD readErrors;	/**< Number of failed read tag commands */
+	DWORD writeTags;	/**< Number of successfully write tag commands */
+	DWORD writeErrors;	/**< Number of failed write tag commands */
+	DWORD errorConds;	/**< Number of temporary error conditions (over temp, low voltage) occured */
+	DWORD setupErrs;	/**< Number of invalid setup errors */
+	DWORD invalidCmds;	/**< Number of invalid (not supported) commands received */
+};
+
 /** 
  * Type of NurApi notification callback. Used for receiving events from NurApi.
  */
 typedef void (NURAPICALLBACK *NotificationCallback)(HANDLE hApi, DWORD timestamp, int type, LPVOID data, int dataLen);
+
+/** Callback function type for NurUSBEnumerateDevices() function */
+typedef int (NURAPICALLBACK *NurUSBEnumDeviceFunction)(const TCHAR *path, const TCHAR *friendlyname, LPVOID arg);
 
 /** @fn HANDLE NurApiCreate()
  * Creates new instance of NurApi object.
@@ -1356,6 +1387,7 @@ int NURAPICONV NurApiPermalockByEPC(HANDLE hApi, DWORD password, BOOL secured, B
  *
  * @return	Zero when succeeded, non-zero error code when failed.
 */
+NUR_API
 int NURAPICONV NurApiPermalockSingulated32(HANDLE hApi, DWORD password, BOOL secured, 
 												BYTE sBank, DWORD sAddress, int sMaskBitLength, BYTE *sMask,
 												struct NUR_PERMALOCK_PARAM *pLock);
@@ -1702,7 +1734,16 @@ int NURAPICONV NurApiConnectUsb(HANDLE hApi, const TCHAR *devpath);
 NUR_API
 int NURAPICONV NurApiSetUsbAutoConnect(HANDLE hApi, BOOL useAutoConnect);
 
-// DWORD NURAPICONV NurUSBEnumerateDevices(NurUSBEnumDeviceFunction funcPtr, LPVOID arg)
+/** @fn int NurUSBEnumerateDevices(NurUSBEnumDeviceFunction funcPtr, LPVOID arg)
+ * Enumerate all USB connected NUR devices. 
+ * NOTE: This function works only in WIN32 target
+ *
+ * @param funcPtr	Pointer to callback function
+ * @param arg		Application specific argument pointer. This is passed to callback
+ * @return Number of connected USB devices found.
+ */
+NUR_API
+DWORD NURAPICONV NurUSBEnumerateDevices(NurUSBEnumDeviceFunction funcPtr, LPVOID arg);
 
 /** @fn BOOL NurApiGetUsbAutoConnect()
  *
@@ -2327,6 +2368,7 @@ int NURAPICONV NurApiInventoryEx(HANDLE hApi,
  *
  * @return	Zero when succeeded, On error non-zero error code is returned.
  */
+NUR_API
 int NURAPICONV NurApiRerunInventoryEx(HANDLE hApi, struct NUR_INVENTORY_RESPONSE *resp);
 
 /** @fn int NurApiStartInventoryEx(HANDLE hApi, struct NUR_INVEX_PARAMS *params,
@@ -4863,7 +4905,7 @@ int NURAPICONV NurApiISO29167_10_TAM(HANDLE hApi, struct NUR_TAM_PARAM *pTAM, st
  *
  * @param	hApi			Handle to valid NurApi object instance.
  * @param	cfg				Pointer to NUR_TAGTRACKING_CONFIG parameters.
- * @param	cfgSize			Size of <i>cfg</i> structure in bytes..
+ * @param	cfgSize			Size of <i>cfg</i> structure in bytes.
  *
  * @return	Zero when succeeded, On error non-zero error code is returned.
  */
@@ -5019,6 +5061,58 @@ int NURAPICONV NurApiContCarrier(HANDLE hApi, BYTE *params, DWORD paramsLen);
  */
 NUR_API
 int NURAPICONV NurApiStopContCarrier(HANDLE hApi);
+
+/** @fn int NurApiDiagGetReport(HANDLE hApi, DWORD flags, struct NUR_DIAG_REPORT *report, DWORD reportSize)
+ *
+ * Get diagnostics report from module.
+ *
+ * @sa struct NUR_DIAG_REPORT
+ * @sa enum NUR_DIAG_GETREPORT_FLAGS
+ *
+ * @param	hApi			Handle to valid NurApi object instance
+ * @param	flags			Bit flags to send with request. One or more of enum NUR_DIAG_GETREPORT_FLAGS.
+ * @param	report			Pointer to struct NUR_DIAG_REPORT parameters. Result is stored in this struct.
+ * @param	reportSize		Size of <i>report</i> structure in bytes.
+ *
+ * @return	Zero when succeeded, On error non-zero error code is returned.
+ */
+NUR_API
+int NURAPICONV NurApiDiagGetReport(HANDLE hApi, DWORD flags, struct NUR_DIAG_REPORT *report, DWORD reportSize);
+
+/** @fn int NurApiDiagGetConfig(HANDLE hApi, DWORD *flags, DWORD *interval)
+ *
+ * Get current diagnostics configuration.
+ *
+ * @sa NurApiDiagSetConfig
+ * @sa struct NUR_DIAG_REPORT
+ * @sa enum NUR_DIAG_GETREPORT_FLAGS
+ *
+ * @param	hApi			Handle to valid NurApi object instance
+ * @param	flags			Pointer to DWORD. Current flags. One or more of enum NUR_DIAG_CFG_FLAGS.
+ * @param	interval		Pointer to DWORD. Current report interval in seconds.
+ *
+ * @return	Zero when succeeded, On error non-zero error code is returned.
+ */
+NUR_API
+int NURAPICONV NurApiDiagGetConfig(HANDLE hApi, DWORD *flags, DWORD *interval);
+
+/** @fn int NurApiDiagSetConfig(HANDLE hApi, DWORD flags, DWORD interval)
+ *
+ * Set new diagnostics configuration.
+ *
+ * @sa NurApiDiagGetConfig
+ * @sa struct NUR_DIAG_REPORT
+ * @sa enum NUR_DIAG_GETREPORT_FLAGS
+ *
+ * @param	hApi			Handle to valid NurApi object instance
+ * @param	flags			Bit flags to send with request. One or more of enum NUR_DIAG_CFG_FLAGS.
+ * @param	interval		Report interval in seconds. Only valid if NUR_DIAG_CFG_NOTIFY_PERIODIC is set in flags. Set to 0 if NUR_DIAG_CFG_NOTIFY_PERIODIC is not set.
+ *
+ * @return	Zero when succeeded, On error non-zero error code is returned.
+ */
+NUR_API
+int NURAPICONV NurApiDiagSetConfig(HANDLE hApi, DWORD flags, DWORD interval);
+
 
 /** @example NurApiExample.cpp
  * Simple console application project.

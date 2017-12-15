@@ -1596,22 +1596,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ReaderSettingCell" textLabel="jvz-EN-kR5" style="IBUITableViewCellStyleDefault" id="zth-cm-6vy" customClass="ThemeableTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReaderSettingCell" id="zth-cm-6vy" customClass="ReaderSettingCell">
                                 <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zth-cm-6vy" id="ieI-Xs-fKo">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jvz-EN-kR5">
-                                            <rect key="frame" x="16" y="0.0" width="264" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHX-cd-zMd">
+                                            <rect key="frame" x="16" y="13.5" width="229" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2l5-dL-Tjn">
+                                            <rect key="frame" x="255" y="6" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="valueChanged:" destination="zth-cm-6vy" eventType="valueChanged" id="eqK-O8-DAn"/>
+                                            </connections>
+                                        </switch>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="2l5-dL-Tjn" secondAttribute="bottom" constant="6.5" id="9oW-IF-Wse"/>
+                                        <constraint firstItem="dHX-cd-zMd" firstAttribute="leading" secondItem="ieI-Xs-fKo" secondAttribute="leadingMargin" id="FgC-pI-3Ty"/>
+                                        <constraint firstAttribute="trailing" secondItem="2l5-dL-Tjn" secondAttribute="trailing" constant="16" id="GHU-hU-AaI"/>
+                                        <constraint firstItem="dHX-cd-zMd" firstAttribute="bottom" secondItem="ieI-Xs-fKo" secondAttribute="bottomMargin" id="OIc-bo-R93"/>
+                                        <constraint firstItem="2l5-dL-Tjn" firstAttribute="leading" secondItem="dHX-cd-zMd" secondAttribute="trailing" constant="10" id="Xwa-OS-ttA"/>
+                                        <constraint firstItem="2l5-dL-Tjn" firstAttribute="top" secondItem="ieI-Xs-fKo" secondAttribute="top" constant="6" id="wW7-0B-frM"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="enabledSwitch" destination="2l5-dL-Tjn" id="vDu-7E-iMd"/>
+                                    <outlet property="titleLabel" destination="dHX-cd-zMd" id="WtE-ds-bFL"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

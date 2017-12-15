@@ -82,6 +82,8 @@ enum NUR_ERRORCODES
 	NUR_ERROR_BAD_ANTENNA,
 	/** Low voltage */
 	NUR_ERROR_LOW_VOLTAGE,
+	/** Over temperature */
+	NUR_ERROR_OVER_TEMP,
 
 	/** Invalid handle passed to function */
 	NUR_ERROR_INVALID_HANDLE = 0x1000,

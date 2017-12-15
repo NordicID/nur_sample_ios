@@ -237,6 +237,8 @@ enum NUR_NOTIFICATION
 	NUR_NOTIFICATION_TT_STREAM,				/**< internal event */
 	NUR_NOTIFICATION_TT_CHANGED,			/**< Tag tracking event */
 	NUR_NOTIFICATION_TT_SCANEVENT,			/**< Tag tracking scan start/stop event */
+	NUR_NOTIFICATION_DIAG_REPORT,			/**< Diagnostics report */
+	NUR_NOTIFICATION_ACCESSORY,				/**< Accessory event */
 	NUR_NOTIFICATION_LAST
 };
 
@@ -704,12 +706,12 @@ enum NUR_OPFLAGS
 {
 	NUR_OPFLAGS_EN_HOPEVENTS = (1<<0),		/**< Notification NUR_NOTIFICATION_HOPEVENT is enabled. */
 	NUR_OPFLAGS_INVSTREAM_ZEROS = (1<<1),	/**< Inventory stream frunction will report zero count inventory rounds also. */
-	NUR_OPFLAGS_INVENTORY_TID = (1<<2),	
-	NUR_OPFLAGS_INVENTORY_READ = (1<<3),
+	NUR_OPFLAGS_INVENTORY_TID = (1<<2),		/**< DO NOT USE */
+	NUR_OPFLAGS_INVENTORY_READ = (1<<3),	/**< DO NOT USE */
 	/* Keyboard : scan single -> key presses */
-	NUR_OPFLAGS_SCANSINGLE_KBD	= (1<<4),
-	NUR_OPFLAGS_STANDALONE_APP1	= (1<<5),
-	NUR_OPFLAGS_STANDALONE_APP2	= (1<<6),
+	NUR_OPFLAGS_SCANSINGLE_KBD	= (1<<4),	/**< DO NOT USE */
+	NUR_OPFLAGS_STANDALONE_APP1	= (1<<5),	/**< DO NOT USE */
+	NUR_OPFLAGS_STANDALONE_APP2	= (1<<6),	/**< DO NOT USE */
 	NUR_OPFLAGS_EXTIN_EVENTS 	= (1<<7),
 	// Ext out lines 0-3 can be set to predefined state after boot.
 	NUR_OPFLAGS_STATE_EXTOUT_0 	= (1<<8),
@@ -717,7 +719,8 @@ enum NUR_OPFLAGS
 	NUR_OPFLAGS_STATE_EXTOUT_2 	= (1<<10),
 	NUR_OPFLAGS_STATE_EXTOUT_3 	= (1<<11),
 	NUR_OPFLAGS_EN_TUNEEVENTS   = (1<<12),		/**< Notification NUR_NOTIFICATION_TUNEEVENT is enabled. */
-	NUR_OPFLAGS_EN_EXACT_BLF   = (1<<13),		/**< Return exact BLF in Hz in tag meta data frequency field. */
+	NUR_OPFLAGS_EN_EXACT_BLF    = (1<<13),		/**< Return exact BLF in Hz in tag meta data frequency field. Supported only in NUR L2 modules. */
+	NUR_OPFLAGS_EN_TAG_PHASE	= (1<<14),		/**< Return tag phase angle in units of tenths of degrees in tag meta data timestamp field. Supported only in NUR2 modules. */
 };
 
 /**
@@ -807,7 +810,9 @@ enum NUR_DEVCAPS_F1
 	NUR_DC_ANTENNAMAP	= (1<<22),  /**< This module provides antenna mapping information. */
 	NUR_DC_GEN2VER2		= (1<<23),  /**< The module FW supports Gen2 version 2 at some level. */
 	NUR_DC_RFPROFILE	= (1<<24),  /**< The module FW supports RF profile setting. */
-	NUR_DC_LASTBITF1	= (1<<25),	/**< Next available bit for future extensions. */	
+	NUR_DC_DIAG	        = (1<<25),	/**< This module FW supports diagnostics commands. */
+	NUR_DC_TAGPHASE     = (1<<26),	/**< This module FW supports tag phase info. see NUR_OPFLAGS_EN_TAG_PHASE */
+	NUR_DC_LASTBITF1	= (1<<27),	/**< Next available bit for future extensions. */
 };
 
 /** Flag field 1 'all device caps' bitmask. */
@@ -867,17 +872,54 @@ enum NUR_GANT_TUNE
 };
 
 /**
-* WLAN status bits
-*/
+ * WLAN status bits
+ */
 enum WLAN_STATUS
 {
-	STATUS_BIT_CONNECTION = (1<<0),		/* the device is connected to the AP */
-    STATUS_BIT_STA_CONNECTED = (1<<1),  /* client is connected to device */
-    STATUS_BIT_IP_ACQUIRED = (1<<2),    /* the device has acquired an IP */
-    STATUS_BIT_IP_LEASED = (1<<3),      /* the device has leased an IP */
-    STATUS_BIT_CONNECTION_FAILED = (1<<4),   /* failed to connect to device */
+	STATUS_BIT_CONNECTION = (1<<0),		/**< the device is connected to the AP */
+    STATUS_BIT_STA_CONNECTED = (1<<1),  /**< client is connected to device */
+    STATUS_BIT_IP_ACQUIRED = (1<<2),    /**< the device has acquired an IP */
+    STATUS_BIT_IP_LEASED = (1<<3),      /**< the device has leased an IP */
+    STATUS_BIT_CONNECTION_FAILED = (1<<4), /**< failed to connect to device */
 };
 
+/**
+ * Flags for diagnostics configuration.
+ * @sa NurApiDiagGetConfig
+ * @sa NurApiDiagSetConfig
+ * @sa NUR_NOTIFICATION_DIAG_REPORT
+ */
+enum NUR_DIAG_CFG_FLAGS
+{	
+	NUR_DIAG_CFG_NOTIFY_NONE = 0,				/**< Never send diagnostics report notification */
+	NUR_DIAG_CFG_NOTIFY_PERIODIC = (1<<0),		/**< Send diagnostics report notification periodically. @sa NurApiDiagSetConfig @sa NUR_NOTIFICATION_DIAG_REPORT */
+	NUR_DIAG_CFG_NOTIFY_WARN = (1<<1),			/**< Send diagnostics report notification on warning/error. @sa NurApiDiagSetConfig @sa NUR_NOTIFICATION_DIAG_REPORT */
+	NUR_DIAG_CFG_FW_ERROR_LOG = (1<<2),			/**< Module sends error log messages. Messages are prefixed with "FW:". @sa NUR_NOTIFICATION_LOG */
+	NUR_DIAG_CFG_FW_DEBUG_LOG = (1<<3),			/**< Module sends verbose debug log messages. Messages are prefixed with "FW:". @sa NUR_NOTIFICATION_LOG */
+};
+
+/**
+ * Flags for NurApiDiagGetReport function.
+ * @sa NurApiDiagGetReport
+ */
+enum NUR_DIAG_GETREPORT_FLAGS
+{
+	NUR_DIAG_GETREPORT_NONE = 0,				/**< None */
+	NUR_DIAG_GETREPORT_RESET_STATS = (1<<0),	/**< Reset all diagnostics statistics to zero. */
+};
+
+/**
+ * Flags for diagnostics report. see struct NUR_DIAG_REPORT.
+ * @sa struct NUR_DIAG_REPORT
+ * @sa NurApiDiagGetReport
+ */
+enum NUR_DIAG_REPORT_FLAGS
+{
+	NUR_DIAG_REPORT_PERIODIC = (1<<0),	/**< Set in NUR_DIAG_REPORT.flags when module sends periodic report. */
+	NUR_DIAG_REPORT_TEMP_HIGH = (1<<1),	/**< Set in NUR_DIAG_REPORT.flags if module temperature is high. Host application SHOULD stop performing RF operations for a while. */
+	NUR_DIAG_REPORT_TEMP_OVER = (1<<2),	/**< Set in NUR_DIAG_REPORT.flags if module temperature is over limits. All RF operations will fail with error NUR_ERROR_OVER_TEMP in this stage. */
+	NUR_DIAG_REPORT_LOWVOLT = (1<<3),	/**< Set in NUR_DIAG_REPORT.flags if low voltage is detected. All RF operations will fail with error NUR_ERROR_LOW_VOLTAGE in this stage. */
+};
 
 /** @} */ // end of API
 
