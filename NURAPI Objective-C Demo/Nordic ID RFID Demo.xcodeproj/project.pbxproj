@@ -11,13 +11,7 @@
 		6F04D1671F8B96950064A229 /* FirmwareSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */; };
 		6F050B281FA85B1D00D9CF95 /* EULA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F050B251FA85B1D00D9CF95 /* EULA.storyboard */; };
 		6F050B291FA85B1D00D9CF95 /* EULAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B271FA85B1D00D9CF95 /* EULAViewController.m */; };
-		6F050B2A1FA85B2900D9CF95 /* EULA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F050B251FA85B1D00D9CF95 /* EULA.storyboard */; };
-		6F050B2B1FA85B3700D9CF95 /* EULAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B271FA85B1D00D9CF95 /* EULAViewController.m */; };
 		6F050B2D1FA85BB500D9CF95 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */; };
-		6F050B301FA85CCA00D9CF95 /* EULA.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6F050B2E1FA85CC600D9CF95 /* EULA.txt */; };
-		6F050B321FA85CD300D9CF95 /* EULA.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6F050B311FA85CD300D9CF95 /* EULA.txt */; };
-		6F050B331FA85D9000D9CF95 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */; };
-		6F547D481FA7164800BA0B59 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F547D461FA7152200BA0B59 /* Theme.m */; };
 		6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598D1EC2D83000A458AA /* AboutViewController.m */; };
 		6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
 		6F7959DE1EC2D83000A458AA /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959911EC2D83000A458AA /* ApplicationSettingsViewController.m */; };
@@ -63,81 +57,22 @@
 		6F921BE91F862D2C0088AC3E /* FirmwareDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */; };
 		6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */; };
 		6F99FD291FE3DC6200BE478A /* ReaderSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */; };
-		6F99FD2A1FE3DC6200BE478A /* ReaderSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */; };
-		6FAC4CBE1F96118B0045DA7D /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79599E1EC2D83000A458AA /* ContactViewController.m */; };
-		6FAC4CBF1F96118B0045DA7D /* SelectReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959C41EC2D83000A458AA /* SelectReaderViewController.m */; };
-		6FAC4CC01F96118B0045DA7D /* AverageBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959961EC2D83000A458AA /* AverageBuffer.m */; };
-		6FAC4CC21F96118B0045DA7D /* RfidSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959CA1EC2D83000A458AA /* RfidSettingsViewController.m */; };
-		6FAC4CC31F96118B0045DA7D /* InventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959AD1EC2D83000A458AA /* InventoryViewController.m */; };
-		6FAC4CC41F96118B0045DA7D /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959AB1EC2D83000A458AA /* InfoViewController.m */; };
-		6FAC4CC51F96118B0045DA7D /* SettingsAlternative.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959C81EC2D83000A458AA /* SettingsAlternative.m */; };
-		6FAC4CC61F96118B0045DA7D /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959BE1EC2D83000A458AA /* ProgressView.m */; };
-		6FAC4CC71F96118B0045DA7D /* SelectSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959C61EC2D83000A458AA /* SelectSettingViewController.m */; };
-		6FAC4CC81F96118B0045DA7D /* PerformUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959BC1EC2D83000A458AA /* PerformUpdateViewController.m */; };
-		6FAC4CC91F96118B0045DA7D /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959BA1EC2D83000A458AA /* MainMenuViewController.m */; };
-		6FAC4CCA1F96118B0045DA7D /* Firmware.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A21EC2D83000A458AA /* Firmware.m */; };
-		6FAC4CCB1F96118B0045DA7D /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959911EC2D83000A458AA /* ApplicationSettingsViewController.m */; };
-		6FAC4CCC1F96118B0045DA7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
-		6FAC4CCD1F96118B0045DA7D /* QuickGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959C01EC2D83000A458AA /* QuickGuideViewController.m */; };
-		6FAC4CCE1F96118B0045DA7D /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B41EC2D83000A458AA /* LocateViewController.m */; };
-		6FAC4CD01F96118B0045DA7D /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */; };
-		6FAC4CD11F96118B0045DA7D /* FirmwareSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */; };
-		6FAC4CD21F96118B0045DA7D /* WriteTagPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D91EC2D83000A458AA /* WriteTagPopoverViewController.m */; };
-		6FAC4CD31F96118B0045DA7D /* FirmwareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959A41EC2D83000A458AA /* FirmwareCell.m */; };
-		6FAC4CD41F96118B0045DA7D /* WriteTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959DB1EC2D83000A458AA /* WriteTagViewController.m */; };
-		6FAC4CD51F96118B0045DA7D /* LocateTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B21EC2D83000A458AA /* LocateTagViewController.m */; };
-		6FAC4CD61F96118B0045DA7D /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959CE1EC2D83000A458AA /* Tag.m */; };
-		6FAC4CD71F96118B0045DA7D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B51EC2D83000A458AA /* main.m */; };
-		6FAC4CD81F96118B0045DA7D /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79599C1EC2D83000A458AA /* ConnectionManager.m */; };
-		6FAC4CD91F96118B0045DA7D /* SmoothingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959CC1EC2D83000A458AA /* SmoothingBuffer.m */; };
-		6FAC4CDA1F96118B0045DA7D /* FirmwareDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */; };
-		6FAC4CDB1F96118B0045DA7D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598D1EC2D83000A458AA /* AboutViewController.m */; };
-		6FAC4CDC1F96118B0045DA7D /* MainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B81EC2D83000A458AA /* MainMenuCell.m */; };
-		6FAC4CDD1F96118B0045DA7D /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959941EC2D83000A458AA /* AudioPlayer.m */; };
-		6FAC4CDE1F96118B0045DA7D /* ReadBarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959C21EC2D83000A458AA /* ReadBarcodeViewController.m */; };
-		6FAC4CDF1F96118B0045DA7D /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D21EC2D83000A458AA /* TagViewController.m */; };
-		6FAC4CE01F96118B0045DA7D /* TagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D01EC2D83000A458AA /* TagManager.m */; };
-		6FAC4CE11F96118B0045DA7D /* LocateTagAntennaSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959B01EC2D83000A458AA /* LocateTagAntennaSelector.m */; };
-		6FAC4CE21F96118B0045DA7D /* TuneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959D71EC2D83000A458AA /* TuneViewController.m */; };
-		6FAC4CE61F96118B0045DA7D /* blipblipblip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0F1EC2D8FD00A458AA /* blipblipblip.wav */; };
-		6FAC4CE71F96118B0045DA7D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A451EC2FB8100A458AA /* Localizable.strings */; };
-		6FAC4CE81F96118B0045DA7D /* QuickGuide.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A151EC2D90E00A458AA /* QuickGuide.html */; };
-		6FAC4CE91F96118B0045DA7D /* blep_100ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0C1EC2D8FD00A458AA /* blep_100ms.wav */; };
-		6FAC4CEA1F96118B0045DA7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959971EC2D83000A458AA /* LaunchScreen.storyboard */; };
-		6FAC4CEB1F96118B0045DA7D /* FirmwareSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */; };
-		6FAC4CEE1F96118B0045DA7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959991EC2D83000A458AA /* Main.storyboard */; };
-		6FAC4CEF1F96118B0045DA7D /* blep_40ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0E1EC2D8FD00A458AA /* blep_40ms.wav */; };
-		6FAC4CF11F96118B0045DA7D /* blep_300ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0D1EC2D8FD00A458AA /* blep_300ms.wav */; };
-		6FAC4CF31F96118B0045DA7D /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6FBC8D8C1F965241005CC09F /* TargetAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */; };
-		6FBC8D8F1F98A5A0005CC09F /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC8D8E1F98A5A0005CC09F /* Theme.m */; };
 		6FE754911F96442400CE8B66 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FE754901F96442400CE8B66 /* SharedAssets.xcassets */; };
-		6FE754921F96444B00CE8B66 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FE754901F96442400CE8B66 /* SharedAssets.xcassets */; };
 		6FE7549B1F96484500CE8B66 /* TargetAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */; };
 		6FED46E01F99EA43009BB353 /* ReaderSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46DE1F99EA43009BB353 /* ReaderSettingsViewController.m */; };
 		6FED46E41F9B4BC5009BB353 /* ThemeableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46E31F9B4BC5009BB353 /* ThemeableButton.m */; };
-		6FED46E51F9B4BC5009BB353 /* ThemeableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46E31F9B4BC5009BB353 /* ThemeableButton.m */; };
 		6FED46E91F9B4DC2009BB353 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46E71F9B4DC2009BB353 /* ThemeManager.m */; };
-		6FED46EA1F9B4DC2009BB353 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46E71F9B4DC2009BB353 /* ThemeManager.m */; };
 		6FED46ED1F9B515E009BB353 /* ThemeableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */; };
-		6FED46EE1F9B515E009BB353 /* ThemeableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */; };
 		6FED46F11F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */; };
-		6FED46F21F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */; };
 		6FED46F51F9B5931009BB353 /* ThemeableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46F31F9B5931009BB353 /* ThemeableTableViewCell.m */; };
-		6FED46F61F9B5931009BB353 /* ThemeableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46F31F9B5931009BB353 /* ThemeableTableViewCell.m */; };
 		6FED46F91F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46F71F9B5A8F009BB353 /* ThemeableAttributedLabel.m */; };
-		6FED46FA1F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46F71F9B5A8F009BB353 /* ThemeableAttributedLabel.m */; };
 		6FED46FD1F9BA179009BB353 /* ThemeableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */; };
-		6FED46FE1F9BA179009BB353 /* ThemeableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */; };
 		6FED47011F9DFE37009BB353 /* ThemeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47001F9DFE37009BB353 /* ThemeableView.m */; };
-		6FED47021F9DFE37009BB353 /* ThemeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47001F9DFE37009BB353 /* ThemeableView.m */; };
 		6FED47051F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */; };
-		6FED47061F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */; };
 		6FED47091F9E03A3009BB353 /* UIViewController+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */; };
-		6FED470A1F9E03A3009BB353 /* UIViewController+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */; };
 		6FED470D1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */; };
-		6FED470E1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */; };
-		ACE7B84AA43EE8F47CA810FE /* Pods_Alien_Technology_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */; };
+		6FF69B731FE913C4004C20B2 /* EULA.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FF69B721FE913C4004C20B2 /* EULA.txt */; };
+		6FF69B751FE913EC004C20B2 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF69B741FE913EC004C20B2 /* Theme.m */; };
 		E1E3DE1224B6E11B19DAC853 /* Pods_Nordic_ID_RFID_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,17 +84,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6F795A211EC2D94E00A458AA /* NurAPIBluetooth.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FAC4CF21F96118B0045DA7D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6FAC4CF31F96118B0045DA7D /* NurAPIBluetooth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,11 +101,6 @@
 		6F050B261FA85B1D00D9CF95 /* EULAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EULAViewController.h; sourceTree = "<group>"; };
 		6F050B271FA85B1D00D9CF95 /* EULAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EULAViewController.m; sourceTree = "<group>"; };
 		6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerManager.m; sourceTree = "<group>"; };
-		6F050B2E1FA85CC600D9CF95 /* EULA.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EULA.txt; sourceTree = "<group>"; };
-		6F050B311FA85CD300D9CF95 /* EULA.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EULA.txt; sourceTree = "<group>"; };
-		6F547D421FA7077A00BA0B59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6F547D441FA7078600BA0B59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6F547D461FA7152200BA0B59 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerManager.h; sourceTree = "<group>"; };
 		6F7959711EC2D77600A458AA /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F79598C1EC2D83000A458AA /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -273,10 +192,6 @@
 		6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirmwareSelectionViewController.m; sourceTree = "<group>"; };
 		6F99FD271FE3DC6200BE478A /* ReaderSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReaderSettingCell.h; sourceTree = "<group>"; };
 		6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReaderSettingCell.m; sourceTree = "<group>"; };
-		6FAC4CF81F96118B0045DA7D /* Alien Technology Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alien Technology Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FBC8D881F9650E9005CC09F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6FBC8D8E1F98A5A0005CC09F /* Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
-		6FE7548E1F96398600CE8B66 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FE754901F96442400CE8B66 /* SharedAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SharedAssets.xcassets; sourceTree = "<group>"; };
 		6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TargetAssets.xcassets; sourceTree = "<group>"; };
 		6FED46DE1F99EA43009BB353 /* ReaderSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderSettingsViewController.m; sourceTree = "<group>"; };
@@ -304,6 +219,8 @@
 		6FED47081F9E03A3009BB353 /* UIViewController+Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Theme.h"; sourceTree = "<group>"; };
 		6FED470B1F9E0C00009BB353 /* ThemeableTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableTabBar.h; sourceTree = "<group>"; };
 		6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableTabBar.m; sourceTree = "<group>"; };
+		6FF69B721FE913C4004C20B2 /* EULA.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EULA.txt; sourceTree = "<group>"; };
+		6FF69B741FE913EC004C20B2 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		7BB6AA733015FC9C3401FB06 /* Pods-Nordic ID RFID Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nordic ID RFID Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo.release.xcconfig"; sourceTree = "<group>"; };
 		CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nordic_ID_RFID_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E682CAE593D6D7D73F452A7C /* Pods-Alien Technology Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alien Technology Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo.release.xcconfig"; sourceTree = "<group>"; };
@@ -318,20 +235,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6FAC4CE31F96118B0045DA7D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ACE7B84AA43EE8F47CA810FE /* Pods_Alien_Technology_Demo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		6F050B241FA85B1D00D9CF95 /* EULA */ = {
 			isa = PBXGroup;
 			children = (
+				6FF69B721FE913C4004C20B2 /* EULA.txt */,
 				6F050B251FA85B1D00D9CF95 /* EULA.storyboard */,
 				6F050B261FA85B1D00D9CF95 /* EULAViewController.h */,
 				6F050B271FA85B1D00D9CF95 /* EULAViewController.m */,
@@ -355,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				6F7959711EC2D77600A458AA /* Nordic ID RFID Demo.app */,
-				6FAC4CF81F96118B0045DA7D /* Alien Technology Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -402,7 +311,6 @@
 				6F795A0A1EC2D8DC00A458AA /* Tag */,
 				6F7959D11EC2D83000A458AA /* TagViewController.h */,
 				6F7959D21EC2D83000A458AA /* TagViewController.m */,
-				6FAC4CFA1F96126B0045DA7D /* Targets */,
 				6FED46E11F9B4BA0009BB353 /* Theme */,
 				6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */,
 				6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */,
@@ -522,37 +430,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6FAC4CFA1F96126B0045DA7D /* Targets */ = {
-			isa = PBXGroup;
-			children = (
-				6FBC8D861F9650E9005CC09F /* Alien Technology Demo */,
-				6FAC4CFD1F96126B0045DA7D /* Nordic ID RFID Demo */,
-			);
-			path = Targets;
-			sourceTree = "<group>";
-		};
-		6FAC4CFD1F96126B0045DA7D /* Nordic ID RFID Demo */ = {
-			isa = PBXGroup;
-			children = (
-				6F050B311FA85CD300D9CF95 /* EULA.txt */,
-				6F547D421FA7077A00BA0B59 /* Assets.xcassets */,
-				6FE7548E1F96398600CE8B66 /* Info.plist */,
-				6FBC8D8E1F98A5A0005CC09F /* Theme.m */,
-			);
-			path = "Nordic ID RFID Demo";
-			sourceTree = "<group>";
-		};
-		6FBC8D861F9650E9005CC09F /* Alien Technology Demo */ = {
-			isa = PBXGroup;
-			children = (
-				6F050B2E1FA85CC600D9CF95 /* EULA.txt */,
-				6F547D461FA7152200BA0B59 /* Theme.m */,
-				6F547D441FA7078600BA0B59 /* Assets.xcassets */,
-				6FBC8D881F9650E9005CC09F /* Info.plist */,
-			);
-			path = "Alien Technology Demo";
-			sourceTree = "<group>";
-		};
 		6FE7549C1F96485200CE8B66 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,29 +442,30 @@
 		6FED46E11F9B4BA0009BB353 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				6FED470B1F9E0C00009BB353 /* ThemeableTabBar.h */,
-				6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */,
-				6FED47081F9E03A3009BB353 /* UIViewController+Theme.h */,
-				6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */,
-				6FED47041F9DFF60009BB353 /* ThemeableCollectionView.h */,
-				6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */,
-				6FED46FF1F9DFE37009BB353 /* ThemeableView.h */,
-				6FED47001F9DFE37009BB353 /* ThemeableView.m */,
-				6FED46FB1F9BA178009BB353 /* ThemeableTextField.h */,
-				6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */,
+				6FED46E61F9B4DC2009BB353 /* Theme.h */,
+				6FF69B741FE913EC004C20B2 /* Theme.m */,
 				6FED46F81F9B5A8F009BB353 /* ThemeableAttributedLabel.h */,
 				6FED46F71F9B5A8F009BB353 /* ThemeableAttributedLabel.m */,
-				6FED46F41F9B5931009BB353 /* ThemeableTableViewCell.h */,
-				6FED46F31F9B5931009BB353 /* ThemeableTableViewCell.m */,
-				6FED46F01F9B5236009BB353 /* ThemeableTitleLabel.h */,
-				6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */,
-				6FED46EB1F9B515E009BB353 /* ThemeableLabel.h */,
-				6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */,
-				6FED46E61F9B4DC2009BB353 /* Theme.h */,
-				6FED46E81F9B4DC2009BB353 /* ThemeManager.h */,
-				6FED46E71F9B4DC2009BB353 /* ThemeManager.m */,
 				6FED46E21F9B4BC5009BB353 /* ThemeableButton.h */,
 				6FED46E31F9B4BC5009BB353 /* ThemeableButton.m */,
+				6FED47041F9DFF60009BB353 /* ThemeableCollectionView.h */,
+				6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */,
+				6FED46EB1F9B515E009BB353 /* ThemeableLabel.h */,
+				6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */,
+				6FED470B1F9E0C00009BB353 /* ThemeableTabBar.h */,
+				6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */,
+				6FED46F41F9B5931009BB353 /* ThemeableTableViewCell.h */,
+				6FED46F31F9B5931009BB353 /* ThemeableTableViewCell.m */,
+				6FED46FB1F9BA178009BB353 /* ThemeableTextField.h */,
+				6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */,
+				6FED46F01F9B5236009BB353 /* ThemeableTitleLabel.h */,
+				6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */,
+				6FED46FF1F9DFE37009BB353 /* ThemeableView.h */,
+				6FED47001F9DFE37009BB353 /* ThemeableView.m */,
+				6FED46E81F9B4DC2009BB353 /* ThemeManager.h */,
+				6FED46E71F9B4DC2009BB353 /* ThemeManager.m */,
+				6FED47081F9E03A3009BB353 /* UIViewController+Theme.h */,
+				6FED47071F9E03A3009BB353 /* UIViewController+Theme.m */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -611,7 +489,6 @@
 			buildConfigurationList = 6F7959881EC2D77700A458AA /* Build configuration list for PBXNativeTarget "Nordic ID RFID Demo" */;
 			buildPhases = (
 				B7DB445AE567A8A0BDF7EDB0 /* [CP] Check Pods Manifest.lock */,
-				6FE7549D1F9648AE00CE8B66 /* Copy Target Specific Assets */,
 				6F79596D1EC2D77600A458AA /* Sources */,
 				6F79596E1EC2D77600A458AA /* Frameworks */,
 				6F795A231EC2DA6A00A458AA /* ShellScript */,
@@ -630,30 +507,6 @@
 			productReference = 6F7959711EC2D77600A458AA /* Nordic ID RFID Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6FAC4CBC1F96118B0045DA7D /* Alien Technology Demo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6FAC4CF51F96118B0045DA7D /* Build configuration list for PBXNativeTarget "Alien Technology Demo" */;
-			buildPhases = (
-				CB942FB73E701B38838AF9C8 /* [CP] Check Pods Manifest.lock */,
-				6FBC8D8B1F9651B6005CC09F /* Copy Target Specific Assets */,
-				6FAC4CBD1F96118B0045DA7D /* Sources */,
-				6FAC4CE31F96118B0045DA7D /* Frameworks */,
-				6FAC4CE41F96118B0045DA7D /* ShellScript */,
-				6FAC4CE51F96118B0045DA7D /* Resources */,
-				6FAC4CF21F96118B0045DA7D /* Embed Frameworks */,
-				6FAC4CF41F96118B0045DA7D /* ShellScript */,
-				5B2B4FFF5235C2204E694F4E /* [CP] Embed Pods Frameworks */,
-				EC1CDE0D89C9A92861668850 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Alien Technology Demo";
-			productName = "Nordic ID RFID Demo";
-			productReference = 6FAC4CF81F96118B0045DA7D /* Alien Technology Demo.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -667,9 +520,6 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = VGSJJLLG7M;
 						ProvisioningStyle = Automatic;
-					};
-					6FAC4CBC1F96118B0045DA7D = {
-						DevelopmentTeam = VGSJJLLG7M;
 					};
 				};
 			};
@@ -688,7 +538,6 @@
 			projectRoot = "";
 			targets = (
 				6F7959701EC2D77600A458AA /* Nordic ID RFID Demo */,
-				6FAC4CBC1F96118B0045DA7D /* Alien Technology Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -703,7 +552,7 @@
 				6F795A431EC2FB8100A458AA /* Localizable.strings in Resources */,
 				6F795A171EC2D90E00A458AA /* QuickGuide.html in Resources */,
 				6FE7549B1F96484500CE8B66 /* TargetAssets.xcassets in Resources */,
-				6F050B321FA85CD300D9CF95 /* EULA.txt in Resources */,
+				6FF69B731FE913C4004C20B2 /* EULA.txt in Resources */,
 				6F795A101EC2D8FD00A458AA /* blep_100ms.wav in Resources */,
 				6F795A3B1EC2F8C000A458AA /* LaunchScreen.storyboard in Resources */,
 				6F04D1671F8B96950064A229 /* FirmwareSectionHeader.xib in Resources */,
@@ -712,26 +561,6 @@
 				6FE754911F96442400CE8B66 /* SharedAssets.xcassets in Resources */,
 				6F795A3E1EC2FB8000A458AA /* InfoPlist.strings in Resources */,
 				6F795A111EC2D8FD00A458AA /* blep_300ms.wav in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FAC4CE51F96118B0045DA7D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6FAC4CE61F96118B0045DA7D /* blipblipblip.wav in Resources */,
-				6FAC4CE71F96118B0045DA7D /* Localizable.strings in Resources */,
-				6FAC4CE81F96118B0045DA7D /* QuickGuide.html in Resources */,
-				6FAC4CE91F96118B0045DA7D /* blep_100ms.wav in Resources */,
-				6F050B301FA85CCA00D9CF95 /* EULA.txt in Resources */,
-				6FAC4CEA1F96118B0045DA7D /* LaunchScreen.storyboard in Resources */,
-				6FAC4CEB1F96118B0045DA7D /* FirmwareSectionHeader.xib in Resources */,
-				6FAC4CEE1F96118B0045DA7D /* Main.storyboard in Resources */,
-				6FAC4CEF1F96118B0045DA7D /* blep_40ms.wav in Resources */,
-				6FE754921F96444B00CE8B66 /* SharedAssets.xcassets in Resources */,
-				6F050B2A1FA85B2900D9CF95 /* EULA.storyboard in Resources */,
-				6FAC4CF11F96118B0045DA7D /* blep_300ms.wav in Resources */,
-				6FBC8D8C1F965241005CC09F /* TargetAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,21 +597,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5B2B4FFF5235C2204E694F4E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6F795A231EC2DA6A00A458AA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -809,60 +623,6 @@
 			shellPath = /bin/sh;
 			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
 		};
-		6FAC4CE41F96118B0045DA7D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./AutoIncrementCFBundleVersion.sh\n";
-		};
-		6FAC4CF41F96118B0045DA7D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
-		};
-		6FBC8D8B1F9651B6005CC09F /* Copy Target Specific Assets */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Target Specific Assets";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"Handling Assets\"\n\nxcassetsFile=\"${PROJECT_DIR}/Source/TargetAssets.xcassets\"\nappSpecificXcassetsFile=\"${PROJECT_DIR}/Source/Targets/${TARGET_NAME}/Assets.xcassets\"\n\nif [ -d \"$appSpecificXcassetsFile\" ] ; then\n\necho \"Removing existing xcassets folder: $xcassetsFile\"\nrm -rf \"$xcassetsFile\"\n\necho \"Copying target assets folder: $appSpecificXcassetsFile\"\ncp -r \"$appSpecificXcassetsFile\" \"$xcassetsFile\"\n\ntouch \"$xcassetsFile\"\nfi\n";
-		};
-		6FE7549D1F9648AE00CE8B66 /* Copy Target Specific Assets */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Target Specific Assets";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"Handling Assets\"\n\nxcassetsFile=\"${PROJECT_DIR}/Source/TargetAssets.xcassets\"\nappSpecificXcassetsFile=\"${PROJECT_DIR}/Source/Targets/${TARGET_NAME}/Assets.xcassets\"\n\nif [ -d \"$appSpecificXcassetsFile\" ] ; then\n\n    echo \"Removing existing xcassets folder: $xcassetsFile\"\n    rm -rf \"$xcassetsFile\"\n\n    echo \"Copying target assets folder: $appSpecificXcassetsFile\"\n    cp -r \"$appSpecificXcassetsFile\" \"$xcassetsFile\"\n\n    touch \"$xcassetsFile\"\nfi\n";
-		};
 		B7DB445AE567A8A0BDF7EDB0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -876,36 +636,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CB942FB73E701B38838AF9C8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		EC1CDE0D89C9A92861668850 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -924,6 +654,7 @@
 				6F7959EB1EC2D83000A458AA /* InfoViewController.m in Sources */,
 				6F7959FB1EC2D83000A458AA /* SettingsAlternative.m in Sources */,
 				6F99FD291FE3DC6200BE478A /* ReaderSettingCell.m in Sources */,
+				6FF69B751FE913EC004C20B2 /* Theme.m in Sources */,
 				6F7959F61EC2D83000A458AA /* ProgressView.m in Sources */,
 				6FED46FD1F9BA179009BB353 /* ThemeableTextField.m in Sources */,
 				6F7959FA1EC2D83000A458AA /* SelectSettingViewController.m in Sources */,
@@ -960,69 +691,11 @@
 				6F7959F81EC2D83000A458AA /* ReadBarcodeViewController.m in Sources */,
 				6FED46F11F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */,
 				6FED46F51F9B5931009BB353 /* ThemeableTableViewCell.m in Sources */,
-				6FBC8D8F1F98A5A0005CC09F /* Theme.m in Sources */,
 				6F795A001EC2D83000A458AA /* TagViewController.m in Sources */,
 				6F7959FF1EC2D83000A458AA /* TagManager.m in Sources */,
 				6F7959EE1EC2D83000A458AA /* LocateTagAntennaSelector.m in Sources */,
 				6FED46ED1F9B515E009BB353 /* ThemeableLabel.m in Sources */,
 				6F795A021EC2D83000A458AA /* TuneViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FAC4CBD1F96118B0045DA7D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6F547D481FA7164800BA0B59 /* Theme.m in Sources */,
-				6FAC4CBE1F96118B0045DA7D /* ContactViewController.m in Sources */,
-				6FAC4CBF1F96118B0045DA7D /* SelectReaderViewController.m in Sources */,
-				6FED46EE1F9B515E009BB353 /* ThemeableLabel.m in Sources */,
-				6F050B331FA85D9000D9CF95 /* ViewControllerManager.m in Sources */,
-				6FAC4CC01F96118B0045DA7D /* AverageBuffer.m in Sources */,
-				6FED46F21F9B5236009BB353 /* ThemeableTitleLabel.m in Sources */,
-				6FAC4CC21F96118B0045DA7D /* RfidSettingsViewController.m in Sources */,
-				6FED46E51F9B4BC5009BB353 /* ThemeableButton.m in Sources */,
-				6FAC4CC31F96118B0045DA7D /* InventoryViewController.m in Sources */,
-				6FAC4CC41F96118B0045DA7D /* InfoViewController.m in Sources */,
-				6FAC4CC51F96118B0045DA7D /* SettingsAlternative.m in Sources */,
-				6FAC4CC61F96118B0045DA7D /* ProgressView.m in Sources */,
-				6FED470E1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */,
-				6FAC4CC71F96118B0045DA7D /* SelectSettingViewController.m in Sources */,
-				6FED46F61F9B5931009BB353 /* ThemeableTableViewCell.m in Sources */,
-				6FED47021F9DFE37009BB353 /* ThemeableView.m in Sources */,
-				6FED46EA1F9B4DC2009BB353 /* ThemeManager.m in Sources */,
-				6FAC4CC81F96118B0045DA7D /* PerformUpdateViewController.m in Sources */,
-				6FAC4CC91F96118B0045DA7D /* MainMenuViewController.m in Sources */,
-				6FAC4CCA1F96118B0045DA7D /* Firmware.m in Sources */,
-				6FAC4CCB1F96118B0045DA7D /* ApplicationSettingsViewController.m in Sources */,
-				6FED46FE1F9BA179009BB353 /* ThemeableTextField.m in Sources */,
-				6FAC4CCC1F96118B0045DA7D /* AppDelegate.m in Sources */,
-				6FAC4CCD1F96118B0045DA7D /* QuickGuideViewController.m in Sources */,
-				6FED46FA1F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */,
-				6FAC4CCE1F96118B0045DA7D /* LocateViewController.m in Sources */,
-				6FAC4CD01F96118B0045DA7D /* FirmwareSelectionViewController.m in Sources */,
-				6FAC4CD11F96118B0045DA7D /* FirmwareSectionHeader.m in Sources */,
-				6FED47061F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */,
-				6FAC4CD21F96118B0045DA7D /* WriteTagPopoverViewController.m in Sources */,
-				6FAC4CD31F96118B0045DA7D /* FirmwareCell.m in Sources */,
-				6FAC4CD41F96118B0045DA7D /* WriteTagViewController.m in Sources */,
-				6F99FD2A1FE3DC6200BE478A /* ReaderSettingCell.m in Sources */,
-				6FED470A1F9E03A3009BB353 /* UIViewController+Theme.m in Sources */,
-				6FAC4CD51F96118B0045DA7D /* LocateTagViewController.m in Sources */,
-				6FAC4CD61F96118B0045DA7D /* Tag.m in Sources */,
-				6F050B2B1FA85B3700D9CF95 /* EULAViewController.m in Sources */,
-				6FAC4CD71F96118B0045DA7D /* main.m in Sources */,
-				6FAC4CD81F96118B0045DA7D /* ConnectionManager.m in Sources */,
-				6FAC4CD91F96118B0045DA7D /* SmoothingBuffer.m in Sources */,
-				6FAC4CDA1F96118B0045DA7D /* FirmwareDownloader.m in Sources */,
-				6FAC4CDB1F96118B0045DA7D /* AboutViewController.m in Sources */,
-				6FAC4CDC1F96118B0045DA7D /* MainMenuCell.m in Sources */,
-				6FAC4CDD1F96118B0045DA7D /* AudioPlayer.m in Sources */,
-				6FAC4CDE1F96118B0045DA7D /* ReadBarcodeViewController.m in Sources */,
-				6FAC4CDF1F96118B0045DA7D /* TagViewController.m in Sources */,
-				6FAC4CE01F96118B0045DA7D /* TagManager.m in Sources */,
-				6FAC4CE11F96118B0045DA7D /* LocateTagAntennaSelector.m in Sources */,
-				6FAC4CE21F96118B0045DA7D /* TuneViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +793,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1170,6 +844,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1189,10 +864,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Targets/Nordic ID RFID Demo/Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1208,48 +882,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Targets/Nordic ID RFID Demo/Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		6FAC4CF61F96118B0045DA7D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A113DEBB001F96E887EFDA8 /* Pods-Alien Technology Demo.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VGSJJLLG7M;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Targets/Alien Technology Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.alientechnologydemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		6FAC4CF71F96118B0045DA7D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E682CAE593D6D7D73F452A7C /* Pods-Alien Technology Demo.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VGSJJLLG7M;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Targets/Alien Technology Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.alientechnologydemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1271,15 +906,6 @@
 			buildConfigurations = (
 				6F7959891EC2D77700A458AA /* Debug */,
 				6F79598A1EC2D77700A458AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6FAC4CF51F96118B0045DA7D /* Build configuration list for PBXNativeTarget "Alien Technology Demo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6FAC4CF61F96118B0045DA7D /* Debug */,
-				6FAC4CF71F96118B0045DA7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,5 +1,5 @@
 
-#import "../../Theme/Theme.h"
+#import "Theme.h"
 
 @implementation Theme
 

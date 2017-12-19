@@ -4,9 +4,9 @@ PROJECTMAIN=$(pwd)
 PROJECT_NAME="${TARGET_NAME}" 
 
 #
-if [[ -f "${PROJECTMAIN}/Source/Targets/${PROJECT_NAME}/Info.plist" ]]
+if [[ -f "${PROJECTMAIN}/Info.plist" ]]
 then
-        INFOPLIST_FILE="${PROJECTMAIN}/Source/Targets/${PROJECT_NAME}/Info.plist"
+        INFOPLIST_FILE="${PROJECTMAIN}/Info.plist"
 else
         echo -e "Can't find the plist: Info.plist"
         exit 1
