@@ -100,7 +100,6 @@
 
 - (void) deregisterDelegate:(id<ConnectionManagerDelegate>)delegate {
     [self.delegates removeObject:delegate];
-    self.setupPerformed = NO;
 }
 
 

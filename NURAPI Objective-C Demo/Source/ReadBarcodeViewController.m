@@ -173,6 +173,7 @@
             break;
             
         default:
+            NSLog(@"unknown event type: %d", type );
             break;
     }
 }

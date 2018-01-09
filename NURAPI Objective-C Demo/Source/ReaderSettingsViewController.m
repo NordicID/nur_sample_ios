@@ -41,10 +41,11 @@
             return;
         }
 
+        // NOTE: this returns a NUR_ERROR_HW_MISMATCH when the device does not support wireless charging, even though the device
+        // responded ok and there was no communication error. So ignore that error here.
         error = NurAccGetWirelessChargeStatus( [Bluetooth sharedInstance].nurapiHandle, &wirelessStatus);
-        if (error != NUR_NO_ERROR) {
-            [self showErrorMessage:error];
-            return;
+        if (error != NUR_NO_ERROR && error != NUR_ERROR_HW_MISMATCH) {
+            wirelessStatus = WIRELESS_CHARGE_NOT_SUPPORTED;
         }
 
         settingsRead = YES;
@@ -189,7 +190,10 @@
                         case WIRELESS_CHARGE_NOT_SUPPORTED:
                             cell.titleLabel.text = NSLocalizedString(@"Wireless charging is not available", nil);
                             cell.settingEnabled = NO;
+
+                            // no switch if we can't switch anything
                             cell.enabledSwitch.enabled = NO;
+                            cell.enabledSwitch.hidden = YES;
                     }
                     break;
 

@@ -219,7 +219,7 @@
 
         case NUR_SETUP_INVTARGET:
             cell.textLabel.text = NSLocalizedString(@"Target", nil);
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.inventoryTarget];
+            cell.detailTextLabel.text = @[@"A", @"B", @"A or B"][ setup.inventoryTarget ];
             break;
 
         case NUR_SETUP_TXLEVEL:

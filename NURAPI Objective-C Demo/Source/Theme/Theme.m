@@ -8,8 +8,8 @@
     if (self) {
         // set up colors
         self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1]; // white
-        self.primaryColor    = [UIColor colorWithRed:163/255.0 green:38/255.0 blue:56/255.0 alpha:1]; // dark red
-        self.secondaryColor  = [UIColor colorWithRed:0 green:0 blue:0 alpha:1]; // black
+        self.primaryColor    = [UIColor colorWithRed:0 green:0 blue:0 alpha:1]; // black
+        self.secondaryColor  = [UIColor colorWithRed:248/255.0 green:156/255.0 blue:27/255.0 alpha:1]; // orange
         self.lightTextColor  = [UIColor colorWithRed:1 green:1 blue:1 alpha:1]; // white
         self.darkTextColor   = [UIColor colorWithRed:0 green:0 blue:0 alpha:1]; // black
 
@@ -21,7 +21,7 @@
         [UINavigationBar appearance].titleTextAttributes = @{ NSForegroundColorAttributeName: self.lightTextColor };
 
         // textual theming
-        self.applicationTitle = @"Alien Technology RFID";
+        self.applicationTitle = @"Nordic ID RFID";
     }
 
     return self;

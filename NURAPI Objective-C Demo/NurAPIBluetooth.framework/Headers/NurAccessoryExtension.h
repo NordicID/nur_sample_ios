@@ -26,7 +26,8 @@ extern "C" {
 #define APP_CTX_SIZE sizeof(NUR_ACC_CONFIG)
 
 /** The notification number associated with accessory device events. First byte with notification NUR_NOTIFICATION_ACCESSORY is event type. */
-#define NUR_NOTIFICATION_ACCESSORY		0x90
+// chakie: commented out as it overwrites a NUR_NOTIFICATION enum value and breaks shit
+//#define NUR_NOTIFICATION_ACCESSORY		0x90
 
 /** Barcode read event. First byte with notification NUR_NOTIFICATION_ACCESSORY is event type. */
 #define NUR_ACC_EVENT_BARCODE			0x1
