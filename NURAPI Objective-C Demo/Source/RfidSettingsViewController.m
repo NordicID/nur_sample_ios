@@ -1,10 +1,11 @@
 
 #import <NurAPIBluetooth/Bluetooth.h>
+#import <NurAPIBluetooth/NurCommands.h>
 
 #import "RfidSettingsViewController.h"
 #import "SettingsAlternative.h"
 #import "SelectSettingViewController.h"
-#import "TuneViewController.h"
+#import "RegionLockCell.h"
 
 // TODO:
 //
@@ -27,6 +28,9 @@
 
     // is all the data ready?
     BOOL dataReady;
+
+    // is the device region locked now?
+    BOOL regionLocked;
 }
 
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
@@ -56,16 +60,7 @@
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         // prompt the user to connect a reader
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                        message:NSLocalizedString(@"No RFID reader connected!", nil)
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction
-                          actionWithTitle:@"Ok"
-                          style:UIAlertActionStyleDefault
-                          handler:^(UIAlertAction * action) {
-                              // nothing special to do right now
-                          }]];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self showrrorMessage:NSLocalizedString(@"No RFID reader connected!", nil)];
         return;
     }
 
@@ -82,43 +77,85 @@
     dispatch_async(self.dispatchQueue, ^{
         // get current settings
         int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_ALL, &setup, sizeof(struct NUR_MODULESETUP) );
+        if ( error != NUR_NO_ERROR ) {
+            [self showSetupStatus:error alert:alert];
+            return;
+        }
 
-        if ( error == NUR_NO_ERROR ) {
-            // fetched ok, get antenna mask
-            error = NurApiGetAntennaMap( [Bluetooth sharedInstance].nurapiHandle, antennaMap, &antennaMappingCount, NUR_MAX_ANTENNAS_EX, sizeof(struct NUR_ANTENNA_MAPPING) );
+        // fetched ok, get antenna mask
+        error = NurApiGetAntennaMap( [Bluetooth sharedInstance].nurapiHandle, antennaMap, &antennaMappingCount, NUR_MAX_ANTENNAS_EX, sizeof(struct NUR_ANTENNA_MAPPING) );
+        if ( error != NUR_NO_ERROR ) {
+            [self showSetupStatus:error alert:alert];
+            return;
+        }
 
-            // region info
-            if ( error == NUR_NO_ERROR ) {
-                // the the number of regions and allocate space for them
-                error = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &readerInfo, sizeof(struct NUR_READERINFO) );
-                regionInfo = malloc( readerInfo.numRegions * sizeof( struct NUR_REGIONINFO ) );
+        // get the reader info for the number of regions
+        error = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &readerInfo, sizeof(struct NUR_READERINFO) );
+        if ( error != NUR_NO_ERROR ) {
+            [self showSetupStatus:error alert:alert];
+            return;
+        }
 
-                if ( error == NUR_NO_ERROR ) {
-                    for ( unsigned int index = 0; index < readerInfo.numRegions; ++index ) {
-                        error = NurApiGetRegionInfo( [Bluetooth sharedInstance].nurapiHandle, index, &regionInfo[ index ], sizeof( struct NUR_REGIONINFO) );
-
-                        // finally get device capabilities
-                        if ( error == NUR_NO_ERROR ) {
-                            error = NurApiGetDeviceCaps( [Bluetooth sharedInstance].nurapiHandle, &deviceCaps );
-                        }
-                    }
-                }
+        // region info
+        regionInfo = malloc( readerInfo.numRegions * sizeof( struct NUR_REGIONINFO ) );
+        for ( unsigned int index = 0; index < readerInfo.numRegions; ++index ) {
+            error = NurApiGetRegionInfo( [Bluetooth sharedInstance].nurapiHandle, index, &regionInfo[ index ], sizeof( struct NUR_REGIONINFO) );
+            if ( error != NUR_NO_ERROR ) {
+                [self showSetupStatus:error alert:alert];
+                return;
             }
         }
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // now dismsis the "reading" popup and show and error or show the table
-            [alert dismissViewControllerAnimated:YES completion:^{
-                if (error != NUR_NO_ERROR) {
-                    // failed to fetch tag
-                    [self showErrorMessage:error];
-                }
-                else {
-                    dataReady = YES;
-                    [self.tableView reloadData];
-                }
-            }];
-        });
+        // get device capabilities
+        error = NurApiGetDeviceCaps( [Bluetooth sharedInstance].nurapiHandle, &deviceCaps );
+        if ( error != NUR_NO_ERROR ) {
+            [self showSetupStatus:error alert:alert];
+            return;
+        }
+
+        // is the device region locked?
+        int oldRegion = setup.regionId;
+        setup.regionId = oldRegion == 0 ? 1 : 0;
+        error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_REGION, &setup, sizeof(struct NUR_MODULESETUP) );
+
+        // restore back the old region
+        setup.regionId = oldRegion;
+
+        if ( error != NUR_NO_ERROR ) {
+            // failed to set the region, so assume it's locked
+            regionLocked = YES;
+        }
+        else {
+            regionLocked = NO;
+
+            // restore back the old region for the reader too
+            error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_REGION, &setup, sizeof(struct NUR_MODULESETUP) );
+            if ( error != NUR_NO_ERROR ) {
+                NSLog( @"failed to restore original region %d after region lock test", setup.regionId );
+                [self showSetupStatus:error alert:alert];
+                return;
+            }
+        }
+
+        // and we're done, all ok
+        [self showSetupStatus:NUR_NO_ERROR alert:alert];
+    });
+}
+
+
+- (void) showSetupStatus:(int)error alert:(UIAlertController *)alert {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // now dismsis the "reading" popup and show and error or show the table
+        [alert dismissViewControllerAnimated:YES completion:^{
+            if (error != NUR_NO_ERROR) {
+                // failed to fetch tag
+                [self showErrorMessage:error];
+            }
+            else {
+                dataReady = YES;
+                [self.tableView reloadData];
+            }
+        }];
     });
 }
 
@@ -136,16 +173,50 @@
                                                                     message:message
                                                              preferredStyle:UIAlertControllerStyleAlert];
 
-    UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:NSLocalizedString(@"Ok", nil)
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action) {
-                                   // nothing special to do right now
-                               }];
-
+    UIAlertAction* okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                                       style:UIAlertActionStyleDefault
+                                                     handler: nil];
 
     [alert addAction:okButton];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void) showrrorMessage:(NSString *)message {
+    // show in an alert view
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                    message:message
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                                       style:UIAlertActionStyleDefault
+                                                     handler: nil];
+
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    // if the user is trying to change the region then disallow it if the reader is region locked
+    if ( [identifier isEqualToString:@"EditSettingSegue"] ) {
+        UITableViewCell * cell = (UITableViewCell *)sender;
+        if ( cell.tag == NUR_SETUP_REGION && regionLocked ) {
+            // show in an alert view
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                            message:@"Device is region locked!"
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:nil]];
+
+            [self presentViewController:alert animated:YES completion:nil];
+            return NO;
+        }
+    }
+
+    return YES;
 }
 
 
@@ -158,20 +229,126 @@
         // setup the alternatives available to the edit setting view controller
         [self setupAlternativesForRow:indexPath.row into:destination];
     }
-
-//    else if ( [segue.identifier isEqualToString:@"TuneSegue"] ) {
-//        TuneViewController * destination = [segue destinationViewController];
-//        destination.dispatchQueue = self.dispatchQueue;
-//        destination.antennaMask = setup.antennaMask;
-//    }
 }
 
+//******************************************************************************************
+#pragma mark - Region lock handling
+
+- (IBAction)toggleRegionLock:(UIButton *)sender {
+    NSString * operation = regionLocked ? @"disable" : @"enable";
+    NSString * action = regionLocked ? NSLocalizedString(@"Unlock", nil) : NSLocalizedString(@"Lock", nil);
+
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Confirm", nil)
+                                                                    message:[NSString stringWithFormat:@"Please enter the password to %@ region locking", operation]
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:action
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * action) {
+                                                   NSString * password = alert.textFields[0].text;
+                                                   [self performRegionLockToggleWithPassword:password];
+                                               }];
+
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"password";
+        textField.keyboardType = UIKeyboardTypeDefault;
+        textField.secureTextEntry = YES;
+    }];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+/**
+ * Performs the region locking toggling. Uses the given password as a custom command
+ * by converting it to numeric. This command is undestood by the reader.
+ *
+ * @param password the password entered by the user and used as a command.
+ **/
+- (void) performRegionLockToggleWithPassword:(NSString *)password {
+    if ( password == nil || password.length == 0 ) {
+        // invalid password
+        [self showrrorMessage:@"Invalid password"];
+        return;
+    }
+
+    unsigned int numPassword;
+
+    // convert from hex to an unsigned int
+    NSScanner *scanner = [NSScanner scannerWithString:password];
+    if ( ! [scanner scanHexInt:&numPassword] ) {
+        // invalid password
+        [self showrrorMessage:@"Invalid password"];
+        return;
+    }
+
+    dispatch_async(self.dispatchQueue, ^{
+        // set up the password as a command to be sent to the reader
+        BYTE command[5];
+        DWORD length;
+        command[0] = (numPassword >> 24) & 0xff;
+        command[1] = (numPassword >> 16) & 0xff;
+        command[2] = (numPassword >> 8) & 0xff;
+        command[3] = numPassword & 0xff;
+
+        if ( regionLocked ) {
+            NSLog( @"disabling region lock" );
+            length = 4;
+        }
+        else {
+            // when enabling region lock there is an extra byte that's the region to lock to
+            command[4] = setup.regionId;
+            length = 5;
+        }
+
+        // perform the locking/unlocking using a custom raw command
+        int error = [[Bluetooth sharedInstance] writeRawCommand:NUR_CMD_PRODUCTION_CFG buffer:command bufferLen:length];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ( error != NUR_NO_ERROR ) {
+                NSLog( @"failed to change region lock state");
+                [self showErrorMessage:error];
+                return;
+            }
+
+            // changed ok,update the table row with the button
+            regionLocked = !regionLocked;
+            [self.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:0 inSection:1]]
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+        });
+    });
+}
+
+
+//******************************************************************************************
+#pragma mark - Table view delegate
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.section == 1 ) {
+        return 64;
+    }
+
+    return 44;
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // the region lock row
+    if ( indexPath.section == 1 ) {
+        NSLog( @"toggle region lock" );
+    }
+}
 
 //******************************************************************************************
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -180,12 +357,25 @@
         return 0;
     }
 
+    // the separate "region lock" section
+    if ( section == 1 ) {
+        return 1;
+    }
+
     // match with the keys in cellForRowAtIndexPath
     return 12;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // the second section with the region lock cell
+    if ( indexPath.section == 1 ) {
+        RegionLockCell *cell = (RegionLockCell *)[tableView dequeueReusableCellWithIdentifier:@"RegionLockCell" forIndexPath:indexPath];
+        NSString * title = regionLocked ? NSLocalizedString(@"Unlock", @"RFID settings - unlock region lock") : NSLocalizedString(@"Lock", @"RFID settings - lock region lock");
+        [cell.toggleButton setTitle:title forState:UIControlStateNormal];
+        return cell;
+    }
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsCell" forIndexPath:indexPath];
 
     int setupKeys[] = { NUR_SETUP_INVQ, NUR_SETUP_INVROUNDS, NUR_SETUP_INVSESSION, NUR_SETUP_INVTARGET,
@@ -198,6 +388,7 @@
 
     switch ( key ) {
         case NUR_SETUP_INVQ:
+            cell.tag = NUR_SETUP_INVQ;
             cell.textLabel.text = NSLocalizedString(@"Q", nil);
             if ( setup.inventoryQ == 0 ) {
                 cell.detailTextLabel.text = NSLocalizedString(@"Automatic", nil);
@@ -208,21 +399,25 @@
             break;
 
         case NUR_SETUP_INVROUNDS:
+            cell.tag = NUR_SETUP_INVROUNDS;
             cell.textLabel.text = NSLocalizedString(@"Rounds", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.inventoryRounds];
             break;
 
         case NUR_SETUP_INVSESSION:
+            cell.tag = NUR_SETUP_INVSESSION;
             cell.textLabel.text = NSLocalizedString(@"Session", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.inventorySession];
             break;
 
         case NUR_SETUP_INVTARGET:
+            cell.tag = NUR_SETUP_INVTARGET;
             cell.textLabel.text = NSLocalizedString(@"Target", nil);
             cell.detailTextLabel.text = @[@"A", @"B", @"A or B"][ setup.inventoryTarget ];
             break;
 
         case NUR_SETUP_TXLEVEL:
+            cell.tag = NUR_SETUP_TXLEVEL;
             cell.textLabel.text = NSLocalizedString(@"TX Level", nil);
 
             // 500 mW model?
@@ -243,6 +438,7 @@
 
             // not used
         case NUR_SETUP_ANTMASKEX:
+            cell.tag = NUR_SETUP_ANTMASKEX;
             cell.textLabel.text = NSLocalizedString(@"Enabled Antennas", nil);
 
             // check the enabled antenna count. Each enabled bit is one enabled antenna
@@ -256,36 +452,43 @@
             break;
 
         case NUR_SETUP_LINKFREQ:
+            cell.tag = NUR_SETUP_LINKFREQ;
             cell.textLabel.text = NSLocalizedString(@"Link Frequency", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.linkFreq];
             break;
 
         case NUR_SETUP_REGION:
+            cell.tag = NUR_SETUP_REGION;
             cell.textLabel.text = NSLocalizedString(@"Region", nil);
             cell.detailTextLabel.text = [NSString stringWithCString:regionInfo[ setup.regionId ].name encoding:NSASCIIStringEncoding];
             break;
 
         case NUR_SETUP_AUTOTUNE:
+            cell.tag = NUR_SETUP_AUTOTUNE;
             cell.textLabel.text = NSLocalizedString(@"Autotune", nil);
             cell.detailTextLabel.text = (setup.autotune.mode & AUTOTUNE_MODE_ENABLE) ? NSLocalizedString(@"Enabled", @"Auto tune setting enabled") : NSLocalizedString(@"Disabled", @"Auto tune setting disabled");
             break;
 
         case NUR_SETUP_RXDEC:
+            cell.tag = NUR_SETUP_RXDEC;
             cell.textLabel.text = NSLocalizedString(@"RX decoding (Miller)", nil);
             cell.detailTextLabel.text = @[ @"FM-0", @"Miller-2", @"Miller-4", @"Miller-8"][ setup.rxDecoding ];
             break;
 
         case NUR_SETUP_RXSENS:
+            cell.tag = NUR_SETUP_RXSENS;
             cell.textLabel.text = NSLocalizedString(@"RX Sensitivity", nil);
             cell.detailTextLabel.text = @[ @"Nominal", @"Low", @"High"][ setup.rxSensitivity ];
             break;
 
         case NUR_SETUP_TXMOD:
+            cell.tag = NUR_SETUP_TXMOD;
             cell.textLabel.text = NSLocalizedString(@"TX modulation", nil);
             cell.detailTextLabel.text = @[ @"ASK",  @"PR-ASK"][ setup.txModulation ];
             break;
 
         default:
+            cell.tag = -1;
             cell.textLabel.text = NSLocalizedString(@"ERROR", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", key];
     }

@@ -132,10 +132,21 @@
                 NSArray * parts = [deviceVersions componentsSeparatedByString:@";"];
                 if ( parts.count  != 2 ) {
                     [self.versionStrings setObject: NSLocalizedString( @"Unexpected device firmware version format", nil) atIndexedSubscript:kDeviceFirmware];
-                    [self showNurApiErrorMessage:error2];
+                    [self showErrorMessage:@"Unexpected device firmware version format"];
                 }
                 else {
-                    NSString * deviceFirmwareVersion = [parts[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    NSString * deviceFirmwareVersion;
+
+                    // now it is "2.1.4-H Oct 10 2017" or similar, get the version only and remove the date
+                    NSArray * parts2 = [parts[0] componentsSeparatedByString:@" "];
+                    if ( parts2.count > 0 ) {
+                        deviceFirmwareVersion = [parts2[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    }
+                    else {
+                        // no space?
+                        deviceFirmwareVersion = parts[0];
+                    }
+
                     NSString * deviceBootloaderVersion = [parts[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
                     [self.versionStrings setObject:deviceFirmwareVersion atIndexedSubscript:kDeviceFirmware];

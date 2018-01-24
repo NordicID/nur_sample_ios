@@ -222,4 +222,7 @@
 
 - (void) cancelRestoreConnection;
 
+- (int) writeRawCommand:(BYTE)command buffer:(BYTE *)buffer bufferLen:(DWORD)bufferLen;
+
+
 @end

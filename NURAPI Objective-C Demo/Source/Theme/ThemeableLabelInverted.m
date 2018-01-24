@@ -1,8 +1,8 @@
 
-#import "ThemeableTitleLabel.h"
+#import "ThemeableLabelInverted.h"
 #import "ThemeManager.h"
 
-@implementation ThemeableTitleLabel
+@implementation ThemeableLabelInverted
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
@@ -27,8 +27,7 @@
 - (void) setupTheme {
     Theme * theme = [ThemeManager sharedInstance].theme;
 
-    //self.backgroundColor = theme.backgroundColor;
-    self.textColor = theme.secondaryColor;
+    self.textColor = theme.lightTextColor;
 }
 
 @end

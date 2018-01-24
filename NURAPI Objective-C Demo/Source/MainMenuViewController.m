@@ -96,7 +96,7 @@
                           [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Write Tag", @"main menu") icon:@"MainMenuWrite" segue:@"WriteTagSegue" enabled:NO alwaysEnabled:NO],
                           [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Barcode", @"main menu") icon:@"MainMenuBarcode" segue:@"BarcodeSegue" enabled:NO alwaysEnabled:NO],
                           [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", @"main menu") icon:@"MainMenuSettings" segue:@"SettingsSegue" enabled:NO alwaysEnabled:NO],
-                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Info", @"main menu") icon:@"MainMenuInfo" segue:@"InfoSegue" enabled:NO alwaysEnabled:NO],
+                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Info", @"main menu") icon:@"MainMenuInfo" segue:@"InfoSegue" enabled:NO alwaysEnabled:YES],
                           [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Quick Guide", @"main menu") icon:@"MainMenuGuide" segue:@"QuickGuideSegue" enabled:YES alwaysEnabled:YES] ];
 
     // set up the queue used to async any NURAPI calls

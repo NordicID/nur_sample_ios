@@ -43,13 +43,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdp-O2-sx3" customClass="ThemeableView">
                                 <rect key="frame" x="0.0" y="472" width="320" height="32"/>
                                 <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZr-na-7by" customClass="ThemeableTitleLabel">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZr-na-7by" customClass="ThemeableLabelInverted">
                                         <rect key="frame" x="304" y="8" width="8" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Not connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-qI-oPQ" customClass="ThemeableTitleLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Not connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-qI-oPQ" customClass="ThemeableLabelInverted">
                                         <rect key="frame" x="8" y="8" width="261" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -580,12 +580,12 @@
         <scene sceneID="ihK-XH-obo">
             <objects>
                 <tableViewController id="WD6-uf-xTq" customClass="RfidSettingsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="hkc-kW-YVk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="64" sectionHeaderHeight="18" sectionFooterHeight="18" id="hkc-kW-YVk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="PQv-ib-glU" detailTextLabel="GlL-BV-UVC" style="IBUITableViewCellStyleValue1" id="mQ0-rx-uCh" customClass="ThemeableTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="PQv-ib-glU" detailTextLabel="GlL-BV-UVC" rowHeight="44" style="IBUITableViewCellStyleValue1" id="mQ0-rx-uCh" customClass="ThemeableTableViewCell">
                                 <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mQ0-rx-uCh" id="3RX-mU-bH5">
@@ -610,6 +610,38 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="q2K-D3-CeS" kind="show" identifier="EditSettingSegue" id="GRZ-bi-Thv"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RegionLockCell" rowHeight="64" id="Suf-zv-fIm" customClass="RegionLockCell">
+                                <rect key="frame" x="0.0" y="99.5" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Suf-zv-fIm" id="UJZ-c8-Naa">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mly-Qu-3NI" customClass="ThemeableButton">
+                                            <rect key="frame" x="97.5" y="11" width="125" height="42"/>
+                                            <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="125" id="Il2-q2-VkO"/>
+                                            </constraints>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="toggleRegionLock:" destination="WD6-uf-xTq" eventType="touchCancel" id="Mfa-em-chb"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Mly-Qu-3NI" secondAttribute="bottom" id="CBz-s3-XwU"/>
+                                        <constraint firstItem="Mly-Qu-3NI" firstAttribute="centerY" secondItem="UJZ-c8-Naa" secondAttribute="centerY" id="HXr-pH-xpd"/>
+                                        <constraint firstItem="Mly-Qu-3NI" firstAttribute="centerX" secondItem="UJZ-c8-Naa" secondAttribute="centerX" id="M8S-DE-jdg"/>
+                                        <constraint firstItem="Mly-Qu-3NI" firstAttribute="top" secondItem="UJZ-c8-Naa" secondAttribute="topMargin" id="WeV-yU-XJY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="toggleButton" destination="Mly-Qu-3NI" id="j9b-fw-3dd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

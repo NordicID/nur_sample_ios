@@ -42,7 +42,7 @@ extern "C" {
 #define SHORTVALUE_NOT_VALID			-1
 
 /** The protocol's value that the extension handler captures. */
-#define NUR_CMD_ACC_EXT					0x55
+//#define NUR_CMD_ACC_EXT					0x55
 
 /** BLE FW version. */
 #define ACC_EXT_GET_FWVERSION			0

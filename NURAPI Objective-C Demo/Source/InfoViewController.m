@@ -94,16 +94,38 @@ enum {
         struct NUR_READERINFO info;
         NUR_ACC_BATT_INFO batteryInfo;
         NUR_ACC_CONFIG accessoryInfo;
-        TCHAR accessoryFwVersionTmp[32] = _T("");
+        TCHAR accessoryFwVersionsTmp[32] = _T("");
+        NSString * accessoryFwVersions;
         NSString * accessoryFwVersion;
+        NSString * accessoryBootloaderVersion;
 
         // get current settings
         int error1 = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &info, sizeof(struct NUR_READERINFO) );
         int error2 = NurAccGetBattInfo( [Bluetooth sharedInstance].nurapiHandle, &batteryInfo, sizeof(NUR_ACC_BATT_INFO));
         int error3 = NurAccGetConfig( [Bluetooth sharedInstance].nurapiHandle, &accessoryInfo, sizeof(NUR_ACC_CONFIG));
-        int error4 = NurAccGetFwVersion( [Bluetooth sharedInstance].nurapiHandle, accessoryFwVersionTmp, 32);
+        int error4 = NurAccGetFwVersion( [Bluetooth sharedInstance].nurapiHandle, accessoryFwVersionsTmp, 32);
 
-        accessoryFwVersion = [NSString stringWithCString:accessoryFwVersionTmp encoding:NSASCIIStringEncoding];
+        accessoryFwVersions = [NSString stringWithCString:accessoryFwVersionsTmp encoding:NSASCIIStringEncoding];
+
+        NSArray * parts = [accessoryFwVersions componentsSeparatedByString:@";"];
+        if ( parts.count != 2 ) {
+            // unexpected format, so use the entire string
+            accessoryFwVersion = accessoryFwVersions;
+        }
+        else {
+            // get the booloader version
+            accessoryBootloaderVersion = [parts[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+            // now it is "2.1.4-H Oct 10 2017" or similar, get the version only and remove the date
+            NSArray * parts2 = [parts[0] componentsSeparatedByString:@" "];
+            if ( parts2.count > 0 ) {
+                accessoryFwVersion = [parts2[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            }
+            else {
+                // no space?
+                accessoryFwVersion = parts[0];
+            }
+        }
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error1 != NUR_NO_ERROR) {
@@ -199,7 +221,6 @@ enum {
                        @(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR firmware", nil) value:@"?"],
                        //@(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR bootloader", nil) value:@"?"],
                        @(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Device firmware", nil) value:@"?"],
-                       //@(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Device bootloader", nil) value:@"?"],
 
                        @(kBatteryPercentage): [CellData cellDataWithTitle:NSLocalizedString(@"Percentage", nil) value:@"?"],
                        @(kBatteryCapacity): [CellData cellDataWithTitle:NSLocalizedString(@"Capacity (mA)", nil) value:@"?"],

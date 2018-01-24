@@ -43,6 +43,8 @@ typedef enum {
  **/
 + (NSUInteger) calculateCompareVersion:(NSString *)version type:(FirmwareType)type;
 
++ (BOOL) extractMajor:(int *)major minor:(int *)minor build:(int *)build fromVersion:(NSString *)version;
+
 /**
  * Returns the given type as a string that can be used in the UI.
  **/

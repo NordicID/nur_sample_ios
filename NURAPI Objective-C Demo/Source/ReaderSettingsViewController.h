@@ -3,7 +3,8 @@
 
 #import "UIViewController+Theme.h"
 #import "ReaderSettingCell.h"
+#import "ConnectionManager.h"
 
-@interface ReaderSettingsViewController : UITableViewController <ReaderSettingDelegate>
+@interface ReaderSettingsViewController : UITableViewController <ReaderSettingDelegate, ConnectionManagerDelegate>
 
 @end

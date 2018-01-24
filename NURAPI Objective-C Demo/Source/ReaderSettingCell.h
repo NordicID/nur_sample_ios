@@ -7,6 +7,7 @@ typedef enum {
     kHidBarcodeEnabled = 0,
     kHidRfidEnabled = 1,
     kWirelessChargingEnabled = 2,
+    kAllowPairing = 3,
 } ReaderSettingType;
 
 /**

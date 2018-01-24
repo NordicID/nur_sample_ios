@@ -97,7 +97,7 @@
                    [dateFormatter stringFromDate:tag.firstFound],
                    [dateFormatter stringFromDate:tag.lastFound],
                    tag.hex,
-                   (int)tag.scaledRssi];
+                   (int)tag.rssi];
     }
 
     [[TagManager sharedInstance] unlock];
