@@ -1,12 +1,5 @@
 platform :ios, '9.0'
 
-target 'Alien Technology Demo' do
-  use_frameworks!
-
-  pod 'iOSDFULibrary'	
-  pod 'TTTAttributedLabel'
-end
-
 target 'Nordic ID RFID Demo' do
   use_frameworks!
 

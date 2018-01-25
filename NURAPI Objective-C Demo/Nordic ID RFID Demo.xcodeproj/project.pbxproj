@@ -179,8 +179,6 @@
 		6F795A0E1EC2D8FD00A458AA /* blep_40ms.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blep_40ms.wav; sourceTree = "<group>"; };
 		6F795A0F1EC2D8FD00A458AA /* blipblipblip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blipblipblip.wav; sourceTree = "<group>"; };
 		6F795A151EC2D90E00A458AA /* QuickGuide.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = QuickGuide.html; sourceTree = "<group>"; };
-		6F795A1A1EC2D93C00A458AA /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		6F795A1B1EC2D93C00A458AA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6F795A381EC2E60D00A458AA /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		6F795A391EC2E60D00A458AA /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
@@ -430,8 +428,6 @@
 			isa = PBXGroup;
 			children = (
 				6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */,
-				6F795A1A1EC2D93C00A458AA /* Fabric.framework */,
-				6F795A1B1EC2D93C00A458AA /* Crashlytics.framework */,
 				5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */,
 				CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */,
 			);

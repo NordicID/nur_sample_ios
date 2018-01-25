@@ -38,7 +38,8 @@ enum {
     kName,
     kFccId,
     kHwVersion,
-    kFirmwareVersion,
+    kNurFirmwareVersion,
+    kNurBootloaderVersion,
     kAccessoryFwVersion,
 
     kBatteryPercentage,
@@ -98,14 +99,24 @@ enum {
         NSString * accessoryFwVersions;
         NSString * accessoryFwVersion;
         NSString * accessoryBootloaderVersion;
+        TCHAR primaryVersionTmp[32] = _T("");
+        TCHAR secondaryVersionTmp[32] = _T("");
+        BYTE mode;
+        NSString *primaryVersion, *secondaryVersion;
 
         // get current settings
         int error1 = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &info, sizeof(struct NUR_READERINFO) );
         int error2 = NurAccGetBattInfo( [Bluetooth sharedInstance].nurapiHandle, &batteryInfo, sizeof(NUR_ACC_BATT_INFO));
         int error3 = NurAccGetConfig( [Bluetooth sharedInstance].nurapiHandle, &accessoryInfo, sizeof(NUR_ACC_CONFIG));
         int error4 = NurAccGetFwVersion( [Bluetooth sharedInstance].nurapiHandle, accessoryFwVersionsTmp, 32);
+        int error5 = NurApiGetVersions( [Bluetooth sharedInstance].nurapiHandle, &mode, primaryVersionTmp, secondaryVersionTmp );
 
         accessoryFwVersions = [NSString stringWithCString:accessoryFwVersionsTmp encoding:NSASCIIStringEncoding];
+
+        primaryVersion   = [NSString stringWithCString:primaryVersionTmp encoding:NSASCIIStringEncoding];
+        secondaryVersion = [NSString stringWithCString:secondaryVersionTmp encoding:NSASCIIStringEncoding];
+        NSLog( @"primary version: %@", primaryVersion );
+        NSLog( @"secondary version: %@", secondaryVersion );
 
         NSArray * parts = [accessoryFwVersions componentsSeparatedByString:@";"];
         if ( parts.count != 2 ) {
@@ -139,7 +150,7 @@ enum {
                 ((CellData *)self.cellData[ @(kName) ]).value = [NSString stringWithCString:info.name encoding:NSASCIIStringEncoding];
                 ((CellData *)self.cellData[ @(kFccId) ]).value = [NSString stringWithCString:info.fccId encoding:NSASCIIStringEncoding];
                 ((CellData *)self.cellData[ @(kHwVersion) ]).value = [NSString stringWithCString:info.hwVersion encoding:NSASCIIStringEncoding];
-                ((CellData *)self.cellData[ @(kFirmwareVersion) ]).value = [NSString stringWithFormat:@"%d.%d-%c", info.swVerMajor, info.swVerMinor, info.devBuild];
+                ((CellData *)self.cellData[ @(kNurFirmwareVersion) ]).value = [NSString stringWithFormat:@"%d.%d-%c", info.swVerMajor, info.swVerMinor, info.devBuild];
             }
 
             if (error2 != NUR_NO_ERROR) {
@@ -170,6 +181,15 @@ enum {
             else {
                 // populate the cell data structures
                 ((CellData *)self.cellData[ @(kAccessoryFwVersion) ]).value = accessoryFwVersion;
+            }
+
+            if (error5 != NUR_NO_ERROR) {
+                // failed to get bootloader version
+                [self showErrorMessage:error5];
+            }
+            else {
+                // populate the cell data structures
+                ((CellData *)self.cellData[ @(kNurBootloaderVersion) ]).value = secondaryVersion;
             }
 
             [self.tableView reloadData];
@@ -218,8 +238,8 @@ enum {
                        @(kFccId): [CellData cellDataWithTitle:NSLocalizedString(@"FCC id", nil) value:@"?"],
                        @(kHwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Hardware version", nil) value:@"?"],
 
-                       @(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR firmware", nil) value:@"?"],
-                       //@(kFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR bootloader", nil) value:@"?"],
+                       @(kNurFirmwareVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR firmware", nil) value:@"?"],
+                       @(kNurBootloaderVersion): [CellData cellDataWithTitle:NSLocalizedString(@"NUR bootloader", nil) value:@"?"],
                        @(kAccessoryFwVersion): [CellData cellDataWithTitle:NSLocalizedString(@"Device firmware", nil) value:@"?"],
 
                        @(kBatteryPercentage): [CellData cellDataWithTitle:NSLocalizedString(@"Percentage", nil) value:@"?"],
@@ -257,7 +277,7 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch ( section ) {
         case 0:
-            return 7;
+            return 8;
         case 1:
             return 2;
         case 2:
