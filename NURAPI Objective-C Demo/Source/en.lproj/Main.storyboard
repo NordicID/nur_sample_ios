@@ -911,55 +911,61 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nordic ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idl-0K-YXL" customClass="ThemeableTitleLabel">
-                                <rect key="frame" x="163.66666666666666" y="40" width="87" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <rect key="frame" x="167.33333333333334" y="40" width="80" height="21.666666666666671"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IoT-center, Joensuunkatu 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcQ-gC-B9N" customClass="ThemeableLabel">
-                                <rect key="frame" x="103.66666666666669" y="139.66666666666666" width="207" height="20.333333333333343"/>
+                                <rect key="frame" x="103.66666666666669" y="137.33333333333334" width="207" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telephone: +358 2 727 7700" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffA-GT-qTO" customClass="ThemeableLabel">
-                                <rect key="frame" x="96.666666666666686" y="207" width="221" height="20.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telephone: +358 2 727 7700" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffA-GT-qTO" customClass="ThemeableAttributedLabel">
+                                <rect key="frame" x="96.666666666666686" y="231.66666666666666" width="221" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax: +358 2 727 7720" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-9L-dhx" customClass="ThemeableLabel">
-                                <rect key="frame" x="123" y="233.66666666666666" width="168" height="20.333333333333343"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax: +358 2 727 7720" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-9L-dhx" customClass="ThemeableAttributedLabel">
+                                <rect key="frame" x="123" y="258.33333333333331" width="168" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="info@nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4A-FY-jKq" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="136" y="274" width="143" height="21"/>
+                                <rect key="frame" x="136" y="298.66666666666669" width="143" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckh-3E-79I" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="137" y="315" width="141.33333333333337" height="21"/>
+                                <rect key="frame" x="137" y="339.66666666666669" width="141.33333333333337" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="International headquarter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-RF-zni" customClass="ThemeableLabel">
-                                <rect key="frame" x="101.66666666666669" y="93" width="211" height="20.666666666666671"/>
+                                <rect key="frame" x="101.66666666666669" y="90.666666666666671" width="211" height="20.666666666666671"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On GitHub: github.com/NordicID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-EW-k9b" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="83.333333333333329" y="356" width="247.66666666666669" height="21"/>
+                                <rect key="frame" x="83.333333333333329" y="380.66666666666669" width="247.66666666666669" height="21"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24100 Salo, Finland" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odk-L7-ILj" customClass="ThemeableLabel">
-                                <rect key="frame" x="132" y="166" width="150" height="21"/>
+                                <rect key="frame" x="132" y="163.66666666666666" width="150" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finland" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulk-5L-zKr" customClass="ThemeableLabel">
+                                <rect key="frame" x="179" y="190.66666666666666" width="56" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -972,6 +978,7 @@
                             <constraint firstItem="odk-L7-ILj" firstAttribute="centerX" secondItem="DGH-EY-2L9" secondAttribute="centerX" id="B1l-Pf-xGc"/>
                             <constraint firstItem="8aX-RF-zni" firstAttribute="centerX" secondItem="DGH-EY-2L9" secondAttribute="centerX" id="Iej-8e-yPT"/>
                             <constraint firstItem="gcQ-gC-B9N" firstAttribute="centerX" secondItem="DGH-EY-2L9" secondAttribute="centerX" id="KBX-ce-6Y9"/>
+                            <constraint firstItem="ulk-5L-zKr" firstAttribute="top" secondItem="odk-L7-ILj" secondAttribute="bottom" constant="6" id="LsW-Un-eDy"/>
                             <constraint firstItem="Df5-EW-k9b" firstAttribute="centerX" secondItem="DGH-EY-2L9" secondAttribute="centerX" id="MPa-nP-AiN"/>
                             <constraint firstItem="Idl-0K-YXL" firstAttribute="centerX" secondItem="DGH-EY-2L9" secondAttribute="centerX" id="N1H-Ox-vXa"/>
                             <constraint firstItem="Idl-0K-YXL" firstAttribute="top" secondItem="FHg-Ne-LgK" secondAttribute="bottom" constant="40" id="QIC-4e-rfZ"/>
@@ -982,15 +989,22 @@
                             <constraint firstItem="odk-L7-ILj" firstAttribute="top" secondItem="gcQ-gC-B9N" secondAttribute="bottom" constant="6" id="dU0-nj-m2v"/>
                             <constraint firstItem="8aX-RF-zni" firstAttribute="top" secondItem="Idl-0K-YXL" secondAttribute="bottom" constant="29" id="goZ-U7-YpH"/>
                             <constraint firstItem="ckh-3E-79I" firstAttribute="top" secondItem="y4A-FY-jKq" secondAttribute="bottom" constant="20" id="kYB-e1-0mK"/>
+                            <constraint firstItem="ffA-GT-qTO" firstAttribute="top" secondItem="ulk-5L-zKr" secondAttribute="bottom" constant="20" id="lT7-B7-QzK"/>
                             <constraint firstItem="ffA-GT-qTO" firstAttribute="centerX" secondItem="DGH-EY-2L9" secondAttribute="centerX" id="mj4-wV-one"/>
-                            <constraint firstItem="ffA-GT-qTO" firstAttribute="top" secondItem="odk-L7-ILj" secondAttribute="bottom" constant="20" id="nVP-ob-1Yn"/>
+                            <constraint firstItem="ulk-5L-zKr" firstAttribute="centerX" secondItem="DGH-EY-2L9" secondAttribute="centerX" id="pJL-xO-r7D"/>
                             <constraint firstItem="gcQ-gC-B9N" firstAttribute="top" secondItem="8aX-RF-zni" secondAttribute="bottom" constant="26" id="tU5-wH-ckd"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Contact" image="Contact" id="tWP-LW-rCq"/>
                     <connections>
+                        <outlet property="addressLabel1" destination="gcQ-gC-B9N" id="OrP-Lv-pTo"/>
+                        <outlet property="addressLabel2" destination="odk-L7-ILj" id="m62-d1-KJB"/>
+                        <outlet property="addressLabel3" destination="ulk-5L-zKr" id="g02-0M-Zib"/>
+                        <outlet property="companyLabel" destination="Idl-0K-YXL" id="9VB-av-zRu"/>
                         <outlet property="emailLabel" destination="y4A-FY-jKq" id="miI-Kw-tLJ"/>
+                        <outlet property="faxLabel" destination="fi8-9L-dhx" id="xI7-On-800"/>
                         <outlet property="gitHubLabel" destination="Df5-EW-k9b" id="klO-Aq-6jc"/>
+                        <outlet property="phoneLabel" destination="ffA-GT-qTO" id="eHW-9j-O5h"/>
                         <outlet property="websiteLabel" destination="ckh-3E-79I" id="Y0P-02-1Mu"/>
                     </connections>
                 </viewController>
@@ -1056,8 +1070,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nordic ID RFID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTB-in-8gD" customClass="ThemeableTitleLabel">
-                                <rect key="frame" x="147.66666666666666" y="40" width="118.99999999999997" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <rect key="frame" x="144.66666666666666" y="40" width="124.99999999999997" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.99215686270000003" green="0.59215686270000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1106,6 +1120,7 @@
                     <tabBarItem key="tabBarItem" title="About" image="About" id="ma9-N6-BqK"/>
                     <connections>
                         <outlet property="appVersionLabel" destination="Ud2-iV-pOn" id="0nG-ul-rEb"/>
+                        <outlet property="companyLabel" destination="ZTB-in-8gD" id="Knz-bO-NeH"/>
                         <outlet property="gitHubLabel" destination="2Rd-Xy-3YF" id="bSa-1Y-ZuF"/>
                         <outlet property="nurApiVersionLabel" destination="nUF-j2-IVb" id="VgQ-d1-35f"/>
                     </connections>

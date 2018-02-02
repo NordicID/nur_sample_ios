@@ -40,7 +40,10 @@ enum {
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return advancedOptionsShown ? 3 : 2;
+    return 1;
+
+    // uncomment this to enable the advanced options that show the firmware update URL:s
+    //return advancedOptionsShown ? 3 : 2;
 }
 
 
@@ -98,6 +101,9 @@ enum {
             break;
 
         default:
+            // TODO: this uses the old URL:s from defaults. They are now in MetaData.plist. See FirmwareDownloader.h for
+            // how they are loaded now
+
             cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationSettingCell2" forIndexPath:indexPath];
             switch ( indexPath.row ) {
                 case kNurFirmware:

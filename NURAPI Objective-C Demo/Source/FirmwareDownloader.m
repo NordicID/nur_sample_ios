@@ -14,11 +14,14 @@
     if (self) {
         self.delegate = delegate;
 
-        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-        self.indexFileUrls = @{ @(kNurFirmware): [NSURL URLWithString:[defaults stringForKey:@"NurFirmwareIndexUrl"]],
-                                @(kNurBootloader): [NSURL URLWithString:[defaults stringForKey:@"NurBootloaderIndexUrl"]],
-                                @(kDeviceFirmware): [NSURL URLWithString:[defaults stringForKey:@"DeviceFirmwareIndexUrl"]],
-                                @(kDeviceBootloader): [NSURL URLWithString:[defaults stringForKey:@"DeviceBootloaderIndexUrl"]]};
+        // load the meta data plist from the bundle
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"MetaData" ofType:@"plist"];
+        NSDictionary *metadata = [[NSDictionary alloc] initWithContentsOfFile: path];
+
+        self.indexFileUrls = @{ @(kNurFirmware): [NSURL URLWithString:[metadata objectForKey:@"nurFirmwareIndexUrl"]],
+                                @(kNurBootloader): [NSURL URLWithString:[metadata objectForKey:@"nurBootloaderIndexUrl"]],
+                                @(kDeviceFirmware): [NSURL URLWithString:[metadata objectForKey:@"deviceFirmwareIndexUrl"]],
+                                @(kDeviceBootloader): [NSURL URLWithString:[metadata objectForKey:@"deviceBootloaderIndexUrl"]]};
     }
 
     return self;

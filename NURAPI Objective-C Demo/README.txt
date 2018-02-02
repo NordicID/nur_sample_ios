@@ -20,4 +20,4 @@ remnanants of the previous target.
 
 To create a new zip file or update it when there are changes, do:
 
-% zip -r Targets/<target>.zip Info.plist Source/EULA/EULA.txt Source/Theme/Theme.m Source/TargetAssets.xcassets Quick\ Guide/
+% zip -r Targets/<target>.zip Info.plist Source/EULA/EULA.txt Source/MetaData.plist Source/Theme/Theme.m Source/TargetAssets.xcassets Quick\ Guide/

@@ -11,10 +11,6 @@
 @end
 
 
-@interface AboutViewController ()
-
-@end
-
 @implementation AboutViewController
 
 - (void) viewDidLoad {
@@ -23,11 +19,32 @@
     // set up the theme
     [self setupTheme];
 
-    // set up links
-    self.gitHubLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
-    self.gitHubLabel.delegate = self;
-    self.gitHubLabel.userInteractionEnabled = YES;
-    self.gitHubLabel.text = @"github.com/NordicID/nur_sample_ios";
+    // load the meta data plist from the bundle
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"MetaData" ofType:@"plist"];
+
+    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:path] ) {
+        NSLog( @"no MetaData.plist file found in bundle");
+    }
+    else {
+        NSDictionary *metadata = [[NSDictionary alloc] initWithContentsOfFile: path];
+
+        // company name
+        self.companyLabel.text = [metadata objectForKey:@"about"];
+
+        // optional GitHub url
+        NSString * gitHubUrl = [metadata objectForKey:@"gitHubUrl"];
+
+        if ( gitHubUrl.length > 0 ) {
+            // set up links
+            self.gitHubLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+            self.gitHubLabel.delegate = self;
+            self.gitHubLabel.userInteractionEnabled = YES;
+            self.gitHubLabel.text = gitHubUrl;
+        }
+        else {
+            self.gitHubLabel.hidden = YES;
+        }
+    }
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );

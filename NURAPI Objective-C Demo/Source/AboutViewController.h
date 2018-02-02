@@ -6,6 +6,7 @@
 
 @interface AboutViewController : UIViewController <TTTAttributedLabelDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel * companyLabel;
 @property (weak, nonatomic) IBOutlet UILabel * appVersionLabel;
 @property (weak, nonatomic) IBOutlet UILabel * nurApiVersionLabel;
 @property (weak, nonatomic) IBOutlet UILabel * nurApiWrapperVersionLabel;

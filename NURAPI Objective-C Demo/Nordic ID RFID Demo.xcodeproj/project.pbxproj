@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F030F92202452070073055D /* MetaData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F030F91202452070073055D /* MetaData.plist */; };
+		6F030F95202471830073055D /* ThemeableTitleLabelInverted.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F030F93202471830073055D /* ThemeableTitleLabelInverted.m */; };
 		6F04D1631F8B7FAE0064A229 /* FirmwareSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */; };
 		6F04D1671F8B96950064A229 /* FirmwareSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */; };
 		6F050B281FA85B1D00D9CF95 /* EULA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F050B251FA85B1D00D9CF95 /* EULA.storyboard */; };
@@ -96,6 +98,9 @@
 		4A113DEBB001F96E887EFDA8 /* Pods-Alien Technology Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alien Technology Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		4FFF129810DC220C3978CA6A /* Pods-Nordic ID RFID Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nordic ID RFID Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alien_Technology_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F030F91202452070073055D /* MetaData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MetaData.plist; sourceTree = "<group>"; };
+		6F030F93202471830073055D /* ThemeableTitleLabelInverted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableTitleLabelInverted.m; sourceTree = "<group>"; };
+		6F030F94202471830073055D /* ThemeableTitleLabelInverted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableTitleLabelInverted.h; sourceTree = "<group>"; };
 		6F04D1611F8B7FAD0064A229 /* FirmwareSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareSectionHeader.m; sourceTree = "<group>"; };
 		6F04D1621F8B7FAE0064A229 /* FirmwareSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareSectionHeader.h; sourceTree = "<group>"; };
 		6F04D1661F8B96950064A229 /* FirmwareSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirmwareSectionHeader.xib; sourceTree = "<group>"; };
@@ -390,6 +395,7 @@
 				6F79598E1EC2D83000A458AA /* AppDelegate.h */,
 				6F79598F1EC2D83000A458AA /* AppDelegate.m */,
 				6F7959B51EC2D83000A458AA /* main.m */,
+				6F030F91202452070073055D /* MetaData.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -446,8 +452,6 @@
 		6FED46E11F9B4BA0009BB353 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				6F6234FC200E44C1005B5913 /* ThemeableLabelInverted.h */,
-				6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */,
 				6FED46E61F9B4DC2009BB353 /* Theme.h */,
 				6FF69B741FE913EC004C20B2 /* Theme.m */,
 				6FED46F81F9B5A8F009BB353 /* ThemeableAttributedLabel.h */,
@@ -458,6 +462,8 @@
 				6FED47031F9DFF60009BB353 /* ThemeableCollectionView.m */,
 				6FED46EB1F9B515E009BB353 /* ThemeableLabel.h */,
 				6FED46EC1F9B515E009BB353 /* ThemeableLabel.m */,
+				6F6234FC200E44C1005B5913 /* ThemeableLabelInverted.h */,
+				6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */,
 				6FED470B1F9E0C00009BB353 /* ThemeableTabBar.h */,
 				6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */,
 				6FED46F41F9B5931009BB353 /* ThemeableTableViewCell.h */,
@@ -466,6 +472,8 @@
 				6FED46FC1F9BA179009BB353 /* ThemeableTextField.m */,
 				6FED46F01F9B5236009BB353 /* ThemeableTitleLabel.h */,
 				6FED46EF1F9B5236009BB353 /* ThemeableTitleLabel.m */,
+				6F030F94202471830073055D /* ThemeableTitleLabelInverted.h */,
+				6F030F93202471830073055D /* ThemeableTitleLabelInverted.m */,
 				6FED46FF1F9DFE37009BB353 /* ThemeableView.h */,
 				6FED47001F9DFE37009BB353 /* ThemeableView.m */,
 				6FED46E81F9B4DC2009BB353 /* ThemeManager.h */,
@@ -557,6 +565,7 @@
 				6F050B281FA85B1D00D9CF95 /* EULA.storyboard in Resources */,
 				6F795A431EC2FB8100A458AA /* Localizable.strings in Resources */,
 				6F795A171EC2D90E00A458AA /* QuickGuide.html in Resources */,
+				6F030F92202452070073055D /* MetaData.plist in Resources */,
 				6FE7549B1F96484500CE8B66 /* TargetAssets.xcassets in Resources */,
 				6FF69B731FE913C4004C20B2 /* EULA.txt in Resources */,
 				6F795A101EC2D8FD00A458AA /* blep_100ms.wav in Resources */,
@@ -594,9 +603,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -635,13 +651,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nordic ID RFID Demo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -651,6 +670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F030F95202471830073055D /* ThemeableTitleLabelInverted.m in Sources */,
 				6F91967A200CDFE80016D35B /* RegionLockCell.m in Sources */,
 				6F7959E51EC2D83000A458AA /* ContactViewController.m in Sources */,
 				6FED47091F9E03A3009BB353 /* UIViewController+Theme.m in Sources */,

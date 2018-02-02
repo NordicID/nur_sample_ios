@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>about</key>
+	<string>Nordic ID RFID Demo</string>
+	<key>address1</key>
+	<string>IoT-center, Joensuunkatu 7</string>
+	<key>address2</key>
+	<string>24100 Salo</string>
+	<key>address3</key>
+	<string>Finland</string>
+	<key>phone</key>
+	<string>Telephone: +358 2 727 7700</string>
+	<key>fax</key>
+	<string>Fax: +358 2 727 7720</string>
+	<key>email</key>
+	<string>info@nordicid.com</string>
+	<key>website</key>
+	<string>www.nordicid.com</string>
+	<key>companyName</key>
+	<string>Nordic ID</string>
+	<key>gitHubUrl</key>
+	<string>github.com/NordicID/nur_sample_ios</string>
+	<key>nurFirmwareIndexUrl</key>
+	<string>https://raw.githubusercontent.com/NordicID/nur_firmware/master/firmwares.json</string>
+	<key>nurBootloaderIndexUrl</key>
+	<string>https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/firmwares.json</string>
+	<key>deviceFirmwareIndexUrl</key>
+	<string>https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Applicationfirmwares.json</string>
+	<key>deviceBootloaderIndexUrl</key>
+	<string>https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Bootloaderfirmwares.json</string>
+</dict>
+</plist>

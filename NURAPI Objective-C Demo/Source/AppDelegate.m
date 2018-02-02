@@ -8,14 +8,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // register default values for user defaults
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{
-                                                              @"NurFirmwareIndexUrl": @"https://raw.githubusercontent.com/NordicID/nur_firmware/master/firmwares.json",
-                                                              @"NurBootloaderIndexUrl": @"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/firmwares.json",
-                                                              @"DeviceFirmwareIndexUrl":@"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Applicationfirmwares.json",
-                                                              @"DeviceBootloaderIndexUrl": @"https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Bootloaderfirmwares.json"
-                                                              }];
-
     // set up the connection manager so that it's aware of everything that happens
     //[[ConnectionManager sharedInstance] setup];
 
