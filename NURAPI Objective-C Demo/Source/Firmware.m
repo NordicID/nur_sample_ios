@@ -55,6 +55,10 @@
 }
 
 
+- (BOOL) suitableForModel:(NSString *)model {
+    return model != nil && [self.hw containsObject:model];
+}
+
 + (NSUInteger) calculateCompareVersion:(NSString *)version type:(FirmwareType)type {
     if ( type == kDeviceBootloader ) {
         return [version intValue];

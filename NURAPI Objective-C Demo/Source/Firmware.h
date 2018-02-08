@@ -38,6 +38,11 @@ typedef enum {
 - (instancetype) initWithName:(NSString *)name type:(FirmwareType)type version:(NSString *)version buildTime:(NSDate *)buildTime url:(NSURL *)url md5:(NSString *)md5 hw:(NSArray *)hw;
 
 /**
+ * Returns YES if this firmware is suitable for a device with the given hardware model.
+ **/
+- (BOOL) suitableForModel:(NSString *)model;
+
+/**
  * Calculates a numeric value from the given version that can be used to compare versions of the given type. It can not be used
  * to compare versions of different firmware types. A larger value means a higher version.
  **/

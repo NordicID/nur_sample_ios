@@ -18,7 +18,8 @@
 
 @property (nonatomic, strong) NSMutableArray *     versionStrings;
 
-@property (nonatomic, strong) NSString *           modelName;
+@property (nonatomic, strong) NSString *           nurModelName;
+@property (nonatomic, strong) NSString *           exaModelName;
 
 @end
 
@@ -86,6 +87,7 @@
 - (void) fetchDeviceInformation {
     dispatch_async(self.dispatchQueue, ^{
         struct NUR_READERINFO info;
+        NUR_ACC_CONFIG accessoryInfo;
         TCHAR deviceVersionsTmp[32] = _T("");
         TCHAR primaryVersionTmp[32] = _T("");
         TCHAR secondaryVersionTmp[32] = _T("");
@@ -97,6 +99,7 @@
         int error1 = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &info, sizeof(struct NUR_READERINFO) );
         int error2 = NurAccGetFwVersion( [Bluetooth sharedInstance].nurapiHandle, deviceVersionsTmp, 32);
         int error3 = NurApiGetVersions( [Bluetooth sharedInstance].nurapiHandle, &mode, primaryVersionTmp, secondaryVersionTmp );
+        int error4 = NurAccGetConfig( [Bluetooth sharedInstance].nurapiHandle, &accessoryInfo, sizeof(NUR_ACC_CONFIG));
 
         deviceVersions   = [NSString stringWithCString:deviceVersionsTmp encoding:NSASCIIStringEncoding];
         primaryVersion   = [NSString stringWithCString:primaryVersionTmp encoding:NSASCIIStringEncoding];
@@ -109,7 +112,7 @@
                 [self showNurApiErrorMessage:error1];
             }
             else {
-                self.modelName = [NSString stringWithCString:info.name encoding:NSASCIIStringEncoding];
+                self.nurModelName = [NSString stringWithCString:info.name encoding:NSASCIIStringEncoding];
 
                 // version info
                 int majorVersion = info.swVerMajor;
@@ -119,7 +122,7 @@
                 [self.versionStrings setObject:version atIndexedSubscript:kNurFirmware];
                 compareVersions[kNurFirmware] = [Firmware calculateCompareVersion:version type:kNurFirmware];
 
-                NSLog( @"our device model: %@", self.modelName );
+                NSLog( @"our device model: %@", self.nurModelName );
                 NSLog( @"current NUR firmware version: %@", self.versionStrings[kNurFirmware] );
             }
 
@@ -171,10 +174,20 @@
                 compareVersions[kNurBootloader] = [Firmware calculateCompareVersion:secondaryVersion type:kNurBootloader];
             }
 
+            if (error4 != NUR_NO_ERROR) {
+                // failed to get accessory version
+                [self showNurApiErrorMessage:error4];
+            }
+            else {
+                NSArray * modelParts = [[NSString stringWithCString:accessoryInfo.device_name encoding:NSASCIIStringEncoding] componentsSeparatedByString:@" "];
+                self.exaModelName = modelParts.count == 0 ? @"unknown model" : modelParts[0];
+                NSLog( @"exa model: %@", self.exaModelName);
+            }
+
             for ( int index = 0; index < 4; ++index ) {
                 NSLog( @"compare version: %@ == %lu", self.versionStrings[index], (unsigned long)compareVersions[index] );
             }
-            
+
             // now start downloading the index file that we have all own versions
             [self.downloader downloadIndexFiles];
         });
@@ -298,6 +311,13 @@
     // only actually use the ones that are newer than ours
     NSMutableArray * valid = [NSMutableArray new];
     for ( Firmware * firmware in firmwares ) {
+        if ( ![firmware suitableForModel:self.nurModelName] && ![firmware suitableForModel:self.exaModelName] ) {
+            //NSLog( @"not for our hw");
+            continue;
+        }
+
+        //NSLog( @"this firmware is for our model" );
+
         if ( firmware.compareVersion > compareVersions[type] ) {
             NSLog( @"found newer firmware: %@", firmware );
             [valid addObject:firmware];

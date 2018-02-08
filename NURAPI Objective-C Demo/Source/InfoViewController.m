@@ -74,6 +74,7 @@ enum {
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         [self.tableView reloadData];
+
         // prompt the user to connect a reader
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
                                                                         message:NSLocalizedString(@"No RFID reader connected!", nil)
