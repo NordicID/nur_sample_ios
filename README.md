@@ -182,3 +182,6 @@ done
 For more discussion and the original script, see:
 
 http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/
+
+### License
+All source files in this repository is provided under terms specified in [LICENSE](LICENSE) file.
