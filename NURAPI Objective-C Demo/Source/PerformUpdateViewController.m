@@ -1,6 +1,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import <NurAPIBluetooth/Bluetooth.h>
+#import <NurAPIBluetooth/NurAccessoryExtension.h>
 
 #import "PerformUpdateViewController.h"
 
@@ -11,6 +12,8 @@
 @property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 @property (nonatomic, strong) DFUServiceController * dfuController;
 
+@property (nonatomic, strong) NSString * dfuDeviceName;
+
 @end
 
 @implementation PerformUpdateViewController
@@ -20,6 +23,9 @@
 
     // set up the theme
     [self setupTheme];
+
+    // the name of the device when it's in DFU mode
+    self.dfuDeviceName = @"DfuExa";
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
@@ -173,53 +179,34 @@
 #pragma mark - Device update
 
 - (void) performDeviceUpdate {
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Not enabled", nil)
-                                                                    message:NSLocalizedString(@"Device firmware updating is currently not enabled! It will be enabled in a future update to this application.", nil)
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction
-                      actionWithTitle:NSLocalizedString(@"Ok", nil)
-                      style:UIAlertActionStyleDefault
-                      handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
-    return;
-
-    NSLog( @"performing a device update" );
-
-    // precautions
-    CBCentralManager * centralManager = [Bluetooth sharedInstance].central;
-    CBPeripheral * reader = [Bluetooth sharedInstance].currentReader;
-    if ( reader == nil ) {
-        // no reader, the we can't really proceed with this process
-    }
+    //    NSLog( @"performing a device update" );
 
     // show a progress view
     self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Updating NUR firmware", nil)
-                                                               message:NSLocalizedString(@"Update progress 0%", nil)
+                                                               message:NSLocalizedString(@"Initializing...", nil)
                                                         preferredStyle:UIAlertControllerStyleAlert];
 
     // when the dialog is up, then start updating
     [self presentViewController:self.inProgressAlert animated:YES completion:^{
-        NSLog( @"DFU starting" );
-        DFUFirmwareType type = self.firmware.type == kDeviceFirmware ? DFUFirmwareTypeApplication : DFUFirmwareTypeBootloader;
-        DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithZipFile:self.firmwareData type:type];
+        // perform the rebooting using a custom raw command
+        dispatch_async(self.dispatchQueue, ^{
+            NSLog( @"DFU starting, rebooting the reader" );
+            BYTE command[2] = { ACC_EXT_RESTART, RESET_BOOTLOADER_DFU_START };
+            int error = [[Bluetooth sharedInstance] writeRawCommand:NUR_CMD_ACC_EXT buffer:command bufferLen:2];
 
-        // disconnect from the reader
-        [[Bluetooth sharedInstance] disconnectFromReader];
-        
-        DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:centralManager target:reader];
-        [initiator withFirmware:selectedFirmware];
+            if ( error != NUR_NO_ERROR ) {
+                NSLog( @"failed to reboot reader into DFU mode");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showNurApiErrorMessage:error];
+                    return;
+                });
+            }
 
-        // Optional:
-        // initiator.forceDfu = YES/NO; // default NO
-        // initiator.packetReceiptNotificationParameter = N; // default is 12
-        initiator.logger = self; // - to get log info
-        initiator.delegate = self; // - to be informed about current state and errors
-        initiator.progressDelegate = self; 
-                                           // initiator.peripheralSelector = ... // the default selector is used
+            NSLog( @"reader rebooted ok, starting a scan to find the device after it is back in DFU mode" );
 
-        self.dfuController = [initiator start];
-        NSLog( @"DFU has started" );
-    }];
+            [[Bluetooth sharedInstance] startDfuScanning];
+        });
+     }];
 }
 
 
@@ -227,7 +214,14 @@
 #pragma mark - DFU delegate methods
 
 - (void) dfuProgressDidChangeFor:(NSInteger)part outOf:(NSInteger)totalParts to:(NSInteger)progress currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond {
-    NSLog( @"DFU progress, part: %ld, total: %ld, to: %ld", (long)part, (long)totalParts, (long)progress );
+    NSLog( @"DFU progress, part: %ld, total: %ld, progress: %ld %%", (long)part, (long)totalParts, (long)progress );
+
+    // update the alert
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ( self.inProgressAlert ) {
+            self.inProgressAlert.message = [NSString stringWithFormat:NSLocalizedString(@"Update progress %d%%", nil), progress];
+        }
+    });
 }
 
 
@@ -237,7 +231,80 @@
 
 
 - (void) dfuStateDidChangeTo:(enum DFUState)state {
-    NSLog( @"DFU state changed to: %ld", (long)state );
+    NSString * message = nil;
+
+    switch ( state ) {
+        case DFUStateConnecting:
+            message = @"Connecting to the reader";
+            break;
+        case DFUStateStarting:
+            message = @"Starting the update...";
+            break;
+        case DFUStateEnablingDfuMode:
+            message = @"Enabling DFU mode...";
+            break;
+        case DFUStateUploading:
+            message = @"Uploading the firmware to the reader...";
+            break;
+        case DFUStateValidating:
+            message = @"Validating the update...";
+            break;
+        case DFUStateDisconnecting:
+            message = @"Disconnecting from the reader";
+            break;
+        case DFUStateCompleted:
+            message = @"The update completed successfully";
+            break;
+        case DFUStateAborted:
+            message = @"The update was aborted!";
+            break;
+    }
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // special handling of the completed states
+        if ( state == DFUStateCompleted || state == DFUStateAborted ) {
+            NSLog( @"update completed, cleaning up" );
+
+            // first restore the delegate from the central manager to the bluetooth manager
+            // TODO: this should be moved into NurAPIBluetooth
+            [Bluetooth sharedInstance].central.delegate = [Bluetooth sharedInstance];
+
+            // dismiss the current progress alert
+            [self.inProgressAlert dismissViewControllerAnimated:YES completion:^{
+                self.inProgressAlert = nil;
+
+                // show a final alert with the finishing status
+                UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Update finished", nil)
+                                                                                message:message
+                                                                         preferredStyle:UIAlertControllerStyleAlert];
+
+                // when "Ok" is tapped pop off this view controller
+                UIAlertAction* okButton = [UIAlertAction
+                                           actionWithTitle:NSLocalizedString(@"Close", nil)
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * action) {
+                                               if ( self.navigationController ) {
+                                                   [self.navigationController popToRootViewControllerAnimated:YES];
+                                               }
+                                               else if ( self.parentViewController && self.parentViewController.navigationController ) {
+                                                   [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+                                               }
+                                           }];
+
+
+                [alert addAction:okButton];
+                [self presentViewController:alert animated:YES completion:nil];
+                return;
+            }];
+        }
+
+        // update the alert
+        if ( message != nil ) {
+            if ( self.inProgressAlert ) {
+                self.inProgressAlert.message = message;
+            }
+        }
+    });
 }
 
 
@@ -254,7 +321,7 @@
 
     // show a progress view
     self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Updating NUR firmware", nil)
-                                                               message:NSLocalizedString(@"Update progress 0%", nil)
+                                                               message:NSLocalizedString(@"Initializing...", nil)
                                                         preferredStyle:UIAlertControllerStyleAlert];
 
     // when the dialog is up, then start updating
@@ -497,6 +564,39 @@
 
 //*****************************************************************************************************************
 #pragma mark - Bluetooth delegate
+
+- (void) readerInDfuModeFound:(CBPeripheral *)reader {
+    NSLog( @"found reader %@ in DFU mode", reader.identifier.UUIDString);
+
+    // is it one of ours?
+    if ( ![self.dfuDeviceName isEqualToString:reader.name] ) {
+        NSLog( @"device %@ is not an EXA device (%@), ignoring", reader.name, self.dfuDeviceName );
+        return;
+    }
+
+    // stop scanning for new devices, one is enough
+    [[Bluetooth sharedInstance] stopScanning];
+
+    DFUFirmwareType type = self.firmware.type == kDeviceFirmware ? DFUFirmwareTypeApplication : DFUFirmwareTypeBootloader;
+    DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithZipFile:self.firmwareData type:type];
+
+    // set up the DFU initiator.
+    // NOTE: this will take over the delegate from us!
+    DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:[Bluetooth sharedInstance].central
+                                                                                  target:reader];
+    [initiator withFirmware:selectedFirmware];
+
+    initiator.logger = self; // - to get log info
+    initiator.delegate = self; // - to be informed about current state and errors
+    initiator.progressDelegate = self;
+    initiator.packetReceiptNotificationParameter = 12;
+    initiator.forceDfu = NO;
+    // initiator.peripheralSelector = ... // the default selector is used
+
+    self.dfuController = [initiator start];
+    NSLog( @"DFU has started" );
+}
+
 
 - (void) notificationReceived:(DWORD)timestamp type:(int)type data:(LPVOID)data length:(int)length {
     switch ( type ) {

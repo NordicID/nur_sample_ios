@@ -3,6 +3,7 @@
 
 #import "TuneViewController.h"
 #import "AudioPlayer.h"
+#import "UIViewController+ErrorMessage.h"
 
 @interface TuneViewController ()
 
@@ -119,7 +120,7 @@
                     // show error on UI thread
                     dispatch_async( dispatch_get_main_queue(), ^{
                         [alert dismissViewControllerAnimated:YES completion:nil];
-                        [self showErrorMessage:error];
+                        [self showNurApiErrorMessage:error];
                     });
 
                     return;
@@ -143,32 +144,6 @@
             [alert dismissViewControllerAnimated:YES completion:nil];
         } );
     });
-}
-
-
-- (void) showErrorMessage:(int)error {
-    // extract the NURAPI error
-    char buffer[256];
-    NurApiGetErrorMessage( error, buffer, 256 );
-    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-    NSLog( @"NURAPI error: %@", message );
-
-    // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                    message:message
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:NSLocalizedString(@"Ok", nil)
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action) {
-                                   // nothing special to do right now
-                               }];
-
-
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

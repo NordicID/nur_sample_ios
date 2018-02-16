@@ -1,109 +1,48 @@
 
-IMPORTANT – READ CAREFULLY THIS END USER LICENSE AGREEMENT (“EULA”) BEFORE INSTALLING OR USING THE SOFTWARE.
+BY OPENING THE SOFTWARE MEDIA PACKAGE, YOU AGREE TO THE TERMS OF THIS END USER LICENSE AGREEMENT AND ANY PROVIDED SUPPLEMENTAL TERMS (COLLECTIVELY “AGREEMENT”). IF YOU ARE ACCESSING THE SOFTWARE ELECTRONICALLY, INDICATE YOUR ACCEPTANCE OF THESE TERMS BY SELECTING THE "ACCEPT" BUTTON AT THE END OF THIS AGREEMENT. IF YOU DO NOT AGREE TO ALL THESE TERMS, PROMPTLY RETURN THE UNUSED SOFTWARE TO YOUR PLACE OF PURCHASE FOR A REFUND OR, IF THE SOFTWARE IS ACCESSED ELECTRONICALLY, SELECT THE "DECLINE" BUTTON AT THE END OF THIS AGREEMENT.
 
-By using the Device on which Software is installed, You agree to be bound by the terms of this EULA, including the warranty
-disclaimers and limitations of liability provisions below. If You do not agree to the terms of this EULA, You may not use the
-Device or install the Software. Instead, promptly contact the reseller You purchased the Device from for Instructions on
-return of unused Device(s) for a refund.
+Section 1 	GRANT OF LICENSE.  This Agreement grants you a personal, non-exclusive and non-transferable license to use the software components and the accompanying documentation (collectively “Software”) supplied to you by Alien Technology, LLC (“Alien”) subject to the Conditions of Use set forth in Section 2 below and the terms and conditions of this Agreement. The Software includes the software supplied to you on any media, including without limitation disks, diskettes, CD-ROM disks, and as part of the equipment enclosed with Alien product (the “Hardware”) and any modifications, enhancements to and/or replacements of such Software supplied to you by Alien. This Agreement also imposes certain restrictions on your use of the Software and Hardware.
 
-ANY INSTALLATION OR USE OF THE SOFTWARE OR THE DEVICE ON WHICH SOFTWARE IS INSTALLED INDICATES
-YOUR AGREEMENT TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS EULA (OR RATIFICATION OF ANY
-PREVIOUS CONSENT). PROPRIETARY RIGHTS AND LICENSE
+Section 2	CONDITIONS OF USE.  Any use of the Software outside of the conditions (“Conditions of Use”) set forth herein is strictly prohibited and will be deemed a breach of this Agreement:
+2.1	Only your employees or agents may use the Software.  You will take all necessary steps to insure that your employees and agents abide by the terms of this Agreement.  
+2.2	You may use the Software (i) only for developing value-added and lawful applications in connection with the Software, (ii) only as described in the Software or product documentation; (iii) only with its related Hardware product, if the Software is provided on or with equipment; and (iv) in strict accordance with this Agreement.
+2.3	You may not transfer, copy, download, or in any way install or use the Software at a different or additional location.  
+2.4	Unless enforcement is prohibited by applicable law, you will not modify, reverse engineer, prepare derivative works of, de-compile or disassemble any object code of the Software or the Hardware for any reason.  You may not make any copy of any of the Software and you may not make any copy of any of the written materials accompanying the Software and/or Hardware, except that you may make one copy per single licensed location of Software for backup or archival purposes.  With regard to the copy made for backup or archival purposes, you agree to reproduce any Alien copyright notice, and other proprietary legends appearing thereon.  Such copyright notice(s) may appear in any of several forms, including machine-readable form, and you agree to reproduce such notice in each form in which it appears, to the extent it is physically possible to do so.   
+2.5	You will not remove, destroy, or alter any proprietary markings or legends placed upon or contained within the Software, related materials or documentation. 
+2.6	Provided all the terms of this Agreement are complied with, you may redistribute the object code built from the source files provided as parts of the Software.  Otherwise, you will not export, re-export, resell, ship or divert or cause to be exported, re-exported, resold, shipped or diverted, directly or indirectly, the Software under this Agreement.
 
-You agree that the Software constitute trade secrets and/or copyrighted material of Nordic ID, its licensors, or other
-software suppliers. All rights, title and interest in and to the Software (including, without limitation, any images,
-photographs, animations, video, audio, music, text, and applets incorporated into the Software, the accompanying
-media and printed materials), and any copies of the Software are owned by Nordic ID, its licensors or other software
-suppliers.
+Section 3  	RESTRICTIONS.  Software is confidential and copyrighted.  Alien and its licensors retain ownership the Software and no rights are granted to you other than a license to use the Software on the terms expressly set forth in this Agreement. You acknowledge that the underlying structure, sequence, organization and source code of the Software and the design and structure of the Hardware are valuable trade secrets of Alien and/or its licensors.  
 
-You acknowledge and agree that nothing in this EULA gives You any right, title or interest in and to the Software except the
-limited rights expressly granted herein. You agree to maintain and reproduce all copyright and other proprietary notices of
-Software. Nordic ID hereby grants You a license to use the Software subject to the following terms and conditions: Unless
-expressly provided in the Documentation, You may use the Software only as embedded in, for execution on, or (where the
-applicable Documentation permits installation on non-Nordic ID equipment) for communication with Device. You have no
-right to use Revisions unless You, at the time of acquiring such Revision hold a valid license to the original Software and have
-paid the applicable license fees (if any)
+Section 4	NO RIGHT TO USE ALIEN’S NAME.  You may not use any trademark of Alien, or any word or symbol likely to be confused with any Alien trademark, service mark, logo or trade name of Alien, either alone or in any combination with another word or words, without the prior written consent of an officer of Alien.
 
-The Software is licensed, not sold. Nordic ID hereby grants You a non-exclusive, terminable, limited license to use the
-Software on the Device(s) for Your own internal business purposes subject to payment of applicable license fees (if
-equired). No other right or license is granted or implied.
+Section 5	PAYMENT:	The rights granted hereunder are contingent upon payment to Alien for the Software and/or Hardware.  All payments shall be due net thirty (30) days from date of Alien's invoice.
 
-You agree not to modify, copy, distribute or otherwise disclose the Software without the prior written consent of Nordic ID. You
-further agree not to reverse engineer, disassemble, or decompile the Software, except and only to the extent that such
-activity is expressly permitted by applicable law notwithstanding this limitation. This license shall terminate
-when You no longer own or You cease to use the Device(s) on which You are licensed to use the Software. Your rights to the
-Software do not include any license, right, power or authority to subject the Software in whole or in part to any of the terms
-of an Excluded License. “Excluded License” means any license that requires as a condition of use, modification and/or
-distribution of Software subject to Excluded License, that such Software of other software combined or distributed with such
-software be a) disclosed or distributed in source code form; b) licensed for the purpose of making derivative works; or c)
-redistributable at no charge.
+Section 6	LIMITED WARRANTY.  Alien warrants that the media (the “Software Media”) which contain the Software will be free from defects in materials and workmanship for a period of ninety (90) days after transfer of title (the “Warranty Term”) provided that such defect does not arise from (a) abuse, misuse, neglect, vandalism or accident, (b) modification or repair of the Software by personnel not certified by Alien to perform such modification or repair, or (c) use of the Software outside of the environmental specifications set forth in published product specifications, manuals or other documentation.  The limited warranty for the Software Media set forth above does not apply to the Software itself, which is provided “AS IS.”  Your exclusive remedy and Alien's entire liability under this limited warranty will be at Alien's option to replace Software Media or refund the fee paid for Software.  
 
-You may not sell, lease, rent, assign, sublicense or transfer the Software except that You may transfer all of Your rights under
-this EULA as part of a sale or transfer of the Device(s). Such a sale or transfer may only be made if You retain no copies of
-the Software, You transfer all of the Software (including any media, archival copies, Revisions and Documentation) and the
-recipient agrees to abide by the terms of this EULA. A Revision may not be transferred unless You transfer all prior versions of
-the Software. In the event of any such transfer, You shall remain liable and responsible to Nordic ID for the performance
-of all of Your duties and obligations under this EULA. You agree to grant Nordic ID and its independent accountants
-the right to examine Your books, accounts and records to verify compliance with this EULA. In the event such an audit reveals
-non-compliance, You shall promptly sustain compliance and pay Nordic ID the applicable license fees (if any).
+Section 7	DISCLAIMER OF WARRANTY.  UNLESS SPECIFIED IN THIS AGREEMENT, ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT ARE DISCLAIMED, EXCEPT TO THE EXTENT THAT THESE DISCLAIMERS ARE HELD TO BE LEGALLY INVALID.
 
-DISCLAIMER OF WARRANTY AND LIMITATION OF LIABILITY
+Section 8 	LIMITATION OF LIABILITY. TO THE EXTENT NOT PROHIBITED BY LAW, IN NO EVENT WILL ALIEN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR SPECIAL, INDIRECT, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF OR RELATED TO THE USE OF OR INABILITY TO USE SOFTWARE, EVEN IF ALIEN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  In no event will Alien's liability to you, whether in contract, tort (including negligence), or otherwise, exceed the amount paid by you for Software under this Agreement. The foregoing limitations will apply even if the above stated warranty fails of its essential purpose.
 
-The software is not fault tolerant and is not designed, manufactured or intended for any use requiring fail-safe
-performance in which the failure of Software could lead to death, serious personal injury, severe physical or
-environmental damage (“High Risk Activities”). This includes the operation of aircraft, aircraft navigation or communication
-systems, direct life support machines or weapons systems or nuclear facilities. Use of Device in High Risk Activities is not
-licensed. The Software is not warranted to be compatible with all applications or environments. Contact the reseller You
-purchased the Device for information about hardware and/or software compatibility.
+Section 9	MAINTENANCE.  Alien shall not be responsible for maintenance or field service of the Software under this Agreement.
 
-NO WARRANTIES FOR THE SOFTWARE. THE SOFTWARE IS PROVIDED AS IS AND WITH ALL FAULTS. ITS
-LICENSORS AND OTHER SOFTWARE SUPPLIERS DISCLAIM ANY AND ALL PROMISES, REPRESENTATIONS,
-AND WARRANTIES WITH RESPECT TO THE SOFTWARE, INCLUDING ITS CONDITION, ITS CONFORMITY TO ANY
-REPRESENTATION OR DESCRIPTION, THE EXISTENCE OF ANY LATENT OR PATENT DEFECTS, ANY
-NEGLIGENCE AND ITS MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE OR NON-INFRINGEMENT. THE
-ENTIRE RISK WITH RESPECT TO THE SOFTWARE IS WITH YOU. IF YOU HAVE RECEIVED ANY WARRANTIES
-SOFTWARE, THOSE WARRANTIES DO NOT ORIGINATE FROM, AND ARE NOT BINDING ON, NORDIC ID, ITS
-LICENSORS OR ITS SOFTWARE SUPPLIERS EXCEPT AS PROHIBITED BY LAW, NEITHER NORDIC ID NOR ANY OF
-ITS SOFTWARE SUPPLIERS SHALL HAVE ANY LIABILITY FOR ANY DIRECT, INDIRECT, SPECIAL CONSEQUENTIAL
-OR INCIDENTAL DAMAGES ARISING FROM OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-THE SOFTWARE. THIS LIMITATION SHALL APPLY EVEN IF ANY REMEDY FAILS OF ITS ESSENTIAL PURPOSE. IN NO
-EVENT SHALL NORDIC ID OR NORDIC ID’S SOFTWARE SUPPLIERS BE LIABLE FOR ANY AMOUNT IN EXCESS OF
-THE INITIAL LICENCE FEE NORDIC ID RECEIVED FROM YOU FOR THE NORDIC ID DEVICE IN THE CASE OF
-NORDIC ID OR U.S. TWO HUNDRED AND FIFTY DOLLARS (U.S. $250.00) IN THE CASE OF NORDIC ID’S LICENSORS
-OR SOFTWARE SUPPLIERS. EXCEPT AS PROHIBITED BY LAW, NEITHER NORDIC ID
-NOR ANY OF ITS SOFTWARE SUPPLIERS SHALL HAVE ANY LIABILITY FOR ANY DIRECT, INDIRECT, SPECIAL
-CONSEQUENTIAL OR INCIDENTAL DAMAGES ARISING FROM OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THE SOFTWARE. THIS LIMITATION SHALL APPLY EVEN IF ANY REMEDY FAILS OF ITS
-ESSENTIAL PURPOSE. IN NO EVENT SHALL NORDIC ID OR NORDIC ID’S SOFTWARE SUPPLIERS BE LIABLE FOR
-ANY AMOUNT IN EXCESS OF THE INITIAL LICENSE FEE NORDIC ID RECEIVED FROM YOU FOR THE NORDIC ID
-DEVICE IN THE CASE OF NORDIC ID OR U.S. TWO HUNDRED AND FIFTY DOLLARS (U.S. $250.00) IN THE
-CASE OF NORDIC ID’S LICENSORS OR SOFTWARE SUPPLIERS.
+Section 10	TERMINATION.  Upon any violation of any of the provisions of this Agreement, your rights to use the Software and related Hardware shall automatically terminate without notice from Alien.  If terminated, you shall be obligated to return to Alien or to destroy the Software, and to return to Alien the Hardware at your expense.
 
-TERMINATION
+Section 11	ASSIGNMENT.  You may not transfer or assign your rights to use the Software without the prior written consent of Alien. Any attempted assignment without such consent shall be void. 
 
-Nordic ID, its licensors and its software suppliers reserve the right to terminate this EULA if You violate any term or condition
-of this EULA. If You assert any claims against Nordic ID, its licensors or software suppliers over patents that You think
-might apply to Software (including a cross claim or counterclaim in a lawsuit) Your license to the Software ends
-automatically. In the event of termination, You must stop using the Software and You shall immediately return to Nordic ID, all
-Software and any copies thereof and related Documentation and certify to Nordic ID that You have done so. The provisions
-of this paragraph of this EULA and any other material provisions of this EULA shall survive any termination of this EULA.
+Section 12	EXPORT REGULATIONS.  All Software and technical data delivered under this Agreement are subject to US export control laws and may be subject to export or import regulations in other countries. You agree to comply strictly with all such laws and regulations and acknowledge that you have the responsibility to obtain such licenses to export, re-export, or import as may be required after delivery to you.
 
-GENERAL PROVISIONS
+Section 13	U.S. GOVERNMENT RESTRICTED RIGHTS. If Software is being acquired by or on behalf of the U.S. Government or by a U.S. Government prime contractor or subcontractor (at any tier), then the Government's rights in Software and accompanying documentation will be only as set forth in this Agreement; this is in accordance with 48 CFR 227.7201 through 227.7202-4 (for Department of Defense (DOD) acquisitions) and with 48 CFR 2.101 and 12.212 (for non-DOD acquisitions).
 
-You agree that You will not export or import any portion of the Software to any country that is not party to either: (i) The Berne
-Convention of 1989, (ii) The Universal Copyright Convention, (iii) The Buenos Aires Convention, or (iv) a treaty with the
-United States of America (U.S.A.) which allows for the recognition of the property rights claimed by Nordic ID or its
-licensors and other software suppliers in the Software. Further the Devices are subject to United States and European Union
-export laws and regulations. You agree to comply with all domestic and international export laws and regulations that
-apply to the Devices. These laws include restrictions on destinations, end users and end use. U.S. Government
-Restricted Rights. If the Device or the Software is acquired under the terms of a U.S. Government contract, use,
-duplication, and disclosure are subject to the terms of this license and the restrictions contained in the Rights in Technical
-Data and Computer Software clause at 252.227-7013 (DOD contracts); and subdivisions (a) through (d) of 52.227-19 as applicable.
+Section 14	SEVERABILITY.  If any provision of this Agreement is held to be unenforceable, this Agreement will remain in effect with the provision omitted, unless omission would frustrate the intent of the parties, in which case this Agreement will immediately terminate.
 
-This EULA shall be governed by and construed under the laws of Finland. Any dispute arising out of this EULA shall be finally
-settled in arbitration by a sole arbitrator in accordance with the Arbitration Rules of the Central Chamber of Commerce, in
-Turku, Finland and in English language. However Nordic ID shall be entitled to seek injunctive relief in a competent court.
-Nordic ID may assign this EULA without the consent of You. If any portion hereof is found to be void or enforceable, the
-remaining portions of this Agreement shall remain in full force and effect. Except as expressly provided herein, this
-Agreement constitutes the entire agreement with respect to the license of Software and supersedes any conflicting or
-additional terms.
+Section 15	LAW.  This Agreement will be governed by and interpreted in accordance with the laws of the State of California.  Choice of law rules of any jurisdiction and the United Nations Convention on Contracts for the International Sale of Goods will not apply.  Alien and you agree to submit to the personal and exclusive jurisdiction of the Superior Court of the State of California for the County of Santa Clara or the United States District Court for the Northern District of California.
+
+Section 16	SURVIVAL OF PROVISIONS.  The parties agree that where the context of any provision indicates an intent that it shall survive, the term of this Agreement then it shall survive.
+
+Section 17	ENTIRE AGREEMENT.  This Agreement is the entire agreement between you and Alien relating to its subject matter.  It supersedes all prior or contemporaneous oral or written communications, proposals, representations and warranties and prevails over any conflicting or additional terms of any quote, order, acknowledgment, or other communication between the parties relating to its subject matter during the term of this Agreement. No modification of this Agreement will be binding, unless in writing and signed by an authorized representative of each party.
+
+For inquiries please contact: Alien Technology, LLC, 845 Embedded Way, San Jose, California 95138  USA.
+
+
+
+Doc Control #8500008-000 Rev D

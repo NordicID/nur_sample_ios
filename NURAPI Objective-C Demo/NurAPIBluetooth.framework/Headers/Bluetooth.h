@@ -2,6 +2,7 @@
 #import "NURAPI.h"
 #import "NurAccessoryExtension.h"
 #import "NurAPIBootloader.h"
+#import "NurCommands.h"
 
 #import <CoreBluetooth/CoreBluetooth.h>
 
@@ -37,6 +38,8 @@
  * @param rssi the current RSSi value.
  **/
 - (void) readerFound:(CBPeripheral *)reader rssi:(NSNumber *)rssi;
+
+- (void) readerInDfuModeFound:(CBPeripheral *)reader;
 
 /**
  * Callback for when the RSSi value of a connected reader is read using [reader readRSSI]. The RSSI value can not be
@@ -186,6 +189,8 @@
  * nothing.
  **/
 - (void) startScanning;
+
+- (void) startDfuScanning;
 
 /**
  * Stops scanning for devices. This should be called once a suitable device has been found and the connection to the

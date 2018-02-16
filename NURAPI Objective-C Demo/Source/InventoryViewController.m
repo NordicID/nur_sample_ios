@@ -5,6 +5,7 @@
 #import "TagManager.h"
 #import "TagViewController.h"
 #import "AverageBuffer.h"
+#import "UIViewController+ErrorMessage.h"
 
 @interface InventoryViewController ()
 
@@ -212,7 +213,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( error != NUR_NO_ERROR ) {
             NSLog( @"failed to start inventory stream" );
-            [self showErrorMessage:error];
+            [self showNurApiErrorMessage:error];
             return;
         }
     } );
@@ -232,7 +233,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( error != NUR_NO_ERROR ) {
             NSLog( @"failed to start inventory stream" );
-            [self showErrorMessage:error];
+            [self showNurApiErrorMessage:error];
             return;
         }
 
@@ -295,7 +296,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( error != NUR_NO_ERROR ) {
             NSLog( @"failed to stop inventory stream" );
-            [self showErrorMessage:error];
+            [self showNurApiErrorMessage:error];
             return;
         }
 
@@ -330,7 +331,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( error != NUR_NO_ERROR ) {
             NSLog( @"failed to start inventory stream" );
-            [self showErrorMessage:error];
+            [self showNurApiErrorMessage:error];
             return;
         }
     } );
@@ -402,32 +403,6 @@
     }
 
     NSLog( @"added tags: %lu, total: %lu", (unsigned long)tags.count, (unsigned long)[TagManager sharedInstance].tags.count );
-}
-
-
-- (void) showErrorMessage:(int)error {
-    // extract the NURAPI error
-    char buffer[256];
-    NurApiGetErrorMessage( error, buffer, 256 );
-    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-    NSLog( @"NURAPI error: %@", message );
-
-    // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                    message:message
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:NSLocalizedString(@"Ok", nil)
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action) {
-                                   // nothing special to do right now
-                               }];
-
-
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

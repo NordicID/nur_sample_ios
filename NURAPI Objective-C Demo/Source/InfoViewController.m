@@ -2,6 +2,7 @@
 #import <NurAPIBluetooth/Bluetooth.h>
 
 #import "InfoViewController.h"
+#import "UIViewController+ErrorMessage.h"
 
 @interface CellData : NSObject
 
@@ -142,7 +143,7 @@ enum {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error1 != NUR_NO_ERROR) {
                 // failed to get info
-                [self showErrorMessage:error1];
+                [self showNurApiErrorMessage:error1];
             }
             else {
                 // populate the cell data structures
@@ -156,7 +157,7 @@ enum {
 
             if (error2 != NUR_NO_ERROR) {
                 // failed to get battery info
-                [self showErrorMessage:error2];
+                [self showNurApiErrorMessage:error2];
             }
             else {
                 // populate the cell data structures
@@ -166,7 +167,7 @@ enum {
 
             if (error3 != NUR_NO_ERROR) {
                 // failed to get accessory info
-                [self showErrorMessage:error3];
+                [self showNurApiErrorMessage:error3];
             }
             else {
                 // populate the cell data structures
@@ -177,7 +178,7 @@ enum {
 
             if (error4 != NUR_NO_ERROR) {
                 // failed to get accessory version
-                [self showErrorMessage:error4];
+                [self showNurApiErrorMessage:error4];
             }
             else {
                 // populate the cell data structures
@@ -186,7 +187,7 @@ enum {
 
             if (error5 != NUR_NO_ERROR) {
                 // failed to get bootloader version
-                [self showErrorMessage:error5];
+                [self showNurApiErrorMessage:error5];
             }
             else {
                 // populate the cell data structures
@@ -203,32 +204,6 @@ enum {
     [super viewWillAppear:animated];
 
     self.parentViewController.navigationItem.title = NSLocalizedString(@"Info", nil);
-}
-
-
-- (void) showErrorMessage:(int)error {
-    // extract the NURAPI error
-    char buffer[256];
-    NurApiGetErrorMessage( error, buffer, 256 );
-    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-    NSLog( @"NURAPI error: %@", message );
-
-    // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                    message:message
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction* okButton = [UIAlertAction
-                                actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action) {
-                                    // nothing special to do right now
-                                }];
-
-
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

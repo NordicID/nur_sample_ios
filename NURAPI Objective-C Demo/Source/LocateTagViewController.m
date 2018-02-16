@@ -3,6 +3,7 @@
 #import "LocateTagAntennaSelector.h"
 #import "SmoothingBuffer.h"
 #import "AudioPlayer.h"
+#import "UIViewController+ErrorMessage.h"
 
 @interface LocateTagViewController () {
     unsigned char epc[NUR_MAX_EPC_LENGTH];
@@ -73,32 +74,6 @@
 }
 
 
-- (void) showErrorMessage:(int)error {
-    // extract the NURAPI error
-    char buffer[256];
-    NurApiGetErrorMessage( error, buffer, 256 );
-    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-    NSLog( @"NURAPI error: %@", message );
-
-    // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                    message:message
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction* okButton = [UIAlertAction
-                               actionWithTitle:NSLocalizedString(@"Ok", nil)
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action) {
-                                   // nothing special to do right now
-                               }];
-
-
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-
 - (IBAction) toggleLocating {
     // the reader can have disconnected while we were locating
     if ( ! [Bluetooth sharedInstance].currentReader ) {
@@ -128,7 +103,7 @@
 
             // show the error or update the button label on the main queue
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showErrorMessage:error];
+                [self showNurApiErrorMessage:error];
             } );
 
             return;
@@ -148,7 +123,7 @@
 
             if ( error != NUR_NO_ERROR ) {
                 NSLog( @"failed to start trace stream" );
-                [self showErrorMessage:error];
+                [self showNurApiErrorMessage:error];
                 return;
             }
         } );
@@ -206,7 +181,7 @@
 
             if ( error != NUR_NO_ERROR ) {
                 NSLog( @"failed to stop trace stream" );
-                [self showErrorMessage:error];
+                [self showNurApiErrorMessage:error];
                 return;
             }
         } );

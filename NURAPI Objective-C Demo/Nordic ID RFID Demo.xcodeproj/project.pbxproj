@@ -57,6 +57,7 @@
 		6F795A3B1EC2F8C000A458AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959971EC2D83000A458AA /* LaunchScreen.storyboard */; };
 		6F795A3E1EC2FB8000A458AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A401EC2FB8000A458AA /* InfoPlist.strings */; };
 		6F795A431EC2FB8100A458AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A451EC2FB8100A458AA /* Localizable.strings */; };
+		6F8186122034111C00FE89B6 /* UIViewController+ErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8186112034111C00FE89B6 /* UIViewController+ErrorMessage.m */; };
 		6F91967A200CDFE80016D35B /* RegionLockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F919679200CDFE80016D35B /* RegionLockCell.m */; };
 		6F921BE91F862D2C0088AC3E /* FirmwareDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */; };
 		6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */; };
@@ -193,6 +194,8 @@
 		6F795A471EC2FDBF00A458AA /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Main.strings; sourceTree = "<group>"; };
 		6F795A481EC2FDBF00A458AA /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6F795A491EC2FDBF00A458AA /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6F8186102034111C00FE89B6 /* UIViewController+ErrorMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ErrorMessage.h"; sourceTree = "<group>"; };
+		6F8186112034111C00FE89B6 /* UIViewController+ErrorMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ErrorMessage.m"; sourceTree = "<group>"; };
 		6F919678200CDFE80016D35B /* RegionLockCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegionLockCell.h; sourceTree = "<group>"; };
 		6F919679200CDFE80016D35B /* RegionLockCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegionLockCell.m; sourceTree = "<group>"; };
 		6F921BE71F862D2B0088AC3E /* FirmwareDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirmwareDownloader.h; sourceTree = "<group>"; };
@@ -327,6 +330,8 @@
 				6F7959D91EC2D83000A458AA /* WriteTagPopoverViewController.m */,
 				6F7959DA1EC2D83000A458AA /* WriteTagViewController.h */,
 				6F7959DB1EC2D83000A458AA /* WriteTagViewController.m */,
+				6F8186102034111C00FE89B6 /* UIViewController+ErrorMessage.h */,
+				6F8186112034111C00FE89B6 /* UIViewController+ErrorMessage.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -694,6 +699,7 @@
 				6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */,
 				6FED46E41F9B4BC5009BB353 /* ThemeableButton.m in Sources */,
 				6F7959F71EC2D83000A458AA /* QuickGuideViewController.m in Sources */,
+				6F8186122034111C00FE89B6 /* UIViewController+ErrorMessage.m in Sources */,
 				6F7959F01EC2D83000A458AA /* LocateViewController.m in Sources */,
 				6FED46E91F9B4DC2009BB353 /* ThemeManager.m in Sources */,
 				6FED46E01F99EA43009BB353 /* ReaderSettingsViewController.m in Sources */,

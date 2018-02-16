@@ -5,6 +5,8 @@
 #import "FirmwareCell.h"
 #import "FirmwareSectionHeader.h"
 #import "PerformUpdateViewController.h"
+#import "UIViewController+Theme.h"
+#import "UIViewController+ErrorMessage.h"
 
 @interface FirmwareSelectionViewController () {
     // values representing our own versions, used to compare with downloaded version numbers
@@ -36,6 +38,8 @@
         [self showErrorMessage:@"Please connect an RFID reader"];
         return;
     }
+
+    self.parentViewController.navigationItem.backBarButtonItem.title = NSLocalizedString(@"Back", nil);
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
@@ -195,37 +199,6 @@
 }
 
 
-- (void) showErrorMessage:(NSString *)message {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // show in an alert view
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                        message:message
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-
-        UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {
-                                       // nothing special to do right now
-                                   }];
-
-
-        [alert addAction:okButton];
-        [self presentViewController:alert animated:YES completion:nil];
-    } );
-}
-
-
-- (void) showNurApiErrorMessage:(int)error {
-    // extract the NURAPI error
-    char buffer[256];
-    NurApiGetErrorMessage( error, buffer, 256 );
-    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-    [self showErrorMessage:message];
-}
-
-
 //*****************************************************************************************************************
 #pragma mark - Table view data source
 
@@ -319,7 +292,7 @@
         //NSLog( @"this firmware is for our model" );
 
         if ( firmware.compareVersion > compareVersions[type] ) {
-            NSLog( @"found newer firmware: %@", firmware );
+            NSLog( @"found newer (or same) firmware: %@", firmware );
             [valid addObject:firmware];
         }
     }

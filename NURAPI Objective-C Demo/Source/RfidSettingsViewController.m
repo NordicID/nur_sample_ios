@@ -1,11 +1,11 @@
 
 #import <NurAPIBluetooth/Bluetooth.h>
-#import <NurAPIBluetooth/NurCommands.h>
 
 #import "RfidSettingsViewController.h"
 #import "SettingsAlternative.h"
 #import "SelectSettingViewController.h"
 #import "RegionLockCell.h"
+#import "UIViewController+ErrorMessage.h"
 
 // TODO:
 //
@@ -60,7 +60,7 @@
     // in that case
     if ( ! [Bluetooth sharedInstance].currentReader ) {
         // prompt the user to connect a reader
-        [self showrrorMessage:NSLocalizedString(@"No RFID reader connected!", nil)];
+        [self showErrorMessage:NSLocalizedString(@"No RFID reader connected!", nil)];
         return;
     }
 
@@ -149,7 +149,7 @@
         [alert dismissViewControllerAnimated:YES completion:^{
             if (error != NUR_NO_ERROR) {
                 // failed to fetch tag
-                [self showErrorMessage:error];
+                [self showNurApiErrorMessage:error];
             }
             else {
                 dataReady = YES;
@@ -157,43 +157,6 @@
             }
         }];
     });
-}
-
-
-- (void) showErrorMessage:(int)error {
-    // extract the NURAPI error
-    char buffer[256];
-    NurApiGetErrorMessage( error, buffer, 256 );
-    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-    NSLog( @"NURAPI error: %@", message );
-
-    // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                    message:message
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                                       style:UIAlertActionStyleDefault
-                                                     handler: nil];
-
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-
-- (void) showrrorMessage:(NSString *)message {
-    // show in an alert view
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                    message:message
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                                       style:UIAlertActionStyleDefault
-                                                     handler: nil];
-
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -274,7 +237,7 @@
 - (void) performRegionLockToggleWithPassword:(NSString *)password {
     if ( password == nil || password.length == 0 ) {
         // invalid password
-        [self showrrorMessage:@"Invalid password"];
+        [self showErrorMessage:@"Invalid password"];
         return;
     }
 
@@ -284,7 +247,7 @@
     NSScanner *scanner = [NSScanner scannerWithString:password];
     if ( ! [scanner scanHexInt:&numPassword] ) {
         // invalid password
-        [self showrrorMessage:@"Invalid password"];
+        [self showErrorMessage:@"Invalid password"];
         return;
     }
 
@@ -313,13 +276,13 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if ( error != NUR_NO_ERROR ) {
                 NSLog( @"failed to change region lock state");
-                [self showErrorMessage:error];
+                [self showNurApiErrorMessage:error];
                 return;
             }
 
             // changed ok,update the table row with the button
             regionLocked = !regionLocked;
-            [self.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:0 inSection:1]]
+            [self.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:0 inSection:2]]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
         });
     });
@@ -328,28 +291,36 @@
 
 //******************************************************************************************
 #pragma mark - Table view delegate
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ( indexPath.section == 1 ) {
-        return 64;
-    }
-
-    return 44;
-}
-
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // the region lock row
-    if ( indexPath.section == 1 ) {
+    if ( indexPath.section == 2 ) {
         NSLog( @"toggle region lock" );
+    }
+
+    else if ( indexPath.section == 1 ) {
+        NSLog( @"set filter");
+        [self editRssiFilter:indexPath.row];
     }
 }
 
 //******************************************************************************************
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    // RSSI filters have an own section
+    if ( section == 1 ) {
+        return @"RSSI filters";
+    }
+
+    return nil;
 }
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // data not yet loaded?
@@ -357,19 +328,58 @@
         return 0;
     }
 
-    // the separate "region lock" section
-    if ( section == 1 ) {
-        return 1;
-    }
+    switch ( section ) {
+        case 0:
+            // match with the keys in cellForRowAtIndexPath
+            return 12;
 
-    // match with the keys in cellForRowAtIndexPath
-    return 12;
+        case 1:
+            // min, max RSSI
+            return 6;
+
+        default:
+            return 1;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // the second section with the region lock cell
+    // inventory RSSI filter is two values
     if ( indexPath.section == 1 ) {
+        UITableViewCell *cell = (RegionLockCell *)[tableView dequeueReusableCellWithIdentifier:@"FilterCell" forIndexPath:indexPath];
+
+        switch ( indexPath.row ) {
+            case 0:
+                cell.textLabel.text = NSLocalizedString(@"Min inventory RSSI (dBm)", nil);
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.inventoryRssiFilter.min];
+                break;
+            case 1:
+                cell.textLabel.text = NSLocalizedString(@"Max inventory RSSI (dBm)", nil);
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.inventoryRssiFilter.max];
+                break;
+            case 2:
+                cell.textLabel.text = NSLocalizedString(@"Min read RSSI (dBm)", nil);
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.readRssiFilter.min];
+                break;
+            case 3:
+                cell.textLabel.text = NSLocalizedString(@"Max read RSSI (dBm)", nil);
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.readRssiFilter.max];
+                break;
+            case 4:
+                cell.textLabel.text = NSLocalizedString(@"Min write RSSI (dBm)", nil);
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.min];
+                break;
+            case 5:
+                cell.textLabel.text = NSLocalizedString(@"Max write RSSI (dBm)", nil);
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.max];
+                break;
+        }
+
+        return cell;
+    }
+
+    // region lock cell
+    else if ( indexPath.section == 2 ) {
         RegionLockCell *cell = (RegionLockCell *)[tableView dequeueReusableCellWithIdentifier:@"RegionLockCell" forIndexPath:indexPath];
         NSString * title = regionLocked ? NSLocalizedString(@"Unlock", @"RFID settings - unlock region lock") : NSLocalizedString(@"Lock", @"RFID settings - lock region lock");
         [cell.toggleButton setTitle:title forState:UIControlStateNormal];
@@ -662,5 +672,104 @@
     destination.dispatchQueue = self.dispatchQueue;
 }
 
+
+//******************************************************************************************
+#pragma mark - RSSI filter handling
+
+- (void) editRssiFilter:(int)row {
+    // the row is the row inside the filter section, two rows per type: inventory, read, write
+    NSString *title, *message;
+    int setting;
+    char * valueTarget;
+    switch (row) {
+        case 0:
+            title = NSLocalizedString(@"Inventory min RSSI", @"RSSI popup title");
+            message = NSLocalizedString(@"Enter the minimum RSSI value for inventory operations", @"RSSI popup message");
+            setting = NUR_SETUP_INVRSSIFILTER;
+            valueTarget = &(setup.inventoryRssiFilter.min);
+            break;
+        case 1:
+            title = NSLocalizedString(@"Inventory max RSSI", @"RSSI popup title");
+            message = NSLocalizedString(@"Enter the maximum RSSI value for inventory operations", @"RSSI popup message");
+            setting = NUR_SETUP_INVRSSIFILTER;
+            valueTarget = &(setup.inventoryRssiFilter.max);
+            break;
+        case 2:
+            title = NSLocalizedString(@"Read min RSSI", @"RSSI popup title");
+            message = NSLocalizedString(@"Enter the minimum RSSI value for read operations", @"RSSI popup message");
+            setting = NUR_SETUP_READRSSIFILTER;
+            valueTarget = &(setup.readRssiFilter.min);
+            break;
+        case 3:
+            title = NSLocalizedString(@"Read max RSSI", @"RSSI popup title");
+            message = NSLocalizedString(@"Enter the maximum RSSI value for read operations", @"RSSI popup message");
+            setting = NUR_SETUP_READRSSIFILTER;
+            valueTarget = &(setup.readRssiFilter.max);
+            break;
+        case 4:
+            title = NSLocalizedString(@"Write min RSSI", @"RSSI popup title");
+            message = NSLocalizedString(@"Enter the minimum RSSI value for write operations", @"RSSI popup message");
+            setting = NUR_SETUP_WRITERSSIFILTER;
+            valueTarget = &(setup.writeRssiFilter.min);
+           break;
+        case 5:
+            title = NSLocalizedString(@"Write max RSSI", @"RSSI popup title");
+            message = NSLocalizedString(@"Enter the maximum RSSI value for write operations", @"RSSI popup message");
+            setting = NUR_SETUP_WRITERSSIFILTER;
+            valueTarget = &(setup.writeRssiFilter.max);
+           break;
+
+        default:
+            NSLog(@"invalid row %d, should be [0..5]", row);
+            return;
+    }
+
+    // show an alert controller that lets the user enter a value
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:title
+                                                                          message: message
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"value 0-100 (0 = disable filter)";
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    }];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSString * text = alertController.textFields[0].text;
+        int intValue = [text intValue];
+        if ( intValue < -128 || intValue > 0 ) {
+            [self showErrorMessage:@"Invalid value, it must be in the range -128 .. 0."];
+            return;
+        }
+        *valueTarget = intValue & 0xff;
+        NSLog( @"value: %@ %d", text, *valueTarget);
+
+        // perform saving to volatile memory using the NURAPI dispatch queue
+        dispatch_async(self.dispatchQueue, ^{
+            int error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, setting, &setup, sizeof(struct NUR_MODULESETUP) );
+
+            // if saved ok, store in non-volatile memory
+            if ( error == NUR_NO_ERROR ) {
+                error = NurApiStoreCurrentSetup([Bluetooth sharedInstance].nurapiHandle );
+                if ( error == NUR_NO_ERROR ) {
+                    // saved ok
+                    NSLog( @"filter value saved ok");
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:row inSection:1]]
+                                              withRowAnimation:UITableViewRowAnimationAutomatic];
+                    });
+                }
+                else {
+                    [self showNurApiErrorMessage:error];
+                }
+            }
+            else {
+                [self showNurApiErrorMessage:error];
+            }
+        });
+    }]];
+
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 @end

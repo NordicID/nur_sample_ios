@@ -196,6 +196,9 @@
             [delegate readerConnectionOk];
         }
     }
+
+    // stop scanning
+    [[Bluetooth sharedInstance] stopScanning];
 }
 
 
