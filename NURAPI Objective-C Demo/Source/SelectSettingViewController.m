@@ -39,7 +39,7 @@
                 antennaMask |= 1 << alternative.value;
             }
         }
-        NSLog( @"save antenna mask: %u", antennaMask );
+        logDebug( @"save antenna mask: %u", antennaMask );
 
         // store the antenna mask in the setup struct
         setup.antennaMaskEx = antennaMask;
@@ -47,7 +47,7 @@
     else {
         for ( SettingsAlternative * alternative in self.alternatives ) {
             if ( alternative.selected ) {
-                NSLog( @"save setting '%@'", alternative.title );
+                logDebug( @"save setting '%@'", alternative.title );
                 switch ( self.setting ) {
                     case NUR_SETUP_INVQ:
                         setup.inventoryQ = alternative.value;
@@ -97,7 +97,7 @@
                         break;
 
                     default:
-                        NSLog( @"invalid settings key: %d, not saving", self.setting );
+                        logError( @"invalid settings key: %d, not saving", self.setting );
                         return;
                 }
 
@@ -130,7 +130,7 @@
                     [self showNurApiErrorMessage:error];
                 }
                 else {
-                    NSLog( @"setting saved ok" );
+                    logDebug( @"setting saved ok" );
                     [self.navigationController popViewControllerAnimated:YES];
                 }
             }];
@@ -163,7 +163,7 @@
 
 
 - (void) tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog( @"check row: %ld", (long)indexPath.row );
+    logDebug( @"check row: %ld", (long)indexPath.row );
 
     // the antenna mask allows several to be set
     if ( self.setting == NUR_SETUP_ANTMASKEX ) {

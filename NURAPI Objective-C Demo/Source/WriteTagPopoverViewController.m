@@ -1,6 +1,7 @@
 
 #import "WriteTagPopoverViewController.h"
 #import "AudioPlayer.h"
+#import "Log.h"
 
 @interface WriteTagPopoverViewController ()
 
@@ -47,7 +48,7 @@
         }
 
         int oldTxLevel = setup.txLevel;
-        NSLog( @"current tx level: %d", oldTxLevel );
+        logDebug( @"current tx level: %d", oldTxLevel );
 
         // set the TX level to 0 (maximum)
         if ( setup.txLevel != 0 ) {
@@ -77,36 +78,36 @@
         int oldEpcLength = (int)self.writeTag.epc.length;
 
 //        for ( int index = 0; index < oldEpcLength; index++ ) {
-//            NSLog( @"old %d = %d", index, oldEpc[index] );
+//            logDebug( @"old %d = %d", index, oldEpc[index] );
 //        }
 //        for ( int index = 0; index < newEpcLength; index++ ) {
-//            NSLog( @"new %d = %d", index, newEpc[index] );
+//            logDebug( @"new %d = %d", index, newEpc[index] );
 //        }
 
         // mostly hardocded data, but named for ease of reading
         DWORD password = 0;
         BOOL secured = 0;
 
-        NSLog( @"old length: %d", oldEpcLength );
-        NSLog( @"new length: %d", newEpcLength );
+        logDebug( @"old length: %d", oldEpcLength );
+        logDebug( @"new length: %d", newEpcLength );
 
         // perform the real tag writing
         error = NurApiWriteEPCByEPC([Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, oldEpcLength, newEpc, newEpcLength);
         //error = NurApiWriteTagByEPC( [Bluetooth sharedInstance].nurapiHandle, password, secured, oldEpc, oldEpcLength, wrBank, wrAddress, paddedEpcLength + 2, newEpc );
         if ( error != NUR_NO_ERROR ) {
-            NSLog( @"failed to write tag" );
+            logError( @"failed to write tag" );
             [self.delegate writeCompletedWithError:error];
             return;
         }
 
         // update the internal tag too
         self.writeTag.epc = [NSData dataWithBytes:newEpc length:newEpcLength];
-        //NSLog( @"tag new epc: %@", self.writeTag.hex );
+        //logDebug( @"tag new epc: %@", self.writeTag.hex );
 
         // restore the TX level
         if ( setup.txLevel != oldTxLevel ) {
             setup.txLevel = oldTxLevel;
-            NSLog( @"restoring previous tx level: %d", oldTxLevel );
+            logDebug( @"restoring previous tx level: %d", oldTxLevel );
 
             error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_TXLEVEL, &setup, sizeof(struct NUR_MODULESETUP) );
             if ( error != NUR_NO_ERROR ) {
@@ -116,7 +117,7 @@
         }
 
         // we're done, written ok
-        NSLog( @"write and restore completed ok" );
+        logDebug( @"write and restore completed ok" );
         [self.delegate writeCompletedWithError:NUR_NO_ERROR];
     } );
 }

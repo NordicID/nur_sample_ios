@@ -80,15 +80,15 @@
         struct NUR_MODULESETUP setup;
         int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_ANTMASKEX, &setup, sizeof(struct NUR_MODULESETUP) );
         if ( error != NUR_NO_ERROR ) {
-            NSLog( @"failed to get module setup, error: %d", error );
+            logError( @"failed to get module setup, error: %d", error );
         }
 
-        NSLog( @"retrieved %d antenna mappings", antennaMappingCount );
+        logDebug( @"retrieved %d antenna mappings", antennaMappingCount );
 
         for ( unsigned int index = 0; index < 32; ++index ) {
-            NSLog( @"checking for antenna %d", index );
+            logDebug( @"checking for antenna %d", index );
             if ( setup.antennaMaskEx & (1<<index) ) {
-                NSLog( @"tuning antenna %d", index );
+                logDebug( @"tuning antenna %d", index );
 
                 // play a short beep
                 [[AudioPlayer sharedInstance] playSound:kBlep100ms];
@@ -115,7 +115,7 @@
 
                 // tune this antenna
                 if ( ( error = NurApiTuneAntenna( [Bluetooth sharedInstance].nurapiHandle, index, wideTune, saveResults, dbmResults)) != NUR_NO_ERROR ) {
-                    NSLog( @"error %d tuning antenna %d", error, index );
+                    logError( @"error %d tuning antenna %d", error, index );
 
                     // show error on UI thread
                     dispatch_async( dispatch_get_main_queue(), ^{
@@ -130,7 +130,7 @@
                 NSString * result = antennaName;
                 for ( int index = 0; index < 6; ++index ) {
                     float dBm = dbmResults[index] / 1000.0f;
-                    NSLog( @"tuning result %d = %.1f dBm", index, dBm );
+                    logDebug( @"tuning result %d = %.1f dBm", index, dBm );
                     result = [result stringByAppendingFormat:@"\n    %d = %.1f", index, dBm];
                 }
 
@@ -154,7 +154,7 @@
     switch ( type ) {
         case NUR_NOTIFICATION_TUNEEVENT: {
             const struct NUR_TUNEEVENT_DATA *tuneData = (const struct NUR_TUNEEVENT_DATA *)data;
-            NSLog( @"*********************' tuning antenna %d, frequency: %d, reflected power value: %d", tuneData->antenna, tuneData->freqKhz, tuneData->reflPower_dBm );
+            logDebug( @"tuning antenna %d, frequency: %d, reflected power value: %d", tuneData->antenna, tuneData->freqKhz, tuneData->reflPower_dBm );
         }
     }
 }

@@ -83,7 +83,7 @@
 
 
 - (IBAction)shareInventory:(UIBarButtonItem *)sender {
-    NSLog( @"in" );
+    logDebug( @"in" );
 
     NSString * content = @"";
 
@@ -112,11 +112,11 @@
     [content writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if ( error != nil ) {
         // failed to save the content to a temporary file
-        NSLog( @"failed to save CSV file: %@", error.localizedDescription );
+        logError( @"failed to save CSV file: %@", error.localizedDescription );
         return;
     }
 
-    NSLog( @"saved CSV to: %@", fileURL );
+    logDebug( @"saved CSV to: %@", fileURL );
 
     // set up the activity controller for sharing a single URL
     NSArray* sharedObjects = [NSArray arrayWithObjects:fileURL, nil];
@@ -127,7 +127,7 @@
 
     // when the activity is completed delete the temporary file
     activityViewController.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
-        NSLog(@"activity: %@ - finished flag: %d", activityType, completed);
+        logDebug(@"activity: %@ - finished flag: %d", activityType, completed);
         [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
 
         // show an error if there was one
@@ -207,12 +207,12 @@
                                          rdBuffer //BYTE *rdBuffer
                                          );
 
-    NSLog( @"hardcodedTest: error: %d", error );
+    logDebug( @"hardcodedTest: error: %d", error );
 
     // show the error or update the button label on the main queue
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( error != NUR_NO_ERROR ) {
-            NSLog( @"failed to start inventory stream" );
+            logError( @"failed to start inventory stream" );
             [self showNurApiErrorMessage:error];
             return;
         }
@@ -220,7 +220,7 @@
 }
 
 - (void) startStream {
-    NSLog( @"starting inventory stream" );
+    logDebug( @"starting inventory stream" );
 
     // default scanning parameters
     int rounds = 0;
@@ -232,7 +232,7 @@
     // show the error or update the button label on the main queue
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( error != NUR_NO_ERROR ) {
-            NSLog( @"failed to start inventory stream" );
+            logError( @"failed to start inventory stream" );
             [self showNurApiErrorMessage:error];
             return;
         }
@@ -288,14 +288,14 @@
     }
 
     // stop stream
-    NSLog( @"stopping inventory stream" );
+    logDebug( @"stopping inventory stream" );
 
     int error = NurApiStopInventoryStream( [Bluetooth sharedInstance].nurapiHandle );
 
     // show the error or update the button label on the main queue
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( error != NUR_NO_ERROR ) {
-            NSLog( @"failed to stop inventory stream" );
+            logError( @"failed to stop inventory stream" );
             [self showNurApiErrorMessage:error];
             return;
         }
@@ -310,7 +310,7 @@
 
         // do we have any tags?
         if ( [TagManager sharedInstance].tags.count > 0 ) {
-            NSLog( @"enabling sharing button" );
+            logDebug( @"enabling sharing button" );
             self.shareButton.enabled = YES;
         }
     } );
@@ -318,7 +318,7 @@
 
 
 - (void) continueStream {
-    NSLog( @"continuing stream" );
+    logDebug( @"continuing stream" );
 
     // default scanning parameters
     int rounds = 0;
@@ -330,7 +330,7 @@
     // show the error or update the button label on the main queue
     dispatch_async(dispatch_get_main_queue(), ^{
         if ( error != NUR_NO_ERROR ) {
-            NSLog( @"failed to start inventory stream" );
+            logError( @"failed to start inventory stream" );
             [self showNurApiErrorMessage:error];
             return;
         }
@@ -402,7 +402,7 @@
         self.maxTagsPerSecond = self.tagsPerSecond;
     }
 
-    NSLog( @"added tags: %lu, total: %lu", (unsigned long)tags.count, (unsigned long)[TagManager sharedInstance].tags.count );
+    logDebug( @"added tags: %lu, total: %lu", (unsigned long)tags.count, (unsigned long)[TagManager sharedInstance].tags.count );
 }
 
 
@@ -418,7 +418,7 @@
     [[TagManager sharedInstance] unlock];
 
     destination.rounds = self.inventoryRoundsDone;
-    NSLog( @"rounds: %d", self.inventoryRoundsDone );
+    logDebug( @"rounds: %d", self.inventoryRoundsDone );
 }
 
 
@@ -446,7 +446,8 @@
 
     NSString * hex = tag.hex;
     cell.textLabel.text = hex.length == 0 ? NSLocalizedString(@"<empty tag>", nil) : hex;
-
+    cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"RSSI: %d", nil), tag.rssi];
+    
     return cell;
 }
 
@@ -466,7 +467,7 @@
     switch ( type ) {
         case NUR_NOTIFICATION_INVENTORYSTREAM: {
             const struct NUR_INVENTORYSTREAM_DATA *inventoryStream = (const struct NUR_INVENTORYSTREAM_DATA *)data;
-            NSLog( @"tag data from inventory stream, tags added: %d", inventoryStream->tagsAdded);
+            logDebug( @"tag data from inventory stream, tags added: %d", inventoryStream->tagsAdded);
 
             self.inventoryRoundsDone += inventoryStream->roundsDone;
 
@@ -474,7 +475,7 @@
             int error = NurApiGetTagCount( [Bluetooth sharedInstance].nurapiHandle, &tagCount );
             if (error != NUR_NO_ERROR) {
                 // failed to fetch tag count
-                NSLog( @"failed to fetch tag count" );
+                logError( @"failed to fetch tag count" );
                 tagCount = 0;
             }
 
@@ -490,7 +491,7 @@
                     // play a short blip if the tag was new
                     if ( isTagNew ) {
                         [newTags addObject:tag];
-                        NSLog( @"found new tag: %@", tag );
+                        logDebug( @"found new tag: %@", tag );
                     }
                 }
             }
@@ -517,7 +518,7 @@
         case NUR_NOTIFICATION_IOCHANGE: {
             struct NUR_IOCHANGE_DATA *iocData = (struct NUR_IOCHANGE_DATA *)data;
             if (iocData->source == NUR_ACC_TRIGGER_SOURCE) {
-                NSLog( @"trigger changed, dir: %d", iocData->dir );
+                logDebug( @"trigger changed, dir: %d", iocData->dir );
                 if (iocData->dir == 0) {
                     [self toggleInventory];
                 }

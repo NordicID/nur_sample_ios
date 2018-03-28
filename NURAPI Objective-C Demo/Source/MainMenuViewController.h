@@ -11,5 +11,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *batteryIconLabel;
 @property (weak, nonatomic) IBOutlet UILabel *batteryLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 @end

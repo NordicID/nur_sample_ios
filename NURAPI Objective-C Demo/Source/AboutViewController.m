@@ -2,6 +2,7 @@
 #import <NurAPIBluetooth/NurAPIBluetooth.h>
 
 #import "AboutViewController.h"
+#import "Log.h"
 
 
 @interface AboutViewController ()
@@ -23,7 +24,7 @@
     NSString* path = [[NSBundle mainBundle] pathForResource:@"MetaData" ofType:@"plist"];
 
     if ( ! [[NSFileManager defaultManager] fileExistsAtPath:path] ) {
-        NSLog( @"no MetaData.plist file found in bundle");
+        logDebug( @"no MetaData.plist file found in bundle");
     }
     else {
         NSDictionary *metadata = [[NSDictionary alloc] initWithContentsOfFile: path];

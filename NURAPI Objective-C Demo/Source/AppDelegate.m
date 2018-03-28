@@ -3,13 +3,14 @@
 #import "ConnectionManager.h"
 #import "ThemeManager.h"
 #import "ViewControllerManager.h"
+#import "Log.h"
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // set up the connection manager so that it's aware of everything that happens
-    //[[ConnectionManager sharedInstance] setup];
+    // set up the Bluetooth framework logger
+    [Bluetooth sharedInstance].logDelegate = [Log sharedInstance];
 
     // set up the theme
     [ThemeManager sharedInstance];
@@ -37,7 +38,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    NSLog(@"entering foreground");
+    logDebug(@"entering foreground");
 }
 
 

@@ -1,5 +1,6 @@
 
 #import "FirmwareDownloader.h"
+#import "Log.h"
 
 @interface FirmwareDownloader()
 
@@ -38,13 +39,13 @@
 
 - (void) downloadIndexFile:(FirmwareType)type {
     NSURL * url = self.indexFileUrls[ @(type) ];
-    NSLog( @"downloading index file for firmware type: %d, url: %@", type, url );
+    logDebug( @"downloading index file for firmware type: %d, url: %@", type, url );
 
     // create a download task for downloading the index file
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
                                           dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               if ( error != nil ) {
-                                                  NSLog( @"failed to download firmware index file");
+                                                  logError( @"failed to download firmware index file");
                                                   if ( self.delegate ) {
                                                       [self.delegate firmwareMetaDataFailed:type error:NSLocalizedString(@"Failed to download firmware update data", nil)];
                                                   }
@@ -61,14 +62,14 @@
                                                           }
                                                       }
                                                       else {
-                                                          NSLog( @"failed to download firmware index file, expected status 200, got: %ld", (long)httpResponse.statusCode );
+                                                          logError( @"failed to download firmware index file, expected status 200, got: %ld", (long)httpResponse.statusCode );
                                                           if ( self.delegate ) {
                                                               [self.delegate firmwareMetaDataFailed:type error:[NSString stringWithFormat:NSLocalizedString(@"Failed to download firmware update data, status code: %ld", nil), (long)httpResponse.statusCode]];
                                                           }
                                                       }
                                                   }
                                                   else {
-                                                      NSLog( @"failed to download firmware index file, no response" );
+                                                      logError( @"failed to download firmware index file, no response" );
                                                       if ( self.delegate ) {
                                                           [self.delegate firmwareMetaDataFailed:type error:NSLocalizedString(@"Failed to download firmware update data, no response received!", nil)];
                                                       }
@@ -89,14 +90,14 @@
     NSError * error;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if ( error ) {
-        NSLog( @"error parsing JSON: %@", error.localizedDescription );
+        logError( @"error parsing JSON: %@", error.localizedDescription );
         if ( self.delegate ) {
             [self.delegate firmwareMetaDataFailed:type error:[NSString stringWithFormat:NSLocalizedString(@"Failed to parse update data: %@", nil), error.localizedDescription]];
         }
         return;
     }
 
-    NSLog( @"parsing firmware index file for type %d", type);
+    logDebug( @"parsing firmware index file for type %d", type);
     NSMutableArray * foundFirmwares = [NSMutableArray new];
 
     // testing
@@ -140,7 +141,7 @@
         [foundFirmwares addObject:firmware];
     }
 
-    NSLog( @"loaded %lu firmwares", (unsigned long)foundFirmwares.count );
+    logDebug( @"loaded %lu firmwares for type: %d", (unsigned long)foundFirmwares.count, type );
 
     // sort both so that we have the newest first
     [foundFirmwares sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {

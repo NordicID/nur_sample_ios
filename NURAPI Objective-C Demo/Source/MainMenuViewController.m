@@ -4,6 +4,7 @@
 #import "Tag.h"
 #import "ConnectionManager.h"
 #import "ThemeManager.h"
+#import "Log.h"
 
 /**
  * A single entry in the main menu.
@@ -142,6 +143,58 @@
 }
 
 
+- (IBAction)shareLog:(UIBarButtonItem *)sender {
+//    NSString * messages = [[Log sharedInstance] getMergedLog];
+//
+//    // save to a temporary file
+//    NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+//    NSURL *fileURL = [tmpDirURL URLByAppendingPathComponent:@"log.txt"];
+//
+//    NSError * error = nil;
+//    [messages writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+//    if ( error != nil ) {
+//        // failed to save the content to a temporary file
+//        logError( @"failed to save log file: %@", error.localizedDescription );
+//        return;
+//    }
+
+    // get the URL to the log file
+    NSURL * logFileUrl = [[Log sharedInstance] getFileUrl];
+
+    // set up the activity controller for sharing a single URL
+    NSArray* sharedObjects = [NSArray arrayWithObjects:logFileUrl, nil];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
+                                                        initWithActivityItems:sharedObjects applicationActivities:nil];
+
+    activityViewController.popoverPresentationController.barButtonItem = self.shareButton;
+
+    // when the activity is completed delete the temporary file
+    activityViewController.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        logDebug(@"activity: %@ - finished flag: %d", activityType, completed);
+        //[[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+
+        // show an error if there was one
+        if ( activityError != nil ) {
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error Sharing Log File", nil)
+                                                                            message:activityError.localizedDescription
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertAction* okButton = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action) {
+                                           // nothing special to do right now
+                                       }];
+
+
+            [alert addAction:okButton];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    };
+
+    [self presentViewController:activityViewController animated:true completion:nil];
+}
+
 //- (void) updateStatusInfo {
 //    [self updateConnectedLabel];
 //    [self updateBatteryLevel];
@@ -169,7 +222,7 @@
         return;
     }
 
-    NSLog( @"checking battery status" );
+    logDebug( @"checking battery status" );
 
     dispatch_async(self.dispatchQueue, ^{
         NUR_ACC_BATT_INFO batteryInfo;
@@ -186,12 +239,12 @@
                 char buffer[256];
                 NurApiGetErrorMessage( error, buffer, 256 );
                 NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-                NSLog( @"failed to get battery info: %@", message );
+                logError( @"failed to get battery info: %@", message );
                 self.batteryLevelLabel.hidden = YES;
                 self.batteryIconLabel.hidden = YES;
             }
             else if ( batteryInfo.flags & NUR_ACC_BATT_FL_CHARGING ) {
-                NSLog(@"charging");
+                logDebug(@"charging");
                 self.batteryIconLabel.hidden = NO;
 
                 // avoid showing a "-1"
@@ -307,7 +360,7 @@
 
     // is the entry enabled?
     if ( entry.enabled == NO && entry.alwaysEnabled == NO ) {
-        NSLog( @"entry disabled" );
+        logDebug( @"entry disabled" );
         return;
     }
 
@@ -360,9 +413,9 @@
 
 - (void) readerConnectionOk {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog( @"connection ok, handle: %p", [Bluetooth sharedInstance].nurapiHandle );
-        NSLog( @"MTU with write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithResponse] );
-        NSLog( @"MTU without write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithoutResponse] );
+        logDebug( @"connection ok, handle: %p", [Bluetooth sharedInstance].nurapiHandle );
+        logDebug( @"MTU with write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithResponse] );
+        logDebug( @"MTU without write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithoutResponse] );
 
         // enable all entries
         for ( MainMenuEntry * entry in self.menuEntries ) {
@@ -377,7 +430,7 @@
 
 - (void) readerDisconnected {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog( @"reader disconnected" );
+        logDebug( @"reader disconnected" );
 
         [self updateMenuEntryState];
 
@@ -395,7 +448,7 @@
 
 - (void) readerConnectionFailed {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog( @"connection failed" );
+        logError( @"connection failed" );
         [self updateMenuEntryState];
     });
 }

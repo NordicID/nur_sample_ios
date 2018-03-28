@@ -39,6 +39,14 @@
  **/
 - (void) readerFound:(CBPeripheral *)reader rssi:(NSNumber *)rssi;
 
+/**
+ * Callback for when a reader which is in DFU mode has been found. This only gets called when performing a DFU scan.
+ * The reader is one that is in DFU mode, ie. it has a certain DFU service enabled.
+ *
+ * @param reader a reader currently in DFU mode.
+ *
+ * @see startDfuScanning
+ **/
 - (void) readerInDfuModeFound:(CBPeripheral *)reader;
 
 /**
@@ -88,6 +96,13 @@
  *
  **/
 - (void) notificationReceived:(DWORD)timestamp type:(int)type data:(LPVOID)data length:(int)length;
+
+@end
+
+
+@protocol LogDelegate <NSObject>
+
+- (void) debug:(NSString *)message;
 
 @end
 
@@ -156,6 +171,11 @@
 @property (nonatomic, assign) unsigned int keepaliveTime;
 
 /**
+ * Optional logging delegate. This delegate gets sent all internal logging that the framework performs.
+ **/
+@property (nonatomic, weak) id<LogDelegate> logDelegate;
+
+/**
  * Global singleton accessor method. Use this to access all the functionality provided by this API. First time this
  * is accessed nurApiHandle is initialized.
  *
@@ -190,6 +210,16 @@
  **/
 - (void) startScanning;
 
+/**
+ * Starts a scan for readers that are in DFU mode. This looks for devices with a certain DFU service UUID, it does
+ * not look for anything else. There could be other totally unrelated devices that use the same Nordic Semiconductors
+ * technology that could also be in DFU mode, so the delegate method must validate that the found devices are indeed
+ * desired readers. The scan clears any previous readers and any reader that should be reconnected. To stop a DFU
+ * scan call stopScanning.
+ *
+ * @see readerInDfuModeFound:
+ * @see stopScanning
+ **/
 - (void) startDfuScanning;
 
 /**
@@ -225,8 +255,24 @@
  **/
 - (BOOL) restoreConnection:(NSString *)uuid;
 
+/**
+ * Cancels restoring the connectin to a reader. Stops scanning and clears data about the device to reconnect to.
+ *
+ * @see restoreConnection()
+ **/
 - (void) cancelRestoreConnection;
 
+/**
+ * Writes a raw command to the connected reader. This assumes that the given buffer contains a valid NurAPI command along with any extra
+ * parameters. It can be used for special cases where there is no direct NurAPI function call that can be used. 
+ *
+ * @param buffer the raw command data to write.
+ * @param bufferLen length in bytes of the buffer.
+ *
+ * @return the NurAPI return value from writing the command.
+ *
+ * @see NurApiXchPacket()
+ **/
 - (int) writeRawCommand:(BYTE)command buffer:(BYTE *)buffer bufferLen:(DWORD)bufferLen;
 
 

@@ -1,6 +1,7 @@
 
 #import "ReadBarcodeViewController.h"
 #import "AudioPlayer.h"
+#import "Log.h"
 
 @interface ReadBarcodeViewController () {
     BOOL readingBarcode;
@@ -54,7 +55,7 @@
     NurApiGetErrorMessage( error, buffer, 256 );
     NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
 
-    NSLog( @"NURAPI error: %@", message );
+    logDebug( @"NURAPI error: %@", message );
 
     // show the error as a message
     [self showBarcode:message];
@@ -100,7 +101,7 @@
 #pragma mark - Bluetooth delegate
 
 - (void) notificationReceived:(DWORD)timestamp type:(int)type data:(LPVOID)data length:(int)length {
-    NSLog( @"received notification: %d, data: %d bytes", type, length );
+    logDebug( @"received notification: %d, data: %d bytes", type, length );
 
     switch(type) {
         case NUR_NOTIFICATION_ACCESSORY: {
@@ -114,14 +115,14 @@
                 if (status == NUR_SUCCESS) {
                     // create an ASCII string from the data after the type
                     NSString * barcode = [[NSString alloc] initWithBytes:data + 1 length:length - 1 encoding:NSASCIIStringEncoding];
-                    NSLog( @"barcode: %@", barcode );
+                    logDebug( @"barcode: %@", barcode );
                     [self showBarcode:barcode];
 
                     // play a short blip
                     [[AudioPlayer sharedInstance] playSound:kBlep100ms];
                 }
                 else if (status == NUR_ERROR_NOT_READY) {
-                    NSLog( @"barcode reading cancelled" );
+                    logDebug( @"barcode reading cancelled" );
                     ignoreTrigger = YES;
                 }
                 else if ( status == NUR_ERROR_NO_TAG ) {
@@ -140,7 +141,7 @@
             struct NUR_IOCHANGE_DATA *iocData = (struct NUR_IOCHANGE_DATA *)data;
             switch (iocData->source ) {
                 case NUR_ACC_TRIGGER_SOURCE:
-                NSLog( @"trigger changed, dir: %d", iocData->dir );
+                logDebug( @"trigger changed, dir: %d", iocData->dir );
                 if (iocData->dir == 0) {
                     if (!readingBarcode && !ignoreTrigger) {
                         NurAccSetLedOpMode( [Bluetooth sharedInstance].nurapiHandle, NUR_ACC_LED_BLINK);
@@ -158,22 +159,22 @@
                 }
                     break;
                 case 101:
-                    NSLog( @"I/O change for source: %d (power or pairing button)", iocData->source );
+                    logDebug( @"I/O change for source: %d (power or pairing button)", iocData->source );
                     break;
 
                 case 102:
-                    NSLog( @"I/O change for source: %d (power or pairing button)", iocData->source );
+                    logDebug( @"I/O change for source: %d (power or pairing button)", iocData->source );
                     break;
 
                 default:
-                    NSLog( @"I/O change for unknown source: %d", iocData->source );
+                    logDebug( @"I/O change for unknown source: %d", iocData->source );
                     break;
             }
         }
             break;
             
         default:
-            NSLog(@"unknown event type: %d", type );
+            logDebug(@"unknown event type: %d", type );
             break;
     }
 }

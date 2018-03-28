@@ -1,5 +1,6 @@
 
 #import "Firmware.h"
+#import "Log.h"
 
 @interface Firmware ()
 
@@ -23,7 +24,7 @@
 
         // set up the versin that allows firmwares to be compared
         self.compareVersion = [Firmware calculateCompareVersion:self.version type:self.type];
-       // NSLog( @"%@ == %ld", self, (unsigned long)self.compareVersion );
+       // logDebug( @"%@ == %ld", self, (unsigned long)self.compareVersion );
     }
     
     return self;
@@ -56,22 +57,30 @@
 
 
 - (BOOL) suitableForModel:(NSString *)model {
+    logDebug( @"our model name: %@, suitable: %@", model, [self.hw componentsJoinedByString:@","]);
     return model != nil && [self.hw containsObject:model];
 }
+
 
 + (NSUInteger) calculateCompareVersion:(NSString *)version type:(FirmwareType)type {
     if ( type == kDeviceBootloader ) {
         return [version intValue];
     }
 
-    int major, minor, build;
+    int major, minor, build, alpha = 0;
 
-    if ( ! [Firmware extractMajor:&major minor:&minor build:&build fromVersion:version] ) {
+    if ( type == kDeviceFirmware ) {
+        if ( ! [Firmware extractMajor:&major minor:&minor build:&build alpha:&alpha fromVersion:version] ) {
+            return 0;
+        }
+    }
+
+    else if ( ! [Firmware extractMajor:&major minor:&minor build:&build fromVersion:version] ) {
         return 0;
     }
 
-    //NSLog( @"version: %@, major: %d, minor: %d, build: %d", version, major, minor, build );
-    return major * 1000000 + minor * 1000 + build;
+    logDebug( @"version: %@, major: %d, minor: %d, build: %d, alpha: %d", version, major, minor, build, alpha );
+    return major * 10000000 + minor * 100000 + build * 1000 + alpha;
 }
 
 
@@ -92,7 +101,7 @@
 
     NSUInteger dashLocation = range.location;
 
-    //NSLog( @"dot: %lu, dash: %lu", (unsigned long)dotLocation, (unsigned long)dashLocation );
+    //logDebug( @"dot: %lu, dash: %lu", (unsigned long)dotLocation, (unsigned long)dashLocation );
 
     // extract the version parts
     NSString * ownMajorStr = [version substringToIndex:dotLocation];
@@ -102,6 +111,28 @@
     *major = [ownMajorStr intValue];
     *minor = [ownMinorStr intValue];
     *build = [ownBuildStr characterAtIndex:0] & 0xff;
+
+    // successfully converted
+    return YES;
+}
+
+
++ (BOOL) extractMajor:(int *)major minor:(int *)minor build:(int *)build alpha:(int *)alpha fromVersion:(NSString *)version {
+    // the string is of the format: 1.2.3-A
+
+    // replace all dashes with dots
+    version = [version stringByReplacingOccurrencesOfString:@"-" withString:@"."];
+
+    // split
+    NSArray * parts = [version componentsSeparatedByString:@"."];
+    if ( parts.count != 4 ) {
+        return NO;
+    }
+
+    *major = [parts[0] intValue];
+    *minor = [parts[1] intValue];
+    *build = [parts[2] intValue];
+    *alpha = [parts[3] characterAtIndex:0] & 0xff;
 
     // successfully converted
     return YES;

@@ -1,6 +1,7 @@
 
 #import "EULAViewController.h"
 #import "ThemeManager.h"
+#import "Log.h"
 
 @interface EULAViewController ()
 
@@ -23,7 +24,7 @@
                                                   encoding:NSUTF8StringEncoding
                                                      error:&error];
     if ( error ) {
-        NSLog( @"failed to read EULA from bundle: %@ %d", error.localizedDescription, exists );
+        logDebug( @"failed to read EULA from bundle: %@ %d", error.localizedDescription, exists );
     }
 
     self.eulaTextView.text = eula;
@@ -57,7 +58,7 @@
                                     actionWithTitle:NSLocalizedString(@"Decline", @"EULA decline in popup")
                                     style:UIAlertActionStyleCancel
                                     handler:^(UIAlertAction * action) {
-                                        NSLog(@"user declined" );
+                                        logDebug(@"user declined" );
                                         [self showDeclinePrompt];
                                    }];
 
@@ -68,7 +69,7 @@
 
 
 - (IBAction)decline:(UIButton *)sender {
-    NSLog(@"user declined" );
+    logDebug(@"user declined" );
     [self showDeclinePrompt];
 }
 

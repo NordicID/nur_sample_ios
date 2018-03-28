@@ -156,12 +156,18 @@
                                 <segue destination="K3A-0d-0w5" kind="show" id="fgW-eY-eVc"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="JX6-L6-O09">
+                            <connections>
+                                <action selector="shareLog:" destination="gcp-qd-XdC" id="mzF-2w-z12"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="batteryIconLabel" destination="srU-zZ-Gxa" id="unS-qt-UUb"/>
                         <outlet property="batteryLevelLabel" destination="kZr-na-7by" id="HFI-Dw-hhW"/>
                         <outlet property="collectionView" destination="nHI-yy-4b9" id="MMm-UF-ejH"/>
                         <outlet property="connectedLabel" destination="CZG-qI-oPQ" id="imj-gt-ZQo"/>
+                        <outlet property="shareButton" destination="JX6-L6-O09" id="Efw-ns-p3E"/>
                         <segue destination="nKR-K4-PMe" kind="show" identifier="InfoSegue" id="LhO-Uq-92V"/>
                         <segue destination="nnV-W3-CWU" kind="show" identifier="BarcodeSegue" id="diA-GX-53j"/>
                         <segue destination="6Qa-vC-BWv" kind="show" identifier="QuickGuideSegue" id="7Ti-jM-42c"/>
@@ -381,7 +387,7 @@
                                 <rect key="frame" x="0.0" y="195.66666666666671" width="414" height="394.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TagCell" textLabel="aYI-hE-Amz" style="IBUITableViewCellStyleDefault" id="Keb-8e-jTx" customClass="ThemeableTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TagCell" textLabel="aYI-hE-Amz" detailTextLabel="9Nr-Te-muY" style="IBUITableViewCellStyleValue1" id="Keb-8e-jTx" customClass="ThemeableTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Keb-8e-jTx" id="xgQ-Ba-nPL">
@@ -389,10 +395,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aYI-hE-Amz">
-                                                    <rect key="frame" x="15" y="0.0" width="352" height="44"/>
+                                                    <rect key="frame" x="15" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Nr-Te-muY">
+                                                    <rect key="frame" x="327.66666666666669" y="14" width="39.333333333333336" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

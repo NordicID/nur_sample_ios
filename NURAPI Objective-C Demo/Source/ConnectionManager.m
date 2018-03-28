@@ -2,6 +2,7 @@
 #import <NurAPIBluetooth/Bluetooth.h>
 
 #import "ConnectionManager.h"
+#import "Log.h"
 
 @interface ConnectionManager ()
 
@@ -129,7 +130,7 @@
     if ( self.reconnectMode == kAlwaysReconnect ) {
         NSString * uuid = [self getLastConnectedUuid];
         if ( uuid ) {
-            NSLog( @"found previously connected to device, uuid: %@, attempting to reconnect", uuid );
+            logDebug( @"found previously connected to device, uuid: %@, attempting to reconnect", uuid );
 
             // attempt to restore the connection
             [[Bluetooth sharedInstance] restoreConnection:uuid];
@@ -163,7 +164,7 @@
     [defaults setObject:uuid forKey:@"lastUuid"];
     [defaults synchronize];
 
-    NSLog( @"permanently stored currently connected device uuid: %@", uuid );
+    logDebug( @"permanently stored currently connected device uuid: %@", uuid );
 }
 
 
@@ -171,7 +172,7 @@
  * Bluetooth delegate callbacks
  **/
 - (void) connectingToReader:(CBPeripheral *)reader {
-    NSLog( @"connecting to reader: %@", reader.name );
+    logDebug( @"connecting to reader: %@", reader.name );
 
     // inform all delegates
     NSSet * copiedDelegates = [[NSSet alloc] initWithSet:self.delegates];
@@ -184,7 +185,7 @@
 
 
 - (void) readerConnectionOk {
-    NSLog( @"reader connected, connection ok" );
+    logDebug( @"reader connected, connection ok" );
     self.connectionOk = YES;
 
     [self setLastConnectedUuid:[Bluetooth sharedInstance].currentReader.identifier.UUIDString];
@@ -203,7 +204,7 @@
 
 
 - (void) readerDisconnected {
-    NSLog( @"reader disconnected, connection no longer ok" );
+    logDebug( @"reader disconnected, connection no longer ok" );
     self.connectionOk = NO;
 
     // inform all delegates

@@ -2,6 +2,7 @@
 #import "LocateViewController.h"
 #import "LocateTagViewController.h"
 #import "TagManager.h"
+#import "Log.h"
 
 
 @interface LocateViewController ()
@@ -85,7 +86,7 @@
         int tagsAdded;
         error = NurApiFetchTags( [Bluetooth sharedInstance].nurapiHandle, 1, &tagsAdded );
 
-        NSLog( @"found %d tags, total in reader memory: %d, added: %d", inventoryResponse.numTagsFound, inventoryResponse.numTagsMem, tagsAdded );
+        logDebug( @"found %d tags, total in reader memory: %d, added: %d", inventoryResponse.numTagsFound, inventoryResponse.numTagsMem, tagsAdded );
 
         // fetch all tags
         for ( int index = 0; index < inventoryResponse.numTagsMem; ++index ) {
@@ -158,7 +159,7 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
-    NSLog( @"selected tag: %@", tag );
+    logDebug( @"selected tag: %@", tag );
 
     // is the tag too short to locate?
     if ( tag.epc.length == 0 ) {

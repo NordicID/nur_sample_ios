@@ -1,5 +1,6 @@
 
 #import "ContactViewController.h"
+#import "Log.h"
 
 @interface ContactViewController ()
 
@@ -17,7 +18,7 @@
     NSString* path = [[NSBundle mainBundle] pathForResource:@"MetaData" ofType:@"plist"];
 
     if ( ! [[NSFileManager defaultManager] fileExistsAtPath:path] ) {
-        NSLog( @"no MetaData.plist file found in bundle");
+        logDebug( @"no MetaData.plist file found in bundle");
         return;
     }
 
@@ -81,7 +82,7 @@
     cleanPhoneNumber = [cleanPhoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
     cleanPhoneNumber = [cleanPhoneNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
 
-    NSLog( @"clean phone number: %@", cleanPhoneNumber );
+    logDebug( @"clean phone number: %@", cleanPhoneNumber );
 
     // do the call
     NSURL * phoneNumberUrl = [NSURL URLWithString:cleanPhoneNumber];

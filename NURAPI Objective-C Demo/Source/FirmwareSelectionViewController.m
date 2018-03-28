@@ -99,7 +99,7 @@
         NSString * deviceVersions, *primaryVersion, *secondaryVersion;
 
         // get current settings
-        NSLog( @"querying device versions" );
+        logDebug( @"querying device versions" );
         int error1 = NurApiGetReaderInfo( [Bluetooth sharedInstance].nurapiHandle, &info, sizeof(struct NUR_READERINFO) );
         int error2 = NurAccGetFwVersion( [Bluetooth sharedInstance].nurapiHandle, deviceVersionsTmp, 32);
         int error3 = NurApiGetVersions( [Bluetooth sharedInstance].nurapiHandle, &mode, primaryVersionTmp, secondaryVersionTmp );
@@ -126,8 +126,8 @@
                 [self.versionStrings setObject:version atIndexedSubscript:kNurFirmware];
                 compareVersions[kNurFirmware] = [Firmware calculateCompareVersion:version type:kNurFirmware];
 
-                NSLog( @"our device model: %@", self.nurModelName );
-                NSLog( @"current NUR firmware version: %@", self.versionStrings[kNurFirmware] );
+                logDebug( @"our device model: %@", self.nurModelName );
+                logDebug( @"current NUR firmware version: %@", self.versionStrings[kNurFirmware] );
             }
 
             if (error2 != NUR_NO_ERROR) {
@@ -161,8 +161,8 @@
                     compareVersions[kDeviceFirmware] = [Firmware calculateCompareVersion:deviceFirmwareVersion type:kDeviceFirmware];
                     compareVersions[kDeviceBootloader] = [Firmware calculateCompareVersion:deviceBootloaderVersion type:kDeviceBootloader];
 
-                    NSLog( @"current device firmware version: '%@'", self.versionStrings[kDeviceFirmware] );
-                    NSLog( @"current device bootloader version: '%@'", self.versionStrings[kDeviceBootloader] );
+                    logDebug( @"current device firmware version: '%@'", self.versionStrings[kDeviceFirmware]);
+                    logDebug( @"current device bootloader version: '%@'", self.versionStrings[kDeviceBootloader]);
                 }
             }
 
@@ -172,8 +172,8 @@
                 [self showNurApiErrorMessage:error3];
             }
             else {
-                NSLog( @"primary version: %@", primaryVersion );
-                NSLog( @"secondary version: %@", secondaryVersion );
+                logDebug( @"primary version: %@", primaryVersion );
+                logDebug( @"secondary version: %@", secondaryVersion );
                 [self.versionStrings setObject:secondaryVersion atIndexedSubscript:kNurBootloader];
                 compareVersions[kNurBootloader] = [Firmware calculateCompareVersion:secondaryVersion type:kNurBootloader];
             }
@@ -183,13 +183,22 @@
                 [self showNurApiErrorMessage:error4];
             }
             else {
-                NSArray * modelParts = [[NSString stringWithCString:accessoryInfo.device_name encoding:NSASCIIStringEncoding] componentsSeparatedByString:@" "];
-                self.exaModelName = modelParts.count == 0 ? @"unknown model" : modelParts[0];
-                NSLog( @"exa model: %@", self.exaModelName);
+                if ( accessoryInfo.config & NUR_ACC_CFG_ACD ) {
+                    self.exaModelName = @"EXA51";
+                }
+                else if ( accessoryInfo.config & NUR_ACC_CFG_WEARABLE ) {
+                    self.exaModelName = @"EXA31";
+                }
+                else {
+                    self.exaModelName = @"INVALID";
+                    [self showErrorMessage:@"Failed to find EXA version"];
+                }
+
+                logDebug( @"EXA model: %@", self.exaModelName);
             }
 
             for ( int index = 0; index < 4; ++index ) {
-                NSLog( @"compare version: %@ == %lu", self.versionStrings[index], (unsigned long)compareVersions[index] );
+                logDebug( @"our compare version: %@ == %lu", self.versionStrings[index], (unsigned long)compareVersions[index] );
             }
 
             // now start downloading the index file that we have all own versions
@@ -275,7 +284,7 @@
 #pragma mark - Firmware downloader delegate
 
 - (void) firmwareMetaDataDownloaded:(FirmwareType)type firmwares:(NSArray *)firmwares {
-    NSLog( @"meta data downloaded for type: %d, firmwares found: %lu", type, (unsigned long)(firmwares != nil ? firmwares.count : 0));
+    logDebug( @"meta data downloaded for type: %d, firmwares found: %lu", type, (unsigned long)(firmwares != nil ? firmwares.count : 0));
 
     if ( firmwares == nil ) {
         return;
@@ -284,15 +293,16 @@
     // only actually use the ones that are newer than ours
     NSMutableArray * valid = [NSMutableArray new];
     for ( Firmware * firmware in firmwares ) {
+        // the firmware must be suitable for either the EXA or the NUR module.
         if ( ![firmware suitableForModel:self.nurModelName] && ![firmware suitableForModel:self.exaModelName] ) {
-            //NSLog( @"not for our hw");
+            logDebug( @"not for our hw: %@", firmware.version);
             continue;
         }
 
-        //NSLog( @"this firmware is for our model" );
+        logDebug( @"this firmware is for our model, compare version: %d, our compare version: %d", firmware.compareVersion, compareVersions[type] );
 
-        if ( firmware.compareVersion > compareVersions[type] ) {
-            NSLog( @"found newer (or same) firmware: %@", firmware );
+        if ( firmware.compareVersion >= compareVersions[type] ) {
+            logDebug( @"found newer firmware: %@", firmware );
             [valid addObject:firmware];
         }
     }
@@ -305,7 +315,7 @@
 
 
 - (void) firmwareMetaDataFailed:(FirmwareType)type error:(NSString *)error {
-    NSLog( @"meta data download failed for type: %d, error: %@", type, error );
+    logError( @"meta data download failed for type: %d, error: %@", type, error );
 }
 
 @end

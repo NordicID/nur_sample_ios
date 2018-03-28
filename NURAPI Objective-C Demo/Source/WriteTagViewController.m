@@ -4,6 +4,7 @@
 #import "WriteTagViewController.h"
 #import "WriteTagPopoverViewController.h"
 #import "TagManager.h"
+#import "Log.h"
 
 @interface WriteTagViewController ()
 
@@ -87,7 +88,7 @@
         int tagsAdded;
         error = NurApiFetchTags( [Bluetooth sharedInstance].nurapiHandle, 1, &tagsAdded );
 
-        NSLog( @"found %d tags, total in reader memory: %d, added: %d", inventoryResponse.numTagsFound, inventoryResponse.numTagsMem, tagsAdded );
+        logDebug( @"found %d tags, total in reader memory: %d, added: %d", inventoryResponse.numTagsFound, inventoryResponse.numTagsMem, tagsAdded );
 
         // fetch all tags
         for ( int index = 0; index < inventoryResponse.numTagsMem; ++index ) {
@@ -108,7 +109,7 @@
 //******************************************************************************************
 #pragma mark - Write Tag Popover View Controller Delegate
 - (void) writeCompletedWithError:(int)error {
-    NSLog( @"tag writing completed with error: %d", error );
+    logDebug( @"tag writing completed with error: %d", error );
 
     dispatch_async(dispatch_get_main_queue(), ^{
         // dismiss the popover
@@ -138,7 +139,7 @@
                 char buffer[256];
                 NurApiGetErrorMessage( error, buffer, 256 );
                 message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-                NSLog( @"NURAPI error: %@", message );
+                logError( @"NURAPI error: %@", message );
 
                 [self showMessagePopup:message
                              withTitle:NSLocalizedString(@"Failed to write tag", nil)
@@ -166,7 +167,7 @@
         [alert addAction:button];
     }
 
-    NSLog( @"presenting %@ %@", title, message );
+    logDebug( @"presenting %@ %@", title, message );
     [self presentViewController:alert animated:YES completion:completion];
     return alert;
 }
@@ -203,7 +204,7 @@
  **/
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
-    NSLog( @"selected tag for writing: %@", tag );
+    logDebug( @"selected tag for writing: %@", tag );
 }
 
 @end

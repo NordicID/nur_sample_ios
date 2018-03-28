@@ -117,8 +117,8 @@ enum {
 
         primaryVersion   = [NSString stringWithCString:primaryVersionTmp encoding:NSASCIIStringEncoding];
         secondaryVersion = [NSString stringWithCString:secondaryVersionTmp encoding:NSASCIIStringEncoding];
-        NSLog( @"primary version: %@", primaryVersion );
-        NSLog( @"secondary version: %@", secondaryVersion );
+        logDebug( @"primary version: %@", primaryVersion );
+        logDebug( @"secondary version: %@", secondaryVersion );
 
         NSArray * parts = [accessoryFwVersions componentsSeparatedByString:@";"];
         if ( parts.count != 2 ) {

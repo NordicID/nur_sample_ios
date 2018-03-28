@@ -1,6 +1,7 @@
 
 #import "TagViewController.h"
 #import "LocateTagViewController.h"
+#import "Log.h"
 
 @implementation TagViewController
 
@@ -92,7 +93,7 @@
             break;
 
         case 8:
-            NSLog( @"%d %d", self.tag.foundCount, self.rounds );
+            logDebug( @"%d %d", self.tag.foundCount, self.rounds );
             cell.textLabel.text = NSLocalizedString(@"Found %", nil);
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f", ((double)self.tag.foundCount / (double)self.rounds) * 100];
             break;

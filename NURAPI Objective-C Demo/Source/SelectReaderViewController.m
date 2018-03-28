@@ -3,6 +3,7 @@
 #import "MainMenuViewController.h"
 #import "ConnectionManager.h"
 #import "ThemeManager.h"
+#import "Log.h"
 
 @interface SelectReaderViewController ()
 
@@ -129,7 +130,7 @@
     // BUG: if we don't allow to connect to the same reader we can be stuck with a non working reader. This can happen if the
     // user is too slow to respond to the pairing request
     if ( reader == cm.currentReader ) {
-        NSLog( @"selected the same reader, we're done" );
+        logDebug( @"selected the same reader, we're done" );
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
@@ -153,12 +154,12 @@
         // we should connect to this new reader only after the old was properly disconnected
         self.shouldConnectTo = reader;
 
-        NSLog( @"disconnecting from previous reader: %@", cm.currentReader );
+        logDebug( @"disconnecting from previous reader: %@", cm.currentReader );
         [bt disconnectFromReader];
     }
     else {
         // no current reader, so connect directly
-        NSLog( @"connecting to selected reader: %@", reader );
+        logDebug( @"connecting to selected reader: %@", reader );
         self.shouldConnectTo = nil;
         [bt connectToReader:reader];
     }
@@ -172,14 +173,14 @@
  **/
 - (void) bluetoothStateChanged:(CBCentralManagerState)state {
     dispatch_async( dispatch_get_main_queue(), ^{
-        NSLog( @"bluetooth state: %ld", (long)state );
+        logDebug( @"bluetooth state: %ld", (long)state );
 
         // only scan if powered on and not already scanning
         if ( state != CBManagerStatePoweredOn || [Bluetooth sharedInstance].isScanning ) {
             return;
         }
 
-        NSLog( @"bluetooth turned on, starting scan" );
+        logDebug( @"bluetooth turned on, starting scan" );
         [[Bluetooth sharedInstance] startScanning];
     });
 }
@@ -187,7 +188,7 @@
 
 - (void) readerFound:(CBPeripheral *)reader rssi:(NSNumber *)rssi{
     dispatch_async( dispatch_get_main_queue(), ^{
-        NSLog( @"reader found: %@", reader );
+        logDebug( @"reader found: %@", reader );
 
         // save our RSSI
         self.rssiMap[ reader.identifier.UUIDString] = rssi;
@@ -198,7 +199,7 @@
 
 
 - (void) readerDisconnected {
-    NSLog( @"disconnect from reader completed" );
+    logDebug( @"disconnect from reader completed" );
 
     dispatch_async( dispatch_get_main_queue(), ^{
         self.disconnectButton.hidden = YES;
@@ -207,7 +208,7 @@
     // do we have a reader that we should connect to? this means that we have disconnected from a previous reader
     // and can now proceed to connect to the new reader
     if ( self.shouldConnectTo ) {
-        NSLog( @"proceeding with connection to new reader: %@", self.shouldConnectTo );
+        logDebug( @"proceeding with connection to new reader: %@", self.shouldConnectTo );
         [[Bluetooth sharedInstance] connectToReader:self.shouldConnectTo];
         self.shouldConnectTo = nil;
     }
@@ -218,7 +219,7 @@
 }
 
 /*- (void) reader:(CBPeripheral *)reader rssiUpdated:(NSNumber *)rssi {
-    NSLog( @"reader: %@, rssi: %@", reader, rssi );
+    logDebug( @"reader: %@, rssi: %@", reader, rssi );
 
     // save the RSSI
     self.rssiMap[ reader.identifier.UUIDString] = rssi;
@@ -229,7 +230,7 @@
 - (void) readerConnectionOk {
     // now we have a proper connection to the reader
     dispatch_async( dispatch_get_main_queue(), ^{
-        NSLog( @"connection ok" );
+        logDebug( @"connection ok" );
 
         // get rid of the status popup and wait for the alert to be dismissed before we pop ourselves away
         [self.alert dismissViewControllerAnimated:YES completion:^{
@@ -242,7 +243,7 @@
 
 - (void) readerConnectionFailed {
     dispatch_async( dispatch_get_main_queue(), ^{
-        NSLog( @"failed to connect to reader" );
+        logError( @"failed to connect to reader" );
 
         // first always get rid of the status popup and wait for the alert to be dismissed before we pop ourselves away
         [self.alert dismissViewControllerAnimated:YES completion:^{

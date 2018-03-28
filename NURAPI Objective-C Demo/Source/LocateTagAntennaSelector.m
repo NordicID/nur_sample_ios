@@ -1,6 +1,7 @@
 
 #import "LocateTagAntennaSelector.h"
 #import "AverageBuffer.h"
+#import "Log.h"
 
 @interface LocateTagAntennaSelector () {
     struct NUR_MODULESETUP setup;
@@ -59,7 +60,7 @@
  */
 
 - (int) begin {
-    NSLog( @"setting up antenna selector" );
+    logDebug( @"setting up antenna selector" );
 
     [self.signalAverage clear];
 
@@ -71,14 +72,14 @@
     int mask = NUR_SETUP_TXLEVEL | NUR_SETUP_ANTMASKEX | NUR_SETUP_SELECTEDANT;
     int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, mask, &setup, sizeof(struct NUR_MODULESETUP) );
     if ( error != NUR_NO_ERROR ) {
-        NSLog( @"failed to get module setup, error: %d", error );
+        logError( @"failed to get module setup, error: %d", error );
         return error;
     }
 
     // fetched ok, get antenna map
     error = NurApiGetAntennaMap( [Bluetooth sharedInstance].nurapiHandle, antennaMap, &antennaMappingCount, NUR_MAX_ANTENNAS_EX, sizeof(struct NUR_ANTENNA_MAPPING) );
     if ( error != NUR_NO_ERROR ) {
-        NSLog( @"failed to get antenna map, error: %d", error );
+        logError( @"failed to get antenna map, error: %d", error );
         return error;
     }
 
@@ -89,7 +90,7 @@
     }
 
     for ( NSString * name in self.antennaNames ) {
-        NSLog( @"antenna: %@", name );
+        logDebug( @"antenna: %@", name );
     }
 
     // find the masks for given named antennas
@@ -106,7 +107,7 @@
         }
     }
 
-    NSLog( @"masks: cross: %d, circular: %d, prox: %d", self.mCrossDipoleAntMask, self.mCircularAntMask, self.mProximityAntMask );
+    logDebug( @"masks: cross: %d, circular: %d, prox: %d", self.mCrossDipoleAntMask, self.mCircularAntMask, self.mProximityAntMask );
 
     // save all current settings for later restoring
     self.mBackupTxLevel         = setup.txLevel;
@@ -119,36 +120,34 @@
     mask = NUR_SETUP_SELECTEDANT | NUR_SETUP_TXLEVEL;
     error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, mask, &setup, sizeof(struct NUR_MODULESETUP) );
     if ( error != NUR_NO_ERROR ) {
-        NSLog( @"failed to set tx level and antenna to auto selection, error: %d", error );
+        logError( @"failed to set tx level and antenna to auto selection, error: %d", error );
         return error;
     }
 
     [self selectCrossDipoleAntenna];
 
-    NSLog( @"antenna selector set up ok" );
+    logDebug( @"antenna selector set up ok" );
 
     return NUR_NO_ERROR;
 }
 
 
 - (void) stop {
-    //  dispatch_async(self.dispatchQueue, ^{
     // restore old settings
     setup.selectedAntenna = self.mBackupSelectedAntenna;
     setup.antennaMaskEx = self.mBackupAntennaMask;
     setup.txLevel = self.mBackupTxLevel;
 
-    NSLog( @"restoring old setup" );
+    logDebug( @"restoring old setup" );
 
     int mask = NUR_SETUP_TXLEVEL | NUR_SETUP_ANTMASKEX | NUR_SETUP_SELECTEDANT;
     int error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, mask, &setup, sizeof(struct NUR_MODULESETUP) );
     if ( error != NUR_NO_ERROR ) {
-        NSLog( @"failed to restore old setup, error: %d", error );
+        logError( @"failed to restore old setup, error: %d", error );
         return;
     }
 
-    NSLog( @"old setup restored ok" );
-    //} );
+    logDebug( @"old setup restored ok" );
 }
 
 
@@ -186,11 +185,11 @@
     setup.antennaMaskEx = antennaMask;
     int error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_ANTMASKEX, &setup, sizeof(struct NUR_MODULESETUP) );
     if ( error != NUR_NO_ERROR ) {
-        NSLog( @"failed to set antenna mask to %d, error: %d", antennaMask, error );
+        logError( @"failed to set antenna mask to %d, error: %d", antennaMask, error );
         return;
     }
 
-    NSLog( @"set antenna mask to: %d", antennaMask );
+    logDebug( @"set antenna mask to: %d", antennaMask );
     //} );
 }
 

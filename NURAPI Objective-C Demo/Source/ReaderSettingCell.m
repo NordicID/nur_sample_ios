@@ -1,5 +1,6 @@
 
 #import "ReaderSettingCell.h"
+#import "Log.h"
 
 @implementation ReaderSettingCell
 
@@ -14,7 +15,7 @@
 
 
 - (IBAction)valueChanged:(id)sender {
-    NSLog( @"value now: %d", self.enabledSwitch.on );
+    logDebug( @"value now: %d", self.enabledSwitch.on );
 
     if ( self.delegate ) {
         [self.delegate setting:self.settingType hasChanged:self.enabledSwitch.on];

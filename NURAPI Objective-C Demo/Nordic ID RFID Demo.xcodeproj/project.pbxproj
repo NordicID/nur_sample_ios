@@ -14,6 +14,7 @@
 		6F050B281FA85B1D00D9CF95 /* EULA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F050B251FA85B1D00D9CF95 /* EULA.storyboard */; };
 		6F050B291FA85B1D00D9CF95 /* EULAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B271FA85B1D00D9CF95 /* EULAViewController.m */; };
 		6F050B2D1FA85BB500D9CF95 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */; };
+		6F0A16E1204800BD0015BCC6 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A16E0204800BD0015BCC6 /* Log.m */; };
 		6F6234FE200E44C1005B5913 /* ThemeableLabelInverted.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */; };
 		6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598D1EC2D83000A458AA /* AboutViewController.m */; };
 		6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
@@ -109,6 +110,8 @@
 		6F050B261FA85B1D00D9CF95 /* EULAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EULAViewController.h; sourceTree = "<group>"; };
 		6F050B271FA85B1D00D9CF95 /* EULAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EULAViewController.m; sourceTree = "<group>"; };
 		6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerManager.m; sourceTree = "<group>"; };
+		6F0A16DF204800BD0015BCC6 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		6F0A16E0204800BD0015BCC6 /* Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerManager.h; sourceTree = "<group>"; };
 		6F6234FC200E44C1005B5913 /* ThemeableLabelInverted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableLabelInverted.h; sourceTree = "<group>"; };
 		6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableLabelInverted.m; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 				6F7959DB1EC2D83000A458AA /* WriteTagViewController.m */,
 				6F8186102034111C00FE89B6 /* UIViewController+ErrorMessage.h */,
 				6F8186112034111C00FE89B6 /* UIViewController+ErrorMessage.m */,
+				6F0A16DF204800BD0015BCC6 /* Log.h */,
+				6F0A16E0204800BD0015BCC6 /* Log.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -717,6 +722,7 @@
 				6F921BE91F862D2C0088AC3E /* FirmwareDownloader.m in Sources */,
 				6FED47011F9DFE37009BB353 /* ThemeableView.m in Sources */,
 				6FED47051F9DFF60009BB353 /* ThemeableCollectionView.m in Sources */,
+				6F0A16E1204800BD0015BCC6 /* Log.m in Sources */,
 				6F6234FE200E44C1005B5913 /* ThemeableLabelInverted.m in Sources */,
 				6FED46F91F9B5A8F009BB353 /* ThemeableAttributedLabel.m in Sources */,
 				6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */,

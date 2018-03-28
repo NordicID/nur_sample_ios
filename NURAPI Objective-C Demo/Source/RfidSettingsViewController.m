@@ -131,7 +131,7 @@
             // restore back the old region for the reader too
             error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_REGION, &setup, sizeof(struct NUR_MODULESETUP) );
             if ( error != NUR_NO_ERROR ) {
-                NSLog( @"failed to restore original region %d after region lock test", setup.regionId );
+                logError( @"failed to restore original region %d after region lock test", setup.regionId );
                 [self showSetupStatus:error alert:alert];
                 return;
             }
@@ -261,7 +261,7 @@
         command[3] = numPassword & 0xff;
 
         if ( regionLocked ) {
-            NSLog( @"disabling region lock" );
+            logDebug( @"disabling region lock" );
             length = 4;
         }
         else {
@@ -275,7 +275,7 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if ( error != NUR_NO_ERROR ) {
-                NSLog( @"failed to change region lock state");
+                logError( @"failed to change region lock state");
                 [self showNurApiErrorMessage:error];
                 return;
             }
@@ -295,11 +295,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // the region lock row
     if ( indexPath.section == 2 ) {
-        NSLog( @"toggle region lock" );
+        logDebug( @"toggle region lock" );
     }
 
     else if ( indexPath.section == 1 ) {
-        NSLog( @"set filter");
+        logDebug( @"set filter");
         [self editRssiFilter:indexPath.row];
     }
 }
@@ -334,8 +334,8 @@
             return 12;
 
         case 1:
-            // min, max RSSI
-            return 6;
+            // min, max RSSI for inventory
+            return 2;
 
         default:
             return 1;
@@ -350,29 +350,29 @@
 
         switch ( indexPath.row ) {
             case 0:
-                cell.textLabel.text = NSLocalizedString(@"Min inventory RSSI (dBm)", nil);
+                cell.textLabel.text = NSLocalizedString(@"Min inventory RSSI (-100 to 0 dBm)", nil);
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.inventoryRssiFilter.min];
                 break;
             case 1:
-                cell.textLabel.text = NSLocalizedString(@"Max inventory RSSI (dBm)", nil);
+                cell.textLabel.text = NSLocalizedString(@"Max inventory RSSI (-100 to 0 dBm)", nil);
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.inventoryRssiFilter.max];
                 break;
-            case 2:
-                cell.textLabel.text = NSLocalizedString(@"Min read RSSI (dBm)", nil);
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.readRssiFilter.min];
-                break;
-            case 3:
-                cell.textLabel.text = NSLocalizedString(@"Max read RSSI (dBm)", nil);
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.readRssiFilter.max];
-                break;
-            case 4:
-                cell.textLabel.text = NSLocalizedString(@"Min write RSSI (dBm)", nil);
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.min];
-                break;
-            case 5:
-                cell.textLabel.text = NSLocalizedString(@"Max write RSSI (dBm)", nil);
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.max];
-                break;
+//            case 2:
+//                cell.textLabel.text = NSLocalizedString(@"Min read RSSI (dBm)", nil);
+//                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.readRssiFilter.min];
+//                break;
+//            case 3:
+//                cell.textLabel.text = NSLocalizedString(@"Max read RSSI (dBm)", nil);
+//                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.readRssiFilter.max];
+//                break;
+//            case 4:
+//                cell.textLabel.text = NSLocalizedString(@"Min write RSSI (dBm)", nil);
+//                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.min];
+//                break;
+//            case 5:
+//                cell.textLabel.text = NSLocalizedString(@"Max write RSSI (dBm)", nil);
+//                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.max];
+//                break;
         }
 
         return cell;
@@ -611,7 +611,7 @@
 
             for ( unsigned int index = 0; index < antennaMappingCount; ++index ) {
                 int logicalAntennaId = antennaMap[ index ].antennaId;
-                NSLog( @"id %d, %s", logicalAntennaId, antennaMap[ index ].name );
+                logDebug( @"id %d, %s", logicalAntennaId, antennaMap[ index ].name );
                 [alternatives addObject:[SettingsAlternative alternativeWithTitle:[NSString stringWithCString:antennaMap[ index ].name encoding:NSASCIIStringEncoding]
                                                                             value:index selected:setup.antennaMaskEx & (1<<index)]];
             }
@@ -694,33 +694,33 @@
             setting = NUR_SETUP_INVRSSIFILTER;
             valueTarget = &(setup.inventoryRssiFilter.max);
             break;
-        case 2:
-            title = NSLocalizedString(@"Read min RSSI", @"RSSI popup title");
-            message = NSLocalizedString(@"Enter the minimum RSSI value for read operations", @"RSSI popup message");
-            setting = NUR_SETUP_READRSSIFILTER;
-            valueTarget = &(setup.readRssiFilter.min);
-            break;
-        case 3:
-            title = NSLocalizedString(@"Read max RSSI", @"RSSI popup title");
-            message = NSLocalizedString(@"Enter the maximum RSSI value for read operations", @"RSSI popup message");
-            setting = NUR_SETUP_READRSSIFILTER;
-            valueTarget = &(setup.readRssiFilter.max);
-            break;
-        case 4:
-            title = NSLocalizedString(@"Write min RSSI", @"RSSI popup title");
-            message = NSLocalizedString(@"Enter the minimum RSSI value for write operations", @"RSSI popup message");
-            setting = NUR_SETUP_WRITERSSIFILTER;
-            valueTarget = &(setup.writeRssiFilter.min);
-           break;
-        case 5:
-            title = NSLocalizedString(@"Write max RSSI", @"RSSI popup title");
-            message = NSLocalizedString(@"Enter the maximum RSSI value for write operations", @"RSSI popup message");
-            setting = NUR_SETUP_WRITERSSIFILTER;
-            valueTarget = &(setup.writeRssiFilter.max);
-           break;
+//        case 2:
+//            title = NSLocalizedString(@"Read min RSSI", @"RSSI popup title");
+//            message = NSLocalizedString(@"Enter the minimum RSSI value for read operations", @"RSSI popup message");
+//            setting = NUR_SETUP_READRSSIFILTER;
+//            valueTarget = &(setup.readRssiFilter.min);
+//            break;
+//        case 3:
+//            title = NSLocalizedString(@"Read max RSSI", @"RSSI popup title");
+//            message = NSLocalizedString(@"Enter the maximum RSSI value for read operations", @"RSSI popup message");
+//            setting = NUR_SETUP_READRSSIFILTER;
+//            valueTarget = &(setup.readRssiFilter.max);
+//            break;
+//        case 4:
+//            title = NSLocalizedString(@"Write min RSSI", @"RSSI popup title");
+//            message = NSLocalizedString(@"Enter the minimum RSSI value for write operations", @"RSSI popup message");
+//            setting = NUR_SETUP_WRITERSSIFILTER;
+//            valueTarget = &(setup.writeRssiFilter.min);
+//           break;
+//        case 5:
+//            title = NSLocalizedString(@"Write max RSSI", @"RSSI popup title");
+//            message = NSLocalizedString(@"Enter the maximum RSSI value for write operations", @"RSSI popup message");
+//            setting = NUR_SETUP_WRITERSSIFILTER;
+//            valueTarget = &(setup.writeRssiFilter.max);
+//           break;
 
         default:
-            NSLog(@"invalid row %d, should be [0..5]", row);
+            logError(@"invalid row %d, should be [0..5]", row);
             return;
     }
 
@@ -729,7 +729,7 @@
                                                                           message: message
                                                                    preferredStyle:UIAlertControllerStyleAlert];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"value 0-100 (0 = disable filter)";
+        textField.placeholder = @"value -100 to 0 (0 = disable filter)";
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     }];
@@ -742,7 +742,7 @@
             return;
         }
         *valueTarget = intValue & 0xff;
-        NSLog( @"value: %@ %d", text, *valueTarget);
+        logDebug( @"value: %@ %d", text, *valueTarget);
 
         // perform saving to volatile memory using the NURAPI dispatch queue
         dispatch_async(self.dispatchQueue, ^{
@@ -753,7 +753,7 @@
                 error = NurApiStoreCurrentSetup([Bluetooth sharedInstance].nurapiHandle );
                 if ( error == NUR_NO_ERROR ) {
                     // saved ok
-                    NSLog( @"filter value saved ok");
+                    logDebug( @"filter value saved ok");
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:row inSection:1]]
                                               withRowAnimation:UITableViewRowAnimationAutomatic];

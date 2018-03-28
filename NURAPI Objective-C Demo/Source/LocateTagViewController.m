@@ -93,13 +93,13 @@
 
 
 - (void) startLocating {
-    NSLog( @"starting trace stream" );
+    logDebug( @"starting trace stream" );
 
     dispatch_async( self.dispatchQueue, ^{
         // setup antennas for tracing
         int error = [self.antennaSelector begin];
         if ( error != NUR_NO_ERROR ) {
-            NSLog( @"failed to setup antennas for tracing" );
+            logError( @"failed to setup antennas for tracing" );
 
             // show the error or update the button label on the main queue
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -115,14 +115,14 @@
         BYTE flags = NUR_TRACETAG_NO_EPC | NUR_TRACETAG_START_CONTINUOUS;
         error = NurApiTraceTagByEPC( [Bluetooth sharedInstance].nurapiHandle, epc, epcLength, flags, &response );
 
-        NSLog( @"stream result: %d", error );
+        logDebug( @"stream result: %d", error );
 
         // show the error or update the button label on the main queue
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.actionButton setTitle: NSLocalizedString(@"Stop", nil) forState: UIControlStateNormal];
 
             if ( error != NUR_NO_ERROR ) {
-                NSLog( @"failed to start trace stream" );
+                logError( @"failed to start trace stream" );
                 [self showNurApiErrorMessage:error];
                 return;
             }
@@ -167,7 +167,7 @@
 
 
 - (void) stopLocating {
-    NSLog( @"stopping trace stream" );
+    logDebug( @"stopping trace stream" );
 
     // no more locating
     self.locateInProgress = NO;
@@ -180,7 +180,7 @@
             [self.actionButton setTitle:NSLocalizedString(@"Start", nil) forState: UIControlStateNormal];
 
             if ( error != NUR_NO_ERROR ) {
-                NSLog( @"failed to stop trace stream" );
+                logError( @"failed to stop trace stream" );
                 [self showNurApiErrorMessage:error];
                 return;
             }
@@ -203,7 +203,7 @@
             const struct NUR_TRACETAG_DATA *traceData = (const struct NUR_TRACETAG_DATA *)data;
 
             self.tag.scaledRssi = (char)[self.antennaSelector adjust:traceData->scaledRssi];
-            NSLog( @"trace event, rssi: %d, scaled rssi: %d, adjusted rssi: %d, antenna id: %d", traceData->rssi, traceData->scaledRssi, self.tag.scaledRssi, traceData->antennaId );
+            logDebug( @"trace event, rssi: %d, scaled rssi: %d, adjusted rssi: %d, antenna id: %d", traceData->rssi, traceData->scaledRssi, self.tag.scaledRssi, traceData->antennaId );
 
             // smooth the shown value a bit
             int smoothedValue = [self.smoothingBuffer add:self.tag.scaledRssi];
@@ -219,7 +219,7 @@
         case NUR_NOTIFICATION_IOCHANGE: {
             struct NUR_IOCHANGE_DATA *iocData = (struct NUR_IOCHANGE_DATA *)data;
             if (iocData->source == NUR_ACC_TRIGGER_SOURCE) {
-                NSLog( @"trigger changed, dir: %d", iocData->dir );
+                logDebug( @"trigger changed, dir: %d", iocData->dir );
                 if (iocData->dir == 0) {
                     [self toggleLocating];
                 }

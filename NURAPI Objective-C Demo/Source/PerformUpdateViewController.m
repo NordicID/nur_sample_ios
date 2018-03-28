@@ -4,6 +4,7 @@
 #import <NurAPIBluetooth/NurAccessoryExtension.h>
 
 #import "PerformUpdateViewController.h"
+#import "Log.h"
 
 @interface PerformUpdateViewController ()
 
@@ -13,6 +14,7 @@
 @property (nonatomic, strong) DFUServiceController * dfuController;
 
 @property (nonatomic, strong) NSString * dfuDeviceName;
+@property (nonatomic, assign) BOOL shouldDoDummyConnect;
 
 @end
 
@@ -26,6 +28,9 @@
 
     // the name of the device when it's in DFU mode
     self.dfuDeviceName = @"DfuExa";
+
+    // we're not DFU flashing yet
+    self.shouldDoDummyConnect = NO;
 
     // set up the queue used to async any NURAPI calls
     self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
@@ -58,7 +63,7 @@
 #pragma mark - Download update
 
 - (IBAction)downloadFirmware:(UIButton *)sender {
-    NSLog( @"updating to firmware %@", self.firmware.name );
+    logDebug( @"updating to firmware %@", self.firmware.name );
 
     // show a progress view
     self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Downloading firmware", nil)
@@ -71,7 +76,7 @@
         NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
                                               dataTaskWithURL:self.firmware.url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                   if ( error != nil ) {
-                                                      NSLog( @"failed to download firmware index file");
+                                                      logError( @"failed to download firmware index file");
                                                       [self showErrorMessage:NSLocalizedString(@"Failed to download firmware update data!", nil)];
                                                       return;
                                                   }
@@ -79,30 +84,30 @@
                                                   NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
                                                   if ( httpResponse == nil || httpResponse.statusCode != 200 ) {
                                                       if ( httpResponse ) {
-                                                          NSLog( @"failed to download firmware index file, expected status 200, got: %ld", (long)httpResponse.statusCode );
+                                                          logError( @"failed to download firmware index file, expected status 200, got: %ld", (long)httpResponse.statusCode );
                                                           [self showErrorMessage:[NSString stringWithFormat:NSLocalizedString(@"Failed to download firmware update data, status code: %ld", nil), (long)httpResponse.statusCode]];
                                                       }
                                                       else {
-                                                          NSLog( @"failed to download firmware index file, no response" );
+                                                          logError( @"failed to download firmware index file, no response" );
                                                           [self showErrorMessage:NSLocalizedString(@"Failed to download firmware update data, no response received!", nil)];
                                                       }
 
                                                       return;
                                                   }
 
-                                                  NSLog( @"downloaded firmware, size: %lu bytes", (unsigned long)data.length);
+                                                  logDebug( @"downloaded firmware, size: %lu bytes", (unsigned long)data.length);
 
                                                   // calculate the MD5 sum
                                                   NSString * md5Sum = [self md5:data];
                                                   if ( [self.firmware.md5 caseInsensitiveCompare:md5Sum] != NSOrderedSame ) {
-                                                      NSLog( @"md5 sum mismatch, firmware: %@, calculated: %@", self.firmware.md5, md5Sum );
+                                                      logError( @"md5 sum mismatch, firmware: %@, calculated: %@", self.firmware.md5, md5Sum );
                                                       [self showErrorMessage:NSLocalizedString(@"Checksum mismatch on downloaded firmware!", nil)];
                                                       return;
                                                   }
 
                                                   self.firmwareData = data;
                                                   
-                                                  NSLog( @"md5 sum ok, firmware: %@, calculated: %@", self.firmware.md5, md5Sum );
+                                                  logDebug( @"md5 sum ok, firmware: %@, calculated: %@", self.firmware.md5, md5Sum );
                                                   [self askForConfirmation];
                                               }];
         
@@ -159,6 +164,43 @@
 }
 
 
+- (void) showErrorMessage:(NSString *)message {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // dismiss any old alert first and wait for it to be completely dismissed before showing the error
+        if ( self.inProgressAlert ) {
+            [self.inProgressAlert dismissViewControllerAnimated:YES completion:^{
+                self.inProgressAlert = nil;
+                // show in an alert view
+                UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                                                                                message:message
+                                                                         preferredStyle:UIAlertControllerStyleAlert];
+
+                UIAlertAction* okButton = [UIAlertAction
+                                           actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * action) {
+                                               // nothing special to do right now
+                                           }];
+
+
+                [alert addAction:okButton];
+                [self presentViewController:alert animated:YES completion:nil];
+            }];
+        }
+    } );
+}
+
+
+- (void) showNurApiErrorMessage:(int)error {
+    // extract the NURAPI error
+    char buffer[256];
+    NurApiGetErrorMessage( error, buffer, 256 );
+    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+
+    [self showErrorMessage:message];
+}
+
+
 //*****************************************************************************************************************
 #pragma mark - Perform update
 
@@ -179,10 +221,10 @@
 #pragma mark - Device update
 
 - (void) performDeviceUpdate {
-    //    NSLog( @"performing a device update" );
+    //    logDebug( @"performing a device update" );
 
     // show a progress view
-    self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Updating NUR firmware", nil)
+    self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Updating device firmware", nil)
                                                                message:NSLocalizedString(@"Initializing...", nil)
                                                         preferredStyle:UIAlertControllerStyleAlert];
 
@@ -190,20 +232,24 @@
     [self presentViewController:self.inProgressAlert animated:YES completion:^{
         // perform the rebooting using a custom raw command
         dispatch_async(self.dispatchQueue, ^{
-            NSLog( @"DFU starting, rebooting the reader" );
+            // when we later find the device we do a dummy connect to it once
+            self.shouldDoDummyConnect = YES;
+
+            logDebug( @"DFU starting, rebooting the reader" );
+
+            // send a custom raw command to the reader instructing it to restart in DFU mode
             BYTE command[2] = { ACC_EXT_RESTART, RESET_BOOTLOADER_DFU_START };
             int error = [[Bluetooth sharedInstance] writeRawCommand:NUR_CMD_ACC_EXT buffer:command bufferLen:2];
 
             if ( error != NUR_NO_ERROR ) {
-                NSLog( @"failed to reboot reader into DFU mode");
+                logError( @"failed to reboot reader into DFU mode");
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self showNurApiErrorMessage:error];
                     return;
                 });
             }
 
-            NSLog( @"reader rebooted ok, starting a scan to find the device after it is back in DFU mode" );
-
+            logDebug( @"reader rebooted ok, starting a scan to find the device after it is back in DFU mode" );
             [[Bluetooth sharedInstance] startDfuScanning];
         });
      }];
@@ -214,7 +260,7 @@
 #pragma mark - DFU delegate methods
 
 - (void) dfuProgressDidChangeFor:(NSInteger)part outOf:(NSInteger)totalParts to:(NSInteger)progress currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond {
-    NSLog( @"DFU progress, part: %ld, total: %ld, progress: %ld %%", (long)part, (long)totalParts, (long)progress );
+    logDebug( @"DFU progress, part: %ld, total: %ld, progress: %ld %%", (long)part, (long)totalParts, (long)progress );
 
     // update the alert
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -226,7 +272,7 @@
 
 
 - (void) logWith:(enum LogLevel)level message:(NSString *)message {
-    NSLog( @"DFU log: %@", message );
+    logDebug( @"DFU log: %@", message );
 }
 
 
@@ -263,7 +309,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         // special handling of the completed states
         if ( state == DFUStateCompleted || state == DFUStateAborted ) {
-            NSLog( @"update completed, cleaning up" );
+            logDebug( @"update completed, cleaning up" );
 
             // first restore the delegate from the central manager to the bluetooth manager
             // TODO: this should be moved into NurAPIBluetooth
@@ -309,7 +355,37 @@
 
 
 - (void) dfuError:(enum DFUError)error didOccurWithMessage:(NSString *)message {
-    NSLog( @"DFU error: %ld, message: %@", (long)error, message );
+    logError( @"DFU error: %ld, message: %@", (long)error, message );
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // dismiss the current progress alert
+        [self.inProgressAlert dismissViewControllerAnimated:YES completion:^{
+            self.inProgressAlert = nil;
+
+            // show a final alert with the finishing status
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Update failed", nil)
+                                                                            message:message
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+
+            // when "Ok" is tapped pop off this view controller
+            UIAlertAction* okButton = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Close", nil)
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action) {
+                                           if ( self.navigationController ) {
+                                               [self.navigationController popToRootViewControllerAnimated:YES];
+                                           }
+                                           else if ( self.parentViewController && self.parentViewController.navigationController ) {
+                                               [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+                                           }
+                                       }];
+
+
+            [alert addAction:okButton];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+        }];
+    });
 }
 
 
@@ -317,7 +393,7 @@
 #pragma mark - NUR update
 
 - (void) performNurUpdate {
-    NSLog( @"performing a NUR update" );
+    logDebug( @"performing a NUR update" );
 
     // show a progress view
     self.inProgressAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Updating NUR firmware", nil)
@@ -338,7 +414,7 @@
             // somewhat ugly casts...
             BYTE * buffer = (BYTE *)self.firmwareData.bytes;
             unsigned int bufferLength = (unsigned int)self.firmwareData.length;
-            NSLog( @"now in bootloader mode, starting update, %d bytes", bufferLength );
+            logDebug( @"now in bootloader mode, starting update, %d bytes", bufferLength );
 
             if ( self.firmware.type == kNurFirmware ) {
                 error = NurApiProgramApp( [Bluetooth sharedInstance].nurapiHandle, buffer, bufferLength );
@@ -348,20 +424,20 @@
             }
             else {
                 // should not even be here...
-                NSLog( @"can not update firmware of type: %@", self.firmware.name );
+                logError( @"can not update firmware of type: %@", self.firmware.name );
                 return;
             }
 
             if ( error != NUR_NO_ERROR ) {
                 // failed to start update
-                NSLog( @"failed to start update, error: %d", error );
+                logError( @"failed to start update, error: %d", error );
                 [self showNurApiErrorMessage:error];
 
                 // TODO: set back bootloader mode to application 'A'
                 [self setBootloaderMode:'A'];
             }
             else {
-                NSLog( @"update started ok" );
+                logDebug( @"update started ok" );
             }
         });
     }];
@@ -386,7 +462,7 @@
         return YES;
     }
 
-    NSLog( @"current mode '%c', entering mode '%c'", currentMode, newMode );
+    logDebug( @"current mode '%c', entering mode '%c'", currentMode, newMode );
     if ( (error = NurApiEnterBoot([Bluetooth sharedInstance].nurapiHandle)) != NUR_NO_ERROR ) {
         // failed to enter bootloader mode
         [self showNurApiErrorMessage:error];
@@ -402,7 +478,7 @@
             return NO;
         }
 
-        NSLog( @"current mode: %c (%d)", currentMode, currentMode );
+        logDebug( @"current mode: %c (%d)", currentMode, currentMode );
 
         // wait a bit for the device to boot into bootloader mode
         [NSThread sleepForTimeInterval:1.0f];
@@ -419,47 +495,11 @@
 }
 
 
-- (void) showErrorMessage:(NSString *)message {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // dismiss any old alert first and wait for it to be completely dismissed before showing the error
-        if ( self.inProgressAlert ) {
-            [self.inProgressAlert dismissViewControllerAnimated:YES completion:^{
-                self.inProgressAlert = nil;
-                // show in an alert view
-                UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                                                                                message:message
-                                                                         preferredStyle:UIAlertControllerStyleAlert];
-
-                UIAlertAction* okButton = [UIAlertAction
-                                           actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                           style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction * action) {
-                                               // nothing special to do right now
-                                           }];
-
-                
-                [alert addAction:okButton];
-                [self presentViewController:alert animated:YES completion:nil];
-            }];
-        }
-    } );
-}
-
-
-- (void) showNurApiErrorMessage:(int)error {
-    // extract the NURAPI error
-    char buffer[256];
-    NurApiGetErrorMessage( error, buffer, 256 );
-    NSString * message = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
-
-    [self showErrorMessage:message];
-}
-
 //*****************************************************************************************************************
-#pragma mark - Flashing status
+#pragma mark - NUR flashing status
 
 - (void) showFlashingFailed:(int)error {
-    NSLog( @"flashing failed" );
+    logError( @"flashing failed" );
     [self showNurApiErrorMessage:error];
 
     int error2;
@@ -474,16 +514,16 @@
 
 - (void) showFlashingProgress:(int)current ofTotal:(int)total {
     if ( current == -1 ) {
-        NSLog( @"first update, no progress yet" );
+        logDebug( @"first update, no progress yet" );
         return;
     }
     if ( total == 0 ) {
-        NSLog( @"0 total pages, can not show progress!" );
+        logDebug( @"0 total pages, can not show progress!" );
         return;
     }
 
     int progressPercent = (int)((float)current / (float)total * 100);
-    NSLog( @"current: %d, total: %d, progress: %d%%", current, total, progressPercent );
+    logDebug( @"current: %d, total: %d, progress: %d%%", current, total, progressPercent );
 
     // update the alert
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -495,7 +535,7 @@
 
 
 - (void) showFlashingCompleted {
-    NSLog( @"flashing completed" );
+    logDebug( @"flashing completed" );
 
     // enter application mode again
     int error;
@@ -523,7 +563,7 @@
             return;
         }
 
-        NSLog( @"mode: %c (%d)", mode, mode );
+        logDebug( @"mode: %c (%d)", mode, mode );
 
         // wait a bit for the device to boot into bootloader mode
         [NSThread sleepForTimeInterval:1.0f];
@@ -566,11 +606,26 @@
 #pragma mark - Bluetooth delegate
 
 - (void) readerInDfuModeFound:(CBPeripheral *)reader {
-    NSLog( @"found reader %@ in DFU mode", reader.identifier.UUIDString);
+    logDebug( @"found reader %@ in DFU mode", reader.identifier.UUIDString);
+
+    // should we not do the initial reconnect to the device and scan services?
+    if ( self.shouldDoDummyConnect ) {
+        logDebug(@"doing a dummy connect to device in DFU mode" );
+        self.shouldDoDummyConnect = NO;
+        [[Bluetooth sharedInstance] connectToReader:reader];
+
+        // after 10s do the disconnect
+        logDebug(@"waiting 10s and then disconnecting and doing a new DFU scan" );
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), self.dispatchQueue, ^{
+            logDebug( @"delay elapsed, disconnecting" );
+            [[Bluetooth sharedInstance] disconnectFromReader];
+        });
+        return;
+    }
 
     // is it one of ours?
-    if ( ![self.dfuDeviceName isEqualToString:reader.name] ) {
-        NSLog( @"device %@ is not an EXA device (%@), ignoring", reader.name, self.dfuDeviceName );
+    if ( [self.dfuDeviceName caseInsensitiveCompare:reader.name] != NSOrderedSame ) {
+        logDebug( @"device %@ is not an EXA device (%@), ignoring", reader.name, self.dfuDeviceName );
         return;
     }
 
@@ -594,7 +649,28 @@
     // initiator.peripheralSelector = ... // the default selector is used
 
     self.dfuController = [initiator start];
-    NSLog( @"DFU has started" );
+    logDebug( @"DFU has started" );
+}
+
+
+//- (void) readerConnectionOk {
+//    logDebug( @"connected ok to reader: %@. Waiting 10s and then disconnecting", [Bluetooth sharedInstance].currentReader.name );
+//    self.shouldDoDummyConnect = NO;
+//
+//    // after 10s do the disconnect
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), self.dispatchQueue, ^{
+//        logDebug( @"delay elapsed, disconnecting" );
+//        [[Bluetooth sharedInstance] disconnectFromReader];
+//    });
+//}
+//
+//
+- (void) readerDisconnected {
+    logDebug( @"reader disconnected" );
+    if ( !self.shouldDoDummyConnect ) {
+        logDebug( @"dummy reconnect done, starting a new scan for DFU devices for the real update" );
+        [[Bluetooth sharedInstance] startDfuScanning];
+    }
 }
 
 
@@ -602,9 +678,9 @@
     switch ( type ) {
         case NUR_NOTIFICATION_PRGPRGRESS: {
             const struct NUR_PRGPROGRESS_DATA *progress = (const struct NUR_PRGPROGRESS_DATA *)data;
-            NSLog( @"error code: %d", progress->error );
-            NSLog( @"current page: %d", progress->curPage );
-            NSLog( @"total pagse: %d", progress->totalPages );
+            logDebug( @"error code: %d", progress->error );
+            logDebug( @"current page: %d", progress->curPage );
+            logDebug( @"total pagse: %d", progress->totalPages );
 
             // failed?
             if ( progress->error != NUR_NO_ERROR ) {

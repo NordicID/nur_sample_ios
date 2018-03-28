@@ -70,22 +70,22 @@
 
         NSArray * parts = [deviceVersions componentsSeparatedByString:@";"];
         if ( parts.count != 2 ) {
-            NSLog( @"unexpected device firmware version format: '%@'", deviceVersions);
+            logError( @"unexpected device firmware version format: '%@'", deviceVersions);
             [self showErrorMessage:@"Unexpected device firmware version format"];
         }
         else {
             int major, minor, build;
             if ( [Firmware extractMajor:&major minor:&minor build:&build fromVersion:deviceVersions] ) {
-                NSLog(@"versions: major: %d, minor: %d, build: %d", major, minor, build );
+                logDebug(@"versions: major: %d, minor: %d, build: %d", major, minor, build );
                 // the minimal allowed version is 2.2.1, so check for that
                 if ( major > 2 ||
                     ( major >=2 && minor > 2) ||
                     ( major >=2 && minor >= 2 && build > 1) ) {
-                    NSLog( @"pairing can be set with this firmware version" );
+                    logDebug( @"pairing can be set with this firmware version" );
                     allowPairingAvailable = YES;
                 }
                 else {
-                    NSLog( @"pairing can not be set with this firmware version" );
+                    logDebug( @"pairing can not be set with this firmware version" );
                     allowPairingAvailable = NO;
                 }
 
@@ -248,7 +248,7 @@
                     break;
 
                 default:
-                    NSLog(@"unknown setting: %ld in section: %ld", (long)indexPath.row, (long)indexPath.section);
+                    logError(@"unknown setting: %ld in section: %ld", (long)indexPath.row, (long)indexPath.section);
                     break;
             }
             break;
@@ -318,7 +318,7 @@
 
             // when the dialog is up, then start downloading
             [self presentViewController:alert animated:YES completion:nil];
-            NSLog( @"dialog done" );
+            logDebug( @"dialog done" );
             return;
         }
     }
@@ -329,7 +329,7 @@
 
 - (void) saveSettings:(BOOL)reboot {
     if ( writeInProgress ) {
-        NSLog( @"write already in progress, skipping" );
+        logDebug( @"write already in progress, skipping" );
         return;
     }
 
@@ -376,7 +376,7 @@
             self.restoreUuid = [Bluetooth sharedInstance].currentReader.identifier.UUIDString;
             //[[Bluetooth sharedInstance] disconnectFromReader];
 
-            NSLog(@"rebooting device");
+            logDebug(@"rebooting device");
             error = NurAccRestart( [Bluetooth sharedInstance].nurapiHandle );
             if (error != NUR_NO_ERROR) {
                 [self showNurApiErrorMessage:error];
@@ -388,7 +388,7 @@
 //******************************************************************************************
 #pragma mark - Connection Manager Delegate
 - (void) readerDisconnected {
-    NSLog( @"reader is now disconnected, restoring connection again to the same reader");
+    logDebug( @"reader is now disconnected, restoring connection again to the same reader");
     [[ConnectionManager sharedInstance] deregisterDelegate:self];
 
     if ( self.restoreUuid ) {
