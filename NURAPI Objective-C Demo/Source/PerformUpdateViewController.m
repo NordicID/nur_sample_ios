@@ -620,36 +620,40 @@
             logDebug( @"delay elapsed, disconnecting" );
             [[Bluetooth sharedInstance] disconnectFromReader];
         });
+
         return;
     }
 
     // is it one of ours?
-    if ( [self.dfuDeviceName caseInsensitiveCompare:reader.name] != NSOrderedSame ) {
-        logDebug( @"device %@ is not an EXA device (%@), ignoring", reader.name, self.dfuDeviceName );
-        return;
-    }
+//    if ( [self.dfuDeviceName caseInsensitiveCompare:reader.name] != NSOrderedSame ) {
+//        logDebug( @"device %@ is not an EXA device (%@), ignoring", reader.name, self.dfuDeviceName );
+//        return;
+//    }
 
     // stop scanning for new devices, one is enough
     [[Bluetooth sharedInstance] stopScanning];
 
-    DFUFirmwareType type = self.firmware.type == kDeviceFirmware ? DFUFirmwareTypeApplication : DFUFirmwareTypeBootloader;
-    DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithZipFile:self.firmwareData type:type];
+    logDebug(@"waiting 3s and then starting the real DFU update" );
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), self.dispatchQueue, ^{
+        DFUFirmwareType type = self.firmware.type == kDeviceFirmware ? DFUFirmwareTypeApplication : DFUFirmwareTypeBootloader;
+        DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithZipFile:self.firmwareData type:type];
 
-    // set up the DFU initiator.
-    // NOTE: this will take over the delegate from us!
-    DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:[Bluetooth sharedInstance].central
-                                                                                  target:reader];
-    [initiator withFirmware:selectedFirmware];
+        // set up the DFU initiator.
+        // NOTE: this will take over the delegate from us!
+        DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:[Bluetooth sharedInstance].central
+                                                                                      target:reader];
+        [initiator withFirmware:selectedFirmware];
 
-    initiator.logger = self; // - to get log info
-    initiator.delegate = self; // - to be informed about current state and errors
-    initiator.progressDelegate = self;
-    initiator.packetReceiptNotificationParameter = 12;
-    initiator.forceDfu = NO;
-    // initiator.peripheralSelector = ... // the default selector is used
+        initiator.logger = self; // - to get log info
+        initiator.delegate = self; // - to be informed about current state and errors
+        initiator.progressDelegate = self;
+        initiator.packetReceiptNotificationParameter = 12;
+        initiator.forceDfu = NO;
+        // initiator.peripheralSelector = ... // the default selector is used
 
-    self.dfuController = [initiator start];
-    logDebug( @"DFU has started" );
+        self.dfuController = [initiator start];
+        logDebug( @"DFU has started" );
+    });
 }
 
 

@@ -334,8 +334,8 @@
             return 12;
 
         case 1:
-            // min, max RSSI for inventory
-            return 2;
+            // min, max RSSI for inventory and write
+            return 4;
 
         default:
             return 1;
@@ -365,14 +365,14 @@
 //                cell.textLabel.text = NSLocalizedString(@"Max read RSSI (dBm)", nil);
 //                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.readRssiFilter.max];
 //                break;
-//            case 4:
-//                cell.textLabel.text = NSLocalizedString(@"Min write RSSI (dBm)", nil);
-//                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.min];
-//                break;
-//            case 5:
-//                cell.textLabel.text = NSLocalizedString(@"Max write RSSI (dBm)", nil);
-//                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.max];
-//                break;
+            case 2:
+                cell.textLabel.text = NSLocalizedString(@"Min write RSSI (-100 to 0 dBm)", nil);
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.min];
+                break;
+            case 3:
+                cell.textLabel.text = NSLocalizedString(@"Max write RSSI (-100 to 0 dBm)", nil);
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", setup.writeRssiFilter.max];
+                break;
         }
 
         return cell;
@@ -706,18 +706,18 @@
 //            setting = NUR_SETUP_READRSSIFILTER;
 //            valueTarget = &(setup.readRssiFilter.max);
 //            break;
-//        case 4:
-//            title = NSLocalizedString(@"Write min RSSI", @"RSSI popup title");
-//            message = NSLocalizedString(@"Enter the minimum RSSI value for write operations", @"RSSI popup message");
-//            setting = NUR_SETUP_WRITERSSIFILTER;
-//            valueTarget = &(setup.writeRssiFilter.min);
-//           break;
-//        case 5:
-//            title = NSLocalizedString(@"Write max RSSI", @"RSSI popup title");
-//            message = NSLocalizedString(@"Enter the maximum RSSI value for write operations", @"RSSI popup message");
-//            setting = NUR_SETUP_WRITERSSIFILTER;
-//            valueTarget = &(setup.writeRssiFilter.max);
-//           break;
+        case 2:
+            title = NSLocalizedString(@"Write min RSSI", @"RSSI popup title");
+            message = NSLocalizedString(@"Enter the minimum RSSI value for write operations", @"RSSI popup message");
+            setting = NUR_SETUP_WRITERSSIFILTER;
+            valueTarget = &(setup.writeRssiFilter.min);
+           break;
+        case 3:
+            title = NSLocalizedString(@"Write max RSSI", @"RSSI popup title");
+            message = NSLocalizedString(@"Enter the maximum RSSI value for write operations", @"RSSI popup message");
+            setting = NUR_SETUP_WRITERSSIFILTER;
+            valueTarget = &(setup.writeRssiFilter.max);
+           break;
 
         default:
             logError(@"invalid row %d, should be [0..5]", row);
