@@ -144,20 +144,6 @@
 
 
 - (IBAction)shareLog:(UIBarButtonItem *)sender {
-//    NSString * messages = [[Log sharedInstance] getMergedLog];
-//
-//    // save to a temporary file
-//    NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
-//    NSURL *fileURL = [tmpDirURL URLByAppendingPathComponent:@"log.txt"];
-//
-//    NSError * error = nil;
-//    [messages writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
-//    if ( error != nil ) {
-//        // failed to save the content to a temporary file
-//        logError( @"failed to save log file: %@", error.localizedDescription );
-//        return;
-//    }
-
     // get the URL to the log file
     NSURL * logFileUrl = [[Log sharedInstance] getFileUrl];
 

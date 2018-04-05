@@ -26,6 +26,7 @@
     self = [super init];
     if (self) {
         self.logToConsole = YES;
+        self.logToFile = NO;
         self.dateFormatter = [[NSDateFormatter alloc] init];
         [self.dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss.SSS"];
     }
@@ -55,25 +56,27 @@
 
 
 - (void) addEntry:(NSString *)entry {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"log.txt"];
-
     if ( self.logToConsole ) {
         printf("%s", entry.UTF8String );
     }
 
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:fileName];
-    if (fileHandle){
-        [fileHandle seekToEndOfFile];
-        [fileHandle writeData:[entry dataUsingEncoding:NSUTF8StringEncoding]];
-        [fileHandle closeFile];
-    }
-    else{
-        [entry writeToFile:fileName
-                atomically:NO
-                  encoding:NSStringEncodingConversionAllowLossy
-                     error:nil];
+    if ( self.logToFile ) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"log.txt"];
+
+        NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:fileName];
+        if (fileHandle){
+            [fileHandle seekToEndOfFile];
+            [fileHandle writeData:[entry dataUsingEncoding:NSUTF8StringEncoding]];
+            [fileHandle closeFile];
+        }
+        else{
+            [entry writeToFile:fileName
+                    atomically:NO
+                      encoding:NSStringEncodingConversionAllowLossy
+                         error:nil];
+        }
     }
 }
 

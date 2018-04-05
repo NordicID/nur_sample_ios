@@ -4,6 +4,7 @@
 @interface Log : NSObject <LogDelegate>
 
 @property (nonatomic, assign) BOOL logToConsole;
+@property (nonatomic, assign) BOOL logToFile;
 
 + (Log *) sharedInstance;
 
