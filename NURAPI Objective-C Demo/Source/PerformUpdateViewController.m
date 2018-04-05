@@ -235,7 +235,7 @@
             // when we later find the device we do a dummy connect to it once
             self.shouldDoDummyConnect = YES;
 
-            logDebug( @"DFU starting, rebooting the reader" );
+            logDebug( @"DFU starting, putting the reader into DFU mode" );
 
             // send a custom raw command to the reader instructing it to restart in DFU mode
             BYTE command[2] = { ACC_EXT_RESTART, RESET_BOOTLOADER_DFU_START };
@@ -249,7 +249,8 @@
                 });
             }
 
-            logDebug( @"reader rebooted ok, starting a scan to find the device after it is back in DFU mode" );
+            logDebug( @"reader rebooted ok, disconnecting and starting a scan to find the device after it is back in DFU mode" );
+            [[Bluetooth sharedInstance] disconnectFromReader];
             [[Bluetooth sharedInstance] startDfuScanning];
         });
      }];
@@ -612,7 +613,10 @@
     if ( self.shouldDoDummyConnect ) {
         logDebug(@"doing a dummy connect to device in DFU mode" );
         self.shouldDoDummyConnect = NO;
-        [[Bluetooth sharedInstance] connectToReader:reader];
+        if ( ![[Bluetooth sharedInstance] connectToReader:reader] ) {
+            // failed to reconnect...
+            logError(@"failed to do dummy connect to the device" );
+        }
 
         // after 10s do the disconnect
         logDebug(@"waiting 10s and then disconnecting and doing a new DFU scan" );
