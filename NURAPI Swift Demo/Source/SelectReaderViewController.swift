@@ -4,9 +4,12 @@ import NurAPIBluetooth
 
 class SelectReaderViewController: UITableViewController, BluetoothDelegate, LogDelegate {
 
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // set up as a delegate
         Bluetooth.sharedInstance().register(self)
         Bluetooth.sharedInstance().logDelegate = self
@@ -54,9 +57,18 @@ class SelectReaderViewController: UITableViewController, BluetoothDelegate, LogD
         guard let reader = Bluetooth.sharedInstance().readers[indexPath.row] as? CBPeripheral else {
             return
         }
-
-        print("connecting to reader: \(reader)")
-        Bluetooth.sharedInstance().connect(toReader: reader)
+        appDelegate.selectedReader = reader;
+        
+        if Bluetooth.sharedInstance()?.currentReader == nil {
+            print("connecting to reader: \(reader)")
+            Bluetooth.sharedInstance().connect(toReader: reader)
+        }else {
+            print("already connected: \(reader)")
+            
+            self.performSegue(withIdentifier: "ShowReaderSegue", sender: nil)
+            
+        }
+        
 
     }
 

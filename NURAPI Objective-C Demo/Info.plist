@@ -21,11 +21,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2568</string>
+	<string>2578</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Required for reader connection</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>This app needs to access an RFID reader.</string>
 	<key>UILaunchStoryboardName</key>

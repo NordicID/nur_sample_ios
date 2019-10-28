@@ -16,7 +16,6 @@
 		6F050B2D1FA85BB500D9CF95 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */; };
 		6F0A16E1204800BD0015BCC6 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A16E0204800BD0015BCC6 /* Log.m */; };
 		6F6234FE200E44C1005B5913 /* ThemeableLabelInverted.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */; };
-		6F6E265620A18BF400DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6E265320A18BBC00DC5193 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598D1EC2D83000A458AA /* AboutViewController.m */; };
 		6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
 		6F7959DE1EC2D83000A458AA /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959911EC2D83000A458AA /* ApplicationSettingsViewController.m */; };
@@ -79,7 +78,9 @@
 		6FED470D1F9E0C00009BB353 /* ThemeableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED470C1F9E0C00009BB353 /* ThemeableTabBar.m */; };
 		6FF69B731FE913C4004C20B2 /* EULA.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FF69B721FE913C4004C20B2 /* EULA.txt */; };
 		6FF69B751FE913EC004C20B2 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF69B741FE913EC004C20B2 /* Theme.m */; };
-		E1E3DE1224B6E11B19DAC853 /* Pods_Nordic_ID_RFID_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */; };
+		EC8DEB912366C6530008829B /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8DEB8F2366C39B0008829B /* NurAPIBluetooth.framework */; };
+		EC8DEB922366C6530008829B /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EC8DEB8F2366C39B0008829B /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EC8DEB932366C6640008829B /* Pods_Nordic_ID_RFID_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,7 +90,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F6E265620A18BF400DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */,
+				EC8DEB922366C6530008829B /* NurAPIBluetooth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,7 +116,6 @@
 		6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerManager.h; sourceTree = "<group>"; };
 		6F6234FC200E44C1005B5913 /* ThemeableLabelInverted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableLabelInverted.h; sourceTree = "<group>"; };
 		6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableLabelInverted.m; sourceTree = "<group>"; };
-		6F6E265320A18BBC00DC5193 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6F7959711EC2D77600A458AA /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F79598C1EC2D83000A458AA /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		6F79598D1EC2D83000A458AA /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -239,6 +239,7 @@
 		7BB6AA733015FC9C3401FB06 /* Pods-Nordic ID RFID Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nordic ID RFID Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo.release.xcconfig"; sourceTree = "<group>"; };
 		CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nordic_ID_RFID_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E682CAE593D6D7D73F452A7C /* Pods-Alien Technology Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alien Technology Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Alien Technology Demo/Pods-Alien Technology Demo.release.xcconfig"; sourceTree = "<group>"; };
+		EC8DEB8F2366C39B0008829B /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,7 +247,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E3DE1224B6E11B19DAC853 /* Pods_Nordic_ID_RFID_Demo.framework in Frameworks */,
+				EC8DEB932366C6640008829B /* Pods_Nordic_ID_RFID_Demo.framework in Frameworks */,
+				EC8DEB912366C6530008829B /* NurAPIBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +445,7 @@
 		6F795A191EC2D92C00A458AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F6E265320A18BBC00DC5193 /* NurAPIBluetooth.framework */,
+				EC8DEB8F2366C39B0008829B /* NurAPIBluetooth.framework */,
 				5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */,
 				CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */,
 			);
@@ -552,9 +554,11 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				fa,
+				sv,
 			);
 			mainGroup = 6F7959681EC2D77600A458AA;
 			productRefGroup = 6F7959721EC2D77600A458AA /* Products */;
@@ -908,6 +912,7 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -927,6 +932,7 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

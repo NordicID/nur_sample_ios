@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F6E265920A18F5900DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6E265720A18F5900DC5193 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6E265B20A1A09E00DC5193 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E265A20A1A09E00DC5193 /* MainViewController.swift */; };
 		6F6E265D20A1A3A900DC5193 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E265C20A1A3A900DC5193 /* InventoryViewController.swift */; };
 		6F6E265F20A1A70200DC5193 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E265E20A1A70200DC5193 /* Tag.swift */; };
@@ -18,16 +17,19 @@
 		6F9E8D7E1D7F2D8F00512C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E8D7C1D7F2D8F00512C56 /* Main.storyboard */; };
 		6F9E8D801D7F2D8F00512C56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E8D7F1D7F2D8F00512C56 /* Assets.xcassets */; };
 		6F9E8D831D7F2D8F00512C56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E8D811D7F2D8F00512C56 /* LaunchScreen.storyboard */; };
+		EC8DEB8B2366C2F40008829B /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8DEB8A2366C2F40008829B /* NurAPIBluetooth.framework */; };
+		EC8DEB8C2366C2F40008829B /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EC8DEB8A2366C2F40008829B /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EC8DEB8E2366C3090008829B /* NurAPIBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8DEB8D2366C3090008829B /* NurAPIBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6F6F0BC11D9CF6D000370330 /* Embed Frameworks */ = {
+		EC8DEB802366BC220008829B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F6E265920A18F5900DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */,
+				EC8DEB8C2366C2F40008829B /* NurAPIBluetooth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,8 +37,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6F6E264F20A1863D00DC5193 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = "../NURAPI Objective-C Demo/NurAPIBluetooth.framework"; sourceTree = "<group>"; };
-		6F6E265720A18F5900DC5193 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6F6E265A20A1A09E00DC5193 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6F6E265C20A1A3A900DC5193 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		6F6E265E20A1A70200DC5193 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -50,6 +50,8 @@
 		6F9E8D821D7F2D8F00512C56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F9E8D841D7F2D8F00512C56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F9E8DD21D809B9100512C56 /* NURAPI Swift Demo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NURAPI Swift Demo-Bridging-Header.h"; sourceTree = "<group>"; };
+		EC8DEB8A2366C2F40008829B /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
+		EC8DEB8D2366C3090008829B /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC8DEB8E2366C3090008829B /* NurAPIBluetooth.framework in Frameworks */,
+				EC8DEB8B2366C2F40008829B /* NurAPIBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,10 +79,10 @@
 		6F9E8D6C1D7F2D8F00512C56 = {
 			isa = PBXGroup;
 			children = (
-				6F6E265720A18F5900DC5193 /* NurAPIBluetooth.framework */,
+				EC8DEB8D2366C3090008829B /* NurAPIBluetooth.framework */,
 				6F9E8D771D7F2D8F00512C56 /* Source */,
 				6F9E8D761D7F2D8F00512C56 /* Products */,
-				6F9E8D921D7F2DF400512C56 /* Frameworks */,
+				EC8DEB7D2366BC220008829B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,10 +112,10 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		6F9E8D921D7F2DF400512C56 /* Frameworks */ = {
+		EC8DEB7D2366BC220008829B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F6E264F20A1863D00DC5193 /* NurAPIBluetooth.framework */,
+				EC8DEB8A2366C2F40008829B /* NurAPIBluetooth.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,7 +130,7 @@
 				6F9E8D711D7F2D8F00512C56 /* Sources */,
 				6F9E8D721D7F2D8F00512C56 /* Frameworks */,
 				6F9E8D731D7F2D8F00512C56 /* Resources */,
-				6F6F0BC11D9CF6D000370330 /* Embed Frameworks */,
+				EC8DEB802366BC220008829B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,6 +164,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
