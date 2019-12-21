@@ -330,7 +330,13 @@ struct NUR_DEVICECAPS
 	WORD moduleType;	/**< Module type. (enum NUR_MODULETYPE) */
 	DWORD moduleConfigFlags; /**< Internal module config flags */
 	WORD v2Level;		/**< Version 2 commands' support level. */
-	BYTE res[SZ_NUR_DEVCAPS - 4*sizeof(DWORD) - 2*sizeof(int) - 8*sizeof(WORD)];	/**< The size left over of 128 bytes. */
+
+	DWORD secChipMajorVersion;        /**< Secondary chip major version number */
+	DWORD secChipMinorVersion;        /**< Secondary chip minor version number */
+	DWORD secChipMaintenanceVersion;  /**< Secondary chip maintenance version number */
+	DWORD secChipReleaseVersion;      /**< Secondary chip release version number */
+
+	BYTE res[SZ_NUR_DEVCAPS - 8*sizeof(DWORD) - 2*sizeof(int) - 8*sizeof(WORD)];	/**< The size left over of 128 bytes. */
 };
 
 /**
@@ -611,6 +617,13 @@ struct NUR_MODULESETUP
 
 	/** The RF profile. 0 = Robust, 1 = Nominal, 2 = High speed */
 	int rfProfile;
+
+	/** Time before module enters deep sleep in milliseconds. 
+	* 0 = Sleep disabled. Valid range 1000 - 65535ms.
+	* NOTE: When module is in deep sleep there might be slight (100ms) delay before command is executed.
+	*/
+	int toSleepTime;
+
 };
 
 /**
@@ -4244,8 +4257,8 @@ int NURAPICONV NurApiStopEPCEnumeration(HANDLE hApi);
 NUR_API
 BOOL NURAPICONV NurApiIsEPCEnumRunning(HANDLE hApi);
 
-/** @fn int NurApiGetFWINFO(HANDLE hApi, TCHAR *buf, DWORD buflen)
- * Get current FW information string.
+/** @fn int NurApiGetSecChipFWINFO(HANDLE hApi, TCHAR *buf, DWORD buflen)
+ * Get current Secondary chip FW information string.
  *
  * @param hApi      Handle to valid NurApi object instance
  * @param buf		Pointer to string buffer
@@ -4253,6 +4266,18 @@ BOOL NURAPICONV NurApiIsEPCEnumRunning(HANDLE hApi);
  *
  * @return	Zero when succeeded, on error non-zero error code is returned.
  */
+NUR_API
+int NURAPICONV NurApiGetSecChipFWINFO(HANDLE hApi, TCHAR *buf, DWORD buflen);
+
+/** @fn int NurApiGetFWINFO(HANDLE hApi, TCHAR *buf, DWORD buflen)
+* Get current FW information string.
+*
+* @param hApi      Handle to valid NurApi object instance
+* @param buf		Pointer to string buffer
+* @param buflen    Length of 'buf' in characters
+*
+* @return	Zero when succeeded, on error non-zero error code is returned.
+*/
 NUR_API
 int NURAPICONV NurApiGetFWINFO(HANDLE hApi, TCHAR *buf, DWORD buflen);
 
@@ -5011,20 +5036,66 @@ int NURAPICONV NurApiSetHopEvents(HANDLE hApi, BOOL enableEvents);
 NUR_API
 int NURAPICONV NurApiProgramSmartFile(HANDLE hApi,const TCHAR *fname);
 
-/** @fn int NurApiProgramAppFile(HANDLE hApi, const TCHAR *fname)
+/** @fn int NurApiProgramSmartBuffer(HANDLE hApi, BYTE *buffer, DWORD bufferLen)
  *
- * Program new firmware to NUR module.
+ * Program a new update file for Nordic ID Smart Devices
  * @sa NUR_NOTIFICATION_PRGPRGRESS in enum NUR_NOTIFICATION
  *
  * @param	hApi			Handle to valid NurApi object instance
- * @param	fname			Path to firmware
+ * @param	buffer			Data buffer of Smart file
+ * @param	bufferLen		Length of buffer in bytes
  *
  * @return	Zero when succeeded, On error non-zero error code is returned.
- * @remarks This command is available only in bootloader mode
- * @sa NurApiEnterBoot(), NurApiGetMode(), NurApiProgramBootloaderFile()
  */
 NUR_API
+int NURAPICONV NurApiProgramSmartBuffer(HANDLE hApi, BYTE *buffer, DWORD bufferLen);
+
+/** @fn int NurApiProgramAppFile(HANDLE hApi, const TCHAR *fname)
+*
+* Program new firmware to NUR module.
+* @sa NUR_NOTIFICATION_PRGPRGRESS in enum NUR_NOTIFICATION
+*
+* @param	hApi			Handle to valid NurApi object instance
+* @param	fname			Path to firmware
+*
+* @return	Zero when succeeded, On error non-zero error code is returned.
+* @remarks This command is available only in bootloader mode
+* @sa NurApiEnterBoot(), NurApiGetMode(), NurApiProgramBootloaderFile()
+*/
+NUR_API
 int NURAPICONV NurApiProgramAppFile(HANDLE hApi, const TCHAR *fname);
+
+/** @fn int NurApiProgramSecChipFile(HANDLE hApi, const TCHAR *fname)
+*
+* Program new firmware to Secondary Chip f.ex. Impinj Indy
+* @sa NUR_NOTIFICATION_PRGPRGRESS in enum NUR_NOTIFICATION
+*
+* @param	hApi			Handle to valid NurApi object instance
+* @param	fname			Path to firmware
+*
+* @return	Zero when succeeded, On error non-zero error code is returned.
+* @remarks This command is available only in _normal_ mode
+* @sa NurApiGetMode()
+*/
+NUR_API
+int NURAPICONV NurApiProgramSecChipFile(HANDLE hApi, const TCHAR *fname);
+
+/** @fn int NurApiProgramSecChipBuffer(HANDLE hApi, BYTE *buffer, DWORD bufferLen)
+*
+* Program new firmware to Secondary Chip f.ex. Impinj Indy
+* @sa NUR_NOTIFICATION_PRGPRGRESS in enum NUR_NOTIFICATION
+*
+* @param	hApi			Handle to valid NurApi object instance
+* @param	buffer			Data buffer of secondary chip firmware
+* @param	bufferLen		Length of buffer in bytes
+*
+* @return	Zero when succeeded, On error non-zero error code is returned.
+* @remarks This command is available only in _normal_ mode
+* @sa NurApiGetMode()
+* @sa NurApiProgramSecChipFile(HANDLE hApi, const TCHAR *fname)
+*/
+NUR_API
+int NURAPICONV NurApiProgramSecChipBuffer(HANDLE hApi, BYTE *buffer, DWORD bufferLen);
 
 /** @fn int NurApiProgramBootloaderFile(HANDLE hApi, const TCHAR *fname)
  *

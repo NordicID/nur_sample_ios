@@ -96,7 +96,7 @@
 #define AUTOTUNE_MODE_THRESHOLD_ENABLE	(1 << 1)
 
 /** Gen2 version 2 TID hide policy: hide none. */
-#define NUR_TID_HIDE_NONE	2
+#define NUR_TID_HIDE_NONE	0
 /** Gen2 version 2 TID hide policy: hide some. */
 #define NUR_TID_HIDE_SOME	1
 /** Gen2 version 2 TID hide policy: hide all. */
@@ -408,7 +408,8 @@ enum NUR_GPIO_TYPE
 	NUR_GPIO_TYPE_RFIDREAD,		/**< GPIO will act as a Sampo S1 RFID read led (high active) */
 	NUR_GPIO_TYPE_BEEPER,		/**< GPIO will act as a beeper (high active) */
 	NUR_GPIO_TYPE_ANTCTL1,		/**< GPIO is configured as antenna control 1 (bit0) */
-	NUR_GPIO_TYPE_ANTCTL2		/**< GPIO is configured as antenna control 2 (bit1) */
+	NUR_GPIO_TYPE_ANTCTL2,		/**< GPIO is configured as antenna control 2 (bit1) */
+	NUR_GPIO_TYPE_DCE_RTS		/**< GPIO is configured as RTS control */
 };
 
 /**
@@ -588,11 +589,14 @@ enum NUR_ANTENNAMASK
  */
 enum NUR_AUTOPERIOD
 {
-	NUR_AUTOPER_OFF	= 0,	/**< Autoperiod not in use */
-	NUR_AUTOPER_25,			/**< 25% cycle. */
-	NUR_AUTOPER_33,			/**< 33% cycle. */
-	NUR_AUTOPER_50,			/**< 50/50 cycle. */
-	NUR_AUTOPER_LAST = NUR_AUTOPER_50
+	NUR_AUTOPER_OFF	= 0,	  /**< Autoperiod not in use */
+	NUR_AUTOPER_25,			  /**< 25% cycle. */
+	NUR_AUTOPER_33,			  /**< 33% cycle. */
+	NUR_AUTOPER_50,			  /**< 50/50 cycle. */
+	NUR_AUTOPER_FORCE_1000MS, /**< Force 1s sleep */
+	NUR_AUTOPER_FORCE_500MS,  /**< Force 500ms sleep */
+	NUR_AUTOPER_FORCE_100MS,  /**< Force 100ms sleep */
+	NUR_AUTOPER_LAST = NUR_AUTOPER_FORCE_100MS
 };
 
 /**
@@ -634,7 +638,10 @@ enum NUR_MODULESETUP_FLAGS
 	// ADDED NUR2 7.0
 	NUR_SETUP_RFPROFILE		= (1<<29), /**< rfProfile field in struct NUR_MODULESETUP is valid */
 
-	NUR_SETUP_ALL			=	((1 << 30) - 1)	/**< All setup flags in the structure. */
+	// ADDED NUR2 7.5, NanoNur 10.2
+	NUR_SETUP_TO_SLEEP_TIME	= (1<<30), /**< toSleepTime field in struct NUR_MODULESETUP is valid */
+
+	NUR_SETUP_ALL			=	((1U << 31) - 1)	/**< All setup flags in the structure. */
 };
 
 /** Possible inventory targets. 
@@ -812,7 +819,8 @@ enum NUR_DEVCAPS_F1
 	NUR_DC_RFPROFILE	= (1<<24),  /**< The module FW supports RF profile setting. */
 	NUR_DC_DIAG	        = (1<<25),	/**< This module FW supports diagnostics commands. */
 	NUR_DC_TAGPHASE     = (1<<26),	/**< This module FW supports tag phase info. see NUR_OPFLAGS_EN_TAG_PHASE */
-	NUR_DC_LASTBITF1	= (1<<27),	/**< Next available bit for future extensions. */
+	NUR_DC_SLEEP		= (1<<27),	/**< This module FW supports sleep. See NUR_SETUP_TO_SLEEP_TIME */
+	NUR_DC_LASTBITF1	= (1<<28),	/**< Next available bit for future extensions. */
 };
 
 /** Flag field 1 'all device caps' bitmask. */
@@ -920,6 +928,8 @@ enum NUR_DIAG_REPORT_FLAGS
 	NUR_DIAG_REPORT_TEMP_OVER = (1<<2),	/**< Set in NUR_DIAG_REPORT.flags if module temperature is over limits. All RF operations will fail with error NUR_ERROR_OVER_TEMP in this stage. */
 	NUR_DIAG_REPORT_LOWVOLT = (1<<3),	/**< Set in NUR_DIAG_REPORT.flags if low voltage is detected. All RF operations will fail with error NUR_ERROR_LOW_VOLTAGE in this stage. */
 };
+
+#define FW_INFO_REQUEST_SEC_CHIP 2
 
 /** @} */ // end of API
 
