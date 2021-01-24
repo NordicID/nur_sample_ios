@@ -84,6 +84,10 @@
         return;
     }
 
+    // verbose logging by default
+    NurApiSetLogLevel( [Bluetooth sharedInstance].nurapiHandle, NUR_LOG_ALL );
+
+
     [[Bluetooth sharedInstance] registerDelegate:self];
     self.setupPerformed = YES;
 }
