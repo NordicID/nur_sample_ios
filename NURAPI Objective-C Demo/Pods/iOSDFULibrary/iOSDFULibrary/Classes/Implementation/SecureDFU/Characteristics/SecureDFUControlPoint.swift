@@ -1,23 +1,31 @@
 /*
-* Copyright (c) 2016, Nordic Semiconductor
+* Copyright (c) 2019, Nordic Semiconductor
 * All rights reserved.
 *
-* Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+* Redistribution and use in source and binary forms, with or without modification,
+* are permitted provided that the following conditions are met:
 *
-* 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* 1. Redistributions of source code must retain the above copyright notice, this
+*    list of conditions and the following disclaimer.
 *
-* 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
-* documentation and/or other materials provided with the distribution.
+* 2. Redistributions in binary form must reproduce the above copyright notice, this
+*    list of conditions and the following disclaimer in the documentation and/or
+*    other materials provided with the distribution.
 *
-* 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this
-* software without specific prior written permission.
+* 3. Neither the name of the copyright holder nor the names of its contributors may
+*    be used to endorse or promote products derived from this software without
+*    specific prior written permission.
 *
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-* LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-* HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-* LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-* ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
-* USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+* INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+* NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+* PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+* POSSIBILITY OF SUCH DAMAGE.
 */
 
 import CoreBluetooth
@@ -98,25 +106,25 @@ internal enum SecureDFURequest {
     var data : Data {
         switch self {
         case .createDataObject(let aSize):
-            var data = Data(bytes: [SecureDFUOpCode.createObject.code, SecureDFUProcedureType.data.rawValue])
+            var data = Data([SecureDFUOpCode.createObject.code, SecureDFUProcedureType.data.rawValue])
             data += aSize.littleEndian
             return data
         case .createCommandObject(let aSize):
-            var data = Data(bytes: [SecureDFUOpCode.createObject.code, SecureDFUProcedureType.command.rawValue])
+            var data = Data([SecureDFUOpCode.createObject.code, SecureDFUProcedureType.command.rawValue])
             data += aSize.littleEndian
             return data
         case .readCommandObjectInfo:
-            return Data(bytes: [SecureDFUOpCode.readObjectInfo.code, SecureDFUProcedureType.command.rawValue])
+            return Data([SecureDFUOpCode.readObjectInfo.code, SecureDFUProcedureType.command.rawValue])
         case .readDataObjectInfo:
-            return Data(bytes: [SecureDFUOpCode.readObjectInfo.code, SecureDFUProcedureType.data.rawValue])
+            return Data([SecureDFUOpCode.readObjectInfo.code, SecureDFUProcedureType.data.rawValue])
         case .setPacketReceiptNotification(let aSize):
-            var data = Data(bytes: [SecureDFUOpCode.setPRNValue.code])
+            var data = Data([SecureDFUOpCode.setPRNValue.code])
             data += aSize.littleEndian
             return data
         case .calculateChecksumCommand:
-            return Data(bytes: [SecureDFUOpCode.calculateChecksum.code])
+            return Data([SecureDFUOpCode.calculateChecksum.code])
         case .executeCommand:
-            return Data(bytes: [SecureDFUOpCode.execute.code])
+            return Data([SecureDFUOpCode.execute.code])
         }
     }
 
@@ -192,19 +200,21 @@ internal struct SecureDFUResponse {
         if self.status == .success {
             switch self.requestOpCode {
             case .some(.readObjectInfo):
-                // The correct reponse for Read Object Info has additional 12 bytes: Max Object Size, Offset and CRC
-                let maxSize : UInt32 = data.subdata(in: 3  ..<  7).withUnsafeBytes { $0.pointee }
-                let offset  : UInt32 = data.subdata(in: 7  ..< 11).withUnsafeBytes { $0.pointee }
-                let crc     : UInt32 = data.subdata(in: 11 ..< 15).withUnsafeBytes { $0.pointee }
+                // The correct reponse for Read Object Info has additional 12 bytes:
+                // Max Object Size, Offset and CRC.
+                let maxSize : UInt32 = data.asValue(offset: 3)
+                let offset  : UInt32 = data.asValue(offset: 7)
+                let crc     : UInt32 = data.asValue(offset: 11)
                 
                 self.maxSize = maxSize
                 self.offset  = offset
                 self.crc     = crc
                 self.error   = nil
             case .some(.calculateChecksum):
-                // The correct reponse for Calculate Checksum has additional 8 bytes: Offset and CRC
-                let offset : UInt32 = data.subdata(in: 3  ..<  7).withUnsafeBytes { $0.pointee }
-                let crc    : UInt32 = data.subdata(in: 7  ..< 11).withUnsafeBytes { $0.pointee }
+                // The correct reponse for Calculate Checksum has additional 8 bytes:
+                // Offset and CRC.
+                let offset : UInt32 = data.asValue(offset: 3)
+                let crc    : UInt32 = data.asValue(offset: 7)
                 
                 self.maxSize = 0
                 self.offset  = offset
@@ -218,7 +228,8 @@ internal struct SecureDFUResponse {
             }
         } else if self.status == .extendedError {
             // If extended error was received, parse the extended error code
-            // The correct response for Read Error request has 4 bytes. The 4th byte is the extended error code
+            // The correct response for Read Error request has 4 bytes.
+            // The 4th byte is the extended error code.
             let error : UInt8 = data[3]
             
             self.maxSize = 0
@@ -241,12 +252,14 @@ internal struct SecureDFUResponse {
         if status == .success {
             switch requestOpCode {
             case .some(.readObjectInfo):
-                // Max size for a command object is usually around 256. Let's say 1024, just to be sure. This is only for logging, so may be wrong.
+                // Max size for a command object is usually around 256. Let's say 1024,
+                // just to be sure. This is only for logging, so may be wrong.
                 return String(format: "\(maxSize! > 1024 ? "Data" : "Command") object info (Max size = \(maxSize!), Offset = \(offset!), CRC = %08X)", crc!)
             case .some(.calculateChecksum):
                 return String(format: "Checksum (Offset = \(offset!), CRC = %08X)", crc!)
             default:
-                // Other responses are either not logged, or logged by service or executor, so this 'default' should never be called
+                // Other responses are either not logged, or logged by service or executor,
+                // so this 'default' should never be called.
                 break
             }
         } else if status == .extendedError {
@@ -286,24 +299,19 @@ internal struct SecureDFUPacketReceiptNotification {
             return nil
         }
         
-        let offset : UInt32 = data.subdata(in: 3  ..<  7).withUnsafeBytes { $0.pointee }
-        let crc    : UInt32 = data.subdata(in: 7  ..< 11).withUnsafeBytes { $0.pointee }
+        let offset : UInt32 = data.asValue(offset: 3)
+        let crc    : UInt32 = data.asValue(offset: 7)
 
         self.offset = offset
         self.crc = crc
     }
 }
 
-internal class SecureDFUControlPoint : NSObject, CBPeripheralDelegate {
-    static let UUID = CBUUID(string: "8EC90001-F315-4F60-9FB8-838830DAEA50")
+internal class SecureDFUControlPoint : NSObject, CBPeripheralDelegate, DFUCharacteristic {
     
-    static func matches(_ characteristic: CBCharacteristic) -> Bool {
-        return characteristic.uuid.isEqual(UUID)
-    }
-    
-    private var characteristic: CBCharacteristic
-    private var logger: LoggerHelper
-    
+    internal var characteristic: CBCharacteristic
+    internal var logger: LoggerHelper
+
     private var success:  Callback?
     private var response: SecureDFUResponseCallback?
     private var proceed:  ProgressCallback?
@@ -314,7 +322,7 @@ internal class SecureDFUControlPoint : NSObject, CBPeripheralDelegate {
     }
     
     // MARK: - Initialization
-    init(_ characteristic: CBCharacteristic, _ logger: LoggerHelper) {
+    required init(_ characteristic: CBCharacteristic, _ logger: LoggerHelper) {
         self.characteristic = characteristic
         self.logger = logger
     }
@@ -326,94 +334,109 @@ internal class SecureDFUControlPoint : NSObject, CBPeripheralDelegate {
     // MARK: - Characteristic API methods
     
     /**
-    Enables notifications for the DFU Control Point characteristics. Reports success or an error 
-    using callbacks.
+     Enables notifications for the DFU Control Point characteristics.
+     Reports success or an error using callbacks.
     
-    - parameter success: method called when notifications were successfully enabled
-    - parameter report:  method called in case of an error
-    */
+     - parameter success: Method called when notifications were successfully enabled.
+     - parameter report:  Method called in case of an error.
+     */
     func enableNotifications(onSuccess success: Callback?, onError report: ErrorCallback?) {
-        // Save callbacks
-        self.success = success
-        self.report  = report
+        // Save callbacks.
+        self.success  = success
+        self.response = nil
+        self.report   = report
         
-        // Get the peripheral object
+        // Get the peripheral object.
         let peripheral = characteristic.service.peripheral
         
-        // Set the peripheral delegate to self
+        // Set the peripheral delegate to self.
         peripheral.delegate = self
         
-        logger.v("Enabling notifications for \(characteristic.uuid.uuidString)...")
-        logger.d("peripheral.setNotifyValue(true, for: \(characteristic.uuid.uuidString))")
+        let controlPointUUID = characteristic.uuid.uuidString
+        
+        logger.v("Enabling notifications for \(controlPointUUID)...")
+        logger.d("peripheral.setNotifyValue(true, for: \(controlPointUUID))")
         peripheral.setNotifyValue(true, for: characteristic)
     }
     
     /**
-     Sends given request to the DFU Control Point characteristic. Reports success or an error
-     using callbacks.
+     Sends given request to the DFU Control Point characteristic.
+     Reports success or an error using callbacks.
      
-     - parameter request: request to be sent
-     - parameter success: method called when peripheral reported with status success
-     - parameter report:  method called in case of an error
+     - parameter request: Request to be sent.
+     - parameter success: Method called when peripheral reported with status success.
+     - parameter report:  Method called in case of an error.
      */
-    func send(_ request: SecureDFURequest, onSuccess success: Callback?, onError report: ErrorCallback?) {
-        // Save callbacks and parameter
-        self.success = success
-        self.report  = report
+    func send(_ request: SecureDFURequest,
+              onSuccess success: Callback?, onError report: ErrorCallback?) {
+        // Save callbacks and parameter.
+        self.success  = success
+        self.response = nil
+        self.report   = report
         
-        // Get the peripheral object
+        // Get the peripheral object.
         let peripheral = characteristic.service.peripheral
         
-        // Set the peripheral delegate to self
+        // Set the peripheral delegate to self.
         peripheral.delegate = self
         
-        logger.v("Writing to characteristic \(characteristic.uuid.uuidString)...")
-        logger.d("peripheral.writeValue(0x\(request.data.hexString), for: \(characteristic.uuid.uuidString), type: .withResponse)")
+        let controlPointUUID = characteristic.uuid.uuidString
+        
+        logger.v("Writing to characteristic \(controlPointUUID)...")
+        logger.d("peripheral.writeValue(0x\(request.data.hexString), for: \(controlPointUUID), type: .withResponse)")
         peripheral.writeValue(request.data, for: characteristic, type: .withResponse)
     }
     
     /**
-     Sends given request to the DFU Control Point characteristic. Reports received data or an error
-     using callbacks.
+     Sends given request to the DFU Control Point characteristic.
+     Reports received data or an error using callbacks.
      
-     - parameter request:  request to be sent
-     - parameter response: method called when peripheral sent a notification with requested data and status success
-     - parameter report:   method called in case of an error
+     - parameter request:  Request to be sent.
+     - parameter response: Method called when peripheral sent a notification with requested
+                           data and status success.
+     - parameter report:   Method called in case of an error.
      */
-    func send(_ request: SecureDFURequest, onResponse response: SecureDFUResponseCallback?, onError report: ErrorCallback?) {
-        // Save callbacks and parameter
+    func send(_ request: SecureDFURequest,
+              onResponse response: SecureDFUResponseCallback?, onError report: ErrorCallback?) {
+        // Save callbacks and parameter.
+        self.success  = nil
         self.response = response
         self.report   = report
         
-        // Get the peripheral object
+        // Get the peripheral object.
         let peripheral = characteristic.service.peripheral
         
-        // Set the peripheral delegate to self
+        // Set the peripheral delegate to self.
         peripheral.delegate = self
         
-        logger.v("Writing to characteristic \(characteristic.uuid.uuidString)...")
-        logger.d("peripheral.writeValue(0x\(request.data.hexString), for: \(characteristic.uuid.uuidString), type: .withResponse)")
+        let controlPointUUID = characteristic.uuid.uuidString
+        
+        logger.v("Writing to characteristic \(controlPointUUID)...")
+        logger.d("peripheral.writeValue(0x\(request.data.hexString), for: \(controlPointUUID), type: .withResponse)")
         peripheral.writeValue(request.data, for: characteristic, type: .withResponse)
     }
     
     /**
-     Sets the callbacks used later on when a Packet Receipt Notification is received, a device reported an error or the whole firmware has been sent. 
+     Sets the callbacks used later on when a Packet Receipt Notification is received,
+     a device reported an error or the whole firmware has been sent. 
      Sending the firmware is done using DFU Packet characteristic.
      
-     - parameter success: method called when peripheral reported with status success
-     - parameter proceed: method called the a PRN has been received and sending following data can be resumed
-     - parameter report:  method called in case of an error
+     - parameter success: Method called when peripheral reported with status success.
+     - parameter proceed: Method called the a PRN has been received and sending following data
+                          can be resumed.
+     - parameter report:  Method called in case of an error.
      */
     func waitUntilUploadComplete(onSuccess success: Callback?, onPacketReceiptNofitication proceed: ProgressCallback?, onError report: ErrorCallback?) {
-        // Save callbacks. The proceed callback will be called periodically whenever a packet receipt notification is received. It resumes uploading.
+        // Save callbacks. The proceed callback will be called periodically whenever a packet
+        // receipt notification is received. It resumes uploading.
         self.success = success
         self.proceed = proceed
         self.report  = report
 
-        // Get the peripheral object
+        // Get the peripheral object.
         let peripheral = characteristic.service.peripheral
         
-        // Set the peripheral delegate to self
+        // Set the peripheral delegate to self.
         peripheral.delegate = self
         
         logger.a("Uploading firmware...")
@@ -424,8 +447,14 @@ internal class SecureDFUControlPoint : NSObject, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         if error != nil {
-            logger.e("Enabling notifications failed")
+            logger.e("Enabling notifications failed. Check if Service Changed service is enabled.")
             logger.e(error!)
+            // Note:
+            // Error 253: Unknown ATT error.
+            // This most proably is caching issue. Check if your device had Service Changed
+            // characteristic (for non-bonded devices) in both app and bootloader modes.
+            // For bonded devices make sure it sends the Service Changed indication after
+            // connecting.
             report?(.enablingControlPointFailed, "Enabling notifications failed")
         } else {
             logger.v("Notifications enabled for \(characteristic.uuid.uuidString)")
@@ -434,46 +463,59 @@ internal class SecureDFUControlPoint : NSObject, CBPeripheralDelegate {
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        // This method, according to the iOS documentation, should be called only after writing with response to a characteristic.
-        // However, on iOS 10 this method is called even after writing without response, which is a bug.
-        // The DFU Control Point characteristic always writes with response, in oppose to the DFU Packet, which uses write without response.
-        guard characteristic.uuid.isEqual(SecureDFUControlPoint.UUID) else {
+    func peripheral(_ peripheral: CBPeripheral,
+                    didWriteValueFor characteristic: CBCharacteristic,
+                    error: Error?) {
+        // This method, according to the iOS documentation, should be called only after writing
+        // with response to a characteristic. However, on iOS 10 this method is called even after
+        // writing without response, which is a bug. The DFU Control Point characteristic always
+        // writes with response, in oppose to the DFU Packet, which uses write without response.
+        guard self.characteristic.isEqual(characteristic) else {
             return
         }
-        
+
         if error != nil {
-            logger.e("Writing to characteristic failed")
+            logger.e("Writing to characteristic failed. Check if Service Changed service is enabled.")
             logger.e(error!)
+            // Note:
+            // Error 3: Writing is not permitted.
+            // This most proably is caching issue. Check if your device had Service Changed
+            // characteristic (for non-bonded devices) in both app and bootloader modes. This
+            // is a specially a case in SDK 12.x, where it was disabled by default.
+            // For bonded devices make sure it sends the Service Changed indication after connecting.
             report?(.writingCharacteristicFailed, "Writing to characteristic failed")
         } else {
             logger.i("Data written to \(characteristic.uuid.uuidString)")
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral,
+                    didUpdateValueFor characteristic: CBCharacteristic,
+                    error: Error?) {
         // Ignore updates received for other characteristics
-        guard characteristic.uuid.isEqual(SecureDFUControlPoint.UUID) else {
+        guard self.characteristic.isEqual(characteristic) else {
             return
         }
-        
+
         if error != nil {
-            // This characteristic is never read, the error may only pop up when notification is received
+            // This characteristic is never read, the error may only pop up when notification
+            // is received.
             logger.e("Receiving notification failed")
             logger.e(error!)
             report?(.receivingNotificationFailed, "Receiving notification failed")
         } else {
-            // During the upload we may get either a Packet Receipt Notification, or a Response with status code
+            // During the upload we may get either a Packet Receipt Notification, or a Response
+            // with status code.
             if proceed != nil {
                 if let prn = SecureDFUPacketReceiptNotification(characteristic.value!) {
-                    proceed!(prn.offset) // The CRC is not verified after receiving a PRN, only the offset is
+                    proceed!(prn.offset) // The CRC is not verified after receiving a PRN, only the offset is.
                     return
                 }
             }
-            //Otherwise...    
+            // Otherwise...    
             logger.i("Notification received from \(characteristic.uuid.uuidString), value (0x): \(characteristic.value!.hexString)")
 
-            // Parse response received
+            // Parse response received.
             let dfuResponse = SecureDFUResponse(characteristic.value!)
             if let dfuResponse = dfuResponse {
                 if dfuResponse.status == .success {
@@ -482,20 +524,20 @@ internal class SecureDFUControlPoint : NSObject, CBPeripheralDelegate {
                         logger.a("\(dfuResponse.description) received")
                         response?(dfuResponse)
                     case .createObject, .setPRNValue, .execute:
-                        // Don't log, executor or service will do it for us
+                        // Don't log, executor or service will do it for us.
                         success?()
                     default:
                         logger.a("\(dfuResponse.description) received")
                         success?()
                     }
                 } else if dfuResponse.status == .extendedError {
-                    // An extended error was received
+                    // An extended error was received.
                     logger.e("Error \(dfuResponse.error!.code): \(dfuResponse.error!.description)")
-                    // The returned errod code is incremented by 10 to match Secure DFU remote codes
-                    report?(DFUError(rawValue: Int(dfuResponse.status!.code) + 10)!, dfuResponse.error!.description)
+                    // The returned errod code is incremented by 20 to match Secure DFU remote codes.
+                    report?(DFUError(rawValue: Int(dfuResponse.error!.code) + 20)!, dfuResponse.error!.description)
                 } else {
                     logger.e("Error \(dfuResponse.status!.code): \(dfuResponse.status!.description)")
-                    // The returned errod code is incremented by 10 to match Secure DFU remote codes
+                    // The returned errod code is incremented by 10 to match Secure DFU remote codes.
                     report?(DFUError(rawValue: Int(dfuResponse.status!.code) + 10)!, dfuResponse.status!.description)
                 }
             } else {
