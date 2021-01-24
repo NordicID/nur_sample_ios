@@ -552,9 +552,11 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				fa,
+				sv,
 			);
 			mainGroup = 6F7959681EC2D77600A458AA;
 			productRefGroup = 6F7959721EC2D77600A458AA /* Products */;
