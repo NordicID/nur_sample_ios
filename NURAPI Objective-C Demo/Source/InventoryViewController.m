@@ -85,6 +85,18 @@
 - (IBAction)shareInventory:(UIBarButtonItem *)sender {
     logDebug( @"in" );
 
+    // DEBUG: fill the tag storage with lots of tags to test sharing large collections
+    /*for ( int index = 0; index < 10000; index++) {
+        @autoreleasepool {
+        unsigned char epcBytes[2]; // = { 0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9 };
+        epcBytes[0] = index & 0xff;
+        epcBytes[1] = (index >> 8) & 0xff;
+        NSData * epc = [NSData dataWithBytes:epcBytes length:10];
+        Tag * tag = [[Tag alloc] initWithEpc:epc frequency:10000 rssi:-50 scaledRssi:-45 timestamp:12345 channel:1 antennaId:2];
+        [[TagManager sharedInstance] addTag:tag];
+        }
+    }*/
+
     NSString * content = @"";
 
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
@@ -94,11 +106,13 @@
 
     // create a CSV string with one tag per line
     for ( Tag * tag in [TagManager sharedInstance].tags ) {
-        content = [content stringByAppendingFormat:@"%@,%@,%@,%d\n",
-                   [dateFormatter stringFromDate:tag.firstFound],
-                   [dateFormatter stringFromDate:tag.lastFound],
-                   tag.hex,
-                   (int)tag.rssi];
+        @autoreleasepool {
+            content = [content stringByAppendingFormat:@"%@,%@,%@,%d\n",
+                       [dateFormatter stringFromDate:tag.firstFound],
+                       [dateFormatter stringFromDate:tag.lastFound],
+                       tag.hex,
+                       (int)tag.rssi];
+        }
     }
 
     [[TagManager sharedInstance] unlock];

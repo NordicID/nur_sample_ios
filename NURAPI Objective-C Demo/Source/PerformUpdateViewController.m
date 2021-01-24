@@ -661,18 +661,6 @@
 }
 
 
-//- (void) readerConnectionOk {
-//    logDebug( @"connected ok to reader: %@. Waiting 10s and then disconnecting", [Bluetooth sharedInstance].currentReader.name );
-//    self.shouldDoDummyConnect = NO;
-//
-//    // after 10s do the disconnect
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), self.dispatchQueue, ^{
-//        logDebug( @"delay elapsed, disconnecting" );
-//        [[Bluetooth sharedInstance] disconnectFromReader];
-//    });
-//}
-//
-//
 - (void) readerDisconnected {
     logDebug( @"reader disconnected" );
     if ( !self.shouldDoDummyConnect ) {

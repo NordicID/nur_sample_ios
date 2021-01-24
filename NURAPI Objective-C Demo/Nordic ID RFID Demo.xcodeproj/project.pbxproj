@@ -16,6 +16,7 @@
 		6F050B2D1FA85BB500D9CF95 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */; };
 		6F0A16E1204800BD0015BCC6 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A16E0204800BD0015BCC6 /* Log.m */; };
 		6F6234FE200E44C1005B5913 /* ThemeableLabelInverted.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */; };
+		6F6E265620A18BF400DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6E265320A18BBC00DC5193 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598D1EC2D83000A458AA /* AboutViewController.m */; };
 		6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
 		6F7959DE1EC2D83000A458AA /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959911EC2D83000A458AA /* ApplicationSettingsViewController.m */; };
@@ -53,7 +54,6 @@
 		6F795A121EC2D8FD00A458AA /* blep_40ms.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0E1EC2D8FD00A458AA /* blep_40ms.wav */; };
 		6F795A131EC2D8FD00A458AA /* blipblipblip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A0F1EC2D8FD00A458AA /* blipblipblip.wav */; };
 		6F795A171EC2D90E00A458AA /* QuickGuide.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A151EC2D90E00A458AA /* QuickGuide.html */; };
-		6F795A211EC2D94E00A458AA /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F795A3A1EC2F8BB00A458AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959991EC2D83000A458AA /* Main.storyboard */; };
 		6F795A3B1EC2F8C000A458AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7959971EC2D83000A458AA /* LaunchScreen.storyboard */; };
 		6F795A3E1EC2FB8000A458AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F795A401EC2FB8000A458AA /* InfoPlist.strings */; };
@@ -89,7 +89,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F795A211EC2D94E00A458AA /* NurAPIBluetooth.framework in Embed Frameworks */,
+				6F6E265620A18BF400DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +115,7 @@
 		6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerManager.h; sourceTree = "<group>"; };
 		6F6234FC200E44C1005B5913 /* ThemeableLabelInverted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableLabelInverted.h; sourceTree = "<group>"; };
 		6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableLabelInverted.m; sourceTree = "<group>"; };
+		6F6E265320A18BBC00DC5193 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6F7959711EC2D77600A458AA /* Nordic ID RFID Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nordic ID RFID Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F79598C1EC2D83000A458AA /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		6F79598D1EC2D83000A458AA /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -188,7 +189,6 @@
 		6F795A0E1EC2D8FD00A458AA /* blep_40ms.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blep_40ms.wav; sourceTree = "<group>"; };
 		6F795A0F1EC2D8FD00A458AA /* blipblipblip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blipblipblip.wav; sourceTree = "<group>"; };
 		6F795A151EC2D90E00A458AA /* QuickGuide.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = QuickGuide.html; sourceTree = "<group>"; };
-		6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6F795A381EC2E60D00A458AA /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		6F795A391EC2E60D00A458AA /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		6F795A3F1EC2FB8000A458AA /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -443,7 +443,7 @@
 		6F795A191EC2D92C00A458AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F795A1E1EC2D94600A458AA /* NurAPIBluetooth.framework */,
+				6F6E265320A18BBC00DC5193 /* NurAPIBluetooth.framework */,
 				5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */,
 				CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */,
 			);
@@ -905,10 +905,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -923,10 +924,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

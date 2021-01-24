@@ -53,8 +53,8 @@
         self.hex = [NSString string];
     }
     else {
-        NSUInteger dataLength  = [self.epc length];
-        NSMutableString *hexString  = [NSMutableString stringWithCapacity:(dataLength * 2)];
+        NSUInteger dataLength = [self.epc length];
+        NSMutableString *hexString = [NSMutableString stringWithCapacity:(dataLength * 2)];
 
         for (int index = 0; index < dataLength; ++index) {
             [hexString appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)dataBuffer[index]]];
