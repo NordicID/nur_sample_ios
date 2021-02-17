@@ -245,6 +245,8 @@ typedef struct __NUR_ACC_SENSOR_FILTER
 #define NUR_ACC_CFG_ACD 		(1<<0)
 /** NUR_ACC_CONFIG.config value. If set, device has wearable antenna. */
 #define NUR_ACC_CFG_WEARABLE 	(1<<1)
+/** NUR_ACC_CONFIG.config value. If set, device has an imager. */
+#define DEV_FEATURE_IMAGER      (1<<2)
 
 /**
  * Nur accessory device (such as EXA51) programmable LED operating mode.
