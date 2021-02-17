@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b9r-Tn-Crn">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b9r-Tn-Crn">
+    <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +13,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainNavigationController" id="b9r-Tn-Crn" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="f5i-0Q-N6N">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.99215686274509807" green="0.59215686274509804" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
@@ -37,20 +34,20 @@
                         <viewControllerLayoutGuide type="bottom" id="LZE-Jj-lcx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="n3E-Zf-kTb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdp-O2-sx3" customClass="ThemeableView">
-                                <rect key="frame" x="0.0" y="640" width="414" height="32"/>
+                                <rect key="frame" x="0.0" y="660" width="414" height="32"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZr-na-7by" customClass="ThemeableLabelInverted">
-                                        <rect key="frame" x="398" y="8" width="8" height="17"/>
+                                        <rect key="frame" x="398" y="7.6666666666666288" width="8" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Not connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-qI-oPQ" customClass="ThemeableLabelInverted">
-                                        <rect key="frame" x="8" y="8" width="355" height="17"/>
+                                        <rect key="frame" x="8" y="7.6666666666666288" width="355" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -76,7 +73,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHI-yy-4b9" customClass="ThemeableCollectionView">
-                                <rect key="frame" x="20" y="0.0" width="374" height="640"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="660"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="osW-lI-XRJ">
                                     <size key="itemSize" width="120" height="140"/>
@@ -184,18 +181,18 @@
                         <viewControllerLayoutGuide type="bottom" id="jZ3-kS-Zar"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wdX-Rp-p1o">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select  a device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbV-1X-Zer" customClass="ThemeableLabel">
-                                <rect key="frame" x="146.66666666666666" y="18" width="120.99999999999997" height="21"/>
+                                <rect key="frame" x="147" y="18" width="120" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kf7-0L-LF0">
-                                <rect key="frame" x="20" y="71" width="374" height="509"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="71" width="374" height="529"/>
+                                <color key="backgroundColor" name="background"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReaderCell" textLabel="NXB-SG-kZ6" detailTextLabel="OZ8-nR-YbM" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="WC5-xG-Mjy" customClass="ThemeableTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="374" height="50"/>
@@ -205,21 +202,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NXB-SG-kZ6">
-                                                    <rect key="frame" x="20.000000000000004" y="7.9999999999999982" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="7.9999999999999982" width="33" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="darktext"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OZ8-nR-YbM">
                                                     <rect key="frame" x="19.999999999999996" y="28.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="darktext"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="background"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -227,8 +225,8 @@
                                     <outlet property="delegate" destination="K3A-0d-0w5" id="3wb-bh-C3y"/>
                                 </connections>
                             </tableView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfZ-V3-IKe" customClass="ThemeableButton">
-                                <rect key="frame" x="107.33333333333331" y="602" width="200" height="50"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfZ-V3-IKe" customClass="ThemeableButton">
+                                <rect key="frame" x="107" y="622" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Jay-SR-YmL"/>
@@ -276,18 +274,18 @@
                         <viewControllerLayoutGuide type="bottom" id="iW7-Jv-WAO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4vO-hd-JZC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select tag to locate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnR-kt-YyY" customClass="ThemeableLabel">
                                 <rect key="frame" x="133" y="18" width="148" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nqm-Ep-2Ic">
-                                <rect key="frame" x="20" y="71" width="374" height="505"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="71" width="374" height="525"/>
+                                <color key="backgroundColor" name="background"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocateTagCell" textLabel="FRg-zA-rVW" style="IBUITableViewCellStyleDefault" id="KWg-ho-enr" customClass="ThemeableTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="374" height="44"/>
@@ -299,12 +297,13 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FRg-zA-rVW">
                                                     <rect key="frame" x="20" y="0.0" width="334" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" name="darktext"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="background"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -312,8 +311,8 @@
                                     <outlet property="delegate" destination="Umq-nS-df8" id="vXL-WW-pgz"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2M-Xv-D0u" customClass="ThemeableButton">
-                                <rect key="frame" x="107.33333333333331" y="602" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2M-Xv-D0u" customClass="ThemeableButton">
+                                <rect key="frame" x="107" y="622" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Fyt-83-slc"/>
@@ -362,11 +361,11 @@
                         <viewControllerLayoutGuide type="bottom" id="PE1-3e-Bre"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Amf-TQ-RDw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwG-vT-qxB" customClass="ThemeableLabel">
-                                <rect key="frame" x="192" y="26.000000000000004" width="31" height="57.333333333333343"/>
+                                <rect key="frame" x="191.66666666666666" y="26.000000000000004" width="31" height="57.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="96"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -378,32 +377,33 @@
                                 </variation>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UBu-HN-D5c">
-                                <rect key="frame" x="0.0" y="195.66666666666671" width="414" height="394.33333333333326"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="194.66666666666666" width="414" height="415.33333333333337"/>
+                                <color key="backgroundColor" name="background"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TagCell" textLabel="aYI-hE-Amz" detailTextLabel="9Nr-Te-muY" style="IBUITableViewCellStyleValue1" id="Keb-8e-jTx" customClass="ThemeableTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Keb-8e-jTx" id="xgQ-Ba-nPL">
-                                            <rect key="frame" x="0.0" y="0.0" width="362" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aYI-hE-Amz">
-                                                    <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="11.999999999999998" width="33" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="darktext"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Nr-Te-muY">
                                                     <rect key="frame" x="322.66666666666669" y="14" width="39.333333333333336" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="darktext"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="background"/>
                                         <connections>
                                             <segue destination="f9G-NP-mn8" kind="show" identifier="ShowTagSegue" id="kBI-uI-h1A"/>
                                         </connections>
@@ -415,9 +415,9 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pJo-aI-HU6">
-                                <rect key="frame" x="42.333333333333343" y="612" width="330" height="50"/>
+                                <rect key="frame" x="42" y="632" width="330" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7K5-Y6-rPp" customClass="ThemeableButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7K5-Y6-rPp" customClass="ThemeableButton">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -431,7 +431,7 @@
                                             <action selector="toggleInventory" destination="QJG-B1-hyz" eventType="primaryActionTriggered" id="kaV-21-car"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCo-Ld-GCi" customClass="ThemeableButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCo-Ld-GCi" customClass="ThemeableButton">
                                         <rect key="frame" x="180" y="0.0" width="150" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -448,22 +448,22 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unique tags in 0 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lp-9g-sSH" customClass="ThemeableLabel">
-                                <rect key="frame" x="89.000000000000014" y="84.333333333333343" width="236.33333333333337" height="26.333333333333329"/>
+                                <rect key="frame" x="88.666666666666671" y="84" width="236.66666666666663" height="26.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DG1-by-UMu">
-                                <rect key="frame" x="20.000000000000004" y="125.66666666666666" width="47.333333333333343" height="50"/>
+                                <rect key="frame" x="20" y="125.33333333333334" width="47" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags/s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsO-tU-3sq" customClass="ThemeableLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="47.333333333333336" height="19.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="47" height="19.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKM-wO-7Ia" customClass="ThemeableLabel">
-                                        <rect key="frame" x="18.666666666666664" y="30.666666666666686" width="10" height="19.333333333333329"/>
+                                        <rect key="frame" x="18.666666666666664" y="30.666666666666657" width="10" height="19.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -474,16 +474,16 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="svt-0d-Qxu">
-                                <rect key="frame" x="153.33333333333334" y="125.66666666666666" width="107.66666666666666" height="50"/>
+                                <rect key="frame" x="153.33333333333334" y="125.33333333333334" width="107.33333333333334" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average tags/s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEs-TW-jSZ" customClass="ThemeableLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="19.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="107.33333333333333" height="19.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rny-a4-UPb" customClass="ThemeableLabel">
-                                        <rect key="frame" x="49" y="30.666666666666686" width="10" height="19.333333333333329"/>
+                                        <rect key="frame" x="48.666666666666657" y="30.666666666666657" width="10" height="19.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -494,16 +494,16 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xog-tC-X41">
-                                <rect key="frame" x="314.66666666666669" y="125.66666666666666" width="79.333333333333314" height="50"/>
+                                <rect key="frame" x="315.33333333333331" y="125.33333333333334" width="78.666666666666686" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max tags/s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEj-oD-v41" customClass="ThemeableLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="19.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="78.666666666666671" height="19.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1s-hB-b1B" customClass="ThemeableLabel">
-                                        <rect key="frame" x="34.666666666666629" y="30.666666666666686" width="10" height="19.333333333333329"/>
+                                        <rect key="frame" x="34.333333333333371" y="30.666666666666657" width="10" height="19.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -585,15 +585,15 @@
             <objects>
                 <tableViewController id="WD6-uf-xTq" userLabel="RFID Settings" customClass="RfidSettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="64" sectionHeaderHeight="18" sectionFooterHeight="18" id="hkc-kW-YVk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="PQv-ib-glU" detailTextLabel="GlL-BV-UVC" rowHeight="44" style="IBUITableViewCellStyleValue1" id="mQ0-rx-uCh" customClass="ThemeableTableViewCell">
-                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mQ0-rx-uCh" id="3RX-mU-bH5">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PQv-ib-glU">
@@ -604,26 +604,27 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GlL-BV-UVC">
-                                            <rect key="frame" x="334.33333333333331" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
+                                            <rect key="frame" x="333" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" name="background"/>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="q2K-D3-CeS" kind="show" identifier="EditSettingSegue" id="GRZ-bi-Thv"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RegionLockCell" rowHeight="64" id="kR3-wW-RKO" customClass="RegionLockCell">
-                                <rect key="frame" x="0.0" y="99.333333333333343" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="99.333332061767578" width="414" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kR3-wW-RKO" id="6AU-Fh-GNg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="63.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpP-Rk-FBJ" customClass="ThemeableButton">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpP-Rk-FBJ" customClass="ThemeableButton">
                                             <rect key="frame" x="144.66666666666666" y="11" width="124.99999999999997" height="42"/>
                                             <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -637,6 +638,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" name="background"/>
                                     <constraints>
                                         <constraint firstItem="WpP-Rk-FBJ" firstAttribute="centerX" secondItem="6AU-Fh-GNg" secondAttribute="centerX" id="B9A-fi-tOy"/>
                                         <constraint firstItem="WpP-Rk-FBJ" firstAttribute="centerY" secondItem="6AU-Fh-GNg" secondAttribute="centerY" id="IwM-Mc-LWz"/>
@@ -649,10 +651,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FilterCell" textLabel="n5c-0u-v0E" detailTextLabel="HZz-tp-e9d" rowHeight="44" style="IBUITableViewCellStyleValue1" id="Qge-CZ-xmn" customClass="ThemeableTableViewCell">
-                                <rect key="frame" x="0.0" y="163.33333333333334" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="163.33333206176758" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qge-CZ-xmn" id="yFh-Oi-qZJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n5c-0u-v0E">
@@ -663,13 +665,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HZz-tp-e9d">
-                                            <rect key="frame" x="334.33333333333331" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
+                                            <rect key="frame" x="333" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" name="background"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -692,50 +695,52 @@
             <objects>
                 <tableViewController id="XZJ-A8-MHD" customClass="ApplicationSettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="drh-0J-29C">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" name="background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ApplicationSettingCell" textLabel="1Bb-rZ-ycn" style="IBUITableViewCellStyleDefault" id="2d8-ma-PLS" customClass="ThemeableTableViewCell">
-                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2d8-ma-PLS" id="Nn8-gJ-wCN">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Bb-rZ-ycn">
-                                            <rect key="frame" x="20" y="0.0" width="350" height="43.666666666666664"/>
+                                            <rect key="frame" x="20" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" name="darktext"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="background"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ApplicationSettingCell2" textLabel="EcD-4p-3Q4" detailTextLabel="vcO-bE-9xb" style="IBUITableViewCellStyleSubtitle" id="0bb-IJ-tzx" customClass="ThemeableTableViewCell">
-                                <rect key="frame" x="0.0" y="99.333333333333343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="99.333332061767578" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0bb-IJ-tzx" id="O8f-QL-tgi">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EcD-4p-3Q4">
-                                            <rect key="frame" x="20.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="20" y="5" width="33" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" name="darktext"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vcO-bE-9xb">
                                             <rect key="frame" x="19.999999999999996" y="25.333333333333332" width="32.666666666666664" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="background"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -761,8 +766,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvv-A6-EGB" customClass="ThemeableButton">
-                                <rect key="frame" x="107" y="263" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvv-A6-EGB" customClass="ThemeableButton">
+                                <rect key="frame" x="107" y="248.33333333333337" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4IE-ha-Not"/>
@@ -776,33 +781,33 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firmware information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwR-T0-8JN" customClass="ThemeableLabel">
-                                <rect key="frame" x="126" y="48" width="162" height="21"/>
+                                <rect key="frame" x="126.66666666666667" y="28" width="160.66666666666663" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHa-DP-Tz8" customClass="ThemeableLabel">
-                                <rect key="frame" x="190.66666666666666" y="109" width="33.666666666666657" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="189.33333333333334" y="89" width="35.666666666666657" height="19.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-pH-bJd" customClass="ThemeableLabel">
-                                <rect key="frame" x="187" y="135" width="40.333333333333343" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="185.66666666666666" y="116.33333333333333" width="42.666666666666657" height="19.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ee-er-ert" customClass="ThemeableLabel">
-                                <rect key="frame" x="182" y="161" width="51" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="180" y="143.66666666666666" width="54.333333333333343" height="19.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHf-XF-rsQ" customClass="ThemeableLabel">
-                                <rect key="frame" x="190" y="187" width="34" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="189" y="171" width="36.333333333333343" height="19.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -844,11 +849,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pwo-Ll-Czw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tqk-ve-yfF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHR-1w-Caj">
-                                <rect key="frame" x="20" y="0.0" width="374" height="672"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="692"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
@@ -879,23 +884,23 @@
                         <viewControllerLayoutGuide type="bottom" id="bSq-3i-Iee"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XQG-Hj-4ib">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press trigger to read barcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dys-yD-tMO" customClass="ThemeableLabel">
-                                <rect key="frame" x="95" y="32" width="224" height="20.666666666666671"/>
+                                <rect key="frame" x="95.666666666666671" y="32" width="222.66666666666663" height="20.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;barcode&gt;" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEr-OO-gPY" customClass="ThemeableLabel">
-                                <rect key="frame" x="162" y="114.66666666666666" width="90.333333333333314" height="20.333333333333343"/>
+                                <rect key="frame" x="162.33333333333334" y="114.66666666666666" width="89.333333333333343" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Al4-On-n7T" customClass="ThemeableButton">
-                                <rect key="frame" x="106.66666666666669" y="195" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Al4-On-n7T" customClass="ThemeableButton">
+                                <rect key="frame" x="107" y="195" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="DfZ-Sf-hWn"/>
@@ -938,67 +943,67 @@
                         <viewControllerLayoutGuide type="bottom" id="NxG-eA-Uxm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DGH-EY-2L9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nordic ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idl-0K-YXL" customClass="ThemeableTitleLabel">
-                                <rect key="frame" x="167.33333333333334" y="40" width="80" height="21.666666666666671"/>
+                                <rect key="frame" x="167" y="40" width="80" height="21.666666666666671"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IoT-center, Joensuunkatu 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcQ-gC-B9N" customClass="ThemeableLabel">
-                                <rect key="frame" x="103.66666666666669" y="137.33333333333334" width="207" height="20.333333333333343"/>
+                                <rect key="frame" x="104" y="137.66666666666666" width="206" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telephone: +358 2 727 7700" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffA-GT-qTO" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="96.666666666666686" y="231.66666666666666" width="221" height="20.666666666666657"/>
+                                <rect key="frame" x="97.333333333333329" y="232" width="219.33333333333337" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax: +358 2 727 7720" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-9L-dhx" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="123" y="258.33333333333331" width="168" height="20.333333333333314"/>
+                                <rect key="frame" x="124.00000000000001" y="258.66666666666669" width="166.33333333333337" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="info@nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4A-FY-jKq" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="136" y="298.66666666666669" width="143" height="21"/>
+                                <rect key="frame" x="135.66666666666666" y="299" width="142.99999999999997" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.nordicid.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckh-3E-79I" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="137" y="339.66666666666669" width="141.33333333333337" height="21"/>
+                                <rect key="frame" x="136.33333333333331" y="340" width="141.33333333333331" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="International Headquarters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-RF-zni" customClass="ThemeableLabel">
-                                <rect key="frame" x="96" y="90.666666666666671" width="222" height="21"/>
+                                <rect key="frame" x="96.666666666666686" y="90.666666666666671" width="221" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On GitHub: github.com/NordicID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-EW-k9b" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="83.333333333333329" y="380.66666666666669" width="247.66666666666669" height="21"/>
+                                <rect key="frame" x="84" y="381" width="246" height="21"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24100 Salo, Finland" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odk-L7-ILj" customClass="ThemeableLabel">
-                                <rect key="frame" x="132" y="163.66666666666666" width="150" height="21"/>
+                                <rect key="frame" x="132.66666666666666" y="164" width="148.99999999999997" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finland" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulk-5L-zKr" customClass="ThemeableLabel">
-                                <rect key="frame" x="179" y="190.66666666666666" width="56" height="21"/>
+                                <rect key="frame" x="179.66666666666666" y="191" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1048,32 +1053,33 @@
             <objects>
                 <tableViewController id="u1R-Kf-LHl" customClass="InfoViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="PC8-CR-bep">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" name="background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="InfoCell" textLabel="PEx-fR-uwk" detailTextLabel="PD9-dR-xQr" style="IBUITableViewCellStyleValue1" id="bZK-Bt-EVH" customClass="ThemeableTableViewCell">
-                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZK-Bt-EVH" id="YgK-Kr-Sbx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PEx-fR-uwk">
-                                            <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="20" y="12.999999999999998" width="31.666666666666668" height="19.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" name="darktext"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PD9-dR-xQr">
-                                            <rect key="frame" x="350" y="11.999999999999998" width="44" height="20.333333333333332"/>
+                                            <rect key="frame" x="352.33333333333331" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" name="darktext"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" name="background"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -1097,7 +1103,7 @@
                         <viewControllerLayoutGuide type="bottom" id="UGh-mY-8IG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QNW-t9-P7P">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nordic ID RFID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTB-in-8gD" customClass="ThemeableTitleLabel">
@@ -1107,13 +1113,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Released under MIT License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCt-Fy-r66" customClass="ThemeableLabel">
-                                <rect key="frame" x="99" y="90" width="216" height="21"/>
+                                <rect key="frame" x="99.666666666666671" y="90" width="214.66666666666663" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github.com/NordicID/nur_sample_ios" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rd-Xy-3YF" customClass="ThemeableAttributedLabel">
-                                <rect key="frame" x="68" y="131" width="278.66666666666669" height="21"/>
+                                <rect key="frame" x="66.666666666666657" y="131" width="280.66666666666674" height="21"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -1124,13 +1130,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App version: X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud2-iV-pOn" customClass="ThemeableLabel">
                                 <rect key="frame" x="151.66666666666666" y="172" width="110.99999999999997" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NurAPI version: X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUF-j2-IVb" customClass="ThemeableLabel">
-                                <rect key="frame" x="140.66666666666666" y="213" width="132.99999999999997" height="21"/>
+                                <rect key="frame" x="141" y="213" width="132" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1189,12 +1195,12 @@
                         <viewControllerLayoutGuide type="bottom" id="4sj-cH-FGv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qV2-3E-1kB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6yV-2J-NZA">
                                 <rect key="frame" x="4" y="0.0" width="406" height="396"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="background"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="396" id="2kS-0A-M7b"/>
                                 </constraints>
@@ -1203,25 +1209,27 @@
                                         <rect key="frame" x="0.0" y="28" width="406" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LEB-bZ-qor" id="wpJ-LO-k0g">
-                                            <rect key="frame" x="0.0" y="0.0" width="406" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="406" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xha-RN-OWn">
-                                                    <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="12.999999999999998" width="31.666666666666668" height="19.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" name="darktext"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S16-2L-3zG">
-                                                    <rect key="frame" x="342" y="11.999999999999998" width="44" height="20.333333333333332"/>
+                                                    <rect key="frame" x="344.33333333333331" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" name="darktext"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" name="background"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="background"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1229,8 +1237,8 @@
                                     <outlet property="delegate" destination="f9G-NP-mn8" id="B6k-g9-LJd"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9So-T1-gUb" customClass="ThemeableButton">
-                                <rect key="frame" x="107.33333333333331" y="426" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9So-T1-gUb" customClass="ThemeableButton">
+                                <rect key="frame" x="107" y="426" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Q9j-dr-C9T"/>
@@ -1275,17 +1283,17 @@
                         <viewControllerLayoutGuide type="bottom" id="Tdf-4Q-wT2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="W4O-va-idv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XYZ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-JQ-s9w" customClass="ThemeableLabel">
                                 <rect key="frame" x="190.66666666666666" y="40" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ8-uA-Vel" customClass="ThemeableButton">
-                                <rect key="frame" x="107.33333333333331" y="381" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ8-uA-Vel" customClass="ThemeableButton">
+                                <rect key="frame" x="107" y="381" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="8h1-Vk-d5R"/>
@@ -1300,7 +1308,7 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFy-tO-LPx" customClass="ProgressView">
                                 <rect key="frame" x="107" y="111" width="200" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="background"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="UL8-Yb-pS7"/>
                                     <constraint firstAttribute="width" constant="200" id="Wvw-Su-ZYh"/>
@@ -1334,26 +1342,27 @@
             <objects>
                 <tableViewController id="q2K-D3-CeS" customClass="SelectSettingViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ro9-TO-JYT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" name="background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SettingAlternativeCell" textLabel="SE9-Yu-992" style="IBUITableViewCellStyleDefault" id="rvP-r3-agY" customClass="ThemeableTableViewCell">
-                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rvP-r3-agY" id="8RJ-AR-dZQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SE9-Yu-992">
-                                            <rect key="frame" x="20" y="0.0" width="350" height="43.666666666666664"/>
+                                            <rect key="frame" x="20" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" name="darktext"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="background"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1383,10 +1392,10 @@
                         <viewControllerLayoutGuide type="bottom" id="ynh-mg-X07"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kMj-GN-EIi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doC-kY-riE" customClass="ThemeableButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doC-kY-riE" customClass="ThemeableButton">
                                 <rect key="frame" x="107" y="131" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1401,15 +1410,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Tune to tune all enabled antennas." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YfN-lU-NUE" customClass="ThemeableLabel">
-                                <rect key="frame" x="60.333333333333343" y="50" width="294" height="21"/>
+                                <rect key="frame" x="61" y="50" width="292.33333333333331" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YbG-am-tG5">
-                                <rect key="frame" x="40" y="221" width="334" height="382"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <rect key="frame" x="40" y="221" width="334" height="402"/>
+                                <color key="backgroundColor" name="background"/>
+                                <color key="textColor" name="darktext"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -1449,14 +1459,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the new EPC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVm-hL-AJt" customClass="ThemeableLabel">
-                                <rect key="frame" x="79" y="123.66666666666667" width="142" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the new EPC:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVm-hL-AJt" customClass="ThemeableLabel">
+                                <rect key="frame" x="77" y="123.66666666666667" width="146" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQK-Lx-Vwd" customClass="ThemeableButton">
-                                <rect key="frame" x="50.333333333333343" y="214" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQK-Lx-Vwd" customClass="ThemeableButton">
+                                <rect key="frame" x="50" y="213.66666666666666" width="200" height="49.999999999999972"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GWX-Ke-Urr"/>
@@ -1470,21 +1480,22 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="112233445566778899101112" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV2-XO-Irm" customClass="ThemeableLabel">
-                                <rect key="frame" x="47.999999999999986" y="73.666666666666671" width="204.66666666666663" height="18"/>
+                                <rect key="frame" x="48" y="73.666666666666671" width="204" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old EPC:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pa-DD-akv" customClass="ThemeableLabel">
                                 <rect key="frame" x="116" y="37" width="68" height="20.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="112233445566778899101112" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faY-7O-Vmc" customClass="ThemeableTextField">
-                                <rect key="frame" x="16" y="160" width="268" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="112233445566778899101112" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faY-7O-Vmc" customClass="ThemeableTextField">
+                                <rect key="frame" x="16" y="160" width="268" height="29.666666666666657"/>
+                                <color key="backgroundColor" name="background"/>
+                                <color key="textColor" name="darktext"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="LOk-an-Bz1" id="NxV-YT-DUx"/>
@@ -1529,34 +1540,35 @@
                         <viewControllerLayoutGuide type="bottom" id="4Vr-cf-3Kv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xaz-o7-Kmr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the tag to write" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iv-4x-B7v" customClass="ThemeableLabel">
-                                <rect key="frame" x="122.66666666666669" y="18" width="169" height="20.666666666666671"/>
+                                <rect key="frame" x="123.33333333333333" y="18" width="167.33333333333337" height="20.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="darktext"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SDZ-Mc-FXL">
-                                <rect key="frame" x="20" y="71" width="374" height="505"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="70.666666666666686" width="374" height="525.33333333333326"/>
+                                <color key="backgroundColor" name="background"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WriteTagCell" textLabel="ngj-9t-bum" style="IBUITableViewCellStyleDefault" id="eLv-0i-m2B" customClass="ThemeableTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eLv-0i-m2B" id="8G8-Uf-pPx">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ngj-9t-bum">
-                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.666666666666664"/>
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" name="darktext"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" name="background"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="LOk-an-Bz1" kind="popoverPresentation" identifier="TagPopover" popoverAnchorView="0iv-4x-B7v" id="5ou-7l-sxa">
@@ -1570,8 +1582,8 @@
                                     <outlet property="delegate" destination="2AD-jn-mc2" id="ARr-1f-6s8"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOG-xu-uph" customClass="ThemeableButton">
-                                <rect key="frame" x="107.33333333333331" y="602" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOG-xu-uph" customClass="ThemeableButton">
+                                <rect key="frame" x="107" y="622" width="200" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="0yY-bf-qlv"/>
@@ -1614,21 +1626,21 @@
             <objects>
                 <tableViewController id="d23-ey-pS1" customClass="FirmwareSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3fw-95-6Kl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" name="background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FirmwareCell" rowHeight="60" id="abN-KF-pUA" customClass="FirmwareCell">
-                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="abN-KF-pUA" id="n4E-MT-GGZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIt-di-SHh">
                                             <rect key="frame" x="30" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" name="darktext"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0I5-yP-RjJ">
@@ -1653,6 +1665,7 @@
                                         <constraint firstAttribute="trailing" secondItem="0I5-yP-RjJ" secondAttribute="trailing" constant="8" id="hg3-GR-OgU"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="background"/>
                                 <connections>
                                     <outlet property="buildTimeLabel" destination="0I5-yP-RjJ" id="3kh-uB-waI"/>
                                     <outlet property="nameLabel" destination="XIt-di-SHh" id="aNs-bR-zOr"/>
@@ -1676,30 +1689,32 @@
             <objects>
                 <tableViewController id="EMp-S7-gs6" userLabel="Reader Settings" customClass="ReaderSettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="9zl-HG-Lrb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" name="background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReaderSettingCell" id="tij-VM-34g" customClass="ReaderSettingCell">
-                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tij-VM-34g" id="Naz-ob-bBo">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27f-sO-xOU">
                                             <rect key="frame" x="20" y="12" width="319" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" name="darktext"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwu-vC-RH5">
                                             <rect key="frame" x="349" y="6" width="51" height="31"/>
+                                            <color key="onTintColor" name="secondary"/>
                                             <connections>
                                                 <action selector="valueChanged:" destination="tij-VM-34g" eventType="valueChanged" id="JxI-zU-iaA"/>
                                             </connections>
                                         </switch>
                                     </subviews>
+                                    <color key="backgroundColor" name="background"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="dwu-vC-RH5" secondAttribute="trailing" constant="16" id="AmQ-Z6-zuk"/>
                                         <constraint firstItem="dwu-vC-RH5" firstAttribute="leading" secondItem="27f-sO-xOU" secondAttribute="trailing" constant="10" id="Ky5-aw-onr"/>
@@ -1728,18 +1743,47 @@
             <point key="canvasLocation" x="2865" y="1488"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="2Rd-Xy-3YF">
+            <size key="intrinsicContentSize" width="280.66666666666669" height="20.333333333333332"/>
+        </designable>
+        <designable name="Df5-EW-k9b">
+            <size key="intrinsicContentSize" width="246" height="20.333333333333332"/>
+        </designable>
+        <designable name="ckh-3E-79I">
+            <size key="intrinsicContentSize" width="140.66666666666666" height="20.333333333333332"/>
+        </designable>
+        <designable name="ffA-GT-qTO">
+            <size key="intrinsicContentSize" width="219.33333333333334" height="20.333333333333332"/>
+        </designable>
+        <designable name="fi8-9L-dhx">
+            <size key="intrinsicContentSize" width="166.33333333333334" height="20.333333333333332"/>
+        </designable>
+        <designable name="y4A-FY-jKq">
+            <size key="intrinsicContentSize" width="142.33333333333334" height="20.333333333333332"/>
+        </designable>
+    </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="xeh-9q-R9R"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
     <resources>
         <image name="About" width="30" height="30"/>
         <image name="Application" width="30" height="29"/>
         <image name="Battery-100" width="32" height="32"/>
-        <image name="Contact" width="30" height="23"/>
-        <image name="Device" width="18" height="30"/>
+        <image name="Contact" width="30" height="23.666666030883789"/>
+        <image name="Device" width="18.666666030883789" height="30"/>
         <image name="DeviceSettings" width="30" height="30"/>
         <image name="Firmware" width="30" height="30"/>
         <image name="Tune" width="30" height="30"/>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="darktext">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondary">
+            <color red="0.97254901960784312" green="0.61176470588235299" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="fQC-uo-1Pp"/>
-    </inferredMetricsTieBreakers>
-    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>

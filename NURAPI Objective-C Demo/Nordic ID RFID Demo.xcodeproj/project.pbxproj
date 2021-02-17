@@ -63,6 +63,7 @@
 		6F921BE91F862D2C0088AC3E /* FirmwareDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BE81F862D2B0088AC3E /* FirmwareDownloader.m */; };
 		6F921BF11F87B7560088AC3E /* FirmwareSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */; };
 		6F99FD291FE3DC6200BE478A /* ReaderSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */; };
+		6FBCA0B125DD2B39009419D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FBCA0B025DD2B39009419D0 /* Colors.xcassets */; };
 		6FE754911F96442400CE8B66 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FE754901F96442400CE8B66 /* SharedAssets.xcassets */; };
 		6FE7549B1F96484500CE8B66 /* TargetAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */; };
 		6FED46E01F99EA43009BB353 /* ReaderSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED46DE1F99EA43009BB353 /* ReaderSettingsViewController.m */; };
@@ -207,6 +208,7 @@
 		6F921BF01F87B7560088AC3E /* FirmwareSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirmwareSelectionViewController.m; sourceTree = "<group>"; };
 		6F99FD271FE3DC6200BE478A /* ReaderSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReaderSettingCell.h; sourceTree = "<group>"; };
 		6F99FD281FE3DC6200BE478A /* ReaderSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReaderSettingCell.m; sourceTree = "<group>"; };
+		6FBCA0B025DD2B39009419D0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		6FE754901F96442400CE8B66 /* SharedAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SharedAssets.xcassets; sourceTree = "<group>"; };
 		6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TargetAssets.xcassets; sourceTree = "<group>"; };
 		6FED46DE1F99EA43009BB353 /* ReaderSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderSettingsViewController.m; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 			children = (
 				6FE754901F96442400CE8B66 /* SharedAssets.xcassets */,
 				6FE7549A1F96484500CE8B66 /* TargetAssets.xcassets */,
+				6FBCA0B025DD2B39009419D0 /* Colors.xcassets */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -537,7 +540,7 @@
 		6F7959691EC2D77600A458AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Jan Ekholm";
 				TargetAttributes = {
 					6F7959701EC2D77600A458AA = {
@@ -586,6 +589,7 @@
 				6F795A3A1EC2F8BB00A458AA /* Main.storyboard in Resources */,
 				6F795A121EC2D8FD00A458AA /* blep_40ms.wav in Resources */,
 				6FE754911F96442400CE8B66 /* SharedAssets.xcassets in Resources */,
+				6FBCA0B125DD2B39009419D0 /* Colors.xcassets in Resources */,
 				6F795A3E1EC2FB8000A458AA /* InfoPlist.strings in Resources */,
 				6F795A111EC2D8FD00A458AA /* blep_300ms.wav in Resources */,
 			);
@@ -802,6 +806,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -809,8 +814,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -836,7 +843,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -859,6 +866,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -866,8 +874,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -887,7 +897,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -899,6 +909,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FFF129810DC220C3978CA6A /* Pods-Nordic ID RFID Demo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGSJJLLG7M;
 				ENABLE_BITCODE = NO;
@@ -908,8 +919,10 @@
 					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
+				MARKETING_VERSION = 1.2.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -918,6 +931,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BB6AA733015FC9C3401FB06 /* Pods-Nordic ID RFID Demo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGSJJLLG7M;
 				ENABLE_BITCODE = NO;
@@ -927,8 +941,10 @@
 					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
+				MARKETING_VERSION = 1.2.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
