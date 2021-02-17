@@ -254,7 +254,7 @@
         // clear all statistics data as we now started again
         [self clearData];
 
-        self.inventoryButton.titleLabel.text = NSLocalizedString(@"Stop", nil);
+        [self.inventoryButton setTitle:NSLocalizedString(@"Stop", nil) forState:UIControlStateNormal];
 
         // no sharing while we're doing an inventory
         self.shareButton.enabled = NO;
@@ -314,7 +314,7 @@
             return;
         }
 
-        self.inventoryButton.titleLabel.text = NSLocalizedString(@"Start", nil);
+        [self.inventoryButton setTitle:NSLocalizedString(@"Start", nil) forState:UIControlStateNormal];
         self.startTime = nil;
 
         if ( self.timer ) {
