@@ -189,6 +189,9 @@
                 else if ( accessoryInfo.config & NUR_ACC_CFG_WEARABLE ) {
                     self.exaModelName = @"EXA31";
                 }
+                else if ( !(accessoryInfo.config & DEV_FEATURE_IMAGER) ) {
+                    self.exaModelName = @"EXA21";
+                }
                 else {
                     self.exaModelName = @"INVALID";
                     [self showErrorMessage:@"Failed to find EXA version"];
