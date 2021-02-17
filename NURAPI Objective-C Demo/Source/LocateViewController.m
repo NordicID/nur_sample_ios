@@ -161,6 +161,8 @@
     Tag * tag = [TagManager sharedInstance].tags[ indexPath.row ];
     logDebug( @"selected tag: %@", tag );
 
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     // is the tag too short to locate?
     if ( tag.epc.length == 0 ) {
         // too short tag
