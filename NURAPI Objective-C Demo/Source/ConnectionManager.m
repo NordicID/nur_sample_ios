@@ -6,9 +6,10 @@
 
 @interface ConnectionManager ()
 
-@property (nonatomic, assign) BOOL           setupPerformed;
-@property (nonatomic, assign) BOOL           connectionOk;
-@property (nonatomic, strong) NSMutableSet * delegates;
+@property (nonatomic, assign) BOOL             setupPerformed;
+@property (nonatomic, assign) BOOL             connectionOk;
+@property (nonatomic, strong) NSMutableSet *   delegates;
+@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
 
 @end
 
@@ -34,6 +35,7 @@
         self.connectionOk = NO;
         self.setupPerformed = NO;
         self.delegates = [NSMutableSet set];
+        self.deviceSupportsBarcodes = YES;
 
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
         if ( [defaults objectForKey:@"reconnectMode"] ) {
@@ -48,6 +50,9 @@
             [defaults setObject:[NSNumber numberWithInt:(int)self.reconnectMode] forKey:@"reconnectMode"];
             [defaults synchronize];
         }
+
+        // set up the queue used to async any NURAPI calls
+        self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
     }
 
     return self;
@@ -86,7 +91,6 @@
 
     // verbose logging by default
     NurApiSetLogLevel( [Bluetooth sharedInstance].nurapiHandle, NUR_LOG_ALL );
-
 
     [[Bluetooth sharedInstance] registerDelegate:self];
     self.setupPerformed = YES;
@@ -194,13 +198,33 @@
 
     [self setLastConnectedUuid:[Bluetooth sharedInstance].currentReader.identifier.UUIDString];
 
-    // inform all delegates
-    NSSet * copiedDelegates = [[NSSet alloc] initWithSet:self.delegates];
-    for ( id<BluetoothDelegate> delegate in copiedDelegates ) {
-        if ( delegate && [delegate respondsToSelector:@selector(readerConnectionOk)] ) {
-            [delegate readerConnectionOk];
+    // do some querying about the reader to find needed info, and then inform all delegates
+    dispatch_async(self.dispatchQueue, ^{
+        NUR_ACC_CONFIG config;
+
+        // get current settings
+        int error = NurAccGetConfig( [Bluetooth sharedInstance].nurapiHandle, &config, sizeof(NUR_ACC_CONFIG) );
+        if (error == NUR_NO_ERROR) {
+            self.deviceSupportsBarcodes = (config.config & DEV_FEATURE_IMAGER) ? YES : NO;
         }
-    }
+        else {
+            logError(@"failed to read accessory config");
+            // assume it supports...
+            self.deviceSupportsBarcodes = YES;
+        }
+        logDebug(@"device supports barcode reading: %d", self.deviceSupportsBarcodes);
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // inform all delegates
+            NSSet * copiedDelegates = [[NSSet alloc] initWithSet:self.delegates];
+            for ( id<BluetoothDelegate> delegate in copiedDelegates ) {
+                if ( delegate && [delegate respondsToSelector:@selector(readerConnectionOk)] ) {
+                    [delegate readerConnectionOk];
+                }
+            }
+        });
+    });
+
 
     // stop scanning
     [[Bluetooth sharedInstance] stopScanning];

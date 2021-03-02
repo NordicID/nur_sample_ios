@@ -4,7 +4,7 @@
 
 typedef enum {
     kAlwaysReconnect, // always reconnect to the last device, even when restarting the application
-    kNeverReconnect, // only reconnect within the same session, never when restarting the application
+    kNeverReconnect,  // only reconnect within the same session, never when restarting the application
 } ReconnectMode;
 
 
@@ -42,8 +42,8 @@ typedef enum {
 @interface ConnectionManager : NSObject <BluetoothDelegate>
 
 // the current reconnect mode, defaults to kAlwaysReconnect
-@property (nonatomic, assign) ReconnectMode reconnectMode;
-
+@property (nonatomic, assign) ReconnectMode    reconnectMode;
+@property (nonatomic, assign) BOOL             deviceSupportsBarcodes;
 @property (nonatomic, readonly) CBPeripheral * currentReader;
 
 + (ConnectionManager *) sharedInstance;
