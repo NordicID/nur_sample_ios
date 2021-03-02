@@ -430,20 +430,9 @@
             cell.tag = NUR_SETUP_TXLEVEL;
             cell.textLabel.text = NSLocalizedString(@"TX Level", nil);
 
-            // 500 mW model?
-            if ( deviceCaps.maxTxmW == 500 ) {
-                cell.detailTextLabel.text = @[ @"27 dBm, 500mW", @"26 dBm, 398mW", @"25 dBm, 316mW", @"24 dBm, 251mW", @"23 dBm, 200mW",
-                                               @"22 dBm, 158mW", @"21 dBm, 126mW", @"20 dBm, 100mW", @"19 dBm, 79mW",  @"18 dBm, 63mW",
-                                               @"17 dBm, 50mW",  @"16 dBm, 40mW",  @"15 dBm, 32mW",  @"14 dBm, 25mW",  @"13 dBm, 20mW",
-                                               @"12 dBm, 16mW",  @"11 dBm, 13mW",  @"10 dBm, 10mW",  @"9 dBm, 8mW",    @"8 dBm, 6mW"][ setup.txLevel ];
-            }
-            else {
-                // 1000 mW
-                cell.detailTextLabel.text = @[ @"30 dBm, 1000mW", @"29 dBm, 794mW", @"28 dBm, 631mW", @"27 dBm, 501mW", @"26 dBm, 398mW",
-                                               @"25 dBm, 316mW",  @"24 dBm, 251mW", @"23 dBm, 200mW", @"22 dBm, 158mW", @"21 dBm, 126mW",
-                                               @"20 dBm, 100mW",  @"19 dBm, 79mW",  @"18 dBm, 63mW",  @"17 dBm, 50mW",  @"16 dBm, 40mW",
-                                               @"15 dBm, 32mW",   @"14 dBm, 25mW",  @"13 dBm, 20mW", @"12 dBm, 16mW",   @"11 dBm, 13mW"][ setup.txLevel ];
-            }
+            double dBm = deviceCaps.maxTxdBm - (setup.txLevel * deviceCaps.txAttnStep);
+            double mW = (double) pow(10, (double) dBm / 10);
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f dBm, %.1f mW", dBm, mW];
             break;
 
             // not used
@@ -558,51 +547,12 @@
         case NUR_SETUP_TXLEVEL:
             destination.settingName = NSLocalizedString(@"TX Level", nil);
 
-            if ( deviceCaps.maxTxmW == 500 ) {
-                // 500 mW reader
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"27 dBm, 500mW" value:0  selected:setup.txLevel == 0]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"26 dBm, 398mW" value:1  selected:setup.txLevel == 1]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"25 dBm, 316mW" value:2  selected:setup.txLevel == 2]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"24 dBm, 251mW" value:3  selected:setup.txLevel == 3]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"23 dBm, 200mW" value:4  selected:setup.txLevel == 4]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"22 dBm, 158mW" value:5  selected:setup.txLevel == 5]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"21 dBm, 126mW" value:6  selected:setup.txLevel == 6]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"20 dBm, 100mW" value:7  selected:setup.txLevel == 7]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"19 dBm, 79mW"  value:8  selected:setup.txLevel == 8]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"18 dBm, 63mW"  value:9  selected:setup.txLevel == 9]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"17 dBm, 50mW"  value:10 selected:setup.txLevel == 10]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"16 dBm, 40mW"  value:11 selected:setup.txLevel == 11]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"15 dBm, 32mW"  value:12 selected:setup.txLevel == 12]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"14 dBm, 25mW"  value:13 selected:setup.txLevel == 13]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"13 dBm, 20mW"  value:14 selected:setup.txLevel == 14]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"12 dBm, 16mW"  value:15 selected:setup.txLevel == 15]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"11 dBm, 13mW"  value:16 selected:setup.txLevel == 16]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"10 dBm, 10mW"  value:17 selected:setup.txLevel == 17]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"9 dBm, 8mW"    value:18 selected:setup.txLevel == 18]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"8 dBm, 6mW"    value:19 selected:setup.txLevel == 19]];
-            }
-            else {
-                // 1000 mW reader
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"30 dBm, 1000mW"value:0  selected:setup.txLevel == 0 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"29 dBm, 794mW" value:1  selected:setup.txLevel == 1 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"28 dBm, 631mW" value:2  selected:setup.txLevel == 2 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"27 dBm, 501mW" value:3  selected:setup.txLevel == 3 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"26 dBm, 398mW" value:4  selected:setup.txLevel == 4 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"25 dBm, 316mW" value:5  selected:setup.txLevel == 5 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"24 dBm, 251mW" value:6  selected:setup.txLevel == 6 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"23 dBm, 200mW" value:7  selected:setup.txLevel == 7 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"22 dBm, 158mW" value:8  selected:setup.txLevel == 8 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"21 dBm, 126mW" value:9  selected:setup.txLevel == 9 ]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"20 dBm, 100mW" value:10 selected:setup.txLevel == 10]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"19 dBm, 79mW"  value:11 selected:setup.txLevel == 11]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"18 dBm, 63mW"  value:12 selected:setup.txLevel == 12]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"17 dBm, 50mW"  value:13 selected:setup.txLevel == 13]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"16 dBm, 40mW"  value:14 selected:setup.txLevel == 14]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"15 dBm, 32mW"  value:15 selected:setup.txLevel == 15]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"14 dBm, 25mW"  value:16 selected:setup.txLevel == 16]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"13 dBm, 20mW"  value:17 selected:setup.txLevel == 17]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"12 dBm, 16mW"  value:18 selected:setup.txLevel == 18]];
-                [alternatives addObject:[SettingsAlternative alternativeWithTitle:@"11 dBm, 13mW"  value:19 selected:setup.txLevel == 19]];
+            // tx levels can be calculated based on device capabilities
+            for ( int index = 0; index < deviceCaps.txSteps; index++ ) {
+                double dBm = deviceCaps.maxTxdBm - (index * deviceCaps.txAttnStep);
+                double mW = (double) pow(10, (double) dBm / 10);
+
+                [alternatives addObject:[SettingsAlternative alternativeWithTitle:[NSString stringWithFormat:@"%.1f dBm, %.1f mW", dBm, mW] value:index selected:setup.txLevel == index]];
             }
             break;
 
