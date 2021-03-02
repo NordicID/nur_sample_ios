@@ -134,7 +134,12 @@
         return 0;
     }
 
-    return 3;
+    if ( [ConnectionManager sharedInstance].deviceSupportsBarcodes ) {
+        return 3;
+    }
+    else {
+        return 2;
+    }
 }
 
 
@@ -156,6 +161,14 @@
             return nil;
 
         case 1:
+            if ( !allowPairingAvailable ) {
+                return NSLocalizedString(@"Pairing setting is not available with this firmware version", @"Reader settings pairing section footer");
+            }
+            else {
+                return nil;
+            }
+
+        default:
             // in case there is an error
             switch ( wirelessStatus ) {
                 case WIRELESS_CHARGE_REFUSED:
@@ -166,15 +179,6 @@
                 default:
                     return nil;
             }
-
-        default:
-            if ( !allowPairingAvailable ) {
-                return NSLocalizedString(@"Pairing setting is not available with this firmware version", @"Reader settings pairing section footer");
-            }
-            else {
-                return nil;
-            }
-
     }
 }
 
@@ -186,7 +190,12 @@
 
     switch ( section ) {
         case 0:
-            return 2;
+            if ( [ConnectionManager sharedInstance].deviceSupportsBarcodes ) {
+                return 2;
+            }
+            else {
+                return 1;
+            }
         case 1:
             return 1;
         default:
@@ -202,21 +211,39 @@
     switch ( indexPath.section ) {
         case 0:
             switch ( indexPath.row ) {
-                case kHidBarcodeEnabled:
-                    cell.titleLabel.text = NSLocalizedString(@"HID barcode", nil);
-                    cell.settingEnabled = config.flags & NUR_ACC_FL_HID_BARCODE ? YES : NO;
-                    cell.settingType = kHidBarcodeEnabled;
-                    break;
-
                 case kHidRfidEnabled:
                     cell.titleLabel.text = NSLocalizedString(@"HID RFID", nil);
                     cell.settingEnabled = config.flags & NUR_ACC_FL_HID_RFID ? YES : NO;
                     cell.settingType = kHidRfidEnabled;
                     break;
-            }
+
+                case kHidBarcodeEnabled:
+                    cell.titleLabel.text = NSLocalizedString(@"HID barcode", nil);
+                    cell.settingEnabled = config.flags & NUR_ACC_FL_HID_BARCODE ? YES : NO;
+                    cell.settingType = kHidBarcodeEnabled;
+                    break;
+           }
             break;
 
         case 1:
+            cell.titleLabel.text = NSLocalizedString(@"Allow pairing", nil);
+            cell.settingType = kAllowPairing;
+
+            if ( allowPairingAvailable ) {
+                // pairing can be changed
+                cell.settingEnabled = allowPairing;
+                cell.enabledSwitch.enabled = YES;
+                cell.enabledSwitch.hidden = NO;
+            }
+            else {
+                // can't change pairing
+                cell.settingEnabled = NO;
+                cell.enabledSwitch.enabled = NO;
+                cell.enabledSwitch.hidden = YES;
+            }
+            break;
+
+        default:
             cell.enabledSwitch.enabled = YES;
             cell.enabledSwitch.hidden = NO;
 
@@ -250,24 +277,6 @@
                 default:
                     logError(@"unknown setting: %ld in section: %ld", (long)indexPath.row, (long)indexPath.section);
                     break;
-            }
-            break;
-
-        default:
-            cell.titleLabel.text = NSLocalizedString(@"Allow pairing", nil);
-            cell.settingType = kAllowPairing;
-
-            if ( allowPairingAvailable ) {
-                // pairing can be changed
-                cell.settingEnabled = allowPairing;
-                cell.enabledSwitch.enabled = YES;
-                cell.enabledSwitch.hidden = NO;
-            }
-            else {
-                // can't change pairing
-                cell.settingEnabled = NO;
-                cell.enabledSwitch.enabled = NO;
-                cell.enabledSwitch.hidden = YES;
             }
     }
     
