@@ -92,10 +92,11 @@
     self.insets = UIEdgeInsetsMake( top, left, bottom, right );
     self.cellSize = CGSizeMake( cellWidth, cellHeight );
 
+    // the default menu entries do not include the barcode entry, it's added later if
+    // the device supports barcode reading
     self.menuEntries = @[ [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Inventory", @"main menu") icon:@"MainMenuInventory" segue:@"InventorySegue" enabled:NO alwaysEnabled:NO],
-                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString( @"Locate", @"main menu") icon:@"MainMenuLocate" segue:@"LocateSegue" enabled:NO alwaysEnabled:NO],
+                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Locate", @"main menu") icon:@"MainMenuLocate" segue:@"LocateSegue" enabled:NO alwaysEnabled:NO],
                           [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Write Tag", @"main menu") icon:@"MainMenuWrite" segue:@"WriteTagSegue" enabled:NO alwaysEnabled:NO],
-                          [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Barcode", @"main menu") icon:@"MainMenuBarcode" segue:@"BarcodeSegue" enabled:NO alwaysEnabled:NO],
                           [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", @"main menu") icon:@"MainMenuSettings" segue:@"SettingsSegue" enabled:NO alwaysEnabled:NO],
                           [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Info", @"main menu") icon:@"MainMenuInfo" segue:@"InfoSegue" enabled:NO alwaysEnabled:YES],
                           [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Quick Guide", @"main menu") icon:@"MainMenuGuide" segue:@"QuickGuideSegue" enabled:YES alwaysEnabled:YES] ];
@@ -298,6 +299,29 @@
 
 - (void) updateMenuEntryState {
     if ( [ConnectionManager sharedInstance].currentReader ) {
+
+        if ( [ConnectionManager sharedInstance].deviceSupportsBarcodes) {
+            self.menuEntries = @[
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Inventory", @"main menu") icon:@"MainMenuInventory" segue:@"InventorySegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Locate", @"main menu") icon:@"MainMenuLocate" segue:@"LocateSegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Write Tag", @"main menu") icon:@"MainMenuWrite" segue:@"WriteTagSegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Barcode", @"main menu") icon:@"MainMenuBarcode" segue:@"BarcodeSegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", @"main menu") icon:@"MainMenuSettings" segue:@"SettingsSegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Info", @"main menu") icon:@"MainMenuInfo" segue:@"InfoSegue" enabled:NO alwaysEnabled:YES],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Quick Guide", @"main menu") icon:@"MainMenuGuide" segue:@"QuickGuideSegue" enabled:YES alwaysEnabled:YES] ];
+        }
+        else {
+            self.menuEntries = @[
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Inventory", @"main menu") icon:@"MainMenuInventory" segue:@"InventorySegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Locate", @"main menu") icon:@"MainMenuLocate" segue:@"LocateSegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Write Tag", @"main menu") icon:@"MainMenuWrite" segue:@"WriteTagSegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", @"main menu") icon:@"MainMenuSettings" segue:@"SettingsSegue" enabled:NO alwaysEnabled:NO],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Info", @"main menu") icon:@"MainMenuInfo" segue:@"InfoSegue" enabled:NO alwaysEnabled:YES],
+                [[MainMenuEntry alloc] initWithTitle:NSLocalizedString(@"Quick Guide", @"main menu") icon:@"MainMenuGuide" segue:@"QuickGuideSegue" enabled:YES alwaysEnabled:YES] ];
+        }
+
+        [self.collectionView reloadData];
+
         // enable all entries
         for ( MainMenuEntry * entry in self.menuEntries ) {
             entry.enabled = YES;
@@ -403,11 +427,7 @@
         logDebug( @"MTU with write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithResponse] );
         logDebug( @"MTU without write response: %lu", (unsigned long)[[Bluetooth sharedInstance].currentReader maximumWriteValueLengthForType:CBCharacteristicWriteWithoutResponse] );
 
-        // enable all entries
-        for ( MainMenuEntry * entry in self.menuEntries ) {
-            entry.enabled = YES;
-        }
-
+        [self updateMenuEntryState];
         [self updateConnectedLabel];
         [self updateBatteryLevel];
     });
