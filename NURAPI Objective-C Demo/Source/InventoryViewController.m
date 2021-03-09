@@ -485,12 +485,56 @@
 
             self.inventoryRoundsDone += inventoryStream->roundsDone;
 
-            int tagCount;
-            int error = NurApiGetTagCount( [Bluetooth sharedInstance].nurapiHandle, &tagCount );
+            // lock the tag storage
+            int error = NurApiLockTagStorage( [Bluetooth sharedInstance].nurapiHandle, TRUE);
             if (error != NUR_NO_ERROR) {
-                // failed to fetch tag count
+                logError( @"failed to lock tag storage" );
+                return;
+            }
+
+            // get the number of tags in the tag storage
+            int tagCount;
+            error = NurApiGetTagCount( [Bluetooth sharedInstance].nurapiHandle, &tagCount );
+            if (error != NUR_NO_ERROR) {
                 logError( @"failed to fetch tag count" );
-                tagCount = 0;
+
+                // unlock and abort
+                NurApiLockTagStorage( [Bluetooth sharedInstance].nurapiHandle, FALSE);
+                return;
+            }
+
+            // if no tags then we're done here
+            if ( tagCount == 0 ) {
+                error = NurApiLockTagStorage( [Bluetooth sharedInstance].nurapiHandle, FALSE);
+                if (error != NUR_NO_ERROR) {
+                    logError( @"failed to unlock tag storage" );
+                }
+
+                return;
+            }
+
+            // fetch all tags at the same time into an allocated buffer
+            struct NUR_TAG_DATA_EX * tagDataBuffer = (struct NUR_TAG_DATA_EX *)malloc(tagCount * sizeof(struct NUR_TAG_DATA_EX));
+            error = NurApiGetAllTagDataEx([Bluetooth sharedInstance].nurapiHandle, tagDataBuffer, &tagCount, sizeof(struct NUR_TAG_DATA_EX));
+            if (error != NUR_NO_ERROR) {
+                logError( @"failed to fetch all tags from tag storage" );
+
+                // unlock and abort
+                NurApiLockTagStorage( [Bluetooth sharedInstance].nurapiHandle, FALSE);
+                return;
+            }
+
+            logDebug( @"fetched %d tags from tag storage", tagCount);
+
+            // clear the tags
+            error = NurApiClearTags( [Bluetooth sharedInstance].nurapiHandle );
+            if (error != NUR_NO_ERROR) {
+                logError( @"failed to clear read tags from tag storage" );
+            }
+
+            error = NurApiLockTagStorage( [Bluetooth sharedInstance].nurapiHandle, FALSE);
+            if (error != NUR_NO_ERROR) {
+                logError( @"failed to unlock tag storage" );
             }
 
             NSMutableArray * newTags = [NSMutableArray new];
@@ -498,20 +542,23 @@
 
             // fetch all new tags
             for ( int index = 0; index < tagCount; ++index ) {
-                Tag * tag = [tm getTag:index];
-                if ( tag ) {
-                    BOOL isTagNew = [tm addTag:tag];
+                struct NUR_TAG_DATA_EX tagData = tagDataBuffer[index];
+                Tag * tag =  [[Tag alloc] initWithEpc:[NSData dataWithBytes:tagData.epc length:tagData.epcLen]
+                                            frequency:tagData.freq
+                                                 rssi:tagData.rssi
+                                           scaledRssi:tagData.scaledRssi
+                                            timestamp:tagData.timestamp
+                                              channel:tagData.channel
+                                            antennaId:tagData.antennaId];
 
-                    // play a short blip if the tag was new
-                    if ( isTagNew ) {
-                        [newTags addObject:tag];
-                        logDebug( @"found new tag: %@", tag );
-                    }
+                BOOL isTagNew = [tm addTag:tag];
+
+                // play a short blip if the tag was new
+                if ( isTagNew ) {
+                    [newTags addObject:tag];
+                    logDebug( @"found new tag: %@", tag );
                 }
             }
-
-            // clear the tags
-            NurApiClearTags( [Bluetooth sharedInstance].nurapiHandle );
 
             // did the stream stop by itself? it will stop after 25 seconds or so, but keep it running
             if ( inventoryStream->stopped ) {
