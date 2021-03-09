@@ -171,7 +171,7 @@
  * The callbacks do not necessaily come on the main thread, so make sure everything that touches the UI is done on
  * the main thread only.
  **/
-- (void) bluetoothStateChanged:(CBCentralManagerState)state {
+- (void) bluetoothStateChanged:(CBManagerState)state {
     dispatch_async( dispatch_get_main_queue(), ^{
         logDebug( @"bluetooth state: %ld", (long)state );
 
