@@ -1,6 +1,25 @@
 
 #import "Log.h"
 
+void logDebug(NSString * format, ...) {
+    va_list args;
+    va_start(args, format);
+    NSString * formatted = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+
+    [[Log sharedInstance] debug:formatted];
+}
+
+void logError(NSString * format, ...) {
+    va_list args;
+    va_start(args, format);
+    NSString * formatted = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+
+    [[Log sharedInstance] error:formatted];
+}
+
+
 @interface Log()
 
 @property (nonatomic, strong) NSFileHandle * fileHandle;
