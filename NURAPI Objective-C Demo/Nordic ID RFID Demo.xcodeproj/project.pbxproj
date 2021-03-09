@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,8 +15,9 @@
 		6F050B291FA85B1D00D9CF95 /* EULAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B271FA85B1D00D9CF95 /* EULAViewController.m */; };
 		6F050B2D1FA85BB500D9CF95 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */; };
 		6F0A16E1204800BD0015BCC6 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A16E0204800BD0015BCC6 /* Log.m */; };
+		6F0CCDB525EFDBF800D0D61B /* NurAPIBluetooth.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0CCDB425EFDBF800D0D61B /* NurAPIBluetooth.xcframework */; };
+		6F0CCDB625EFDBF800D0D61B /* NurAPIBluetooth.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0CCDB425EFDBF800D0D61B /* NurAPIBluetooth.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6234FE200E44C1005B5913 /* ThemeableLabelInverted.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */; };
-		6F6E265620A18BF400DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6E265320A18BBC00DC5193 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F7959DC1EC2D83000A458AA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598D1EC2D83000A458AA /* AboutViewController.m */; };
 		6F7959DD1EC2D83000A458AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F79598F1EC2D83000A458AA /* AppDelegate.m */; };
 		6F7959DE1EC2D83000A458AA /* ApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7959911EC2D83000A458AA /* ApplicationSettingsViewController.m */; };
@@ -84,13 +85,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6F795A221EC2D94E00A458AA /* Embed Frameworks */ = {
+		6F0CCDB725EFDBF800D0D61B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F6E265620A18BF400DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */,
+				6F0CCDB625EFDBF800D0D61B /* NurAPIBluetooth.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,6 +114,8 @@
 		6F050B2C1FA85BB400D9CF95 /* ViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerManager.m; sourceTree = "<group>"; };
 		6F0A16DF204800BD0015BCC6 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		6F0A16E0204800BD0015BCC6 /* Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		6F0CCD8425EFC64600D0D61B /* NurAPITest.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NurAPITest.xcframework; path = ../../nur_nurapi_native/iOS/NurAPITest.xcframework; sourceTree = "<group>"; };
+		6F0CCDB425EFDBF800D0D61B /* NurAPIBluetooth.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NurAPIBluetooth.xcframework; path = ../NurAPIBluetooth.xcframework; sourceTree = "<group>"; };
 		6F547D4F1FA72D0C00BA0B59 /* ViewControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerManager.h; sourceTree = "<group>"; };
 		6F6234FC200E44C1005B5913 /* ThemeableLabelInverted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeableLabelInverted.h; sourceTree = "<group>"; };
 		6F6234FD200E44C1005B5913 /* ThemeableLabelInverted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeableLabelInverted.m; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1E3DE1224B6E11B19DAC853 /* Pods_Nordic_ID_RFID_Demo.framework in Frameworks */,
+				6F0CCDB525EFDBF800D0D61B /* NurAPIBluetooth.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +449,8 @@
 		6F795A191EC2D92C00A458AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F0CCDB425EFDBF800D0D61B /* NurAPIBluetooth.xcframework */,
+				6F0CCD8425EFC64600D0D61B /* NurAPITest.xcframework */,
 				6F6E265320A18BBC00DC5193 /* NurAPIBluetooth.framework */,
 				5C25295B354D6F70304EAC61 /* Pods_Alien_Technology_Demo.framework */,
 				CC6362498CB1A16C30FF4B8D /* Pods_Nordic_ID_RFID_Demo.framework */,
@@ -520,10 +526,9 @@
 				6F79596E1EC2D77600A458AA /* Frameworks */,
 				6F795A231EC2DA6A00A458AA /* ShellScript */,
 				6F79596F1EC2D77600A458AA /* Resources */,
-				6F795A221EC2D94E00A458AA /* Embed Frameworks */,
-				6F795A241EC2DAED00A458AA /* ShellScript */,
 				45BD03EF94D4D226C9AB1329 /* [CP] Embed Pods Frameworks */,
 				3CB70613BFD6D3D28D54CB52 /* [CP] Copy Pods Resources */,
+				6F0CCDB725EFDBF800D0D61B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -647,19 +652,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./AutoIncrementCFBundleVersion.sh\n";
-		};
-		6F795A241EC2DAED00A458AA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
 		};
 		B7DB445AE567A8A0BDF7EDB0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -909,7 +901,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FFF129810DC220C3978CA6A /* Pods-Nordic ID RFID Demo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGSJJLLG7M;
 				ENABLE_BITCODE = NO;
@@ -920,7 +911,11 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../",
+				);
 				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -931,7 +926,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BB6AA733015FC9C3401FB06 /* Pods-Nordic ID RFID Demo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGSJJLLG7M;
 				ENABLE_BITCODE = NO;
@@ -942,7 +936,11 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../",
+				);
 				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nordicid.nurapi.objectivecdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
