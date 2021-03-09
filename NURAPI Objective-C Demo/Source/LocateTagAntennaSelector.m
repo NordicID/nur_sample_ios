@@ -9,8 +9,6 @@
     int antennaMappingCount;
 }
 
-//@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
-
 @property (nonatomic, readwrite) AntennaType currentAntenna;
 @property (nonatomic, strong) AverageBuffer * signalAverage;
 @property (nonatomic, strong) NSMutableArray * antennaNames;
@@ -40,24 +38,11 @@
 
         // average buffer of 3 values
         self.signalAverage = [[AverageBuffer alloc] initWithMaxSize:3 maxAge:0];
-
-        // set up the queue used to async any NURAPI calls
-        //self.dispatchQueue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 );
     }
 
     return self;
 }
 
-/*
- - (int) getPhysicalAntennaMask { //(AntennaMapping []map, String ant)
- int mask = 0;
- for (int n=0; n < antennaMappingCount; n++) {
- if (map[n].name.startsWith(ant))
- mask |= (1 << map[n].antennaId);
- }
- return mask;
- }
- */
 
 - (int) begin {
     logDebug( @"setting up antenna selector" );

@@ -44,6 +44,24 @@
 
     // initially the share button is hidden, nothing to share
     self.shareButton.enabled = NO;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appMovedToForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+
+- (void) appMovedToForeground {
+    // fix the button to have the correct text in case the user has left the view and come back
+    dispatch_async(self.dispatchQueue, ^{
+        BOOL isStreamRunning = NurApiIsInventoryStreamRunning( [Bluetooth sharedInstance].nurapiHandle );
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ( isStreamRunning ) {
+                [self.inventoryButton setTitle:NSLocalizedString(@"Stop", nil) forState:UIControlStateNormal];
+            }
+            else {
+                [self.inventoryButton setTitle:NSLocalizedString(@"Start", nil) forState:UIControlStateNormal];
+            }
+        });
+    });
 }
 
 
@@ -52,11 +70,15 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
+
 }
 
 
 - (void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+
+    // always re-enable the idle timer when we leave
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
 
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
@@ -233,15 +255,33 @@
     } );
 }
 
+
 - (void) startStream {
     logDebug( @"starting inventory stream" );
+
+    // fetch module setup and set the NUR_OPFLAGS_INVSTREAM_ZEROS op flag. This makes the module
+    // also report zero tag inventory rounds and makes the audio beeps work nicer
+    struct NUR_MODULESETUP setup;
+    int error = NurApiGetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_OPFLAGS, &setup, sizeof(struct NUR_MODULESETUP) );
+    if ( error != NUR_NO_ERROR ) {
+        logError( @"failed to get module setup for setting op flags" );
+        return;
+    }
+
+    setup.opFlags |= NUR_OPFLAGS_INVSTREAM_ZEROS;
+
+    error = NurApiSetModuleSetup( [Bluetooth sharedInstance].nurapiHandle, NUR_SETUP_OPFLAGS, &setup, sizeof(struct NUR_MODULESETUP) );
+    if ( error != NUR_NO_ERROR ) {
+        logError( @"failed to set module setup setting for op flags" );
+        return;
+    }
+
 
     // default scanning parameters
     int rounds = 0;
     int q = 0;
     int session = 0;
-
-    int error = NurApiStartInventoryStream( [Bluetooth sharedInstance].nurapiHandle, rounds, q, session );
+    error = NurApiStartInventoryStream( [Bluetooth sharedInstance].nurapiHandle, rounds, q, session );
 
     // show the error or update the button label on the main queue
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -250,6 +290,9 @@
             [self showNurApiErrorMessage:error];
             return;
         }
+
+        // disable the idle timer, ie screen saver while the stream is running
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
 
         // clear all statistics data as we now started again
         [self clearData];
@@ -308,6 +351,9 @@
 
     // show the error or update the button label on the main queue
     dispatch_async(dispatch_get_main_queue(), ^{
+        // re-enable the idle timer for the screen saver
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
+
         if ( error != NUR_NO_ERROR ) {
             logError( @"failed to stop inventory stream" );
             [self showNurApiErrorMessage:error];
