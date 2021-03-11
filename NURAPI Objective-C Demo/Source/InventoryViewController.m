@@ -596,6 +596,8 @@
                         logDebug( @"found new tag: %@", tag );
                     }
                 }
+
+                free(tagDataBuffer);
             }
             else {
                 // no tags, just unlock the tag storage
