@@ -12,7 +12,7 @@ class SelectReaderViewController: UITableViewController, BluetoothDelegate, LogD
         Bluetooth.sharedInstance().logDelegate = self
 
         // can we start scanning?
-        if Bluetooth.sharedInstance().state == CBCentralManagerState.poweredOn {
+        if Bluetooth.sharedInstance().state == CBManagerState.poweredOn {
             // bluetooth is on, start scanning
             Bluetooth.sharedInstance().startScanning()
         }
@@ -63,8 +63,8 @@ class SelectReaderViewController: UITableViewController, BluetoothDelegate, LogD
     //
     //  MARK: - Bluetooth delegate
     //
-    func bluetoothStateChanged(_ state: CBCentralManagerState) {
-        if state != CBCentralManagerState.poweredOn || Bluetooth.sharedInstance().isScanning {
+    func bluetoothStateChanged(_ state: CBManagerState) {
+        if state != CBManagerState.poweredOn || Bluetooth.sharedInstance().isScanning {
             // not powered on or already scanning
             print( "bluetooth not turned on or already scanning or readers" )
             return
@@ -80,7 +80,8 @@ class SelectReaderViewController: UITableViewController, BluetoothDelegate, LogD
     func readerFound(_ reader: CBPeripheral!, rssi: NSNumber!) {
         // call on the main thread
         DispatchQueue.main.async {
-            print("reader found: \(reader.name)" )
+            let name = reader.name ?? "unknown reader"
+            print("reader found: \(name)" )
             self.tableView.reloadData()
         }
     }
