@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F6E265920A18F5900DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6E265720A18F5900DC5193 /* NurAPIBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F6E265B20A1A09E00DC5193 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E265A20A1A09E00DC5193 /* MainViewController.swift */; };
 		6F6E265D20A1A3A900DC5193 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E265C20A1A3A900DC5193 /* InventoryViewController.swift */; };
 		6F6E265F20A1A70200DC5193 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E265E20A1A70200DC5193 /* Tag.swift */; };
@@ -18,6 +17,8 @@
 		6F9E8D7E1D7F2D8F00512C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E8D7C1D7F2D8F00512C56 /* Main.storyboard */; };
 		6F9E8D801D7F2D8F00512C56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E8D7F1D7F2D8F00512C56 /* Assets.xcassets */; };
 		6F9E8D831D7F2D8F00512C56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E8D811D7F2D8F00512C56 /* LaunchScreen.storyboard */; };
+		6FB6838925F767D600945C66 /* NurAPIBluetooth.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB6838825F767D600945C66 /* NurAPIBluetooth.xcframework */; };
+		6FB6838A25F767D600945C66 /* NurAPIBluetooth.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB6838825F767D600945C66 /* NurAPIBluetooth.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,7 +28,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F6E265920A18F5900DC5193 /* NurAPIBluetooth.framework in Embed Frameworks */,
+				6FB6838A25F767D600945C66 /* NurAPIBluetooth.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,8 +36,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6F6E264F20A1863D00DC5193 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = "../NURAPI Objective-C Demo/NurAPIBluetooth.framework"; sourceTree = "<group>"; };
-		6F6E265720A18F5900DC5193 /* NurAPIBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NurAPIBluetooth.framework; path = ../NurAPIBluetooth.framework; sourceTree = "<group>"; };
 		6F6E265A20A1A09E00DC5193 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6F6E265C20A1A3A900DC5193 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		6F6E265E20A1A70200DC5193 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -50,6 +49,7 @@
 		6F9E8D821D7F2D8F00512C56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F9E8D841D7F2D8F00512C56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F9E8DD21D809B9100512C56 /* NURAPI Swift Demo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NURAPI Swift Demo-Bridging-Header.h"; sourceTree = "<group>"; };
+		6FB6838825F767D600945C66 /* NurAPIBluetooth.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NurAPIBluetooth.xcframework; path = ../NurAPIBluetooth.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FB6838925F767D600945C66 /* NurAPIBluetooth.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +76,6 @@
 		6F9E8D6C1D7F2D8F00512C56 = {
 			isa = PBXGroup;
 			children = (
-				6F6E265720A18F5900DC5193 /* NurAPIBluetooth.framework */,
 				6F9E8D771D7F2D8F00512C56 /* Source */,
 				6F9E8D761D7F2D8F00512C56 /* Products */,
 				6F9E8D921D7F2DF400512C56 /* Frameworks */,
@@ -111,7 +111,7 @@
 		6F9E8D921D7F2DF400512C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F6E264F20A1863D00DC5193 /* NurAPIBluetooth.framework */,
+				6FB6838825F767D600945C66 /* NurAPIBluetooth.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -144,13 +144,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Jan Ekholm";
 				TargetAttributes = {
 					6F9E8D741D7F2D8F00512C56 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 4725WV3RB4;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1240;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -160,6 +159,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -227,6 +227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -236,6 +237,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -243,8 +245,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -272,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -285,6 +289,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -294,6 +299,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -301,8 +307,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -324,10 +332,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -337,21 +346,25 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 4725WV3RB4;
+				DEVELOPMENT_TEAM = VGSJJLLG7M;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Source/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicid.nurapi-swift-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/NURAPI Swift Demo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -360,20 +373,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 4725WV3RB4;
+				DEVELOPMENT_TEAM = VGSJJLLG7M;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "NURAPI Swift Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicid.nurapi-swift-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/NURAPI Swift Demo-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
