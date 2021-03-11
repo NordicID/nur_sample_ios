@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Tag : CustomDebugStringConvertible {
+struct Tag : CustomDebugStringConvertible, Comparable {
 
     let epc: String
     let rssi: Int8
@@ -13,5 +13,9 @@ struct Tag : CustomDebugStringConvertible {
 
     var debugDescription: String {
         return "[Tag \(epc)]"
+    }
+
+    static func < (lhs: Tag, rhs: Tag) -> Bool {
+        return lhs.epc == rhs.epc
     }
 }
