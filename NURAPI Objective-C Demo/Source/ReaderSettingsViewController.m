@@ -148,9 +148,9 @@
         case 0:
             return NSLocalizedString(@"HID Modes", @"Reader settings section title");
         case 1:
-            return NSLocalizedString(@"Wireless Charging", @"Reader settings section title");
-        default:
             return NSLocalizedString(@"Connection", @"Reader settings section title");
+        default:
+            return NSLocalizedString(@"Wireless Charging", @"Reader settings section title");
     }
 }
 

@@ -13,6 +13,8 @@ enum {
     BOOL advancedOptionsShown;
 }
 
+@property (nonatomic, strong) NSDictionary * indexFileUrls;
+
 @end
 
 
@@ -23,6 +25,14 @@ enum {
 
     // set up the theme
     [self setupTheme];
+
+    // load the meta data plist from the bundle
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"MetaData" ofType:@"plist"];
+    NSDictionary *metadata = [[NSDictionary alloc] initWithContentsOfFile: path];
+    self.indexFileUrls = @{ @(kNurFirmware): [NSURL URLWithString:[metadata objectForKey:@"nurFirmwareIndexUrl"]],
+                            @(kNurBootloader): [NSURL URLWithString:[metadata objectForKey:@"nurBootloaderIndexUrl"]],
+                            @(kDeviceFirmware): [NSURL URLWithString:[metadata objectForKey:@"deviceFirmwareIndexUrl"]],
+                            @(kDeviceBootloader): [NSURL URLWithString:[metadata objectForKey:@"deviceBootloaderIndexUrl"]]};
 
     // no advanced options by default
     advancedOptionsShown = NO;
@@ -108,22 +118,22 @@ enum {
             switch ( indexPath.row ) {
                 case kNurFirmware:
                     cell.textLabel.text = NSLocalizedString(@"Nur firmware URL", nil);
-                    cell.detailTextLabel.text = [defaults stringForKey:@"NurFirmwareIndexUrl"];
+                    cell.detailTextLabel.text = self.indexFileUrls[ @(kNurFirmware) ];
                     break;
 
                 case kNurBootloader:
                     cell.textLabel.text = NSLocalizedString(@"Nur bootloader URL", nil);
-                    cell.detailTextLabel.text = [defaults stringForKey:@"NurBootloaderIndexUrl"];
+                    cell.detailTextLabel.text = self.indexFileUrls[ @(kNurBootloader) ];
                     break;
 
                 case kDeviceFirmware:
                     cell.textLabel.text = NSLocalizedString(@"Device firmware URL", nil);
-                    cell.detailTextLabel.text = [defaults stringForKey:@"DeviceFirmwareIndexUrl"];
+                    cell.detailTextLabel.text = self.indexFileUrls[ @(kDeviceFirmware) ];
                     break;
 
                 case kDeviceBootloader:
                     cell.textLabel.text = NSLocalizedString(@"Device bootloader URL", nil);
-                    cell.detailTextLabel.text = [defaults stringForKey:@"DeviceBootloaderIndexUrl"];
+                    cell.detailTextLabel.text = self.indexFileUrls[ @(kDeviceBootloader) ];
                     break;
             }
     }
