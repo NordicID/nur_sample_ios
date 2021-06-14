@@ -48,6 +48,10 @@
 
     // register for bluetooth events
     [[Bluetooth sharedInstance] registerDelegate:self];
+
+    // when the view appears disable the idle timer so that the screen doesn't go to sleep
+    // and interrupt the update
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
 
@@ -56,6 +60,9 @@
 
     // we no longer need bluetooth events
     [[Bluetooth sharedInstance] deregisterDelegate:self];
+
+    // no longer updating, so re-enable the idle timer so that the screen can again blank
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
 
