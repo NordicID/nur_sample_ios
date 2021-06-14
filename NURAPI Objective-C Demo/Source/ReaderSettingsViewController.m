@@ -42,7 +42,7 @@
 
     dispatch_async(self.dispatchQueue, ^{
         // get current settings
-        int error = NurAccGetConfig( [Bluetooth sharedInstance].nurapiHandle, &config, sizeof(NUR_ACC_CONFIG) );
+        int error = NurAccGetConfig( [Bluetooth sharedInstance].nurapiHandle, &self->config, sizeof(NUR_ACC_CONFIG) );
         if (error != NUR_NO_ERROR) {
             [self showNurApiErrorMessage:error];
             return;
@@ -50,9 +50,9 @@
 
         // NOTE: this returns a NUR_ERROR_HW_MISMATCH when the device does not support wireless charging, even though the device
         // responded ok and there was no communication error. So ignore that error here.
-        error = NurAccGetWirelessChargeStatus( [Bluetooth sharedInstance].nurapiHandle, &wirelessStatus);
+        error = NurAccGetWirelessChargeStatus( [Bluetooth sharedInstance].nurapiHandle, &self->wirelessStatus);
         if (error != NUR_NO_ERROR && error != NUR_ERROR_HW_MISMATCH) {
-            wirelessStatus = WIRELESS_CHARGE_NOT_SUPPORTED;
+            self->wirelessStatus = WIRELESS_CHARGE_NOT_SUPPORTED;
         }
 
         TCHAR deviceVersionsTmp[32] = _T("");
@@ -74,34 +74,20 @@
             [self showErrorMessage:@"Unexpected device firmware version format"];
         }
         else {
-            int major, minor, build;
-            if ( [Firmware extractMajor:&major minor:&minor build:&build fromVersion:deviceVersions] ) {
-                logDebug(@"versions: major: %d, minor: %d, build: %d", major, minor, build );
-                // the minimal allowed version is 2.2.1, so check for that
-                if ( major > 2 ||
-                    ( major >=2 && minor > 2) ||
-                    ( major >=2 && minor >= 2 && build > 1) ) {
-                    logDebug( @"pairing can be set with this firmware version" );
-                    allowPairingAvailable = YES;
-                }
-                else {
-                    logDebug( @"pairing can not be set with this firmware version" );
-                    allowPairingAvailable = NO;
-                }
-
-                // get the current pairing mode
-                int mode;
-                error = NurAccGetPairingMode( [Bluetooth sharedInstance].nurapiHandle, &mode);
-                if (error != NUR_NO_ERROR) {
-                    [self showNurApiErrorMessage:error];
-                    return;
-                }
-
-                allowPairing = mode == PAIRING_ENABLE ? PAIRING_ENABLE : PAIRING_DISABLE;
+            // get the current pairing mode. If the device does not support pairing this call
+            // is assumed to fail
+            int mode;
+            error = NurAccGetPairingMode( [Bluetooth sharedInstance].nurapiHandle, &mode);
+            if (error != NUR_NO_ERROR) {
+                self->allowPairingAvailable = NO;
+            }
+            else {
+                self->allowPairingAvailable = YES;
+                self->allowPairing = mode == PAIRING_ENABLE ? PAIRING_ENABLE : PAIRING_DISABLE;
             }
         }
 
-        settingsRead = YES;
+        self->settingsRead = YES;
 
         // now we can show the data
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -309,10 +295,10 @@
                                             actionWithTitle:NSLocalizedString(@"Proceed", nil)
                                             style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction * action) {
-                                                // user confirmed, save settings and reboot afterwards
-                                                allowPairing = enabled;
-                                                [self saveSettings:YES];
-                                            }];
+                // user confirmed, save settings and reboot afterwards
+                self->allowPairing = enabled;
+                [self saveSettings:YES];
+            }];
 
             UIAlertAction* cancelButton = [UIAlertAction
                                            actionWithTitle:NSLocalizedString(@"Cancel", nil)
@@ -346,27 +332,27 @@
 
     dispatch_async(self.dispatchQueue, ^{
         // write current settings
-        int error = NurAccSetConfig( [Bluetooth sharedInstance].nurapiHandle, &config, sizeof(NUR_ACC_CONFIG) );
+        int error = NurAccSetConfig( [Bluetooth sharedInstance].nurapiHandle, &self->config, sizeof(NUR_ACC_CONFIG) );
         if (error != NUR_NO_ERROR) {
             // failed to fetch tag
             [self showNurApiErrorMessage:error];
         }
 
-        if ( wirelessStatus == WIRELESS_CHARGE_ON ) {
-            error = NurAccSetWirelessCharge( [Bluetooth sharedInstance].nurapiHandle, 1, &wirelessStatus );
+        if ( self->wirelessStatus == WIRELESS_CHARGE_ON ) {
+            error = NurAccSetWirelessCharge( [Bluetooth sharedInstance].nurapiHandle, 1, &self->wirelessStatus );
         }
-        else if ( wirelessStatus == WIRELESS_CHARGE_OFF ) {
-            error = NurAccSetWirelessCharge( [Bluetooth sharedInstance].nurapiHandle, 0, &wirelessStatus );
+        else if ( self->wirelessStatus == WIRELESS_CHARGE_OFF ) {
+            error = NurAccSetWirelessCharge( [Bluetooth sharedInstance].nurapiHandle, 0, &self->wirelessStatus );
         }
         else {
             // nothing for us
-            writeInProgress = NO;
+            self->writeInProgress = NO;
         }
 
         if (error != NUR_NO_ERROR) {
             // failed to fetch tag
             [self showNurApiErrorMessage:error];
-            writeInProgress = NO;
+            self->writeInProgress = NO;
             return;
         }
 
@@ -378,7 +364,7 @@
             }
         }
 
-        writeInProgress = NO;
+        self->writeInProgress = NO;
 
         if ( reboot ) {
             // save the UUID of this current device so that we can after the reboot reconnect to it
