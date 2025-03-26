@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -527,7 +527,6 @@
 				6F795A231EC2DA6A00A458AA /* ShellScript */,
 				6F79596F1EC2D77600A458AA /* Resources */,
 				45BD03EF94D4D226C9AB1329 /* [CP] Embed Pods Frameworks */,
-				3CB70613BFD6D3D28D54CB52 /* [CP] Copy Pods Resources */,
 				6F0CCDB725EFDBF800D0D61B /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -546,7 +545,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1240;
-				ORGANIZATIONNAME = "Jan Ekholm";
+				ORGANIZATIONNAME = "Brady by Nordic ID";
 				TargetAttributes = {
 					6F7959701EC2D77600A458AA = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -556,7 +555,7 @@
 				};
 			};
 			buildConfigurationList = 6F79596C1EC2D77600A458AA /* Build configuration list for PBXProject "Nordic ID RFID Demo" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -603,41 +602,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3CB70613BFD6D3D28D54CB52 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		45BD03EF94D4D226C9AB1329 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
-				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nordic ID RFID Demo/Pods-Nordic ID RFID Demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6F795A231EC2DA6A00A458AA /* ShellScript */ = {
@@ -910,7 +889,7 @@
 					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -935,7 +914,7 @@
 					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
