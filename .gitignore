@@ -13,3 +13,69 @@ xcuserdata
 /NURAPI Objective-C Demo/Nordic ID RFID Demo.xcodeproj/project.xcworkspace/xcshareddata
 /NURAPI Objective-C Demo/Nordic ID RFID Demo.xcworkspace/xcshareddata
 /NURAPI Swift Demo/NURAPI Swift Demo.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# User-specific files
+*.swp
+*.lock
+*.DS_Store
+*.xcuserdata
+
+# Build artifacts and intermediate files
+*.o
+*.lo
+*.la
+*.al
+*.libs
+*.d
+*.obj
+*.exe
+*.out
+*.app
+*.ipa
+*.dSYM
+*.class
+*.jar
+*.war
+*.ear
+
+# Xcode-specific
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+DerivedData/
+*.xcworkspace
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Archives
+*.xcarchive
+
+# Swift Package Manager
+.build/
+.swiftpm/xcode/
+
+# Bundle artifacts
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Playground auxiliary files
+timeline.xctimeline
+playground.xcworkspace
