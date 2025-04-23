@@ -1,6 +1,6 @@
 
 #import <UIKit/UIKit.h>
-@import iOSDFULibrary;
+@import NordicDFU;
 
 #import "Firmware.h"
 #import "UIViewController+Theme.h"
