@@ -3,6 +3,6 @@ platform :ios, '15.6'
 target 'Nordic ID RFID Demo' do
   use_frameworks!
 
-  pod 'NordicDFU'	
+  pod 'NordicDFU'
   pod 'TTTAttributedLabel'
 end

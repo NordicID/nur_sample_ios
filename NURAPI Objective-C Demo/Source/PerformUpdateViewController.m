@@ -647,11 +647,14 @@
     logDebug(@"waiting 3s and then starting the real DFU update" );
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), self.dispatchQueue, ^{
         DFUFirmwareType type = self.firmware.type == kDeviceFirmware ? DFUFirmwareTypeApplication : DFUFirmwareTypeBootloader;
+        //DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithZipFile:self.firmwareData type:type];
 
         // set up the DFU initiator.
         // NOTE: this will take over the delegate from us!
         DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:[Bluetooth sharedInstance].central
                                                                                       target:reader];
+        //[initiator withFirmware:selectedFirmware];
+
         initiator.logger = self; // - to get log info
         initiator.delegate = self; // - to be informed about current state and errors
         initiator.progressDelegate = self;
