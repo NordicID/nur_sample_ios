@@ -79,3 +79,6 @@ fastlane/test_output
 # Playground auxiliary files
 timeline.xctimeline
 playground.xcworkspace
+
+.DS_Store
+
