@@ -1,0 +1,24 @@
+PODS:
+  - NordicDFU (4.16.0):
+    - ZIPFoundation (= 0.9.19)
+  - TTTAttributedLabel (2.0.0)
+  - ZIPFoundation (0.9.19)
+
+DEPENDENCIES:
+  - NordicDFU
+  - TTTAttributedLabel
+
+SPEC REPOS:
+  trunk:
+    - NordicDFU
+    - TTTAttributedLabel
+    - ZIPFoundation
+
+SPEC CHECKSUMS:
+  NordicDFU: 116a4ec458945889f8e0e71759e03b23c39c3482
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  ZIPFoundation: b8c29ea7ae353b309bc810586181fd073cb3312c
+
+PODFILE CHECKSUM: 0db4ff3c546501e1fe133981549674503150769b
+
+COCOAPODS: 1.16.2
