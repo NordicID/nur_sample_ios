@@ -118,14 +118,35 @@
         [foundFirmwares addObject:firmware];
     }*/
 
-    for (NSMutableDictionary *firmwares in [json objectForKey:@"firmwares"]) {
+    for (NSMutableDictionary *firmwares in [json objectForKey:@"files"]) {
         NSString *name = [firmwares objectForKey:@"name"];
-        NSString *version = [firmwares objectForKey:@"version"];
-        NSString *urlString = [firmwares objectForKey:@"url"];
+        NSString *fwInfo = [firmwares objectForKey:@"fwinfo"];
         NSString *md5 = [firmwares objectForKey:@"md5"];
         NSUInteger buildTimestamp = [[firmwares objectForKey:@"buildtime"] longLongValue];
         NSArray * hw = [firmwares objectForKey:@"hw"];
 
+        // Extract the MODULE value from the FWINFO string
+        NSString *module = [self extractModuleFromFWInfo:fwInfo];
+        if (module) {
+            NSMutableArray *updatedHw = [hw mutableCopy];
+            if (!updatedHw) {
+                updatedHw = [NSMutableArray new];
+            }
+            [updatedHw addObject:module];
+            hw = [updatedHw copy];
+        }
+        
+        // Construct the URL string dynamically
+        NSString *urlString = [NSString stringWithFormat:@"https://github.com/NordicID/nur_firmware/tree/master/Exa_firmwares/%@", name];
+
+        // Extract the version from the FWINFO string
+        NSString *version = [self extractVersionFromFWInfo:fwInfo];
+        if (!version) {
+            logError(@"Failed to extract version from fwinfo: %@", fwInfo);
+            continue; // Skip this firmware if version extraction fails
+        }
+        
+        
         // convert the timestamp to a date
         NSDate * buildTime = [NSDate dateWithTimeIntervalSince1970:buildTimestamp];
         NSURL * url = [NSURL URLWithString:urlString];
@@ -159,5 +180,32 @@
     }
 }
 
+- (NSString *)extractVersionFromFWInfo:(NSString *)fwinfo {
+    return [self extractValueFromFWInfo:fwinfo withPattern:@"VER=([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)"];
+}
+
+- (NSString *)extractModuleFromFWInfo:(NSString *)fwinfo {
+    return [self extractValueFromFWInfo:fwinfo withPattern:@"MODULE=([A-Za-z0-9]+)"];
+}
+
+- (NSString *)extractValueFromFWInfo:(NSString *)fwinfo withPattern:(NSString *)pattern {
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:0
+                                                                             error:&error];
+    if (error) {
+        logError(@"Failed to create regex with pattern '%@': %@", pattern, error.localizedDescription);
+        return nil;
+    }
+
+    NSTextCheckingResult *match = [regex firstMatchInString:fwinfo options:0 range:NSMakeRange(0, fwinfo.length)];
+    if (match && match.numberOfRanges > 1) {
+        NSRange valueRange = [match rangeAtIndex:1];
+        return [fwinfo substringWithRange:valueRange];
+    }
+
+    logError(@"No match found in fwinfo: %@ with pattern: %@", fwinfo, pattern);
+    return nil;
+}
 
 @end

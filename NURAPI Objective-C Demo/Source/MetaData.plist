@@ -27,7 +27,7 @@
 	<key>nurBootloaderIndexUrl</key>
 	<string>https://raw.githubusercontent.com/NordicID/nur_firmware/master/bootloaders.json</string>
 	<key>deviceFirmwareIndexUrl</key>
-	<string>https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Applicationfirmwares.json</string>
+	<string>https://raw.githubusercontent.com/NordicID/nur_firmware/master/zip/NIDLatestFW.json</string>
 	<key>deviceBootloaderIndexUrl</key>
 	<string>https://raw.githubusercontent.com/NordicID/nur_exa_firmware/master/Bootloaderfirmwares.json</string>
 </dict>
