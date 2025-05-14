@@ -2,6 +2,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <NurAPIBluetooth/Bluetooth.h>
 #import <NurAPIBluetooth/NurAccessoryExtension.h>
+#import <SSZipArchive/SSZipArchive.h>
 
 #import "PerformUpdateViewController.h"
 #import "Log.h"
@@ -652,34 +653,33 @@
                 return;
             }
             
-            // Move the file to a local directory
-            NSString *tempFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"firmware.zip"];
-            NSURL *localURL = [NSURL fileURLWithPath:tempFilePath];
-
-            NSError *fileError = nil;
+            NSString *tempDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:@"ExtractedOuterZip"];
             
-            // Check if the file already exists at the destination
-            if ([[NSFileManager defaultManager] fileExistsAtPath:localURL.path]) {
-                // Remove the existing file
-                [[NSFileManager defaultManager] removeItemAtURL:localURL error:&fileError];
-                if (fileError) {
-                    logError(@"Failed to remove existing firmware file: %@", fileError.localizedDescription);
-                    return;
-                }
-            }
-            
-            // Move the downloaded file to the destination
-            [[NSFileManager defaultManager] moveItemAtURL:location toURL:localURL error:&fileError];
-            if (fileError) {
-                logError(@"Failed to move firmware file: %@", fileError.localizedDescription);
+            // Ensure the directory is clean
+            [[NSFileManager defaultManager] removeItemAtPath:tempDirectory error:nil];
+            [[NSFileManager defaultManager] createDirectoryAtPath:tempDirectory withIntermediateDirectories:YES attributes:nil error:&error];
+            if (error) {
+                logError(@"Failed to create temporary directory: %@", error.localizedDescription);
                 return;
             }
             
-            logDebug(@"Firmware downloaded to: %@", localURL.path);
+            if (![self extractZipFileAtURL:firmwareURL toDestination:tempDirectory]) {
+                logError(@"Failed to extract outer ZIP file.");
+                return;
+            }
+            
+            NSString *innerZipFilePath = [self findInnerZipFileInDirectory:tempDirectory];
+            if (!innerZipFilePath) {
+                logError(@"Inner ZIP file not found in extracted contents.");
+                return;
+            }
 
-            // Initialize the DFUFirmware object with the local file
+            logDebug(@"Inner ZIP file found at: %@", innerZipFilePath);
+            
+            // Step 4: Pass the inner ZIP file to initWithUrlToZipFile
+            NSURL *innerZipFileURL = [NSURL fileURLWithPath:innerZipFilePath];
             NSError *firmwareError = nil;
-            DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithUrlToZipFile:localURL error:&firmwareError];
+            DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithUrlToZipFile:innerZipFileURL error:&firmwareError];
 
             if (!selectedFirmware) {
                 logError(@"Failed to initialize DFUFirmware: %@", firmwareError.localizedDescription);
@@ -844,6 +844,44 @@
     } else {
         logError(@"Failed to initiate reconnection to DFU device.");
     }
+}
+
+- (BOOL)extractZipFileAtURL:(NSURL *)zipFileURL toDestination:(NSString *)destinationPath {
+    NSError *error = nil;
+
+    // Ensure the destination directory is clean
+    [[NSFileManager defaultManager] removeItemAtPath:destinationPath error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtPath:destinationPath
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+    if (error) {
+        logError(@"Failed to create destination directory: %@", error.localizedDescription);
+        return NO;
+    }
+
+    // Extract the ZIP file
+    BOOL success = [SSZipArchive unzipFileAtPath:zipFileURL.path toDestination:destinationPath];
+    if (!success) {
+        logError(@"Failed to extract ZIP file.");
+        return NO;
+    }
+
+    logDebug(@"Successfully extracted ZIP file to: %@", destinationPath);
+    return YES;
+}
+
+- (NSString *)findInnerZipFileInDirectory:(NSString *)directoryPath {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtPath:directoryPath];
+
+    for (NSString *file in enumerator) {
+        if ([file.pathExtension isEqualToString:@"zip"]) {
+            return [directoryPath stringByAppendingPathComponent:file];
+        }
+    }
+
+    return nil; // No inner ZIP file found
 }
 
 @end

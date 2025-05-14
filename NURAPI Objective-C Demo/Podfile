@@ -5,4 +5,6 @@ target 'Nordic ID RFID Demo' do
 
   pod 'NordicDFU'
   pod 'TTTAttributedLabel'
+  pod 'SSZipArchive'
+  
 end

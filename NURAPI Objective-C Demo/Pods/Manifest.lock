@@ -1,24 +1,28 @@
 PODS:
   - NordicDFU (4.16.0):
     - ZIPFoundation (= 0.9.19)
+  - SSZipArchive (2.6.0)
   - TTTAttributedLabel (2.0.0)
   - ZIPFoundation (0.9.19)
 
 DEPENDENCIES:
   - NordicDFU
+  - SSZipArchive
   - TTTAttributedLabel
 
 SPEC REPOS:
   trunk:
     - NordicDFU
+    - SSZipArchive
     - TTTAttributedLabel
     - ZIPFoundation
 
 SPEC CHECKSUMS:
   NordicDFU: 116a4ec458945889f8e0e71759e03b23c39c3482
+  SSZipArchive: 8a6ee5677c8e304bebc109e39cf0da91ccef22ea
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   ZIPFoundation: b8c29ea7ae353b309bc810586181fd073cb3312c
 
-PODFILE CHECKSUM: 0db4ff3c546501e1fe133981549674503150769b
+PODFILE CHECKSUM: c94e33cda64b45b9282efeecc00ffdf86d01bdda
 
 COCOAPODS: 1.16.2
