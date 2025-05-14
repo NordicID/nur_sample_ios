@@ -246,8 +246,9 @@
 
             // send a custom raw command to the reader instructing it to restart in DFU mode
             BYTE command[2] = { ACC_EXT_RESTART, RESET_BOOTLOADER_DFU_START };
+            
             int error = [[Bluetooth sharedInstance] writeRawCommand:NUR_CMD_ACC_EXT buffer:command bufferLen:2];
-
+            logDebug(@"testi error %d", error);
             if ( error != NUR_NO_ERROR ) {
                 logError( @"failed to reboot reader into DFU mode");
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -258,7 +259,7 @@
 
             logDebug( @"reader rebooted ok, disconnecting and starting a scan to find the device after it is back in DFU mode" );
             [[Bluetooth sharedInstance] disconnectFromReader];
-            [[Bluetooth sharedInstance] startDfuScanning];
+            [[Bluetooth sharedInstance] startScanning];
         });
      }];
 }
@@ -312,6 +313,8 @@
         case DFUStateAborted:
             message = @"The update was aborted!";
             break;
+        default:
+            message = @"DEFAULT";
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -613,6 +616,124 @@
 //*****************************************************************************************************************
 #pragma mark - Bluetooth delegate
 
+- (void) readerFound:(CBPeripheral *)reader rssi:(NSNumber *)rssi
+{
+    logDebug( @"found reader %@ in DFU mode", reader.identifier.UUIDString);
+    if ( ![[Bluetooth sharedInstance] connectToReader:reader] ) {
+        // failed to reconnect...
+        logError(@"failed to do dummy connect to the device" );
+    }
+    
+    // is it one of ours?
+    //if ( [self.dfuDeviceName caseInsensitiveCompare:reader.name] != NSOrderedSame ) {
+    //    logDebug( @"device %@ is not an EXA device (%@), ignoring", reader.name, self.dfuDeviceName );
+    //   return;
+    //}
+    
+    // stop scanning for new devices, one is enough
+    [[Bluetooth sharedInstance] stopScanning];
+    logDebug( @"HERE");
+    
+    logDebug(@"waiting 3s and then starting the real DFU update" );
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)),
+ self.dispatchQueue,
+ ^{
+        
+        // Create the NSURL object pointing to the ZIP file
+        NSURL *firmwareURL = self.firmware.url; // Replace with the actual file path
+        logDebug(@"Firmware URL: %@", firmwareURL);
+        
+        // Download the ZIP file
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:firmwareURL
+                                                            completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+            if (error) {
+                logError(@"Failed to download firmware: %@", error.localizedDescription);
+                return;
+            }
+            
+            // Move the file to a local directory
+            NSString *tempFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"firmware.zip"];
+            NSURL *localURL = [NSURL fileURLWithPath:tempFilePath];
+
+            NSError *fileError = nil;
+            
+            // Check if the file already exists at the destination
+            if ([[NSFileManager defaultManager] fileExistsAtPath:localURL.path]) {
+                // Remove the existing file
+                [[NSFileManager defaultManager] removeItemAtURL:localURL error:&fileError];
+                if (fileError) {
+                    logError(@"Failed to remove existing firmware file: %@", fileError.localizedDescription);
+                    return;
+                }
+            }
+            
+            // Move the downloaded file to the destination
+            [[NSFileManager defaultManager] moveItemAtURL:location toURL:localURL error:&fileError];
+            if (fileError) {
+                logError(@"Failed to move firmware file: %@", fileError.localizedDescription);
+                return;
+            }
+            
+            logDebug(@"Firmware downloaded to: %@", localURL.path);
+
+            // Initialize the DFUFirmware object with the local file
+            NSError *firmwareError = nil;
+            DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithUrlToZipFile:localURL error:&firmwareError];
+
+            if (!selectedFirmware) {
+                logError(@"Failed to initialize DFUFirmware: %@", firmwareError.localizedDescription);
+                return;
+            }
+
+            // Set up the DFU initiator
+            DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:[Bluetooth sharedInstance].central
+                                                                                          target:reader];
+            [initiator withFirmware:selectedFirmware];
+
+            initiator.logger = self; // To get log info
+            initiator.delegate = self; // To be informed about current state and errors
+            initiator.progressDelegate = self;
+            initiator.packetReceiptNotificationParameter = 12;
+            initiator.forceDfu = NO;
+
+            // Start the DFU process
+            self.dfuController = [initiator startWithTarget:reader];
+            logDebug(@"DFU has started");
+        }];
+        
+        [downloadTask resume];
+        // Determine the firmware type
+        //DFUFirmwareType type = self.firmware.type == kDeviceFirmware ? DFUFirmwareTypeApplication : DFUFirmwareTypeBootloader;
+
+        
+        // Initialize the DFUFirmware object with error handling
+        //NSError *firmwareError = nil;
+        //DFUFirmware *selectedFirmware = [[DFUFirmware alloc] initWithUrlToZipFile:firmwareURL error:&firmwareError];
+        
+        /*if (!selectedFirmware) {
+            // Log the error if the firmware object is nil
+            logError(@"Failed to initialize DFUFirmware: %@", firmwareError.localizedDescription);
+            return;
+        }
+        // Set up the DFU initiator
+        DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:[Bluetooth sharedInstance].central
+                                                            target:reader];
+        [initiator withFirmware:selectedFirmware];
+
+        initiator.logger = self; // - to get log info
+        initiator.delegate = self; // - to be informed about current state and errors
+        initiator.progressDelegate = self;
+        initiator.packetReceiptNotificationParameter = 12;
+        initiator.forceDfu = NO;
+        // initiator.peripheralSelector = ... // the default selector is used
+
+        self.dfuController = [initiator startWithTarget:reader];
+         */
+        //logDebug( @"DFU has started" );
+    });
+}
+
 - (void) readerInDfuModeFound:(CBPeripheral *)reader {
     logDebug( @"found reader %@ in DFU mode", reader.identifier.UUIDString);
 
@@ -702,6 +823,26 @@
                 [self showFlashingCompleted];
             }
         }
+        default:
+            logDebug(@"TYPE: %d", type);
+    }
+}
+
+- (void)readerConnectionOk {
+    logDebug(@"Successfully connected to DFU device.");
+    // Proceed with the DFU process
+}
+
+- (void)readerConnectionFailed {
+    logError(@"Failed to connect to DFU device.");
+}
+
+- (void)reconnectToDfuDevice:(NSString *)uuid {
+    BOOL restoreStarted = [[Bluetooth sharedInstance] restoreConnection:uuid];
+    if (restoreStarted) {
+        logDebug(@"Reconnection to DFU device initiated.");
+    } else {
+        logError(@"Failed to initiate reconnection to DFU device.");
     }
 }
 

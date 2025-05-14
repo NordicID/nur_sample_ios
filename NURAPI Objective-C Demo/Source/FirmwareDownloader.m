@@ -137,7 +137,7 @@
         }
         
         // Construct the URL string dynamically
-        NSString *urlString = [NSString stringWithFormat:@"https://github.com/NordicID/nur_firmware/tree/master/Exa_firmwares/%@", name];
+        NSString *urlString = [NSString stringWithFormat:@"https://raw.githubusercontent.com/NordicID/nur_firmware/master/zip/NIDLatestFW.zip"];
 
         // Extract the version from the FWINFO string
         NSString *version = [self extractVersionFromFWInfo:fwInfo];
